@@ -1,7 +1,5 @@
 # service.py
 
-import os
-import json
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 
@@ -22,7 +20,7 @@ class RepairOrder(models.Model):
         domain=[('product_type', '!=', 'service')], copy=False, readonly=False)
     partner_id = fields.Many2one(
         'res.partner', 'Customer')
-    vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle', required=True, index=True)
+    vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle', index=True)
     vehicle_logo = fields.Image(related='vehicle_id.display_logo', string='Vehicle Logo', readonly=True)
     mechanic_ids = fields.Many2many('hr.employee', string='Механіки',
         help='Виконавці робіт по наряду (ИсполнителиРабот з 1С)')
@@ -48,10 +46,6 @@ class RepairOrder(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        log_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'log')
-        os.makedirs(log_dir, exist_ok=True)
-        file_path = os.path.join(log_dir, 'repairs.json')
-
         for vals in vals_list:
             vals['name'] = vals.get('name') or '/'
             if vals['name'].startswith('/'):
@@ -59,104 +53,12 @@ class RepairOrder(models.Model):
                     'repair.order') or '/') + vals['name']
                 vals['name'] = vals['name'][:-1] if vals['name'].endswith(
                     '/') and vals['name'] != '/' else vals['name']
-
-            operations_for_log = []
-            if 'operations' in vals and vals['operations']:
-                for op_command in vals['operations']:
-                    if op_command[0] == 0 and len(op_command) == 3:
-                        op_vals = op_command[2]
-                        operations_for_log.append({
-                            'product_id': op_vals.get('product_id'),
-                            'product_uom_qty': op_vals.get('product_uom_qty')
-                        })
-                    elif op_command[0] == 1 and len(op_command) == 3:
-                        op_vals = op_command[2]
-                        operations_for_log.append({
-                            'id': op_command[1],
-                            'product_id': op_vals.get('product_id'),
-                            'product_uom_qty': op_vals.get('product_uom_qty')
-                        })
-                    elif op_command[0] == 4 and len(op_command) == 2:
-                        operations_for_log.append({'id': op_command[1]})
-
-            product_type_name = None
-            if 'product_id' in vals and vals['product_id']:
-                product_type_name = self.env['product.product'].browse(vals['product_id']).name
-
-            vehicle_name = None
-            if 'vehicle_id' in vals and vals['vehicle_id']:
-                vehicle_name = self.env['fleet.vehicle'].browse(vals['vehicle_id']).name
-
-            jsonstr = json.dumps([
-                {'name': vals.get('name')},
-                {'repair_type': product_type_name},
-                {'vehicle_id': vehicle_name},
-                {'operations': operations_for_log}
-            ])
-
-            with open(file_path, 'a') as f:
-                f.write('create ' + jsonstr + '\n')
-
         return super(RepairOrder, self).create(vals_list)
 
     def write(self, vals):
         if 'driver_id' in vals and vals['driver_id']:
             driver_id = vals['driver_id']
             self.filtered(lambda v: v.driver_id.id != driver_id).create_driver_history(driver_id)
-
-        operations_for_log = []
-        if 'operations' in vals and vals['operations']:
-            for op_command in vals['operations']:
-                if op_command[0] == 0 and len(op_command) == 3:
-                    op_vals = op_command[2]
-                    operations_for_log.append({
-                        'product_id': op_vals.get('product_id'),
-                        'product_uom_qty': op_vals.get('product_uom_qty')
-                    })
-                elif op_command[0] == 1 and len(op_command) == 3:
-                    op_vals = op_command[2]
-                    operations_for_log.append({
-                        'id': op_command[1],
-                        'product_id': op_vals.get('product_id'),
-                        'product_uom_qty': op_vals.get('product_uom_qty')
-                    })
-                elif op_command[0] == 4 and len(op_command) == 2:
-                    operations_for_log.append({'id': op_command[1]})
-                elif op_command[0] == 2 and len(op_command) == 2:
-                    operations_for_log.append({'deleted_id': op_command[1]})
-        elif hasattr(self, 'operations') and self.operations:
-            for op_record in self.operations:
-                operations_for_log.append({
-                    'product_id': op_record.product_id.id if op_record.product_id else None,
-                    'product_uom_qty': op_record.product_uom_qty
-                })
-
-        current_name = vals.get('name', self.name)
-        current_product_type_name = None
-        if 'product_id' in vals and vals['product_id']:
-            current_product_type_name = self.env['product.product'].browse(vals['product_id']).name
-        elif self.product_id:
-            current_product_type_name = self.product_id.name
-
-        current_vehicle_name = None
-        if 'vehicle_id' in vals and vals['vehicle_id']:
-            current_vehicle_name = self.env['fleet.vehicle'].browse(vals['vehicle_id']).name
-        elif self.vehicle_id:
-            current_vehicle_name = self.vehicle_id.name
-
-        log_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'log')
-        os.makedirs(log_dir, exist_ok=True)
-        jsonstr = json.dumps([
-            {'name': current_name},
-            {'repair_type': current_product_type_name},
-            {'vehicle_id': current_vehicle_name},
-            {'operations': operations_for_log}
-        ])
-
-        file_path = os.path.join(log_dir, 'repairs.json')
-        with open(file_path, 'a') as f:
-            f.write('write ' + jsonstr + '\n')
-
         return super(RepairOrder, self).write(vals)
 
     def _check_parts_availability(self):

@@ -1,4 +1,361 @@
 <odoo>
     <data>
+
+        <!-- ============================================================ -->
+        <!--  КЛІЄНТИ / КОНТРАГЕНТИ                                        -->
+        <!-- ============================================================ -->
+        <record id="demo_partner_avtoprofi" model="res.partner">
+            <field name="name">ТОВ «АвтоПрофі»</field>
+            <field name="is_company">True</field>
+            <field name="company_type">company</field>
+            <field name="edrpou">35217409</field>
+            <field name="street">вул. Промислова, 12</field>
+            <field name="city">Київ</field>
+            <field name="phone">+380 44 500 12 34</field>
+            <field name="email">office@avtoprofi.example</field>
+            <field name="customer_rank">1</field>
+        </record>
+
+        <record id="demo_partner_logistic" model="res.partner">
+            <field name="name">ТОВ «Захід-Логістик»</field>
+            <field name="is_company">True</field>
+            <field name="company_type">company</field>
+            <field name="edrpou">40128736</field>
+            <field name="street">вул. Городоцька, 205</field>
+            <field name="city">Львів</field>
+            <field name="phone">+380 32 245 88 90</field>
+            <field name="email">info@zahid-log.example</field>
+            <field name="customer_rank">1</field>
+        </record>
+
+        <record id="demo_partner_ivanenko" model="res.partner">
+            <field name="name">Іваненко Петро Миколайович</field>
+            <field name="company_type">person</field>
+            <field name="driver_license">САР123456</field>
+            <field name="street">вул. Стуса, 7, кв. 42</field>
+            <field name="city">Київ</field>
+            <field name="phone">+380 67 123 45 67</field>
+            <field name="email">p.ivanenko@example.com</field>
+            <field name="customer_rank">1</field>
+        </record>
+
+        <record id="demo_partner_kovalenko" model="res.partner">
+            <field name="name">Коваленко Ірина Сергіївна</field>
+            <field name="company_type">person</field>
+            <field name="driver_license">ВНА654321</field>
+            <field name="street">просп. Свободи, 15</field>
+            <field name="city">Дніпро</field>
+            <field name="phone">+380 50 987 65 43</field>
+            <field name="email">i.kovalenko@example.com</field>
+            <field name="customer_rank">1</field>
+        </record>
+
+        <record id="demo_partner_supplier" model="res.partner">
+            <field name="name">ТОВ «АвтоЗапчастина Опт»</field>
+            <field name="is_company">True</field>
+            <field name="company_type">company</field>
+            <field name="edrpou">39887201</field>
+            <field name="city">Київ</field>
+            <field name="supplier_rank">1</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!--  МЕХАНІКИ (персонал СТО)                                     -->
+        <!-- ============================================================ -->
+        <record id="demo_emp_shevchuk" model="hr.employee">
+            <field name="name">Шевчук Андрій</field>
+            <field name="job_title">Механік-моторист</field>
+        </record>
+        <record id="demo_emp_bondar" model="hr.employee">
+            <field name="name">Бондар Олег</field>
+            <field name="job_title">Автослюсар</field>
+        </record>
+        <record id="demo_emp_tkachenko" model="hr.employee">
+            <field name="name">Ткаченко Василь</field>
+            <field name="job_title">Діагност-електрик</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!--  МАРКИ ТА МОДЕЛІ АВТО                                        -->
+        <!-- ============================================================ -->
+        <record id="demo_brand_toyota" model="fleet.vehicle.model.brand">
+            <field name="name">Toyota</field>
+        </record>
+        <record id="demo_brand_vw" model="fleet.vehicle.model.brand">
+            <field name="name">Volkswagen</field>
+        </record>
+
+        <record id="demo_model_corolla" model="fleet.vehicle.model">
+            <field name="name">Corolla</field>
+            <field name="brand_id" ref="demo_brand_toyota"/>
+        </record>
+        <record id="demo_model_rav4" model="fleet.vehicle.model">
+            <field name="name">RAV4</field>
+            <field name="brand_id" ref="demo_brand_toyota"/>
+        </record>
+        <record id="demo_model_passat" model="fleet.vehicle.model">
+            <field name="name">Passat</field>
+            <field name="brand_id" ref="demo_brand_vw"/>
+        </record>
+        <record id="demo_model_tiguan" model="fleet.vehicle.model">
+            <field name="name">Tiguan</field>
+            <field name="brand_id" ref="demo_brand_vw"/>
+        </record>
+
+        <!-- ============================================================ -->
+        <!--  АВТОМОБІЛІ КЛІЄНТІВ (fleet.vehicle)                          -->
+        <!-- ============================================================ -->
+        <record id="demo_veh_corolla" model="fleet.vehicle">
+            <field name="model_id" ref="demo_model_corolla"/>
+            <field name="vin_sn">JTDBR32E720123456</field>
+            <field name="license_plate">АА1234ВС</field>
+            <field name="partner_id" ref="demo_partner_ivanenko"/>
+            <field name="driver_id" ref="demo_partner_ivanenko"/>
+            <field name="service_interval_km">15000</field>
+        </record>
+        <record id="demo_veh_rav4" model="fleet.vehicle">
+            <field name="model_id" ref="demo_model_rav4"/>
+            <field name="vin_sn">JTMWFREV40D098765</field>
+            <field name="license_plate">КА5678ОР</field>
+            <field name="partner_id" ref="demo_partner_kovalenko"/>
+            <field name="driver_id" ref="demo_partner_kovalenko"/>
+            <field name="service_interval_km">15000</field>
+        </record>
+        <record id="demo_veh_passat" model="fleet.vehicle">
+            <field name="model_id" ref="demo_model_passat"/>
+            <field name="vin_sn">WVWZZZ3CZWE654321</field>
+            <field name="license_plate">ВС9012АІ</field>
+            <field name="partner_id" ref="demo_partner_avtoprofi"/>
+            <field name="driver_id" ref="demo_partner_avtoprofi"/>
+            <field name="service_interval_km">20000</field>
+        </record>
+        <record id="demo_veh_tiguan" model="fleet.vehicle">
+            <field name="model_id" ref="demo_model_tiguan"/>
+            <field name="vin_sn">WVGZZZ5NZLW112233</field>
+            <field name="license_plate">АЕ3456КН</field>
+            <field name="partner_id" ref="demo_partner_logistic"/>
+            <field name="driver_id" ref="demo_partner_logistic"/>
+            <field name="service_interval_km">20000</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!--  ЗАПЧАСТИНИ ТА ПОСЛУГИ (номенклатура)                         -->
+        <!-- ============================================================ -->
+        <!-- Група аналогів для масляних фільтрів -->
+        <record id="demo_analog_oilfilter" model="adealer.part.analog.group">
+            <field name="name">Фільтр масляний (аналоги)</field>
+            <field name="note">Взаємозамінні масляні фільтри різних виробників.</field>
+        </record>
+
+        <!-- Запчастини (type=consu) -->
+        <record id="demo_prod_oilfilter_a" model="product.product">
+            <field name="name">Фільтр масляний OEM-90915</field>
+            <field name="type">consu</field>
+            <field name="default_code">OF-90915</field>
+            <field name="list_price">320.0</field>
+            <field name="standard_price">210.0</field>
+            <field name="analog_group_id" ref="demo_analog_oilfilter"/>
+        </record>
+        <record id="demo_prod_oilfilter_b" model="product.product">
+            <field name="name">Фільтр масляний MANN W71121</field>
+            <field name="type">consu</field>
+            <field name="default_code">OF-W71121</field>
+            <field name="list_price">295.0</field>
+            <field name="standard_price">190.0</field>
+            <field name="analog_group_id" ref="demo_analog_oilfilter"/>
+        </record>
+        <record id="demo_prod_oil" model="product.product">
+            <field name="name">Олива моторна 5W-30 (1 л)</field>
+            <field name="type">consu</field>
+            <field name="default_code">OIL-5W30</field>
+            <field name="list_price">410.0</field>
+            <field name="standard_price">280.0</field>
+        </record>
+        <record id="demo_prod_brakepads" model="product.product">
+            <field name="name">Колодки гальмівні передні, к-т</field>
+            <field name="type">consu</field>
+            <field name="default_code">BRK-FRT</field>
+            <field name="list_price">1650.0</field>
+            <field name="standard_price">1050.0</field>
+        </record>
+        <record id="demo_prod_wiper" model="product.product">
+            <field name="name">Щітка склоочисника 600 мм</field>
+            <field name="type">consu</field>
+            <field name="default_code">WP-600</field>
+            <field name="list_price">380.0</field>
+            <field name="standard_price">240.0</field>
+        </record>
+
+        <!-- Послуги/роботи (type=service) -->
+        <record id="demo_srv_to" model="product.product">
+            <field name="name">ТО-2: заміна оливи та фільтрів</field>
+            <field name="type">service</field>
+            <field name="default_code">WRK-TO2</field>
+            <field name="list_price">900.0</field>
+        </record>
+        <record id="demo_srv_diag" model="product.product">
+            <field name="name">Компʼютерна діагностика</field>
+            <field name="type">service</field>
+            <field name="default_code">WRK-DIAG</field>
+            <field name="list_price">600.0</field>
+        </record>
+        <record id="demo_srv_brakes" model="product.product">
+            <field name="name">Заміна гальмівних колодок</field>
+            <field name="type">service</field>
+            <field name="default_code">WRK-BRK</field>
+            <field name="list_price">750.0</field>
+        </record>
+
+        <!-- ============================================================ -->
+        <!--  СКЛАД АВТОСАЛОНУ (dealer.car)                               -->
+        <!-- ============================================================ -->
+        <record id="demo_color_white" model="dealer.car.color">
+            <field name="name">Білий перламутр</field>
+            <field name="code">070</field>
+            <field name="is_metallic">True</field>
+        </record>
+        <record id="demo_color_gray" model="dealer.car.color">
+            <field name="name">Сірий графіт</field>
+            <field name="code">1G3</field>
+            <field name="is_metallic">True</field>
+        </record>
+
+        <record id="demo_compl_rav4" model="dealer.car.complectation">
+            <field name="name">Style</field>
+            <field name="model_id" ref="demo_model_rav4"/>
+            <field name="base_price">1250000.0</field>
+        </record>
+
+        <record id="demo_opt_tow" model="dealer.car.option">
+            <field name="name">Фаркоп зʼємний</field>
+            <field name="category">Комфорт</field>
+            <field name="price">28000.0</field>
+        </record>
+        <record id="demo_opt_mats" model="dealer.car.option">
+            <field name="name">Килимки всесезонні</field>
+            <field name="category">Комфорт</field>
+            <field name="price">4500.0</field>
+        </record>
+
+        <record id="demo_car_rav4_stock" model="dealer.car">
+            <field name="model_id" ref="demo_model_rav4"/>
+            <field name="complectation_id" ref="demo_compl_rav4"/>
+            <field name="color_id" ref="demo_color_white"/>
+            <field name="vin">JTMWFREV10D555111</field>
+            <field name="model_year">2024</field>
+            <field name="engine_volume">2000</field>
+            <field name="transmission">auto</field>
+            <field name="status">in_stock</field>
+            <field name="purchase_price">1120000.0</field>
+            <field name="sale_price">1250000.0</field>
+            <field name="option_ids" eval="[(6,0,[ref('demo_opt_mats')])]"/>
+            <field name="supplier_id" ref="demo_partner_supplier"/>
+            <field name="location_note">Шоурум, місце А-3</field>
+        </record>
+        <record id="demo_car_corolla_reserved" model="dealer.car">
+            <field name="model_id" ref="demo_model_corolla"/>
+            <field name="color_id" ref="demo_color_gray"/>
+            <field name="vin">JTDBR32E900777222</field>
+            <field name="model_year">2024</field>
+            <field name="engine_volume">1600</field>
+            <field name="transmission">cvt</field>
+            <field name="status">reserved</field>
+            <field name="purchase_price">870000.0</field>
+            <field name="sale_price">960000.0</field>
+            <field name="partner_id" ref="demo_partner_kovalenko"/>
+            <field name="location_note">Склад, ряд 2</field>
+        </record>
+        <record id="demo_car_tiguan_ordered" model="dealer.car">
+            <field name="model_id" ref="demo_model_tiguan"/>
+            <field name="color_id" ref="demo_color_white"/>
+            <field name="vin">WVGZZZ5NZPW889900</field>
+            <field name="model_year">2025</field>
+            <field name="engine_volume">1400</field>
+            <field name="transmission">robot</field>
+            <field name="status">ordered</field>
+            <field name="purchase_price">1180000.0</field>
+            <field name="sale_price">1320000.0</field>
+            <field name="supplier_id" ref="demo_partner_supplier"/>
+        </record>
+
+        <!-- ============================================================ -->
+        <!--  НАРЯД-ЗАМОВЛЕННЯ (СТО)                                      -->
+        <!-- ============================================================ -->
+        <record id="demo_ro_corolla" model="repair.order">
+            <field name="partner_id" ref="demo_partner_ivanenko"/>
+            <field name="vehicle_id" ref="demo_veh_corolla"/>
+            <field name="mileage">62450</field>
+            <field name="schedule_date" eval="(DateTime.now() - timedelta(days=20))"/>
+            <field name="service_advisor_id" ref="base.user_admin"/>
+            <field name="mechanic_ids" eval="[(6,0,[ref('demo_emp_shevchuk'), ref('demo_emp_bondar')])]"/>
+            <field name="operations" eval="[
+                (0,0,{'product_id': ref('demo_srv_to'), 'product_uom_qty': 1.0, 'price_unit': 900.0}),
+                (0,0,{'product_id': ref('demo_prod_oil'), 'product_uom_qty': 4.0, 'price_unit': 410.0}),
+                (0,0,{'product_id': ref('demo_prod_oilfilter_a'), 'product_uom_qty': 1.0, 'price_unit': 320.0}),
+            ]"/>
+        </record>
+
+        <record id="demo_ro_rav4" model="repair.order">
+            <field name="partner_id" ref="demo_partner_kovalenko"/>
+            <field name="vehicle_id" ref="demo_veh_rav4"/>
+            <field name="mileage">38900</field>
+            <field name="schedule_date" eval="(DateTime.now() - timedelta(days=5))"/>
+            <field name="service_advisor_id" ref="base.user_admin"/>
+            <field name="mechanic_ids" eval="[(6,0,[ref('demo_emp_bondar')])]"/>
+            <field name="operations" eval="[
+                (0,0,{'product_id': ref('demo_srv_brakes'), 'product_uom_qty': 1.0, 'price_unit': 750.0}),
+                (0,0,{'product_id': ref('demo_prod_brakepads'), 'product_uom_qty': 1.0, 'price_unit': 1650.0}),
+            ]"/>
+        </record>
+
+        <record id="demo_ro_passat" model="repair.order">
+            <field name="partner_id" ref="demo_partner_avtoprofi"/>
+            <field name="vehicle_id" ref="demo_veh_passat"/>
+            <field name="mileage">104300</field>
+            <field name="schedule_date" eval="(DateTime.now() - timedelta(days=2))"/>
+            <field name="service_advisor_id" ref="base.user_admin"/>
+            <field name="mechanic_ids" eval="[(6,0,[ref('demo_emp_tkachenko')])]"/>
+            <field name="operations" eval="[
+                (0,0,{'product_id': ref('demo_srv_diag'), 'product_uom_qty': 1.0, 'price_unit': 600.0}),
+            ]"/>
+        </record>
+
+        <!-- ============================================================ -->
+        <!--  ЗАМОВЛЕННЯ КЛІЄНТА (sale.order)                              -->
+        <!-- ============================================================ -->
+        <record id="demo_so_ivanenko" model="sale.order">
+            <field name="partner_id" ref="demo_partner_ivanenko"/>
+            <field name="vehicle_id" ref="demo_veh_corolla"/>
+            <field name="order_line" eval="[
+                (0,0,{'product_id': ref('demo_prod_oil'), 'product_uom_qty': 4.0, 'price_unit': 410.0}),
+                (0,0,{'product_id': ref('demo_prod_oilfilter_a'), 'product_uom_qty': 1.0, 'price_unit': 320.0}),
+                (0,0,{'product_id': ref('demo_srv_to'), 'product_uom_qty': 1.0, 'price_unit': 900.0}),
+            ]"/>
+        </record>
+
+        <record id="demo_so_avtoprofi" model="sale.order">
+            <field name="partner_id" ref="demo_partner_avtoprofi"/>
+            <field name="vehicle_id" ref="demo_veh_passat"/>
+            <field name="order_line" eval="[
+                (0,0,{'product_id': ref('demo_prod_brakepads'), 'product_uom_qty': 2.0, 'price_unit': 1650.0}),
+                (0,0,{'product_id': ref('demo_prod_wiper'), 'product_uom_qty': 2.0, 'price_unit': 380.0}),
+            ]"/>
+        </record>
+
+        <!-- ============================================================ -->
+        <!--  СЕРВІСНА КАМПАНІЯ (відкликання / ТО)                         -->
+        <!-- ============================================================ -->
+        <record id="demo_campaign_recall" model="dealer.service.campaign">
+            <field name="name">Відкликання: перевірка паливного насоса</field>
+            <field name="code">RC-2025-07</field>
+            <field name="campaign_type">recall</field>
+            <field name="state">active</field>
+            <field name="service_product_id" ref="demo_srv_diag"/>
+            <field name="line_ids" eval="[
+                (0,0,{'vehicle_id': ref('demo_veh_corolla'), 'partner_id': ref('demo_partner_ivanenko'), 'state': 'pending'}),
+                (0,0,{'vehicle_id': ref('demo_veh_rav4'), 'partner_id': ref('demo_partner_kovalenko'), 'state': 'done'}),
+            ]"/>
+        </record>
+
     </data>
 </odoo>

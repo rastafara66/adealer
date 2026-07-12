@@ -5,7 +5,7 @@ from odoo.exceptions import UserError
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle', required=True, index=True)
+    vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle', index=True)
     vehicle_logo = fields.Image(related='vehicle_id.display_logo', string='Vehicle Logo', readonly=True)
     # ? domain="[('partner_id', '=', 'partner_id')]",
 
