@@ -149,9 +149,7 @@ class ResConfigSettingsUpdate(models.TransientModel):
                 'title': _("Application update"),
                 'message': msg,
                 'type': 'warning' if available else 'success',
-                'next': {'type': 'ir.actions.act_window', 'res_model': 'res.config.settings',
-                         'view_mode': 'form', 'target': 'current',
-                         'context': {'module': 'adealer'}},
+                'next': {'type': 'ir.actions.client', 'tag': 'reload'},
             },
         }
 
