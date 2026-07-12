@@ -39,27 +39,13 @@
                             <setting string="Закупівлі"><field name="show_menu_purchases"/></setting>
                             <setting string="Звіти"><field name="show_menu_reports"/></setting>
                         </block>
-                        <block title="Warehouses" name="adealer_warehouses">
-                            <setting string="WareHouse ID 3A">
-                                <field name="wh_id_3a"/>
-                            </setting>
-                            <setting string="WareHouse ID 1C">
-                                <field name="wh_id_1c"/>
-                            </setting>
-                            <setting string="WareHouse Name 3A">
-                                <field name="wh_name_3a"/>
-                            </setting>
-                            <setting string="WareHouse Name 1C">
-                                <field name="wh_name_1c"/>
-                            </setting>
-                        </block>
                     </app>
                 </xpath>
             </field>
         </record>
 
         <record model="ir.actions.act_window" id="adealer.action_window_config_settings">
-            <field name="name">Settings</field>
+            <field name="name">Налаштування 3A-dealer</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">res.config.settings</field>
             <field name="view_mode">form</field>

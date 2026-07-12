@@ -61,7 +61,20 @@ body.adealer-theme .o-dropdown--menu .dropdown-item:focus {
 }
 
 /* ---------- Кнопки ---------- */
-body.adealer-theme .o_web_client .btn-primary {
+/* Odoo 19 обчислює колір кнопок через Bootstrap-змінні --bs-btn-*,
+   тому перевизначаємо і їх, і властивості напряму. */
+body.adealer-theme .o_web_client .btn-primary,
+body.adealer-theme .o_web_client .o_list_button_add,
+body.adealer-theme .o_web_client .o-kanban-button-new {
+    --bs-btn-bg: #2b3a55;
+    --bs-btn-border-color: #2b3a55;
+    --bs-btn-hover-bg: #1f2b40;
+    --bs-btn-hover-border-color: #1f2b40;
+    --bs-btn-active-bg: #1f2b40;
+    --bs-btn-active-border-color: #1f2b40;
+    --bs-btn-color: #ffffff;
+    --bs-btn-hover-color: #ffd367;
+    --bs-btn-active-color: #ffd367;
     background-color: #2b3a55 !important;
     border-color: #2b3a55 !important;
     color: #ffffff !important;
@@ -69,7 +82,9 @@ body.adealer-theme .o_web_client .btn-primary {
 body.adealer-theme .o_web_client .btn-primary:hover,
 body.adealer-theme .o_web_client .btn-primary:focus,
 body.adealer-theme .o_web_client .btn-primary:active,
-body.adealer-theme .o_web_client .btn-primary.active {
+body.adealer-theme .o_web_client .btn-primary.active,
+body.adealer-theme .o_web_client .o_list_button_add:hover,
+body.adealer-theme .o_web_client .o-kanban-button-new:hover {
     background-color: #1f2b40 !important;
     border-color: #1f2b40 !important;
     color: #ffd367 !important;

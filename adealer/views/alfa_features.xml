@@ -294,7 +294,7 @@
                     <templates>
                         <t t-name="card">
                             <div class="oe_kanban_global_click">
-                                <img t-if="record.brand_logo.raw_value" t-att-src="kanban_image('dealer.car','brand_logo',record.id.raw_value)" class="float-end" style="max-height:28px" alt="Бренд"/>
+                                <field name="brand_logo" widget="image" class="float-end" options="{'size': [0, 28]}"/>
                                 <strong><field name="model_id"/></strong>
                                 <div><field name="complectation_id"/> <field name="color_id"/></div>
                                 <div class="text-muted"><field name="vin"/></div>
