@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Repair kanban: show serviced vehicle logo + name -->
+        <record model="ir.ui.view" id="adealer.view_repair_kanban_inherit">
+            <field name="name">repair.kanban.inherit.3A</field>
+            <field name="model">repair.order</field>
+            <field name="inherit_id" ref="repair.view_repair_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('row')]" position="inside">
+                    <div class="col-12 d-flex align-items-center mt-1">
+                        <field name="vehicle_logo" widget="image" class="me-2" options="{'size': [36, 36]}"/>
+                        <field name="vehicle_id"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="adealer.view_repair_order_form_inherit_services">
+            <field name="name">view.repair.order.form.inherit.services.adealer</field>
+            <field name="model">repair.order</field>
+            <field name="inherit_id" ref="repair.view_repair_order_form"/>
+            <field name="arch" type="xml">
+                <!-- сховати базову вкладку move_ids (Parts): використовуємо власні за типом товару -->
+                <xpath expr="//page[@name='parts']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page[@name='parts']" position="before">
+                    <page string="Роботи" name="service_ops">
+                        <field name="service_line_ids" mode="list,form">
+                            <list editable="bottom">
+                                <field name="product_type" column_invisible="1"/>
+                                <field name="product_id"/>
+                                <field name="product_uom_qty" string="Нормо-години"/>
+                                <field name="product_uom" groups="uom.group_uom" optional="hide"/>
+                                <field name="price_unit"/>
+                                <field name="discount"/>
+                                <field name="price_subtotal" widget="monetary"/>
+                                <field name="currency_id" column_invisible="1"/>
+                            </list>
+                        </field>
+                    </page>
+                    <page string="Запчастини" name="part_ops">
+                        <field name="part_line_ids" mode="list,form">
+                            <list editable="bottom">
+                                <field name="product_type" column_invisible="1"/>
+                                <field name="product_id"/>
+                                <field name="product_uom_qty" string="Кількість"/>
+                                <field name="product_uom" groups="uom.group_uom" optional="show"/>
+                                <field name="price_unit"/>
+                                <field name="discount"/>
+                                <field name="price_subtotal" widget="monetary"/>
+                                <field name="currency_id" column_invisible="1"/>
+                            </list>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+            
+        <!--View Repair Order Form with Vehicle-->
+        <record model="ir.ui.view" id="adealer.view_repair_order_form_inherit">
+            <field name="name">view.repair.order.form.inherit.adealer</field>
+            <field name="model">repair.order</field>
+            <field name="inherit_id" ref="repair.view_repair_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="vehicle_id"/>
+                    <field name="mileage"/>
+                    <field name="service_advisor_id"/>
+                    <field name="mechanic_ids" widget="many2many_tags"/>
+                </xpath>
+                <xpath expr="//button[@name='action_repair_cancel_draft']" position="after">
+                    <button name="action_create_rakhunok" type="object"
+                            string="Створити рахунок" class="btn-secondary"
+                            invisible="state in ('draft', 'cancel')"/>
+                    <button name="action_create_vydatkova" type="object"
+                            string="Створити видаткову" class="btn-primary"
+                            invisible="state in ('draft', 'cancel')"/>
+                    <button name="action_create_akt" type="object"
+                            string="Створити акт" class="btn-secondary"
+                            invisible="state in ('draft', 'cancel')"/>
+                    <button name="action_issue_parts" type="object"
+                            string="Видати ЗЧ зі складу" class="btn-secondary"
+                            invisible="state in ('draft', 'cancel')"/>
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="action_view_invoices" type="object"
+                            class="oe_stat_button" icon="fa-file-text-o"
+                            invisible="invoice_count == 0">
+                        <field name="invoice_count" widget="statinfo" string="Рахунки/Видаткові/Акти"/>
+                    </button>
+                    <button name="action_view_pickings" type="object"
+                            class="oe_stat_button" icon="fa-truck"
+                            invisible="picking_count == 0">
+                        <field name="picking_count" widget="statinfo" string="Відвантаження"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+        <!--Maintenance Request View Form-->
+        <record model="ir.ui.view" id="adealer.hr_equipment_request_view_form_inherit">
+            <field name="name">maintenance.view.equipment.request.form.inherit.3A</field>
+            <field name="model">maintenance.request</field>
+            <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='equipment_id']" position="before">
+                    <field name="vehicle_id"/>
+                    <field name="partner_id"/>
+                    <field name="repair_order"/>
+                </xpath>
+                <xpath expr="//field[@name='maintenance_team_id']" position="after">
+                    <field name="master_id"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- ======================================================= -->
+        <!--  ВИРОБІТОК МЕХАНІКІВ (звіт)                              -->
+        <!-- ======================================================= -->
+        <record id="view_mechanic_output_pivot" model="ir.ui.view">
+            <field name="name">adealer.mechanic.output.pivot</field>
+            <field name="model">adealer.mechanic.output.report</field>
+            <field name="arch" type="xml">
+                <pivot string="Виробіток механіків">
+                    <field name="mechanic_id" type="row"/>
+                    <field name="normo_hours" type="measure"/>
+                    <field name="amount" type="measure"/>
+                    <field name="line_count" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+        <record id="view_mechanic_output_graph" model="ir.ui.view">
+            <field name="name">adealer.mechanic.output.graph</field>
+            <field name="model">adealer.mechanic.output.report</field>
+            <field name="arch" type="xml">
+                <graph string="Виробіток механіків" type="bar">
+                    <field name="mechanic_id"/>
+                    <field name="normo_hours" type="measure"/>
+                </graph>
+            </field>
+        </record>
+        <record id="view_mechanic_output_list" model="ir.ui.view">
+            <field name="name">adealer.mechanic.output.list</field>
+            <field name="model">adealer.mechanic.output.report</field>
+            <field name="arch" type="xml">
+                <list string="Виробіток механіків">
+                    <field name="date"/>
+                    <field name="mechanic_id"/>
+                    <field name="repair_id"/>
+                    <field name="vehicle_id" optional="show"/>
+                    <field name="product_id"/>
+                    <field name="normo_hours" sum="Нормо-годин"/>
+                    <field name="amount" sum="Сума"/>
+                </list>
+            </field>
+        </record>
+        <record id="view_mechanic_output_search" model="ir.ui.view">
+            <field name="name">adealer.mechanic.output.search</field>
+            <field name="model">adealer.mechanic.output.report</field>
+            <field name="arch" type="xml">
+                <search string="Виробіток">
+                    <field name="mechanic_id"/>
+                    <field name="vehicle_id"/>
+                    <field name="product_id"/>
+                    <filter name="g_mechanic" string="Механік" context="{'group_by':'mechanic_id'}"/>
+                    <filter name="g_product" string="Робота" context="{'group_by':'product_id'}"/>
+                    <filter name="g_date" string="Дата" context="{'group_by':'date'}"/>
+                </search>
+            </field>
+        </record>
+        <record id="action_mechanic_output" model="ir.actions.act_window">
+            <field name="name">Виробіток механіків</field>
+            <field name="res_model">adealer.mechanic.output.report</field>
+            <field name="view_mode">pivot,graph,list</field>
+            <field name="search_view_id" ref="view_mechanic_output_search"/>
+        </record>
+
+        <!-- ======================================================= -->
+        <!--  СТАДІЇ НАРЯДУ + Kanban-дошка СТО                       -->
+        <!-- ======================================================= -->
+        <record id="view_repair_stage_list" model="ir.ui.view">
+            <field name="name">adealer.repair.stage.list</field>
+            <field name="model">adealer.repair.stage</field>
+            <field name="arch" type="xml">
+                <list string="Стадії наряду" editable="bottom">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="fold"/>
+                    <field name="is_closing"/>
+                </list>
+            </field>
+        </record>
+        <record id="action_repair_stage" model="ir.actions.act_window">
+            <field name="name">Стадії наряду</field>
+            <field name="res_model">adealer.repair.stage</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <record id="view_repair_stage_kanban" model="ir.ui.view">
+            <field name="name">adealer.repair.stage.kanban</field>
+            <field name="model">repair.order</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="stage_id" class="o_kanban_small_column">
+                    <field name="stage_id"/>
+                    <field name="vehicle_id"/>
+                    <field name="partner_id"/>
+                    <field name="total_normo_hours"/>
+                    <templates>
+                        <t t-name="card">
+                            <div class="oe_kanban_global_click">
+                                <strong><field name="name"/></strong>
+                                <div><field name="vehicle_id"/></div>
+                                <div class="text-muted"><field name="partner_id"/></div>
+                                <div>Н-год: <field name="total_normo_hours"/></div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <record id="action_repair_board" model="ir.actions.act_window">
+            <field name="name">Дошка СТО (наряди)</field>
+            <field name="res_model">repair.order</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="view_id" ref="view_repair_stage_kanban"/>
+        </record>
+
+        <!-- ======================================================= -->
+        <!--  СЕРВІСНІ КАМПАНІЇ                                      -->
+        <!-- ======================================================= -->
+        <record id="view_service_campaign_list" model="ir.ui.view">
+            <field name="name">dealer.service.campaign.list</field>
+            <field name="model">dealer.service.campaign</field>
+            <field name="arch" type="xml">
+                <list string="Сервісні кампанії">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="campaign_type"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="vehicle_count"/>
+                    <field name="done_count"/>
+                    <field name="progress" widget="progressbar"/>
+                    <field name="state" widget="badge"
+                           decoration-success="state == 'active'" decoration-muted="state == 'closed'"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_service_campaign_form" model="ir.ui.view">
+            <field name="name">dealer.service.campaign.form</field>
+            <field name="model">dealer.service.campaign</field>
+            <field name="arch" type="xml">
+                <form string="Сервісна кампанія">
+                    <header>
+                        <button name="action_activate" type="object" string="Активувати"
+                                class="btn-primary" invisible="state != 'draft'"/>
+                        <button name="action_close" type="object" string="Закрити"
+                                invisible="state != 'active'"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,active,closed"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="code"/>
+                                <field name="campaign_type"/>
+                                <field name="service_product_id"/>
+                            </group>
+                            <group>
+                                <field name="date_start"/>
+                                <field name="date_end"/>
+                                <field name="progress" widget="progressbar"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Автомобілі">
+                                <field name="line_ids">
+                                    <list editable="bottom">
+                                        <field name="vehicle_id"/>
+                                        <field name="vin"/>
+                                        <field name="partner_id"/>
+                                        <field name="state" widget="badge"
+                                               decoration-success="state == 'done'"/>
+                                        <field name="repair_order_id"/>
+                                        <field name="done_date"/>
+                                        <button name="action_mark_done" type="object"
+                                                string="Виконано" icon="fa-check"
+                                                invisible="state == 'done'"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page string="Опис / інструкція">
+                                <field name="description"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_service_campaign" model="ir.actions.act_window">
+            <field name="name">Сервісні кампанії</field>
+            <field name="res_model">dealer.service.campaign</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- ======================================================= -->
+        <!--  АНАЛОГИ ЗЧ + УПУЩЕНИЙ ПОПИТ                            -->
+        <!-- ======================================================= -->
+        <record id="view_analog_group_list" model="ir.ui.view">
+            <field name="name">adealer.part.analog.group.list</field>
+            <field name="model">adealer.part.analog.group</field>
+            <field name="arch" type="xml">
+                <list string="Групи аналогів">
+                    <field name="name"/>
+                    <field name="product_count"/>
+                </list>
+            </field>
+        </record>
+        <record id="view_analog_group_form" model="ir.ui.view">
+            <field name="name">adealer.part.analog.group.form</field>
+            <field name="model">adealer.part.analog.group</field>
+            <field name="arch" type="xml">
+                <form string="Група аналогів">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1><field name="name"/></h1>
+                        </div>
+                        <field name="note" placeholder="Опис групи аналогів..."/>
+                        <field name="product_ids">
+                            <list>
+                                <field name="default_code"/>
+                                <field name="name"/>
+                                <field name="qty_available"/>
+                                <field name="list_price"/>
+                            </list>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="action_analog_group" model="ir.actions.act_window">
+            <field name="name">Групи аналогів ЗЧ</field>
+            <field name="res_model">adealer.part.analog.group</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <record id="view_lost_demand_list" model="ir.ui.view">
+            <field name="name">adealer.lost.demand.list</field>
+            <field name="model">adealer.lost.demand</field>
+            <field name="arch" type="xml">
+                <list string="Упущений попит" editable="bottom">
+                    <field name="date"/>
+                    <field name="product_id"/>
+                    <field name="product_qty"/>
+                    <field name="reason"/>
+                    <field name="partner_id" optional="show"/>
+                    <field name="vehicle_id" optional="hide"/>
+                    <field name="user_id" optional="hide"/>
+                </list>
+            </field>
+        </record>
+        <record id="action_lost_demand" model="ir.actions.act_window">
+            <field name="name">Упущений попит</field>
+            <field name="res_model">adealer.lost.demand</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- ======================================================= -->
+        <!--  СКЛАД АВТО (VIN)                                        -->
+        <!-- ======================================================= -->
+        <record id="view_dealer_car_list" model="ir.ui.view">
+            <field name="name">dealer.car.list</field>
+            <field name="model">dealer.car</field>
+            <field name="arch" type="xml">
+                <list string="Склад авто" decoration-success="status == 'in_stock'"
+                      decoration-info="status == 'reserved'" decoration-muted="status in ('sold','delivered')">
+                    <field name="vin"/>
+                    <field name="brand_id"/>
+                    <field name="model_id"/>
+                    <field name="complectation_id" optional="show"/>
+                    <field name="color_id" optional="show"/>
+                    <field name="model_year" optional="hide"/>
+                    <field name="sale_price"/>
+                    <field name="total_price"/>
+                    <field name="partner_id" optional="show"/>
+                    <field name="status" widget="badge"
+                           decoration-success="status == 'in_stock'"
+                           decoration-info="status == 'reserved'"/>
+                    <field name="currency_id" column_invisible="1"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_dealer_car_kanban" model="ir.ui.view">
+            <field name="name">dealer.car.kanban</field>
+            <field name="model">dealer.car</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="status" class="o_kanban_small_column">
+                    <field name="status"/>
+                    <templates>
+                        <t t-name="card">
+                            <div class="oe_kanban_global_click">
+                                <img t-if="record.brand_logo.raw_value" t-att-src="kanban_image('dealer.car','brand_logo',record.id.raw_value)" class="float-end" style="max-height:28px" alt="Бренд"/>
+                                <strong><field name="model_id"/></strong>
+                                <div><field name="complectation_id"/> <field name="color_id"/></div>
+                                <div class="text-muted"><field name="vin"/></div>
+                                <div><field name="total_price"/></div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="view_dealer_car_form" model="ir.ui.view">
+            <field name="name">dealer.car.form</field>
+            <field name="model">dealer.car</field>
+            <field name="arch" type="xml">
+                <form string="Автомобіль (склад)">
+                    <header>
+                        <button name="action_set_in_transit" type="object" string="В дорогу"
+                                invisible="status != 'ordered'"/>
+                        <button name="action_receive" type="object" string="Прийняти на склад"
+                                class="btn-primary" invisible="status not in ('ordered','in_transit')"/>
+                        <button name="action_reserve" type="object" string="Резервувати"
+                                invisible="status != 'in_stock'"/>
+                        <button name="action_unreserve" type="object" string="Зняти резерв"
+                                invisible="status != 'reserved'"/>
+                        <button name="action_sell" type="object" string="Продати"
+                                class="btn-primary" invisible="status not in ('in_stock','reserved')"/>
+                        <button name="action_deliver" type="object" string="Видати клієнту"
+                                class="btn-primary" invisible="status != 'sold'"/>
+                        <field name="status" widget="statusbar"
+                               statusbar_visible="ordered,in_transit,in_stock,reserved,sold,delivered"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_fleet_vehicle" type="object"
+                                    class="oe_stat_button" icon="fa-car"
+                                    invisible="not fleet_vehicle_id">
+                                <span>Авто клієнта</span>
+                            </button>
+                        </div>
+                        <field name="brand_logo" widget="image" class="oe_avatar"/>
+                        <div class="oe_title">
+                            <label for="vin"/>
+                            <h1><field name="vin" placeholder="VIN..."/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="model_id"/>
+                                <field name="complectation_id"/>
+                                <field name="color_id"/>
+                                <field name="model_year"/>
+                                <field name="is_trade_in"/>
+                            </group>
+                            <group>
+                                <field name="engine_volume"/>
+                                <field name="transmission"/>
+                                <field name="location_note"/>
+                                <field name="supplier_id"/>
+                            </group>
+                        </group>
+                        <group string="Ціни">
+                            <group>
+                                <field name="purchase_price"/>
+                                <field name="sale_price"/>
+                            </group>
+                            <group>
+                                <field name="options_price"/>
+                                <field name="total_price" class="oe_subtotal_footer_separator"/>
+                                <field name="currency_id" invisible="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Опції">
+                                <field name="option_ids" widget="many2many_tags"/>
+                            </page>
+                            <page string="Продаж">
+                                <group>
+                                    <field name="partner_id"/>
+                                    <field name="sale_order_id"/>
+                                    <field name="fleet_vehicle_id"/>
+                                </group>
+                            </page>
+                            <page string="Історія статусів">
+                                <field name="status_history_ids">
+                                    <list>
+                                        <field name="change_date"/>
+                                        <field name="status"/>
+                                        <field name="user_id"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page string="Примітки">
+                                <field name="note"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_dealer_car_search" model="ir.ui.view">
+            <field name="name">dealer.car.search</field>
+            <field name="model">dealer.car</field>
+            <field name="arch" type="xml">
+                <search string="Пошук авто">
+                    <field name="vin"/>
+                    <field name="model_id"/>
+                    <field name="partner_id"/>
+                    <filter name="in_stock" string="На складі" domain="[('status','=','in_stock')]"/>
+                    <filter name="reserved" string="Резерв" domain="[('status','=','reserved')]"/>
+                    <filter name="available" string="Доступні до продажу" domain="[('status','in',('in_stock','reserved'))]"/>
+                    <separator/>
+                    <filter name="trade_in" string="Trade-in" domain="[('is_trade_in','=',True)]"/>
+                    <separator/>
+                    <filter name="g_status" string="Статус" context="{'group_by':'status'}"/>
+                    <filter name="g_brand" string="Марка" context="{'group_by':'brand_id'}"/>
+                    <filter name="g_model" string="Модель" context="{'group_by':'model_id'}"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_dealer_car" model="ir.actions.act_window">
+            <field name="name">Склад авто</field>
+            <field name="res_model">dealer.car</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="search_view_id" ref="view_dealer_car_search"/>
+        </record>
+
+        <!-- довідники авто -->
+        <record id="action_car_complectation" model="ir.actions.act_window">
+            <field name="name">Комплектації</field>
+            <field name="res_model">dealer.car.complectation</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <record id="action_car_option" model="ir.actions.act_window">
+            <field name="name">Опції</field>
+            <field name="res_model">dealer.car.option</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <record id="action_car_color" model="ir.actions.act_window">
+            <field name="name">Кольори</field>
+            <field name="res_model">dealer.car.color</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- ======================================================= -->
+        <!--  ІНТЕГРАЦІЯ У НАРЯД (repair.order)                       -->
+        <!-- ======================================================= -->
+        <record id="view_repair_order_form_alfa" model="ir.ui.view">
+            <field name="name">view.repair.order.form.alfa</field>
+            <field name="model">repair.order</field>
+            <field name="inherit_id" ref="repair.view_repair_order_form"/>
+            <field name="priority">30</field>
+            <field name="arch" type="xml">
+                <!-- клас для стилізації полів наряду у стилі теми -->
+                <xpath expr="//form" position="attributes">
+                    <attribute name="class">o_adealer_repair_form</attribute>
+                </xpath>
+                <!-- Стадія СТО -->
+                <xpath expr="//field[@name='partner_id']" position="before">
+                    <field name="stage_id" widget="selection"/>
+                </xpath>
+                <!-- Колонку «Нормо-години» прибрано: кількість рядка-роботи і є нормо-години. -->
+                <!-- Проведений наряд (Відремонтовано) не редагується: рядки readonly. -->
+                <xpath expr="//field[@name='service_line_ids']" position="attributes">
+                    <attribute name="readonly">state == 'done'</attribute>
+                </xpath>
+                <xpath expr="//field[@name='part_line_ids']" position="attributes">
+                    <attribute name="readonly">state == 'done'</attribute>
+                </xpath>
+                <!-- зв'язок вгору: джерело-замовлення покупця -->
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="action_view_source_order" type="object"
+                            class="oe_stat_button" icon="fa-shopping-cart"
+                            invisible="not source_sale_order_id">
+                        <span>Замовлення</span>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- ======================================================= -->
+        <!--  МЕНЮ                                                    -->
+        <!-- ======================================================= -->
+        <!-- Автосалон (склад авто) -->
+        <menuitem name="Автосалон" id="menu_showroom" parent="adealer.menu_root" sequence="2"/>
+        <menuitem name="Склад авто" id="menu_dealer_car" parent="menu_showroom"
+                  action="action_dealer_car" sequence="71"/>
+        <menuitem name="Комплектації" id="menu_car_complectation" parent="menu_showroom"
+                  action="action_car_complectation" sequence="72"/>
+        <menuitem name="Опції" id="menu_car_option" parent="menu_showroom"
+                  action="action_car_option" sequence="73"/>
+        <menuitem name="Кольори" id="menu_car_color" parent="menu_showroom"
+                  action="action_car_color" sequence="74"/>
+
+        <!-- у розділ Maintenance and Repair -->
+        <menuitem name="Дошка СТО (наряди)" id="menu_repair_board" parent="adealer.menu_maintenance"
+                  action="action_repair_board" sequence="44"/>
+        <menuitem name="Виробіток механіків" id="menu_mechanic_output" parent="adealer.menu_maintenance"
+                  action="action_mechanic_output" sequence="45"/>
+        <menuitem name="Сервісні кампанії" id="menu_service_campaign" parent="adealer.menu_maintenance"
+                  action="action_service_campaign" sequence="47"/>
+        <menuitem name="Стадії наряду" id="menu_repair_stage" parent="adealer.menu_maintenance"
+                  action="action_repair_stage" sequence="48"/>
+
+        <!-- у розділ Products and Services -->
+        <menuitem name="Групи аналогів ЗЧ" id="menu_analog_group" parent="adealer.menu_products"
+                  action="action_analog_group" sequence="23"/>
+        <menuitem name="Упущений попит" id="menu_lost_demand" parent="adealer.menu_products"
+                  action="action_lost_demand" sequence="24"/>
+    </data>
+</odoo>

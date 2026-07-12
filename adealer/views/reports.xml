@@ -1,0 +1,95 @@
+<odoo>
+    <data>
+        <!-- ===== Управлінські звіти (як у 1С), окреме меню «Звіти» ===== -->
+
+        <!-- Продажі (account.invoice.report, видаткові) -->
+        <record id="report_sales" model="ir.actions.act_window">
+            <field name="name">Продажі</field>
+            <field name="res_model">account.invoice.report</field>
+            <field name="view_mode">pivot,graph,list</field>
+            <field name="domain">[('move_type', '=', 'out_invoice'), ('state', '=', 'posted')]</field>
+        </record>
+
+        <!-- Валова прибуток -->
+        <record id="report_gross_profit" model="ir.actions.act_window">
+            <field name="name">Валовий прибуток</field>
+            <field name="res_model">account.invoice.report</field>
+            <field name="view_mode">pivot,graph,list</field>
+            <field name="domain">[('move_type', 'in', ('out_invoice', 'out_refund')), ('state', '=', 'posted')]</field>
+        </record>
+
+        <!-- Закупівлі -->
+        <record id="report_purchases" model="ir.actions.act_window">
+            <field name="name">Закупівлі</field>
+            <field name="res_model">purchase.report</field>
+            <field name="view_mode">pivot,graph,list</field>
+        </record>
+
+        <!-- Товари на складах -->
+        <record id="report_stock_on_hand" model="ir.actions.act_window">
+            <field name="name">Товари на складах</field>
+            <field name="res_model">stock.quant</field>
+            <field name="view_mode">list,pivot</field>
+            <field name="domain">[('location_id.usage', '=', 'internal')]</field>
+        </record>
+
+        <!-- Історія ремонтів -->
+        <record id="report_repair_history" model="ir.actions.act_window">
+            <field name="name">Історія ремонтів</field>
+            <field name="res_model">repair.order</field>
+            <field name="view_mode">list,pivot,graph,form</field>
+        </record>
+
+        <!-- Виробіток приймальників -->
+        <record id="report_advisor_output" model="ir.actions.act_window">
+            <field name="name">Виробіток приймальників</field>
+            <field name="res_model">repair.order</field>
+            <field name="view_mode">pivot,graph,list</field>
+        </record>
+
+        <!-- Взаєморозрахунки з контрагентами -->
+        <record id="report_partner_balance" model="ir.actions.act_window">
+            <field name="name">Взаєморозрахунки з контрагентами</field>
+            <field name="res_model">account.move.line</field>
+            <field name="view_mode">pivot,list</field>
+            <field name="domain">[('account_id.account_type', 'in', ('asset_receivable', 'liability_payable')), ('parent_state', '=', 'posted')]</field>
+        </record>
+
+        <!-- Аналіз замовлень покупців -->
+        <record id="report_sale_orders" model="ir.actions.act_window">
+            <field name="name">Аналіз замовлень покупців</field>
+            <field name="res_model">sale.order.line</field>
+            <field name="view_mode">pivot,graph,list</field>
+        </record>
+
+        <!-- ===== Меню «Звіти»: Готові (1С-стиль) + Конструктор (pivot) ===== -->
+        <menuitem name="Звіти" id="adealer.menu_reports" parent="adealer.menu_root" sequence="8"/>
+
+        <!-- Готові звіти: шапка параметрів -> «Сформувати» -> відомість -->
+        <menuitem name="Готові звіти" id="menu_reports_ready" parent="adealer.menu_reports" sequence="1"/>
+        <menuitem name="Продажі" id="menu_ready_sales" parent="menu_reports_ready" action="action_report_ready_sales" sequence="1"/>
+        <menuitem name="Валовий прибуток" id="menu_ready_gross" parent="menu_reports_ready" action="action_report_ready_gross" sequence="2"/>
+        <menuitem name="Закупівлі" id="menu_ready_purchases" parent="menu_reports_ready" action="action_report_ready_purchases" sequence="3"/>
+        <menuitem name="Товари на складах" id="menu_ready_stock" parent="menu_reports_ready" action="action_report_ready_stock" sequence="4"/>
+        <menuitem name="Історія ремонтів" id="menu_ready_repairs" parent="menu_reports_ready" action="action_report_ready_repairs" sequence="5"/>
+        <menuitem name="Виробіток приймальників" id="menu_ready_advisors" parent="menu_reports_ready" action="action_report_ready_advisors" sequence="6"/>
+        <menuitem name="Взаєморозрахунки з контрагентами" id="menu_report_partner_balance" parent="menu_reports_ready" action="action_partner_balance_wizard" sequence="7"/>
+        <menuitem name="Аналіз замовлень покупців" id="menu_ready_orders" parent="menu_reports_ready" action="action_report_ready_orders" sequence="8"/>
+        <menuitem name="Нагадування про ТО" id="menu_ready_to" parent="menu_reports_ready" action="action_report_ready_to" sequence="10"/>
+        <menuitem name="Не заїжджавші клієнти" id="menu_ready_inactive" parent="menu_reports_ready" action="action_report_ready_inactive" sequence="11"/>
+        <menuitem name="ABC-аналіз продажів" id="menu_ready_abc_sales" parent="menu_reports_ready" action="action_report_ready_abc_sales" sequence="12"/>
+        <menuitem name="ABC-аналіз покупців" id="menu_ready_abc_customers" parent="menu_reports_ready" action="action_report_ready_abc_customers" sequence="13"/>
+        <menuitem name="Оборотність товарів" id="menu_ready_turnover" parent="menu_reports_ready" action="action_report_ready_turnover" sequence="14"/>
+
+        <!-- Конструктор: інтерактивний аналіз Odoo (pivot/графік), користувач сам обирає параметри -->
+        <menuitem name="Конструктор звітів" id="menu_reports_custom" parent="adealer.menu_reports" sequence="50"/>
+        <menuitem name="Продажі" id="menu_report_sales" parent="menu_reports_custom" action="report_sales" sequence="1"/>
+        <menuitem name="Валовий прибуток" id="menu_report_gross_profit" parent="menu_reports_custom" action="report_gross_profit" sequence="2"/>
+        <menuitem name="Закупівлі" id="menu_report_purchases" parent="menu_reports_custom" action="report_purchases" sequence="3"/>
+        <menuitem name="Товари на складах" id="menu_report_stock" parent="menu_reports_custom" action="report_stock_on_hand" sequence="4"/>
+        <menuitem name="Історія ремонтів" id="menu_report_repair_history" parent="menu_reports_custom" action="report_repair_history" sequence="5"/>
+        <menuitem name="Виробіток приймальників" id="menu_report_advisor" parent="menu_reports_custom" action="report_advisor_output" sequence="6"/>
+        <menuitem name="Взаєморозрахунки з контрагентами" id="menu_custom_partner_balance" parent="menu_reports_custom" action="report_partner_balance" sequence="7"/>
+        <menuitem name="Аналіз замовлень покупців" id="menu_report_sale_orders" parent="menu_reports_custom" action="report_sale_orders" sequence="8"/>
+    </data>
+</odoo>

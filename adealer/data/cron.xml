@@ -1,0 +1,58 @@
+<odoo>
+    <record id="model_fleet_vehicle_import" model="ir.model">
+        <field name="name">fleet.vehicle.import</field>
+        <field name="model">fleet.vehicle.import</field>
+        <field name="state">base</field>
+    </record>
+    <record id="ir_cron_import_vehicles" model="ir.cron">
+        <field name="name">Імпорт автомобілів з Excel</field>
+        <field name="model_id" ref="adealer.model_fleet_vehicle_import"/>
+        <field name="state">code</field>
+        <field name="code">model.import_vehicles_from_excel()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active">False</field>
+    </record>
+    <record id="model_fleet_vehicle_model_import" model="ir.model">
+        <field name="name">fleet.vehicle.model.import</field>
+        <field name="model">fleet.vehicle.model.import</field>
+        <field name="state">base</field>
+    </record>
+    <record id="ir_cron_import_vehicle_models" model="ir.cron">
+        <field name="name">Імпорт моделей авто з Excel</field>
+        <field name="model_id" ref="adealer.model_fleet_vehicle_model_import"/>
+        <field name="state">code</field>
+        <field name="code">model.import_vehicle_models_from_excel()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active">False</field>
+    </record>
+    <record id="model_res_partner_import" model="ir.model">
+        <field name="name">res.partner.import</field>
+        <field name="model">res.partner.import</field>
+        <field name="state">base</field>
+    </record>
+    <record id="ir_cron_import_partners" model="ir.cron">
+        <field name="name">Імпорт партнерів з Excel</field>
+        <field name="model_id" ref="adealer.model_res_partner_import"/>
+        <field name="state">code</field>
+        <field name="code">model.import_partners_from_excel()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active">False</field>
+    </record>
+    <record id="model_res_partner_address_import" model="ir.model">
+        <field name="name">res.partner.address.import</field>
+        <field name="model">res.partner.address.import</field>
+        <field name="state">base</field>
+    </record>
+    <record id="ir_cron_import_partner_addresses" model="ir.cron">
+        <field name="name">Імпорт адрес контрагентів з Excel</field>
+        <field name="model_id" ref="adealer.model_res_partner_address_import"/>
+        <field name="state">code</field>
+        <field name="code">model.import_addresses_from_excel()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active">False</field>
+    </record>
+</odoo>

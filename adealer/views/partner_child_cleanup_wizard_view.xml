@@ -1,0 +1,24 @@
+<odoo>
+    <record id="view_partner_child_cleanup_wizard_form" model="ir.ui.view">
+        <field name="name">partner.child.cleanup.wizard.form</field>
+        <field name="model">partner.child.cleanup.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Видалення дочірніх контактів">
+                <group>
+                    <field name="confirm"/>
+                </group>
+                <footer>
+                    <button string="Видалити дочірні контакти" type="object" name="action_cleanup" class="btn-danger"/>
+                    <button string="Скасувати" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_partner_child_cleanup_wizard" model="ir.actions.act_window">
+        <field name="name">Видалити дочірні контакти</field>
+        <field name="res_model">partner.child.cleanup.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

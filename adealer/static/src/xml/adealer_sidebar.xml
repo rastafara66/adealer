@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="adealer.Sidebar">
+        <t t-if="state.enabled and state.inApp">
+            <div class="adealer-sidebar" t-att-class="{ 'adealer-sidebar--collapsed': state.collapsed }">
+                <div class="adealer-sidebar__head">
+                    <img class="adealer-sidebar__logo"
+                         src="/adealer/static/src/img/icons/adealer_app.png?v=2" alt="3A-dealer"/>
+                    <span class="adealer-sidebar__brand" t-if="!state.collapsed">3A-dealer</span>
+                    <button class="adealer-sidebar__toggle" t-on-click="toggle"
+                            t-esc="state.collapsed ? '»' : '«'"/>
+                </div>
+                <div class="adealer-sidebar__body" t-if="!state.collapsed">
+                    <t t-foreach="state.groups" t-as="group" t-key="group.id">
+                        <div class="adealer-sidebar__group"
+                             t-att-class="{ 'adealer-sidebar__group--open': isExpanded(group.id) }">
+                            <div class="adealer-sidebar__group-title" t-on-click="() => this.toggleGroup(group.id)">
+                                <span class="adealer-sidebar__caret" t-esc="isExpanded(group.id) ? '▾' : '▸'"/>
+                                <span class="adealer-sidebar__group-name" t-esc="group.name"/>
+                            </div>
+                            <div class="adealer-sidebar__items" t-if="isExpanded(group.id)">
+                                <t t-foreach="group.childrenTree" t-as="sub" t-key="sub.id">
+                                    <t t-if="sub.childrenTree and sub.childrenTree.length">
+                                        <div class="adealer-sidebar__subgroup-title"
+                                             t-on-click="() => this.toggleGroup(sub.id)">
+                                            <span class="adealer-sidebar__caret"
+                                                  t-esc="isExpanded(sub.id) ? '▾' : '▸'"/>
+                                            <span t-esc="sub.name"/>
+                                        </div>
+                                        <div class="adealer-sidebar__items adealer-sidebar__items--nested"
+                                             t-if="isExpanded(sub.id)">
+                                            <t t-foreach="sub.childrenTree" t-as="leaf" t-key="leaf.id">
+                                                <div class="adealer-sidebar__item"
+                                                     t-on-click="() => this.onSelect(leaf)" t-esc="leaf.name"/>
+                                            </t>
+                                        </div>
+                                    </t>
+                                    <t t-else="">
+                                        <div class="adealer-sidebar__item"
+                                             t-on-click="() => this.onSelect(sub)" t-esc="sub.name"/>
+                                    </t>
+                                </t>
+                                <div class="adealer-sidebar__item adealer-sidebar__item--self"
+                                     t-if="!group.childrenTree.length"
+                                     t-on-click="() => this.onSelect(group)" t-esc="group.name"/>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </t>
+</templates>

@@ -1,0 +1,259 @@
+.deep-marine input {
+    background-color: #274472 !important; 
+    color: #fff !important;
+}
+.highlight-green input {
+    background-color: #d4f8d4 !important;
+}
+.o_form_field[name="model_id"] .o_input,
+.o_field_widget[name="model_id"] .o_input {
+    background-color: #274472 !important;
+    color: #fff !important;
+}
+a.fw-bold.text-truncate[data-tooltip] {
+    font-size: 1.2em !important;
+    white-space: pre-line !important;
+    word-break: break-all;
+}
+.o-autocomplete--input.o_input {
+    font-size: 1em !important;
+}
+
+
+.o_input {
+    /* font-size: 1.2em !important; */
+    /* background-color: #274472 !important;
+    color: #fff !important; */
+    /* text-decoration-color: #fff !important; */
+    /* border: 1px solid #274472 !important; */
+}
+
+/* ============== 3A-dealer: бічне меню (сайдбар) ============== */
+:root {
+    /* Єдине джерело ширини сайдбару: використовується і для самого сайдбару,
+       і для відступу контенту (щоб не було розсинхрону/хардкоду у двох місцях). */
+    --adealer-sb-width: 230px;
+    --adealer-sb-collapsed: 38px;
+}
+.adealer-sidebar {
+    position: fixed;
+    top: 46px;
+    left: 0;
+    bottom: 0;
+    width: var(--adealer-sb-width);
+    background: linear-gradient(180deg, #2b3a55 0%, #243049 100%);
+    color: #e8edf5;
+    z-index: 900;
+    overflow-y: auto;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.18);
+    transition: width 0.15s ease;
+}
+.adealer-sidebar--collapsed {
+    width: var(--adealer-sb-collapsed);
+}
+.adealer-sidebar__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    position: sticky;
+    top: 0;
+    background: #243049;
+}
+.adealer-sidebar__logo {
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    flex: 0 0 auto;
+}
+.adealer-sidebar--collapsed .adealer-sidebar__head {
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px 4px;
+}
+.adealer-sidebar__brand {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #ffd367;
+    flex: 1 1 auto;
+}
+.adealer-sidebar__toggle {
+    color: #e8edf5;
+    background: transparent;
+    border: none;
+    font-size: 1.1em;
+    cursor: pointer;
+    line-height: 1;
+}
+.adealer-sidebar__group {
+    padding: 4px 0 8px;
+}
+.adealer-sidebar__group-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px 4px;
+    font-weight: 600;
+    color: #9fc1e8;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.74em;
+    letter-spacing: 0.4px;
+    user-select: none;
+}
+.adealer-sidebar__group-title:hover {
+    color: #ffd367;
+}
+.adealer-sidebar__caret {
+    width: 12px;
+    display: inline-block;
+    font-size: 0.9em;
+    color: #6f8db5;
+}
+.adealer-sidebar__group--open > .adealer-sidebar__group-title .adealer-sidebar__caret {
+    color: #ffd367;
+}
+.adealer-sidebar__item {
+    padding: 7px 12px 7px 22px;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    font-size: 0.92em;
+}
+.adealer-sidebar__subgroup-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px 4px 22px;
+    font-weight: 600;
+    color: #cfdcee;
+    cursor: pointer;
+    font-size: 0.88em;
+    user-select: none;
+}
+.adealer-sidebar__subgroup-title:hover {
+    color: #ffd367;
+}
+.adealer-sidebar__items--nested .adealer-sidebar__item {
+    padding-left: 38px;
+}
+.adealer-sidebar__item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-left-color: #ffd367;
+    color: #ffd367;
+}
+body.adealer-has-sidebar .o_action_manager {
+    margin-left: var(--adealer-sb-width);
+}
+body.adealer-has-sidebar.adealer-sidebar-collapsed .o_action_manager {
+    margin-left: var(--adealer-sb-collapsed);
+}
+
+/* Фірмові кнопки/панелі перенесено в окремий модуль adealer_theme */
+
+/* ============== 3A-dealer: звіти у стилі 1С ============== */
+.adealer-report .adealer-report__title {
+    color: #2b3a55;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.adealer-report .adealer-period {
+    flex-wrap: nowrap;
+    align-items: center;
+    white-space: nowrap;
+}
+.adealer-report .adealer-report__params {
+    background: linear-gradient(180deg, #eef3fb 0%, #e2ebf8 100%);
+    border: 1px solid #c9d9ef;
+    border-left: 4px solid #4a90d9;
+    border-radius: 8px;
+    padding: 12px 16px 6px;
+    margin-bottom: 14px;
+}
+.adealer-report .o_list_table thead th {
+    background: #2b3a55 !important;
+    color: #e8edf5 !important;
+}
+.adealer-report .o_list_table tfoot td {
+    background: #eef3fb;
+    font-weight: 600;
+}
+
+/* ============== 3A-dealer: ненав'язливі кольори додатку ============== */
+body.adealer-app .o_kanban_record {
+    border-left: 3px solid #4a90d9;
+}
+body.adealer-app .o_list_table thead th {
+    background-color: #eef3fb;
+}
+body.adealer-app .o_control_panel {
+    box-shadow: inset 0 -2px 0 0 #4a90d9;
+}
+body.adealer-app .o_searchview .o_searchview_input {
+    caret-color: #4a90d9;
+}
+/* ============== 3A-dealer: збільшення хлібних крихт / номера документа ============== */
+/* Назва списку, номер запису і шестерня у breadcrumb — за замовчуванням дрібні */
+.o_breadcrumb,
+.o_breadcrumb .o_last_breadcrumb_item,
+.o_breadcrumb .breadcrumb-item,
+.breadcrumb-item > a {
+    font-size: 1.15rem !important;
+}
+.o_breadcrumb .o_last_breadcrumb_item {
+    font-weight: 600;
+}
+/* record pager (4/80) і кнопки-стрілки */
+.o_control_panel .o_pager {
+    font-size: 1.02rem !important;
+}
+/* шестерня біля номера (дебаг/меню запису) */
+.o_breadcrumb .fa-cog,
+.o_cp_action_menus .fa-cog,
+.o_form_view .o_cp_action_menus .dropdown-toggle {
+    font-size: 1.05rem !important;
+}
+
+/* ============== 3A-dealer: поля наряду у стилі теми ============== */
+.o_adealer_repair_form .o_form_label {
+    color: #274472 !important;
+    font-weight: 600;
+}
+/* значення полів у шапці наряду — легка навігаційна рамка/фон */
+.o_adealer_repair_form .o_group .o_cell,
+.o_adealer_repair_form .o_group .o_wrap_field {
+    border-radius: 4px;
+}
+.o_adealer_repair_form .o_group .o_wrap_field:hover {
+    background: rgba(39, 68, 114, 0.04);
+}
+/* акцентна золота лінія під заголовком-номером наряду */
+.o_adealer_repair_form .oe_title h1,
+.o_adealer_repair_form .o_form_sheet .oe_title {
+    border-bottom: 2px solid #ffd367;
+    padding-bottom: 4px;
+    display: inline-block;
+}
+/* статус-бар (Новий → Підтверджено → Під ремонт → Відремонтовано) — темніший активний */
+.o_adealer_repair_form .o_statusbar_status .o_arrow_button.o_first.disabled,
+.o_adealer_repair_form .o_statusbar_status button.o_arrow_button:disabled {
+    color: #274472;
+}
+
+/* ============== 3A-dealer: виділення полів шапки наряду (картки в стилі теми) ============== */
+.o_adealer_repair_form .o_form_sheet > .o_group {
+    background: rgba(39, 68, 114, 0.05);
+    border: 1px solid rgba(39, 68, 114, 0.15);
+    border-left: 3px solid #ffd367;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+}
+.o_adealer_repair_form .o_form_sheet > .o_group .o_form_label {
+    color: #274472 !important;
+    font-weight: 600;
+}
+.o_adealer_repair_form .o_form_sheet > .o_group .o_field_widget {
+    font-weight: 500;
+}

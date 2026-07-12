@@ -1,0 +1,135 @@
+<odoo>
+    <data>
+        <!--vehicle form with partner_id-->
+        <record model="ir.ui.view" id="adealer.fleet_vehicle_view_form_inherit">
+            <field name="name">fleet.vehicle.view.form.inherit.3A</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='driver_id']" position="after">
+                    <field name="partner_id"/>
+                </xpath>
+                <xpath expr="//field[@name='transmission']" position="before">
+                    <field name="volume"/>
+                    <field name="drive_type"/>
+                    <field name="body_type"/>
+                </xpath>
+                <xpath expr="//field[@name='model_id']" position="before">
+                    <field name="photo" widget="image" class="oe_avatar"
+                           options="{'preview_image': 'photo'}"/>
+                    <field name="brand_logo" widget="image" class="oe_avatar" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="adealer.fleet_vehicle_view_kanban_inherit">
+            <field name="name">fleet.vehicle.view.kanban.inherit.3A</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_view_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='model_id']" position="after">
+                    <div>
+                        <field name="vin_sn"/>
+                        <field name="partner_id"/>
+                    </div>
+                </xpath>
+                <xpath expr="//field[@name='image_128']" position="replace">
+                    <field name="display_logo" widget="image" options="{'img_class': 'object-fit-cover'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!--vehicle models tree-->
+        <!-- <record model="ir.ui.view" id="adealer.fleet_vehicle_model_view_tree_inherit">
+            <field name="name">fleet.vehicle.model.view.tree.inherit.3A</field>
+            <field name="model">fleet.vehicle.model</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_model_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='driver_id']" position="after">
+                    <field name="partner_id"/>
+                </xpath>
+            </field>
+        </record> -->
+
+        <record model="ir.actions.act_window" id="adealer.action_window_vehicles">
+            <field name="name">Автомобілі</field>
+            <field name="res_model">fleet.vehicle</field>
+            <field name="view_mode">list,form</field>
+            <field name="context">{'group_by': []}</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="adealer.action_window_vehicles_models">
+            <field name="name">Vehicles models</field>
+            <field name="res_model">fleet.vehicle.model</field>
+            <field name="view_mode">kanban,list,form</field>
+        </record>
+
+        <!-- menu Vehicles -->
+        <menuitem name="Vehicles and models" id="adealer.menu_vehicles" parent="adealer.menu_root" sequence="1"/>
+        <!-- submenu Vehicles -->
+        <menuitem name="Vehicles" id="adealer.menu_list_vehicles" parent="adealer.menu_vehicles" 
+                action="adealer.action_window_vehicles" sequence="11"/> 
+        <!-- submenu Vehicles -->
+        <menuitem name="Vehicles models" id="adealer.menu_list_vehicles_models" parent="adealer.menu_vehicles" 
+                action="adealer.action_window_vehicles_models" sequence="12"/>                        
+
+        <record id="adealer.fleet_vehicle_form_inherit_license_plate" model="ir.ui.view">
+            <field name="name">adealer.fleet.vehicle.form.license.plate.color</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='license_plate']" position="attributes">
+                    <attribute name="class">deep-marine</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="adealer.fleet_vehicle_form_inherit_partner" model="ir.ui.view">
+            <field name="name">adealer.fleet.vehicle.form.partner.color</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="class">deep-marine</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="adealer.fleet_vehicle_form_inherit_vin" model="ir.ui.view">
+            <field name="name">adealer.fleet.vehicle.form.vin.color</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='vin_sn']" position="attributes">
+                    <attribute name="class">deep-marine</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="adealer.fleet_vehicle_view_form_inherit_vin_sn" model="ir.ui.view">
+            <field name="name">adealer.fleet.vehicle.view.form.inherit.vin.sn</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='model_id']" position="after">
+                    <div class="oe_title">
+                        <field name="vin_sn" readonly="1"/>
+                        <field name="license_plate" readonly="1"/>
+                        <field name="partner_id" readonly="1"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- <record id="adealer.fleet_vehicle_form_inherit_model_id" model="ir.ui.view"> -->
+            <!-- <field name="name">adealer.fleet.vehicle.form.model_id.color</field> -->
+            <!-- <field name="model">fleet.vehicle</field> -->
+            <!-- <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/> -->
+            <!-- <field name="arch" type="xml"> -->
+                <!-- <xpath expr="//field[@name='model_id']" position="attributes"> -->
+                    <!-- <attribute name="class">deep-marine</attribute> -->
+                <!-- </xpath> -->
+            <!-- </field> -->
+        <!-- </record> -->
+    </data>
+</odoo>

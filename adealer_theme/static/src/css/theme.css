@@ -1,0 +1,152 @@
+/* ============================================================
+   3A-dealer Theme — фірмова тема бекенду
+   Палітра: navy #2b3a55 / темніший #1f2b40 / gold #ffd367 / світлий #eef3fb
+   ============================================================ */
+
+/* ---------- Верхня панель ---------- */
+.o_main_navbar {
+    background: linear-gradient(180deg, #2b3a55 0%, #243049 100%) !important;
+    border-bottom: 2px solid #ffd367 !important;
+    /* змінні навбару Odoo — щоб жоден стан не лишився фіолетовим */
+    --NavBar-entry-color: #e8edf5;
+    --NavBar-entry-color--hover: #ffd367;
+    --NavBar-entry-color--focus: #ffd367;
+    --NavBar-entry-color--active: #ffd367;
+    --NavBar-entry-backgroundColor: transparent;
+    --NavBar-entry-backgroundColor--hover: #1f2b40;
+    --NavBar-entry-backgroundColor--focus: #1f2b40;
+    --NavBar-entry-backgroundColor--active: #1f2b40;
+    --NavBar-menuToggle-color: #e8edf5;
+    --NavBar-brand-color: #e8edf5;
+}
+/* базовий стан усіх елементів навбару */
+.o_main_navbar .o_menu_brand,
+.o_main_navbar .o_nav_entry,
+.o_main_navbar .dropdown-toggle,
+.o_main_navbar .o_menu_toggle,
+.o_main_navbar a,
+.o_main_navbar button {
+    color: #e8edf5 !important;
+}
+/* УСІ активні/наведені/відкриті стани — темніший фон + золото (без фіолету) */
+.o_main_navbar .o_menu_brand:hover,
+.o_main_navbar .o_menu_brand:focus,
+.o_main_navbar .o_nav_entry:hover,
+.o_main_navbar .o_nav_entry:focus,
+.o_main_navbar .o_nav_entry:active,
+.o_main_navbar .o_nav_entry.active,
+.o_main_navbar .o_nav_entry.focus,
+.o_main_navbar .dropdown-toggle:hover,
+.o_main_navbar .dropdown-toggle:focus,
+.o_main_navbar .dropdown-toggle.show,
+.o_main_navbar .dropdown-item.active,
+.o_main_navbar .o_menu_toggle:hover,
+.o_main_navbar a:hover,
+.o_main_navbar a:focus,
+.o_main_navbar a.active,
+.o_main_navbar button:hover,
+.o_main_navbar button:focus,
+.o_main_navbar button.active,
+.o_main_navbar button.show {
+    color: #ffd367 !important;
+    background: #1f2b40 !important;
+    box-shadow: none !important;
+}
+
+/* Випадні меню верхньої панелі */
+.o-dropdown--menu .dropdown-item:hover,
+.o-dropdown--menu .dropdown-item:focus {
+    background-color: #eef3fb;
+    color: #1f2b40;
+}
+
+/* ---------- Кнопки ---------- */
+.o_web_client .btn-primary {
+    background-color: #2b3a55 !important;
+    border-color: #2b3a55 !important;
+    color: #ffffff !important;
+}
+.o_web_client .btn-primary:hover,
+.o_web_client .btn-primary:focus,
+.o_web_client .btn-primary:active,
+.o_web_client .btn-primary.active {
+    background-color: #1f2b40 !important;
+    border-color: #1f2b40 !important;
+    color: #ffd367 !important;
+}
+.o_web_client .btn-primary:disabled {
+    background-color: #8d99ad !important;
+    border-color: #8d99ad !important;
+}
+.o_web_client .btn-secondary {
+    background-color: #eef3fb !important;
+    border-color: #b9c9e2 !important;
+    color: #2b3a55 !important;
+}
+.o_web_client .btn-secondary:hover,
+.o_web_client .btn-secondary:focus,
+.o_web_client .btn-secondary:active {
+    background-color: #dde8f7 !important;
+    border-color: #2b3a55 !important;
+    color: #1f2b40 !important;
+}
+.o_web_client .btn-link {
+    color: #2f4a76;
+}
+.o_web_client .btn-link:hover {
+    color: #1f2b40;
+}
+
+/* ---------- Посилання ---------- */
+.o_web_client a:not(.btn):not(.nav-link):not(.dropdown-item) {
+    color: #2f4a76;
+}
+.o_web_client a:not(.btn):not(.nav-link):not(.dropdown-item):hover {
+    color: #1f2b40;
+}
+
+/* ---------- Списки ---------- */
+.o_web_client .o_list_table thead th {
+    background-color: #eef3fb;
+    color: #2b3a55;
+}
+.o_web_client .o_list_table tfoot td {
+    background-color: #eef3fb;
+    font-weight: 600;
+}
+.o_web_client .o_list_table tbody tr:hover {
+    background-color: #f4f8fe;
+}
+
+/* ---------- Вкладки форм ---------- */
+.o_web_client .nav-tabs .nav-link.active {
+    color: #1f2b40;
+    font-weight: 600;
+    border-bottom: 2px solid #2b3a55;
+}
+.o_web_client .nav-tabs .nav-link:hover {
+    color: #2b3a55;
+}
+
+/* ---------- Чекбокси / перемикачі ---------- */
+.o_web_client .form-check-input:checked {
+    background-color: #2b3a55;
+    border-color: #2b3a55;
+}
+.o_web_client .form-check-input:focus {
+    border-color: #2b3a55;
+    box-shadow: 0 0 0 0.2rem rgba(43, 58, 85, 0.25);
+}
+
+/* ---------- Дрібниці ---------- */
+.o_web_client .breadcrumb-item.active {
+    color: #1f2b40;
+    font-weight: 600;
+}
+.o_web_client .o_pager button:hover {
+    color: #2b3a55;
+}
+.o_web_client .o_searchview:focus-within {
+    border-color: #2b3a55;
+    box-shadow: 0 0 0 1px #2b3a55;
+}

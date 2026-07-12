@@ -1,0 +1,14 @@
+/* Друковані форми 3A-dealer: відступи в таблицях, щоб текст/цифри
+   не притискалися до рамки. Правило — для всіх наших форм (клас
+   o_adealer_report на .page). Стосується і майбутніх форм. */
+.o_adealer_report table td,
+.o_adealer_report table th {
+    padding: 4px 8px !important;
+    vertical-align: top;
+}
+
+/* трохи повітря між шапкою таблиці і рамкою */
+.o_adealer_report table.table-bordered th {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

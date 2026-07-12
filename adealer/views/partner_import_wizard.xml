@@ -1,0 +1,24 @@
+<odoo>
+    <record id="view_partner_import_wizard_form" model="ir.ui.view">
+        <field name="name">partner.import.wizard.form</field>
+        <field name="model">partner.import.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Імпорт контрагентів з Excel">
+                <group>
+                    <field name="file" filename="file_name" placeholder="Оберіть Excel-файл для імпорту"/>
+                    <field name="file_name" invisible="1"/>
+                </group>
+                <footer>
+                    <button name="action_import_partners" type="object" string="Імпортувати" class="btn-primary"/>
+                    <button string="Скасувати" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_partner_import_wizard" model="ir.actions.act_window">
+        <field name="name">Імпорт контрагентів</field>
+        <field name="res_model">partner.import.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

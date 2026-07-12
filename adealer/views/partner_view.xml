@@ -1,0 +1,41 @@
+<odoo>
+    <record id="view_partner_form_inherit_edrpou" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.edrpou</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="replace">
+                <field name="vat" class="deep-marine"/>
+            </xpath>
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="edrpou" class="deep-marine" invisible="company_type != 'company'"/>
+                <field name="driver_license" invisible="company_type == 'company'"/>
+            </xpath>
+            
+            <xpath expr="//notebook" position="inside">
+                <page string="Контакти партнера" name="partner_contacts_tab">
+                    <field name="partners_contacts">
+                        <list string="Контакти партнера">
+                            <field name="display_name"/>
+                            <field name="email"/>
+                            <field name="phone"/>
+                            </list>
+                    </field>
+                </page>
+            </xpath>
+
+            <xpath expr="//page[@name='partner_contacts_tab']" position="after">
+                <page string="Автомобілі партнера" name="partner_vehicles_tab">
+                    <field name="partner_vehicles">
+                        <list string="Автомобілі партнера">
+                            <field name="name"/>
+                            <field name="license_plate"/>
+                            <field name="drive_type"/>
+                            <field name="transmission"/>
+                            </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,120 @@
+<odoo>
+    <data>
+        <!-- ===Actions and menus=== -->
+        <!-- Actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="adealer.action_window_product_category">
+            <field name="name">Product category</field>
+            <field name="res_model">product.category</field>
+            <field name="view_mode">kanban,list,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="adealer.action_window_products">
+            <field name="name">Products</field>
+            <field name="res_model">product.product</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="view_id" ref="adealer.view_product_card_kanban"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="adealer.action_window_partners">
+            <field name="name">Partners</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">kanban,list,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="adealer.action_window_res_partner_kanban_view">
+            <field name="name">Partners cards</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">kanban</field>
+        </record>
+        <record model="ir.actions.act_window" id="adealer.action_window_res_users_view">
+            <field name="name">Users</field>
+            <field name="res_model">res.users</field>
+            <field name="view_mode">kanban,list,form</field>
+        </record>        
+
+        <record model="ir.actions.act_window" id="adealer.action_window_maintenance">
+            <field name="name">Maintenance</field>
+            <field name="res_model">maintenance.team</field>
+            <field name="view_mode">kanban</field>
+        </record>
+        <record model="ir.actions.act_window" id="adealer.action_window_requests">
+            <field name="name">Requests</field>
+            <field name="res_model">maintenance.request</field>
+            <field name="view_mode">kanban,list,form</field>
+        </record>  
+        <record model="ir.actions.act_window" id="adealer.action_window_request_calendar">
+            <field name="name">Requests calendar</field>
+            <field name="res_model">maintenance.request</field>
+            <field name="view_mode">calendar</field>
+        </record>
+        <record model="ir.actions.act_window" id="adealer.action_window_repair_calendar">
+            <field name="name">Календар обслуговування</field>
+            <field name="res_model">repair.order</field>
+            <field name="view_mode">calendar,list,form</field>
+            <field name="view_id" ref="adealer.view_repair_order_calendar"/>
+        </record>
+        <record model="ir.actions.act_window" id="adealer.action_window_repair_orders">
+            <field name="name">Наряд-замовлення</field>
+            <field name="res_model">repair.order</field>
+            <field name="view_mode">list,kanban,form</field>
+            <field name="view_id" ref="adealer.view_repair_order_journal_list"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="adealer.action_window_sale_orders">
+            <field name="name">Sale orders</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">list,kanban,form</field>
+            <field name="view_id" ref="adealer.view_sale_order_journal_list"/>
+        </record>
+        <record model="ir.actions.act_window" id="adealer.action_window_purchase_orders">
+            <field name="name">Purchase orders</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_mode">list,kanban,form</field>
+            <field name="view_id" ref="adealer.view_purchase_order_journal_list"/>
+        </record>
+            
+        <!-- Root menu item -->
+        <menuitem name="3A-dealer" id="adealer.menu_root" web_icon="adealer,static/src/img/icons/adealer_app.png"/>
+        <!-- menu Products -->
+        <menuitem name="Products and Services" id="adealer.menu_products" parent="adealer.menu_root" sequence="3"/>
+        <!-- submenu_products -->
+        <menuitem name="Categories" id="adealer.menu_categories" parent="adealer.menu_products"
+                action="adealer.action_window_product_category"  sequence="21"/>
+        <menuitem name="Product's List" id="adealer.menu_list_products" parent="adealer.menu_products"
+                action="adealer.action_window_products" sequence="22"/>
+
+        <!-- menu Contacts -->
+        <menuitem name="Partners and Users" id="adealer.menu_contacts" parent="adealer.menu_root" sequence="4"/>
+        <!-- submenu Contacts -->
+        <menuitem name="Users" id="adealer.menu_users" parent="adealer.menu_contacts"
+                action="adealer.action_window_res_users_view" sequence="31"/> 
+        <menuitem name="Partners" id="adealer.menu_partners" parent="adealer.menu_contacts"
+                action="adealer.action_window_partners" sequence="32"/>
+        <menuitem name="Partners cards" id="adealer.menu_partners_cards" parent="adealer.menu_contacts"
+                action="adealer.action_window_res_partner_kanban_view" sequence="33"/>                                  
+
+        <!-- menu Maintenance -->
+        <menuitem name="Maintenance and Repair" id="adealer.menu_maintenance" parent="adealer.menu_root" sequence="5"/>
+        <!-- submenu Maintenance -->
+        <menuitem name="Заявки на обслуговування" id="adealer.requests" parent="adealer.menu_maintenance"
+                action="adealer.action_window_sale_orders" sequence="41"/>
+        <menuitem name="Календар обслуговування" id="adealer.request_calendar" parent="adealer.menu_maintenance"
+                action="adealer.action_window_repair_calendar" sequence="42"/>
+        <menuitem name="Наряд-замовлення" id="adealer.repair_orders" parent="adealer.menu_maintenance"
+                action="adealer.action_window_repair_orders" sequence="43"/>
+
+        <!-- menu Sales -->
+        <menuitem name="Sales" id="adealer.menu_sales" parent="adealer.menu_root" sequence="6"/>
+        <menuitem name="Sale orders" id="adealer.menu_sale_orders" parent="adealer.menu_sales"
+                action="adealer.action_window_sale_orders" sequence="51"/>
+        <menuitem name="Наряд-замовлення" id="adealer.menu_sales_repair_orders" parent="adealer.menu_sales"
+                action="adealer.action_window_repair_orders" sequence="52"/>
+
+        <!-- menu Purchases -->
+        <menuitem name="Purchases" id="adealer.menu_purchases" parent="adealer.menu_root" sequence="7"/>
+        <menuitem name="Purchase orders" id="adealer.menu_purchase_orders" parent="adealer.menu_purchases"
+                action="adealer.action_window_purchase_orders" sequence="61"/>
+
+        <!-- menu Experimental -->
+        <menuitem name="Experimental" id="adealer.experimental" parent="adealer.menu_root" sequence="5"/>                 
+    </data>
+</odoo>

@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+        <!--product template view form with partner_id-->
+        <record model="ir.ui.view" id="adealer.product_form_inherit">
+            <field name="name">product.template.view.form.inherit.3A</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='categ_id']" position="after">
+                    <field name="vehicle_id"/>
+                    <!-- <field name="VHS_id"/> -->
+                </xpath>
+                <xpath expr="//field[@name='type']" position="before">
+                    <field name="base_service"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>    

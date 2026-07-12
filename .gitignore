@@ -1,0 +1,19 @@
+# Python
+*.py[co]
+__pycache__/
+*.egg-info/
+
+# Logs / temp
+*.log
+*.orig
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+/.vscode/
+.vscode/
+*.code-workspace

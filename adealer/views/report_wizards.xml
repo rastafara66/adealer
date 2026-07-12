@@ -1,0 +1,598 @@
+<odoo>
+    <!-- ========== ГОТОВІ ЗВІТИ (1С-стиль): 1 форма на звіт ========== -->
+
+    <!-- Продажі -->
+    <record id="view_report_ready_sales" model="ir.ui.view">
+        <field name="name">adealer.report.ready.sales</field>
+        <field name="model">adealer.report.wizard</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <form string="Продажі" class="adealer-report">
+                <sheet>
+                    <h2 class="adealer-report__title">Продажі</h2>
+                    <div class="adealer-report__params">
+                        <group col="4">
+                            <field name="report_type" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <label for="date_from" string="Період з"/>
+                            <div class="o_row adealer-period">
+                                <field name="date_from" nolabel="1"/>
+                                <span class="mx-1">по</span>
+                                <field name="date_to" nolabel="1"/>
+                            </div>
+                            <field name="partner_id" string="Клієнт" options="{'no_create': True}" placeholder="Всі"/>
+                            <field name="product_id" options="{'no_create': True}" placeholder="Всі"/>
+                        </group>
+                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                    </div>
+                    <field name="line_ids" nolabel="1">
+                        <list create="0" delete="0" edit="0" limit="200"
+                              decoration-bf="line_type == 'total'">
+                            <field name="line_type" column_invisible="1"/>
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="res_id" column_invisible="1"/>
+                            <field name="date"/>
+                            <field name="name" string="Документ"/>
+                            <field name="ref2" string="Клієнт"/>
+                            <field name="ref3" string="Товар"/>
+                            <field name="qty" sum="Разом"/>
+                            <field name="amount" string="Сума" sum="Разом"/>
+                            <button name="action_open" type="object" icon="fa-external-link"
+                                    title="Відкрити документ" invisible="not res_id"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Валовий прибуток -->
+    <record id="view_report_ready_gross" model="ir.ui.view">
+        <field name="name">adealer.report.ready.gross</field>
+        <field name="model">adealer.report.wizard</field>
+        <field name="priority">11</field>
+        <field name="arch" type="xml">
+            <form string="Валовий прибуток" class="adealer-report">
+                <sheet>
+                    <h2 class="adealer-report__title">Валовий прибуток</h2>
+                    <div class="adealer-report__params">
+                        <group col="4">
+                            <field name="report_type" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <label for="date_from" string="Період з"/>
+                            <div class="o_row adealer-period">
+                                <field name="date_from" nolabel="1"/>
+                                <span class="mx-1">по</span>
+                                <field name="date_to" nolabel="1"/>
+                            </div>
+                            <field name="partner_id" string="Клієнт" options="{'no_create': True}" placeholder="Всі"/>
+                        </group>
+                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                    </div>
+                    <field name="line_ids" nolabel="1">
+                        <list create="0" delete="0" edit="0" limit="200"
+                              decoration-bf="line_type == 'total'"
+                              decoration-danger="amount3 &lt; 0">
+                            <field name="line_type" column_invisible="1"/>
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="res_id" column_invisible="1"/>
+                            <field name="name" string="Товар"/>
+                            <field name="qty" sum="Разом"/>
+                            <field name="amount" string="Виручка" sum="Разом"/>
+                            <field name="amount2" string="Собівартість" sum="Разом"/>
+                            <field name="amount3" string="Прибуток" sum="Разом"/>
+                            <button name="action_open" type="object" icon="fa-external-link"
+                                    title="Відкрити товар" invisible="not res_id"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Закупівлі -->
+    <record id="view_report_ready_purchases" model="ir.ui.view">
+        <field name="name">adealer.report.ready.purchases</field>
+        <field name="model">adealer.report.wizard</field>
+        <field name="priority">12</field>
+        <field name="arch" type="xml">
+            <form string="Закупівлі" class="adealer-report">
+                <sheet>
+                    <h2 class="adealer-report__title">Закупівлі</h2>
+                    <div class="adealer-report__params">
+                        <group col="4">
+                            <field name="report_type" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <label for="date_from" string="Період з"/>
+                            <div class="o_row adealer-period">
+                                <field name="date_from" nolabel="1"/>
+                                <span class="mx-1">по</span>
+                                <field name="date_to" nolabel="1"/>
+                            </div>
+                            <field name="partner_id" string="Постачальник" options="{'no_create': True}" placeholder="Всі"/>
+                        </group>
+                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                    </div>
+                    <field name="line_ids" nolabel="1">
+                        <list create="0" delete="0" edit="0" limit="200"
+                              decoration-bf="line_type == 'total'">
+                            <field name="line_type" column_invisible="1"/>
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="res_id" column_invisible="1"/>
+                            <field name="date"/>
+                            <field name="name" string="Замовлення"/>
+                            <field name="ref2" string="Постачальник"/>
+                            <field name="ref3" string="Реф. 1С"/>
+                            <field name="amount" string="Сума" sum="Разом"/>
+                            <button name="action_open" type="object" icon="fa-external-link"
+                                    title="Відкрити" invisible="not res_id"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Товари на складах -->
+    <record id="view_report_ready_stock" model="ir.ui.view">
+        <field name="name">adealer.report.ready.stock</field>
+        <field name="model">adealer.report.wizard</field>
+        <field name="priority">13</field>
+        <field name="arch" type="xml">
+            <form string="Товари на складах" class="adealer-report">
+                <sheet>
+                    <h2 class="adealer-report__title">Товари на складах</h2>
+                    <div class="adealer-report__params">
+                        <group col="4">
+                            <field name="report_type" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="product_id" options="{'no_create': True}" placeholder="Всі"/>
+                        </group>
+                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                    </div>
+                    <field name="line_ids" nolabel="1">
+                        <list create="0" delete="0" edit="0" limit="200"
+                              decoration-bf="line_type == 'total'">
+                            <field name="line_type" column_invisible="1"/>
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="res_id" column_invisible="1"/>
+                            <field name="name" string="Товар"/>
+                            <field name="ref2" string="Код"/>
+                            <field name="qty" string="Залишок" sum="Разом"/>
+                            <field name="amount" string="Вартість (с/в)" sum="Разом"/>
+                            <button name="action_open" type="object" icon="fa-external-link"
+                                    title="Відкрити товар" invisible="not res_id"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Історія ремонтів -->
+    <record id="view_report_ready_repairs" model="ir.ui.view">
+        <field name="name">adealer.report.ready.repairs</field>
+        <field name="model">adealer.report.wizard</field>
+        <field name="priority">14</field>
+        <field name="arch" type="xml">
+            <form string="Історія ремонтів" class="adealer-report">
+                <sheet>
+                    <h2 class="adealer-report__title">Історія ремонтів</h2>
+                    <div class="adealer-report__params">
+                        <group col="4">
+                            <field name="report_type" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <label for="date_from" string="Період з"/>
+                            <div class="o_row adealer-period">
+                                <field name="date_from" nolabel="1"/>
+                                <span class="mx-1">по</span>
+                                <field name="date_to" nolabel="1"/>
+                            </div>
+                            <field name="partner_id" string="Клієнт" options="{'no_create': True}" placeholder="Всі"/>
+                            <field name="vehicle_id" options="{'no_create': True}" placeholder="Всі"/>
+                        </group>
+                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                    </div>
+                    <field name="line_ids" nolabel="1">
+                        <list create="0" delete="0" edit="0" limit="200"
+                              decoration-bf="line_type == 'total'">
+                            <field name="line_type" column_invisible="1"/>
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="res_id" column_invisible="1"/>
+                            <field name="date"/>
+                            <field name="name" string="Наряд"/>
+                            <field name="ref2" string="Клієнт"/>
+                            <field name="ref3" string="Автомобіль"/>
+                            <field name="amount" string="Сума" sum="Разом"/>
+                            <field name="state" string="Статус"/>
+                            <button name="action_open" type="object" icon="fa-external-link"
+                                    title="Відкрити наряд" invisible="not res_id"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Виробіток приймальників -->
+    <record id="view_report_ready_advisors" model="ir.ui.view">
+        <field name="name">adealer.report.ready.advisors</field>
+        <field name="model">adealer.report.wizard</field>
+        <field name="priority">15</field>
+        <field name="arch" type="xml">
+            <form string="Виробіток приймальників" class="adealer-report">
+                <sheet>
+                    <h2 class="adealer-report__title">Виробіток приймальників</h2>
+                    <div class="adealer-report__params">
+                        <group col="4">
+                            <field name="report_type" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <label for="date_from" string="Період з"/>
+                            <div class="o_row adealer-period">
+                                <field name="date_from" nolabel="1"/>
+                                <span class="mx-1">по</span>
+                                <field name="date_to" nolabel="1"/>
+                            </div>
+                        </group>
+                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                    </div>
+                    <field name="line_ids" nolabel="1">
+                        <list create="0" delete="0" edit="0" limit="200"
+                              decoration-bf="line_type == 'total'">
+                            <field name="line_type" column_invisible="1"/>
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="name" string="Приймальник"/>
+                            <field name="qty" string="К-сть нарядів" sum="Разом"/>
+                            <field name="amount" string="Сума" sum="Разом"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Аналіз замовлень покупців -->
+    <record id="view_report_ready_orders" model="ir.ui.view">
+        <field name="name">adealer.report.ready.orders</field>
+        <field name="model">adealer.report.wizard</field>
+        <field name="priority">16</field>
+        <field name="arch" type="xml">
+            <form string="Аналіз замовлень покупців" class="adealer-report">
+                <sheet>
+                    <h2 class="adealer-report__title">Аналіз замовлень покупців</h2>
+                    <div class="adealer-report__params">
+                        <group col="4">
+                            <field name="report_type" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <label for="date_from" string="Період з"/>
+                            <div class="o_row adealer-period">
+                                <field name="date_from" nolabel="1"/>
+                                <span class="mx-1">по</span>
+                                <field name="date_to" nolabel="1"/>
+                            </div>
+                            <field name="partner_id" string="Клієнт" options="{'no_create': True}" placeholder="Всі"/>
+                            <field name="vehicle_id" options="{'no_create': True}" placeholder="Всі"/>
+                        </group>
+                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                    </div>
+                    <field name="line_ids" nolabel="1">
+                        <list create="0" delete="0" edit="0" limit="200"
+                              decoration-bf="line_type == 'total'">
+                            <field name="line_type" column_invisible="1"/>
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="res_id" column_invisible="1"/>
+                            <field name="date"/>
+                            <field name="name" string="Замовлення"/>
+                            <field name="ref2" string="Клієнт"/>
+                            <field name="ref3" string="Автомобіль"/>
+                            <field name="amount" string="Сума" sum="Разом"/>
+                            <field name="state" string="Статус"/>
+                            <button name="action_open" type="object" icon="fa-external-link"
+                                    title="Відкрити замовлення" invisible="not res_id"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Нагадування про ТО -->
+    <record id="view_report_ready_to" model="ir.ui.view">
+        <field name="name">adealer.report.ready.to</field>
+        <field name="model">adealer.report.wizard</field>
+        <field name="priority">17</field>
+        <field name="arch" type="xml">
+            <form string="Нагадування про ТО" class="adealer-report">
+                <sheet>
+                    <h2 class="adealer-report__title">Нагадування про ТО</h2>
+                    <div class="adealer-report__params">
+                        <group col="4">
+                            <field name="report_type" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="date_from" string="Не було ТО з"/>
+                        </group>
+                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                    </div>
+                    <field name="line_ids" nolabel="1">
+                        <list create="0" delete="0" edit="0" limit="200" decoration-bf="line_type == 'total'">
+                            <field name="line_type" column_invisible="1"/>
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="res_id" column_invisible="1"/>
+                            <field name="date" string="Останній візит"/>
+                            <field name="name" string="Автомобіль"/>
+                            <field name="ref2" string="Клієнт"/>
+                            <field name="ref3" string="Давність"/>
+                            <field name="qty" string="Пробіг"/>
+                            <button name="action_open" type="object" icon="fa-external-link"
+                                    title="Відкрити авто" invisible="not res_id"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Не заїжджавші клієнти -->
+    <record id="view_report_ready_inactive" model="ir.ui.view">
+        <field name="name">adealer.report.ready.inactive</field>
+        <field name="model">adealer.report.wizard</field>
+        <field name="priority">18</field>
+        <field name="arch" type="xml">
+            <form string="Не заїжджавші клієнти" class="adealer-report">
+                <sheet>
+                    <h2 class="adealer-report__title">Не заїжджавші клієнти</h2>
+                    <div class="adealer-report__params">
+                        <group col="4">
+                            <field name="report_type" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="date_from" string="Не заїжджали з"/>
+                        </group>
+                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                    </div>
+                    <field name="line_ids" nolabel="1">
+                        <list create="0" delete="0" edit="0" limit="200" decoration-bf="line_type == 'total'">
+                            <field name="line_type" column_invisible="1"/>
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="res_id" column_invisible="1"/>
+                            <field name="date" string="Останній візит"/>
+                            <field name="name" string="Клієнт"/>
+                            <field name="ref3" string="Давність"/>
+                            <field name="qty" string="Візитів"/>
+                            <field name="amount" string="Сума за весь час"/>
+                            <button name="action_open" type="object" icon="fa-external-link"
+                                    title="Відкрити клієнта" invisible="not res_id"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ABC-аналіз продажів -->
+    <record id="view_report_ready_abc_sales" model="ir.ui.view">
+        <field name="name">adealer.report.ready.abc.sales</field>
+        <field name="model">adealer.report.wizard</field>
+        <field name="priority">19</field>
+        <field name="arch" type="xml">
+            <form string="ABC-аналіз продажів" class="adealer-report">
+                <sheet>
+                    <h2 class="adealer-report__title">ABC-аналіз продажів</h2>
+                    <div class="adealer-report__params">
+                        <group col="4">
+                            <field name="report_type" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <label for="date_from" string="Період з"/>
+                            <div class="o_row adealer-period">
+                                <field name="date_from" nolabel="1"/>
+                                <span class="mx-1">по</span>
+                                <field name="date_to" nolabel="1"/>
+                            </div>
+                            <field name="partner_id" string="Клієнт" options="{'no_create': True}" placeholder="Всі"/>
+                        </group>
+                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                    </div>
+                    <field name="line_ids" nolabel="1">
+                        <list create="0" delete="0" edit="0" limit="200"
+                              decoration-bf="line_type == 'total'"
+                              decoration-success="state == 'A'"
+                              decoration-warning="state == 'B'"
+                              decoration-muted="state == 'C'">
+                            <field name="line_type" column_invisible="1"/>
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="res_id" column_invisible="1"/>
+                            <field name="name" string="Товар"/>
+                            <field name="qty" string="К-сть"/>
+                            <field name="amount" string="Виручка" sum="Разом"/>
+                            <field name="ref3" string="Частка"/>
+                            <field name="state" string="Клас"/>
+                            <button name="action_open" type="object" icon="fa-external-link"
+                                    title="Відкрити товар" invisible="not res_id"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ABC-аналіз покупців -->
+    <record id="view_report_ready_abc_customers" model="ir.ui.view">
+        <field name="name">adealer.report.ready.abc.customers</field>
+        <field name="model">adealer.report.wizard</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <form string="ABC-аналіз покупців" class="adealer-report">
+                <sheet>
+                    <h2 class="adealer-report__title">ABC-аналіз покупців</h2>
+                    <div class="adealer-report__params">
+                        <group col="4">
+                            <field name="report_type" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <label for="date_from" string="Період з"/>
+                            <div class="o_row adealer-period">
+                                <field name="date_from" nolabel="1"/>
+                                <span class="mx-1">по</span>
+                                <field name="date_to" nolabel="1"/>
+                            </div>
+                        </group>
+                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                    </div>
+                    <field name="line_ids" nolabel="1">
+                        <list create="0" delete="0" edit="0" limit="200"
+                              decoration-bf="line_type == 'total'"
+                              decoration-success="state == 'A'"
+                              decoration-warning="state == 'B'"
+                              decoration-muted="state == 'C'">
+                            <field name="line_type" column_invisible="1"/>
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="res_id" column_invisible="1"/>
+                            <field name="name" string="Клієнт"/>
+                            <field name="amount" string="Виручка" sum="Разом"/>
+                            <field name="ref3" string="Частка"/>
+                            <field name="state" string="Клас"/>
+                            <button name="action_open" type="object" icon="fa-external-link"
+                                    title="Відкрити клієнта" invisible="not res_id"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Оборотність товарів -->
+    <record id="view_report_ready_turnover" model="ir.ui.view">
+        <field name="name">adealer.report.ready.turnover</field>
+        <field name="model">adealer.report.wizard</field>
+        <field name="priority">21</field>
+        <field name="arch" type="xml">
+            <form string="Оборотність товарів" class="adealer-report">
+                <sheet>
+                    <h2 class="adealer-report__title">Оборотність товарів</h2>
+                    <div class="adealer-report__params">
+                        <group col="4">
+                            <field name="report_type" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                            <label for="date_from" string="Період з"/>
+                            <div class="o_row adealer-period">
+                                <field name="date_from" nolabel="1"/>
+                                <span class="mx-1">по</span>
+                                <field name="date_to" nolabel="1"/>
+                            </div>
+                        </group>
+                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                    </div>
+                    <field name="line_ids" nolabel="1">
+                        <list create="0" delete="0" edit="0" limit="200" decoration-bf="line_type == 'total'">
+                            <field name="line_type" column_invisible="1"/>
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="res_id" column_invisible="1"/>
+                            <field name="name" string="Товар"/>
+                            <field name="ref2" string="Код"/>
+                            <field name="qty" string="Продано за період" sum="Разом"/>
+                            <field name="ref3" string="Залишок · днів запасу"/>
+                            <button name="action_open" type="object" icon="fa-external-link"
+                                    title="Відкрити товар" invisible="not res_id"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ========== Дії ========== -->
+    <record id="action_report_ready_sales" model="ir.actions.act_window">
+        <field name="name">Продажі</field>
+        <field name="res_model">adealer.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_report_ready_sales"/>
+        <field name="target">current</field>
+        <field name="context">{'default_report_type': 'sales'}</field>
+    </record>
+    <record id="action_report_ready_gross" model="ir.actions.act_window">
+        <field name="name">Валовий прибуток</field>
+        <field name="res_model">adealer.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_report_ready_gross"/>
+        <field name="target">current</field>
+        <field name="context">{'default_report_type': 'gross'}</field>
+    </record>
+    <record id="action_report_ready_purchases" model="ir.actions.act_window">
+        <field name="name">Закупівлі</field>
+        <field name="res_model">adealer.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_report_ready_purchases"/>
+        <field name="target">current</field>
+        <field name="context">{'default_report_type': 'purchases'}</field>
+    </record>
+    <record id="action_report_ready_stock" model="ir.actions.act_window">
+        <field name="name">Товари на складах</field>
+        <field name="res_model">adealer.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_report_ready_stock"/>
+        <field name="target">current</field>
+        <field name="context">{'default_report_type': 'stock'}</field>
+    </record>
+    <record id="action_report_ready_repairs" model="ir.actions.act_window">
+        <field name="name">Історія ремонтів</field>
+        <field name="res_model">adealer.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_report_ready_repairs"/>
+        <field name="target">current</field>
+        <field name="context">{'default_report_type': 'repairs'}</field>
+    </record>
+    <record id="action_report_ready_advisors" model="ir.actions.act_window">
+        <field name="name">Виробіток приймальників</field>
+        <field name="res_model">adealer.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_report_ready_advisors"/>
+        <field name="target">current</field>
+        <field name="context">{'default_report_type': 'advisors'}</field>
+    </record>
+    <record id="action_report_ready_orders" model="ir.actions.act_window">
+        <field name="name">Аналіз замовлень покупців</field>
+        <field name="res_model">adealer.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_report_ready_orders"/>
+        <field name="target">current</field>
+        <field name="context">{'default_report_type': 'orders'}</field>
+    </record>
+    <record id="action_report_ready_to" model="ir.actions.act_window">
+        <field name="name">Нагадування про ТО</field>
+        <field name="res_model">adealer.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_report_ready_to"/>
+        <field name="target">current</field>
+        <field name="context">{'default_report_type': 'to_reminder'}</field>
+    </record>
+    <record id="action_report_ready_inactive" model="ir.actions.act_window">
+        <field name="name">Не заїжджавші клієнти</field>
+        <field name="res_model">adealer.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_report_ready_inactive"/>
+        <field name="target">current</field>
+        <field name="context">{'default_report_type': 'inactive'}</field>
+    </record>
+    <record id="action_report_ready_abc_sales" model="ir.actions.act_window">
+        <field name="name">ABC-аналіз продажів</field>
+        <field name="res_model">adealer.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_report_ready_abc_sales"/>
+        <field name="target">current</field>
+        <field name="context">{'default_report_type': 'abc_sales'}</field>
+    </record>
+    <record id="action_report_ready_abc_customers" model="ir.actions.act_window">
+        <field name="name">ABC-аналіз покупців</field>
+        <field name="res_model">adealer.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_report_ready_abc_customers"/>
+        <field name="target">current</field>
+        <field name="context">{'default_report_type': 'abc_customers'}</field>
+    </record>
+    <record id="action_report_ready_turnover" model="ir.actions.act_window">
+        <field name="name">Оборотність товарів</field>
+        <field name="res_model">adealer.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_report_ready_turnover"/>
+        <field name="target">current</field>
+        <field name="context">{'default_report_type': 'turnover'}</field>
+    </record>
+</odoo>

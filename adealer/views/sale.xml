@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+        <!--View Sale Order Form with Vehicle-->
+        <record model="ir.ui.view" id="adealer.sale_view_order_form_inherit">
+            <field name="name">sale.view.order.form.inherit.3A</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="vehicle_id"/>
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="action_view_repair_orders" type="object"
+                            class="oe_stat_button" icon="fa-wrench"
+                            invisible="repair_order_count == 0">
+                        <field name="repair_order_count" widget="statinfo" string="Наряди"/>
+                    </button>
+                </xpath>
+                <xpath expr="//button[@name='action_confirm']" position="after">
+                    <button name="action_create_repair_order" type="object"
+                            string="Створити наряд" class="btn-secondary"
+                            invisible="state not in ('sale', 'done')"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Sale kanban: show vehicle logo + name -->
+        <record model="ir.ui.view" id="adealer.view_sale_order_kanban_inherit">
+            <field name="name">sale.order.kanban.inherit.3A</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sale_order_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="before">
+                    <field name="vehicle_logo" widget="image" class="me-2" options="{'size': [36, 36]}"/>
+                </xpath>
+                <xpath expr="//footer//field[@name='name']" position="after">
+                    <field name="vehicle_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
