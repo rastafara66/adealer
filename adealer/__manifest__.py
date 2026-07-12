@@ -2,24 +2,25 @@
 {
     'name': "3A-dealer — Car Dealership & Service",
 
-    'summary': "Car showroom · Auto parts · Service workshop — 1C-style document flow for Odoo",
+    'summary': "Car showroom · Auto parts · Service workshop — document-centric workflow for Odoo",
 
     'description': """
 3A-dealer — a vertical solution for car dealers and service workshops
 =====================================================================
 
 Car showroom, auto-parts stock and service workshop in a single module,
-with the document flow familiar to 1C users.
+with a familiar document-centric workflow.
 
 Key features:
 
-* 1C-style document chain: Sale Order, Repair Order, Delivery note / Act / Invoice (each document created "on the basis of" the previous one).
+* Document chain: Sale Order, Repair Order, Delivery note / Act / Invoice (each document created "on the basis of" the previous one).
 * Workshop repair orders: customer, vehicle (VIN), mileage, mechanics, service advisor, parts & labour, stock control.
 * Customer vehicle card file: VIN, brand (logo), repair history, service booking calendar, maintenance reminders.
+* Showroom stock: cars as inventory with statuses, trims, colors, options, trade-in.
 * Parts & analogs, standard hours, mechanic output.
-* Reports in two styles: "Ready reports" (like 1C) and the interactive Odoo pivot.
+* Reports in two styles: "Ready reports" (parameter header, Generate, statement) and the interactive Odoo pivot.
 * Printable forms (UA): invoice for payment, delivery note, return note, goods-receipt note, power of attorney, reconciliation act.
-* 1C-style document journals: Date, Number, Customer, Vehicle, Amount, Status.
+* Document journals: Date, Number, Customer, Vehicle, Amount, Status.
 * Interface in English and Ukrainian.
     """,
 
