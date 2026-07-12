@@ -1,4 +1,14 @@
 <odoo>
+    <record id="ir_cron_adealer_update_check" model="ir.cron">
+        <field name="name">3A-dealer: weekly update check</field>
+        <field name="model_id" ref="model_adealer_app_update"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_check_update()</field>
+        <field name="interval_number">7</field>
+        <field name="interval_type">days</field>
+        <field name="active">True</field>
+    </record>
+
     <record id="model_fleet_vehicle_import" model="ir.model">
         <field name="name">fleet.vehicle.import</field>
         <field name="model">fleet.vehicle.import</field>

@@ -39,6 +39,38 @@
                             <setting string="Purchases"><field name="show_menu_purchases"/></setting>
                             <setting string="Reports"><field name="show_menu_reports"/></setting>
                         </block>
+                        <block title="Updates" name="adealer_updates">
+                            <setting string="Application version"
+                                     help="Installed vs. the latest published version">
+                                <div class="content-group">
+                                    <div class="row mt8">
+                                        <label for="adealer_version_installed" string="Installed" class="col-lg-3 o_light_label"/>
+                                        <field name="adealer_version_installed" readonly="1"/>
+                                    </div>
+                                    <div class="row">
+                                        <label for="adealer_version_latest" string="Latest" class="col-lg-3 o_light_label"/>
+                                        <field name="adealer_version_latest" readonly="1"/>
+                                    </div>
+                                    <div class="row">
+                                        <label for="adealer_version_checked" string="Checked" class="col-lg-3 o_light_label"/>
+                                        <field name="adealer_version_checked" readonly="1"/>
+                                    </div>
+                                    <div class="mt8">
+                                        <button name="action_adealer_check_update" type="object"
+                                                string="Check now" class="btn-primary"/>
+                                        <button name="action_adealer_update_from_git" type="object"
+                                                string="Update from GitHub" class="btn-secondary ms-2"
+                                                invisible="not adealer_update_available"
+                                                confirm="Pull the latest code from GitHub and upgrade the module?"/>
+                                        <field name="adealer_update_available" invisible="1"/>
+                                    </div>
+                                </div>
+                            </setting>
+                            <setting string="Update check URL"
+                                     help="URL used to read the latest published version">
+                                <field name="adealer_update_channel_url"/>
+                            </setting>
+                        </block>
                     </app>
                 </xpath>
             </field>

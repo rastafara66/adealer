@@ -2995,3 +2995,166 @@ msgstr "авто: %d"
 #: code:addons/adealer/models/service.py:0
 msgid "• %(product)s: needed %(need)s, available %(free)s"
 msgstr "• %(product)s: потрібно %(need)s, вільно %(free)s"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+
+msgid "Updates"
+msgstr "Оновлення"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "Application version"
+msgstr "Версія додатку"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "Installed vs. the latest published version"
+msgstr "Встановлена та остання опублікована версія"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "Installed"
+msgstr "Встановлено"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "Latest"
+msgstr "Остання"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "Checked"
+msgstr "Перевірено"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "Check now"
+msgstr "Перевірити зараз"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "Update from GitHub"
+msgstr "Оновити з GitHub"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "Pull the latest code from GitHub and upgrade the module?"
+msgstr "Завантажити останній код з GitHub і оновити модуль?"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "Update check URL"
+msgstr "URL перевірки оновлень"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "URL used to read the latest published version"
+msgstr "URL, з якого читається остання опублікована версія"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "Installed version"
+msgstr "Встановлена версія"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "Latest published version"
+msgstr "Остання опублікована версія"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "Last checked"
+msgstr "Остання перевірка"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "Update available"
+msgstr "Доступне оновлення"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "URL used to read the latest published version (a raw __manifest__.py or a text containing 'version': 'x.y.z')."
+msgstr "URL, з якого читається остання опублікована версія (raw __manifest__.py або текст із 'version': 'x.y.z')."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "(not checked yet)"
+msgstr "(ще не перевірялось)"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "Could not check for updates:\n%s"
+msgstr "Не вдалося перевірити оновлення:\n%s"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "Could not find a version number at the update URL."
+msgstr "Не вдалося знайти номер версії за URL оновлень."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "git is not available on the server:\n%s"
+msgstr "git недоступний на сервері:\n%s"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "The module directory is not a git checkout (%s).\nDownload the new version from the Odoo App Store instead."
+msgstr "Тека модуля не є git-репозиторієм (%s).\nЗавантажте нову версію з Odoo App Store."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "git pull failed:\n%s"
+msgstr "git pull завершився з помилкою:\n%s"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "A newer version %s is available."
+msgstr "Доступна новіша версія %s."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "You are up to date (version %s)."
+msgstr "У вас остання версія (%s)."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "Application update"
+msgstr "Оновлення додатку"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "Code updated (%s). The module was upgraded. Restart the Odoo server to load changed Python code."
+msgstr "Код оновлено (%s). Модуль оновлено. Перезапустіть сервер Odoo, щоб застосувати зміни Python-коду."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "Application update helper"
+msgstr "Помічник оновлення додатку"

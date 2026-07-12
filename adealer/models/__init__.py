@@ -29,3 +29,4 @@ from . import dealer_car
 from . import service_campaign
 from . import vehicle_service
 from . import report_helpers
+from . import app_update
