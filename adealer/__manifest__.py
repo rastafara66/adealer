@@ -84,6 +84,7 @@
         ],
         'web.assets_backend': [
             'adealer/static/src/css/custom.css',
+            'adealer/static/src/css/theme.css',  # фірмова тема (navy/gold), гейт body.adealer-theme
             'adealer/static/src/js/custom.js',
             'adealer/static/src/js/adealer_sidebar.js',
             'adealer/static/src/xml/adealer_sidebar.xml',

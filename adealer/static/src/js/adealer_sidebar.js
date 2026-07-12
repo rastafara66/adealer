@@ -59,6 +59,8 @@ export class AdealerSidebar extends Component {
 
     _setBody(inApp, hasSidebar, collapsed) {
         try {
+            // Фірмова тема (navy/gold) — глобально по всьому бекенду, коли увімкнено
+            document.body.classList.toggle("adealer-theme", !!this.state.enabled);
             document.body.classList.toggle("adealer-app", !!inApp);
             document.body.classList.toggle("adealer-has-sidebar", !!hasSidebar);
             document.body.classList.toggle("adealer-sidebar-collapsed", !!collapsed);

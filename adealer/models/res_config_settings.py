@@ -43,8 +43,9 @@ class ResConfigSettings(models.TransientModel):
     wh_name_3a = fields.Char('WH Name 3A', default="WareHouse Name 3A")
     wh_name_1c = fields.Char("WH Name 1C", default="WareHouse Name 1C")
     adealer_sidebar_enabled = fields.Boolean(
-        string="Бічне меню (сайдбар)",
-        help="Показувати ліве бічне меню додатку 3A-dealer")
+        string="Фірмова тема + бічне меню (сайдбар)",
+        help="Увімкнути фірмову тему 3A-dealer (navy/gold) та ліве бічне меню у стилі 1С. "
+             "Увімкнено за замовчуванням.")
     adealer_brand_logo_default = fields.Boolean(
         string="Лого бренда замість фото",
         help="Показувати лого бренда як зображення авто за замовчуванням")
@@ -123,7 +124,7 @@ class ResConfigSettings(models.TransientModel):
             'wh_id_1c': ICP.get_param('adealer.wh_id_1c'),
             'wh_name_3a': ICP.get_param('adealer.wh_name_3a'),
             'wh_name_1c': ICP.get_param('adealer.wh_name_1c'),
-            'adealer_sidebar_enabled': ICP.get_param('adealer.sidebar_enabled') in ('True', 'true', '1', True),
+            'adealer_sidebar_enabled': ICP.get_param('adealer.sidebar_enabled', 'True') in ('True', 'true', '1', True),
             'adealer_brand_logo_default': ICP.get_param('adealer.brand_logo_default', 'True') in ('True', 'true', '1', True),
             'adealer_lang': self.env.user.lang,
             'adealer_autopost_docs': ICP.get_param('adealer.autopost_repair_docs') in ('True', 'true', '1', True),

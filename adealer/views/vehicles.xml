@@ -65,13 +65,13 @@
         </record>
 
         <!-- menu Vehicles -->
-        <menuitem name="Vehicles and models" id="adealer.menu_vehicles" parent="adealer.menu_root" sequence="1"/>
+        <menuitem name="Автомобілі та моделі" id="adealer.menu_vehicles" parent="adealer.menu_root" sequence="1"/>
         <!-- submenu Vehicles -->
-        <menuitem name="Vehicles" id="adealer.menu_list_vehicles" parent="adealer.menu_vehicles" 
-                action="adealer.action_window_vehicles" sequence="11"/> 
+        <menuitem name="Автомобілі клієнтів" id="adealer.menu_list_vehicles" parent="adealer.menu_vehicles"
+                action="adealer.action_window_vehicles" sequence="11"/>
         <!-- submenu Vehicles -->
-        <menuitem name="Vehicles models" id="adealer.menu_list_vehicles_models" parent="adealer.menu_vehicles" 
-                action="adealer.action_window_vehicles_models" sequence="12"/>                        
+        <menuitem name="Моделі авто" id="adealer.menu_list_vehicles_models" parent="adealer.menu_vehicles"
+                action="adealer.action_window_vehicles_models" sequence="12"/>                      
 
         <record id="adealer.fleet_vehicle_form_inherit_license_plate" model="ir.ui.view">
             <field name="name">adealer.fleet.vehicle.form.license.plate.color</field>
