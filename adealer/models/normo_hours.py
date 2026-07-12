@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-"""Нормо-години у наряді (як у 1С: у ЗаказНаряд «Кількість» рядка-роботи —
+"""Standard hours у наряді (як у 1С: у ЗаказНаряд «Quantity» рядка-роботи —
 це і є нормо-години; окремого поля/сутності не треба).
 
 - repair.line.normo_hours — для рядків-послуг дорівнює кількості (нормо-годинам),
   для запчастин = 0. Обчислюється, але можна відкоригувати вручну.
-- Виконавці — це Механіки наряду (repair.order.mechanic_ids), кілька hr.employee.
+- Виконавці — це Mechanics наряду (repair.order.mechanic_ids), кілька hr.employee.
 - repair.order.total_normo_hours — сумарні нормо-години наряду.
 
 Заповнюється автоматично зі штатного імпорту (кількість рядка вже імпортується),
@@ -16,11 +16,10 @@ from odoo import models, fields, api
 class RepairLineNormo(models.Model):
     _inherit = 'repair.line'
 
-    normo_hours = fields.Float('Нормо-години', digits=(12, 2),
+    normo_hours = fields.Float('Standard hours', digits=(12, 2),
                                compute='_compute_normo_hours', store=True, readonly=False,
-                               help='Нормо-години рядка. Для послуг = кількість '
-                                    '(у 1С ЗаказНаряд кількість роботи = нормо-години); '
-                                    'можна відкоригувати вручну')
+                               help='Line standard hours. For services = quantity (in 1C the '
+                                    'work quantity = standard hours); can be adjusted manually')
 
     @api.depends('product_id', 'product_id.type', 'product_uom_qty')
     def _compute_normo_hours(self):
@@ -32,7 +31,7 @@ class RepairLineNormo(models.Model):
 class RepairOrderNormo(models.Model):
     _inherit = 'repair.order'
 
-    total_normo_hours = fields.Float('Разом нормо-годин', compute='_compute_total_normo_hours',
+    total_normo_hours = fields.Float('Total standard hours', compute='_compute_total_normo_hours',
                                      store=True, digits=(12, 2))
 
     @api.depends('operations.normo_hours')

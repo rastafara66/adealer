@@ -1,34 +1,34 @@
 # -*- coding: utf-8 -*-
-"""Історія обслуговування авто та нагадування про ТО (аналог 1С «Альфа-Авто»:
-Отчет.ИсторияАвтомобилей + Напоминания + звіт «Нагадування про ТО»).
+"""Історія обслуговування авто and нагадування про ТО (аналог 1С «Альфа-Авто»:
+Отчет.ИсторияАвтомобилей + Напоминания + звіт «Maintenance reminders»).
 
 На картці авто клієнта (fleet.vehicle) показуємо всі його наряди, дату/пробіг
-останнього обслуговування та розрахункову дату наступного ТО (за інтервалом).
+останнього обслуговування and розрахункову дату наступного ТО (за інтервалом).
 Список авто, у яких ТО прострочене/наближається — для проактивних дзвінків.
 """
 from dateutil.relativedelta import relativedelta
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 
 class FleetVehicleServiceHistory(models.Model):
     _inherit = 'fleet.vehicle'
 
-    repair_order_ids = fields.One2many('repair.order', 'vehicle_id', 'Наряди')
-    repair_order_count = fields.Integer('К-сть нарядів', compute='_compute_service_history',
+    repair_order_ids = fields.One2many('repair.order', 'vehicle_id', 'Repair orders')
+    repair_order_count = fields.Integer('Orders count', compute='_compute_service_history',
                                         store=True)
-    last_service_date = fields.Datetime('Останнє обслуговування',
+    last_service_date = fields.Datetime('Last service',
                                         compute='_compute_service_history', store=True)
-    last_service_mileage = fields.Float('Пробіг на останньому ТО',
+    last_service_mileage = fields.Float('Mileage at last service',
                                         compute='_compute_service_history', store=True)
 
     # Інтервали ТО (за замовчуванням 12 міс)
-    service_interval_months = fields.Integer('Інтервал ТО, міс.', default=12)
-    service_interval_km = fields.Float('Інтервал ТО, км')
-    next_service_date = fields.Date('Наступне ТО (план)',
+    service_interval_months = fields.Integer('Service interval, months', default=12)
+    service_interval_km = fields.Float('Service interval, km')
+    next_service_date = fields.Date('Next service (planned)',
                                     compute='_compute_next_service', store=True)
-    service_due = fields.Boolean('ТО настало/прострочене',
+    service_due = fields.Boolean('Service due/overdue',
                                  compute='_compute_next_service', store=True,
-                                 help='Розрахункова дата наступного ТО ≤ сьогодні')
+                                 help='Estimated next service date ≤ today')
 
     @api.depends('repair_order_ids', 'repair_order_ids.create_date',
                  'repair_order_ids.mileage')
@@ -58,7 +58,7 @@ class FleetVehicleServiceHistory(models.Model):
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
-            'name': 'Історія обслуговування',
+            'name': _('Service history'),
             'res_model': 'repair.order',
             'view_mode': 'list,form',
             'domain': [('vehicle_id', '=', self.id)],

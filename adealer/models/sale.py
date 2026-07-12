@@ -20,11 +20,11 @@ class SaleOrder(models.Model):
             order.repair_order_count = len(order.repair_order_ids)
 
     def action_create_repair_order(self):
-        """Створити наряд (repair.order) на основі замовлення покупця.
-        Аналог 1С ОбработкаЗаполнения: копіює партнера, авто та рядки."""
+        """Create order (repair.order) на основі замовлення покупця.
+        Аналог 1С ОбработкаЗаполнения: копіює партнера, авто and рядки."""
         self.ensure_one()
         if not self.vehicle_id:
-            raise UserError(_("У замовленні не вказано автомобіль."))
+            raise UserError(_("No vehicle is specified on the order."))
 
         operations = []
         for line in self.order_line:
@@ -49,7 +49,7 @@ class SaleOrder(models.Model):
 
         return {
             'type': 'ir.actions.act_window',
-            'name': _('Наряд'),
+            'name': _('Order'),
             'res_model': 'repair.order',
             'view_mode': 'form',
             'res_id': repair.id,
@@ -59,7 +59,7 @@ class SaleOrder(models.Model):
         self.ensure_one()
         action = {
             'type': 'ir.actions.act_window',
-            'name': _('Наряди'),
+            'name': _('Repair orders'),
             'res_model': 'repair.order',
             'domain': [('source_sale_order_id', '=', self.id)],
         }

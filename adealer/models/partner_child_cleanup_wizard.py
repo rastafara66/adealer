@@ -2,9 +2,9 @@ from odoo import models, fields, api
 
 class PartnerChildCleanupWizard(models.TransientModel):
     _name = 'partner.child.cleanup.wizard'
-    _description = 'Видалення дочірніх контактів партнерів'
+    _description = 'Delete partner child contacts'
 
-    confirm = fields.Boolean(string="Підтвердити видалення", required=True)
+    confirm = fields.Boolean(string="Confirm deletion", required=True)
 
     def action_cleanup(self):
         if not self.confirm:
@@ -16,8 +16,8 @@ class PartnerChildCleanupWizard(models.TransientModel):
             'type': 'ir.actions.client',
             'tag': 'display_notification',
             'params': {
-                'title': 'Видалення завершено',
-                'message': f'Видалено {count} дочірніх контактів.',
+                'title': 'Deletion completed',
+                'message': f'{count} child contacts deleted.',
                 'type': 'success',
                 'sticky': False,
             }

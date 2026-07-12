@@ -52,7 +52,7 @@
         </record> -->
 
         <record model="ir.actions.act_window" id="adealer.action_window_vehicles">
-            <field name="name">Автомобілі</field>
+            <field name="name">Vehicles</field>
             <field name="res_model">fleet.vehicle</field>
             <field name="view_mode">list,form</field>
             <field name="context">{'group_by': []}</field>
@@ -65,12 +65,12 @@
         </record>
 
         <!-- menu Vehicles -->
-        <menuitem name="Автомобілі та моделі" id="adealer.menu_vehicles" parent="adealer.menu_root" sequence="1"/>
+        <menuitem name="Vehicles and models" id="adealer.menu_vehicles" parent="adealer.menu_root" sequence="1"/>
         <!-- submenu Vehicles -->
-        <menuitem name="Автомобілі клієнтів" id="adealer.menu_list_vehicles" parent="adealer.menu_vehicles"
+        <menuitem name="Customer vehicles" id="adealer.menu_list_vehicles" parent="adealer.menu_vehicles"
                 action="adealer.action_window_vehicles" sequence="11"/>
         <!-- submenu Vehicles -->
-        <menuitem name="Моделі авто" id="adealer.menu_list_vehicles_models" parent="adealer.menu_vehicles"
+        <menuitem name="Vehicle models" id="adealer.menu_list_vehicles_models" parent="adealer.menu_vehicles"
                 action="adealer.action_window_vehicles_models" sequence="12"/>                      
 
         <record id="adealer.fleet_vehicle_form_inherit_license_plate" model="ir.ui.view">

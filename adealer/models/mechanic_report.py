@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-"""Звіт «Виробіток механіків» (аналог 1С «Альфа-Авто»: Отчет.Выработка /
+"""Звіт «Mechanic output» (аналог 1С «Альфа-Авто»: Отчет.Выработка /
 ВыработкаИсполнителей / СтатистикаПоРаботам).
 
-SQL-в'юха по сервісних рядках нарядів у розрізі механіків наряду
+SQL-в'юха to сервісних рядках нарядів у розрізі механіків наряду
 (repair.order.mechanic_ids). Якщо на наряді кілька механіків — нормо-години
-й сума рядка діляться порівну між ними (щоб підсумки сходились з нарядом).
+й сума рядка діляться порівну between ними (щоб підсумки сходились з нарядом).
 Доступна як pivot/graph/list для гнучкого аналізу.
 """
 from odoo import models, fields, tools
@@ -12,19 +12,19 @@ from odoo import models, fields, tools
 
 class MechanicOutputReport(models.Model):
     _name = 'adealer.mechanic.output.report'
-    _description = 'Виробіток механіків'
+    _description = 'Mechanic output'
     _auto = False
     _order = 'date desc'
 
-    mechanic_id = fields.Many2one('hr.employee', 'Виконавець', readonly=True)
-    repair_id = fields.Many2one('repair.order', 'Наряд', readonly=True)
-    vehicle_id = fields.Many2one('fleet.vehicle', 'Автомобіль', readonly=True)
-    partner_id = fields.Many2one('res.partner', 'Клієнт', readonly=True)
-    product_id = fields.Many2one('product.product', 'Робота/послуга', readonly=True)
-    date = fields.Date('Дата', readonly=True)
-    normo_hours = fields.Float('Нормо-години', readonly=True)
-    amount = fields.Float('Сума', readonly=True)
-    line_count = fields.Integer('К-сть робіт', readonly=True)
+    mechanic_id = fields.Many2one('hr.employee', 'Performer', readonly=True)
+    repair_id = fields.Many2one('repair.order', 'Order', readonly=True)
+    vehicle_id = fields.Many2one('fleet.vehicle', 'Vehicle', readonly=True)
+    partner_id = fields.Many2one('res.partner', 'Customer', readonly=True)
+    product_id = fields.Many2one('product.product', 'Work/service', readonly=True)
+    date = fields.Date('Date', readonly=True)
+    normo_hours = fields.Float('Standard hours', readonly=True)
+    amount = fields.Float('Amount', readonly=True)
+    line_count = fields.Integer('Works count', readonly=True)
 
     def init(self):
         tools.drop_view_if_exists(self.env.cr, self._table)

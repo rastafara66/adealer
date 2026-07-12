@@ -13,12 +13,12 @@
                     <button name="action_view_repair_orders" type="object"
                             class="oe_stat_button" icon="fa-wrench"
                             invisible="repair_order_count == 0">
-                        <field name="repair_order_count" widget="statinfo" string="Наряди"/>
+                        <field name="repair_order_count" widget="statinfo" string="Repair orders"/>
                     </button>
                 </xpath>
                 <xpath expr="//button[@name='action_confirm']" position="after">
                     <button name="action_create_repair_order" type="object"
-                            string="Створити наряд" class="btn-secondary"
+                            string="Create order" class="btn-secondary"
                             invisible="state not in ('sale', 'done')"/>
                 </xpath>
             </field>

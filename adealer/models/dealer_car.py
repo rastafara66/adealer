@@ -4,7 +4,7 @@
 Справочник.Автомобили в розрізі VIN, СтатусыАвтомобилей, ЖурналСостояний,
 ВариантыКомплектации, Опции, ЦеныОпций, Цвета).
 
-Ключова відмінність від fleet.vehicle: fleet.vehicle описує авто КЛІЄНТА
+Ключова відмінність from fleet.vehicle: fleet.vehicle описує авто КЛІЄНТА
 (на обслуговуванні), а dealer.car — це товарний запас авто АВТОСАЛОНУ на
 продаж, зі своїм життєвим циклом: замовлено → в дорозі → на складі →
 резерв → продано → видано. Після продажу авто може бути зареєстроване як
@@ -16,123 +16,123 @@ from odoo.exceptions import UserError
 
 class CarColor(models.Model):
     _name = 'dealer.car.color'
-    _description = 'Колір автомобіля'
+    _description = 'Vehicle color'
     _order = 'name'
 
-    name = fields.Char('Колір', required=True, translate=True)
-    code = fields.Char('Код кольору', help='Код кольору виробника')
-    is_metallic = fields.Boolean('Металік')
+    name = fields.Char('Color', required=True, translate=True)
+    code = fields.Char('Color code', help='Manufacturer color code')
+    is_metallic = fields.Boolean('Metallic')
     active = fields.Boolean(default=True)
 
 
 class CarComplectation(models.Model):
     """Варіант комплектації моделі (ВариантыКомплектации)."""
     _name = 'dealer.car.complectation'
-    _description = 'Комплектація'
+    _description = 'Trim / configuration'
     _order = 'model_id, name'
 
-    name = fields.Char('Комплектація', required=True,
-                       help='Напр. Trend, Titanium, ST-Line')
-    code = fields.Char('Код')
-    model_id = fields.Many2one('fleet.vehicle.model', 'Модель', index=True)
-    base_price = fields.Monetary('Базова ціна', currency_field='currency_id')
-    currency_id = fields.Many2one('res.currency', 'Валюта',
+    name = fields.Char('Trim / configuration', required=True,
+                       help='e.g. Trend, Titanium, ST-Line')
+    code = fields.Char('Code')
+    model_id = fields.Many2one('fleet.vehicle.model', 'Model', index=True)
+    base_price = fields.Monetary('Base price', currency_field='currency_id')
+    currency_id = fields.Many2one('res.currency', 'Currency',
                                   default=lambda self: self.env.company.currency_id)
-    option_ids = fields.Many2many('dealer.car.option', string='Опції у комплектації')
-    note = fields.Text('Опис')
+    option_ids = fields.Many2many('dealer.car.option', string='Options in the trim')
+    note = fields.Text('Description')
     active = fields.Boolean(default=True)
 
 
 class CarOption(models.Model):
-    """Опція/додаткове обладнання авто (Опции + ЦеныОпций)."""
+    """Option/додаткове обладнання авто (Опции + ЦеныОпций)."""
     _name = 'dealer.car.option'
-    _description = 'Опція автомобіля'
+    _description = 'Vehicle option'
     _order = 'category, name'
 
-    name = fields.Char('Опція', required=True, translate=True)
-    code = fields.Char('Код')
-    category = fields.Char('Група', help='Напр. Безпека, Комфорт, Мультимедіа')
-    price = fields.Monetary('Ціна опції', currency_field='currency_id')
-    currency_id = fields.Many2one('res.currency', 'Валюта',
+    name = fields.Char('Option', required=True, translate=True)
+    code = fields.Char('Code')
+    category = fields.Char('Group', help='e.g. Safety, Comfort, Multimedia')
+    price = fields.Monetary('Option price', currency_field='currency_id')
+    currency_id = fields.Many2one('res.currency', 'Currency',
                                   default=lambda self: self.env.company.currency_id)
     active = fields.Boolean(default=True)
 
 
 class CarStatusHistory(models.Model):
     _name = 'dealer.car.status.history'
-    _description = 'Історія статусів авто'
+    _description = 'Vehicle status history'
     _order = 'change_date desc, id desc'
 
-    car_id = fields.Many2one('dealer.car', 'Автомобіль', required=True,
+    car_id = fields.Many2one('dealer.car', 'Vehicle', required=True,
                              ondelete='cascade', index=True)
-    status = fields.Char('Статус')
-    change_date = fields.Datetime('Дата', default=fields.Datetime.now)
-    user_id = fields.Many2one('res.users', 'Користувач', default=lambda self: self.env.user)
+    status = fields.Char('Status')
+    change_date = fields.Datetime('Date', default=fields.Datetime.now)
+    user_id = fields.Many2one('res.users', 'User', default=lambda self: self.env.user)
 
 
 class DealerCar(models.Model):
     _name = 'dealer.car'
-    _description = 'Автомобіль (склад автосалону)'
+    _description = 'Vehicle (showroom stock)'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'create_date desc'
 
-    name = fields.Char('Назва', compute='_compute_name', store=True)
+    name = fields.Char('Name', compute='_compute_name', store=True)
     vin = fields.Char('VIN', copy=False, index=True, tracking=True,
-                      help='Ідентифікаційний номер кузова (унікальний)')
-    model_id = fields.Many2one('fleet.vehicle.model', 'Модель', required=True,
+                      help='Vehicle identification number (unique)')
+    model_id = fields.Many2one('fleet.vehicle.model', 'Model', required=True,
                                tracking=True, index=True)
-    brand_id = fields.Many2one(related='model_id.brand_id', store=True, string='Марка')
-    brand_logo = fields.Image(related='model_id.brand_id.image_128', string='Лого', readonly=True)
-    complectation_id = fields.Many2one('dealer.car.complectation', 'Комплектація',
+    brand_id = fields.Many2one(related='model_id.brand_id', store=True, string='Brand')
+    brand_logo = fields.Image(related='model_id.brand_id.image_128', string='Logo', readonly=True)
+    complectation_id = fields.Many2one('dealer.car.complectation', 'Trim / configuration',
                                        domain="[('model_id', '=', model_id)]")
-    color_id = fields.Many2one('dealer.car.color', 'Колір')
-    option_ids = fields.Many2many('dealer.car.option', string='Опції')
-    model_year = fields.Integer('Рік випуску')
-    engine_volume = fields.Integer('Обʼєм двигуна, см³')
+    color_id = fields.Many2one('dealer.car.color', 'Color')
+    option_ids = fields.Many2many('dealer.car.option', string='Options')
+    model_year = fields.Integer('Model year')
+    engine_volume = fields.Integer('Engine displacement, cc')
     transmission = fields.Selection([
-        ('manual', 'Механічна'), ('auto', 'Автоматична'),
-        ('robot', 'Робот'), ('cvt', 'Варіатор'),
-    ], 'КПП')
+        ('manual', 'Manual'), ('auto', 'Automatic'),
+        ('robot', 'Automated'), ('cvt', 'CVT'),
+    ], 'Transmission')
 
     status = fields.Selection([
-        ('ordered', 'Замовлено'),
-        ('in_transit', 'В дорозі'),
-        ('in_stock', 'На складі'),
-        ('reserved', 'Резерв'),
-        ('sold', 'Продано'),
-        ('delivered', 'Видано клієнту'),
-    ], 'Статус', default='ordered', required=True, tracking=True, index=True,
+        ('ordered', 'Ordered'),
+        ('in_transit', 'In transit'),
+        ('in_stock', 'In stock'),
+        ('reserved', 'Reserve'),
+        ('sold', 'Sold'),
+        ('delivered', 'Delivered to customer'),
+    ], 'Status', default='ordered', required=True, tracking=True, index=True,
         group_expand='_expand_status')
-    status_history_ids = fields.One2many('dealer.car.status.history', 'car_id', 'Історія статусів')
+    status_history_ids = fields.One2many('dealer.car.status.history', 'car_id', 'Status history')
 
     is_trade_in = fields.Boolean('Trade-in', tracking=True,
-                                 help='Авто прийняте в залік (Trade-in)')
+                                 help='Vehicle accepted as trade-in')
 
-    # Ціни
-    purchase_price = fields.Monetary('Ціна закупки', currency_field='currency_id')
-    sale_price = fields.Monetary('Ціна продажу', currency_field='currency_id', tracking=True)
-    options_price = fields.Monetary('Сума опцій', compute='_compute_options_price',
+    # Prices
+    purchase_price = fields.Monetary('Purchase price', currency_field='currency_id')
+    sale_price = fields.Monetary('Sale price', currency_field='currency_id', tracking=True)
+    options_price = fields.Monetary('Options amount', compute='_compute_options_price',
                                     store=True, currency_field='currency_id')
-    total_price = fields.Monetary('Разом до сплати', compute='_compute_total_price',
+    total_price = fields.Monetary('Total due', compute='_compute_total_price',
                                   store=True, currency_field='currency_id')
-    currency_id = fields.Many2one('res.currency', 'Валюта',
+    currency_id = fields.Many2one('res.currency', 'Currency',
                                   default=lambda self: self.env.company.currency_id)
 
     # Контрагенти / документи
-    supplier_id = fields.Many2one('res.partner', 'Постачальник',
+    supplier_id = fields.Many2one('res.partner', 'Supplier',
                                   domain="[('supplier_rank', '>', 0)]")
-    partner_id = fields.Many2one('res.partner', 'Покупець', tracking=True)
-    sale_order_id = fields.Many2one('sale.order', 'Замовлення продажу', copy=False)
-    fleet_vehicle_id = fields.Many2one('fleet.vehicle', 'Авто клієнта (fleet)', copy=False,
-                                       help='Створюється при видачі авто клієнту')
+    partner_id = fields.Many2one('res.partner', 'Buyer', tracking=True)
+    sale_order_id = fields.Many2one('sale.order', 'Sale order', copy=False)
+    fleet_vehicle_id = fields.Many2one('fleet.vehicle', 'Customer vehicle (fleet)', copy=False,
+                                       help='Created when the vehicle is delivered to the customer')
 
-    location_note = fields.Char('Місце зберігання')
-    note = fields.Text('Примітки')
-    company_id = fields.Many2one('res.company', 'Компанія', default=lambda self: self.env.company)
+    location_note = fields.Char('Storage location')
+    note = fields.Text('Notes')
+    company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company)
     active = fields.Boolean(default=True)
 
     _sql_constraints = [
-        ('vin_uniq', 'unique(vin)', 'Автомобіль з таким VIN вже існує на складі.'),
+        ('vin_uniq', 'unique(vin)', 'A vehicle with this VIN already exists in stock.'),
     ]
 
     @api.model
@@ -148,7 +148,7 @@ class DealerCar(models.Model):
                 label = '%s (%s)' % (label, car.color_id.name)
             if car.vin:
                 label = '%s — %s' % (label, car.vin)
-            car.name = label or _('Новий автомобіль')
+            car.name = label or _('New vehicle')
 
     @api.depends('option_ids.price')
     def _compute_options_price(self):
@@ -187,24 +187,24 @@ class DealerCar(models.Model):
 
     def action_reserve(self):
         if any(c.status not in ('in_stock',) for c in self):
-            raise UserError(_('Резервувати можна лише авто зі статусом «На складі».'))
+            raise UserError(_('Only a vehicle with status "In stock" can be reserved.'))
         self._set_status('reserved')
 
     def action_unreserve(self):
         self._set_status('in_stock')
 
     def action_sell(self):
-        """Продати авто (аналог РеализацияАвтомобилей)."""
+        """Sell авто (аналог РеализацияАвтомобилей)."""
         for car in self:
             if not car.partner_id:
-                raise UserError(_('Вкажіть покупця перед продажем авто.'))
+                raise UserError(_('Specify the buyer before selling the vehicle.'))
         self._set_status('sold')
 
     def action_deliver(self):
         """Видати авто клієнту і завести його як fleet.vehicle клієнта."""
         for car in self:
             if car.status != 'sold':
-                raise UserError(_('Видати можна лише продане авто.'))
+                raise UserError(_('Only a sold vehicle can be delivered.'))
             if not car.fleet_vehicle_id:
                 car.fleet_vehicle_id = self.env['fleet.vehicle'].create({
                     'model_id': car.model_id.id,

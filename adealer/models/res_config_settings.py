@@ -2,7 +2,7 @@
 
 from odoo import api, fields, models, _
 
-# Стартова сторінка користувача -> дія (res.users.action_id)
+# Home page користувача -> дія (res.users.action_id)
 HOME_ACTIONS = {
     'calendar': 'adealer.action_window_repair_calendar',
     'vehicles': 'adealer.action_window_vehicles',
@@ -13,7 +13,7 @@ HOME_ACTIONS = {
 }
 
 # Прапорці показу верхніх розділів меню: поле налаштувань -> xmlid меню.
-# Дозволяє відключити будь-який розділ (напр. СТО не потрібен «Автосалон»).
+# Дозволяє відключити будь-який розділ (напр. СТО не потрібен «Showroom»).
 # Наші друковані форми — для перемикання формату PDF/HTML глобально
 OUR_REPORTS = [
     'adealer.action_report_repair_order', 'adealer.action_report_repair_act',
@@ -43,46 +43,46 @@ class ResConfigSettings(models.TransientModel):
     wh_name_3a = fields.Char('WH Name 3A', default="WareHouse Name 3A")
     wh_name_1c = fields.Char("WH Name 1C", default="WareHouse Name 1C")
     adealer_sidebar_enabled = fields.Boolean(
-        string="Фірмова тема + бічне меню (сайдбар)",
-        help="Увімкнути фірмову тему 3A-dealer (navy/gold) та ліве бічне меню у стилі 1С. "
-             "Увімкнено за замовчуванням.")
+        string="Branded theme + side menu (sidebar)",
+        help="Enable the 3A-dealer branded theme (navy/gold) and the 1C-style left side "
+             "menu. On by default.")
     adealer_brand_logo_default = fields.Boolean(
-        string="Лого бренда замість фото",
-        help="Показувати лого бренда як зображення авто за замовчуванням")
+        string="Brand logo instead of photo",
+        help="Show the brand logo as the vehicle image by default")
     adealer_lang = fields.Selection(
-        selection='_adealer_lang_selection', string="Мова інтерфейсу",
-        help="Мова інтерфейсу для поточного користувача")
+        selection='_adealer_lang_selection', string="Interface language",
+        help="Interface language for the current user")
     adealer_print_format = fields.Selection([
-        ('qweb-pdf', 'PDF (файл)'),
-        ('qweb-html', 'HTML (у браузері)'),
-    ], string="Формат друкованих форм", default='qweb-pdf',
-        help="PDF — завантажується файл (відкривається у переглядачі PDF). "
-             "HTML — форма відкривається одразу у вкладці браузера (без Adobe/завантаження).")
+        ('qweb-pdf', 'PDF (file)'),
+        ('qweb-html', 'HTML (in browser)'),
+    ], string="Printable form format", default='qweb-pdf',
+        help="PDF — a file is downloaded (opens in a PDF viewer). "
+             "HTML — the form opens directly in a browser tab (no Adobe/download).")
     adealer_home = fields.Selection([
-        ('none', 'Стандартно (останній додаток)'),
-        ('calendar', 'Календар обслуговування (СТО)'),
-        ('vehicles', 'Автомобілі (автосалон)'),
-        ('repairs', 'Наряд-замовлення'),
-        ('orders', 'Замовлення покупців'),
-        ('products', 'Список товарів'),
-        ('reports', 'Звіти — Продажі (менеджер)'),
-    ], string="Стартова сторінка", default='none',
-        help="Що відкривати після входу для ПОТОЧНОГО користувача")
+        ('none', 'Default (last app)'),
+        ('calendar', 'Service calendar (workshop)'),
+        ('vehicles', 'Vehicles (showroom)'),
+        ('repairs', 'Repair order'),
+        ('orders', 'Sale orders'),
+        ('products', 'Product list'),
+        ('reports', 'Reports — Sales (manager)'),
+    ], string="Home page", default='none',
+        help="What to open after login for the CURRENT user")
     adealer_autopost_docs = fields.Boolean(
-        string="Авто-реалізація при проведенні наряду",
-        help="При переході наряду у «Відремонтовано» автоматично створювати й "
-             "проводити Акт (послуги) + Видаткову (товари). Якщо вимкнено — "
-             "документи створюються кнопками «Створити акт/видаткову».")
+        string="Auto-invoice when the repair order is done",
+        help="When a repair order moves to \"Repaired\", automatically create and post "
+             "the Act (services) + Delivery note (goods). If off, documents are created "
+             "with the \"Create act/delivery note\" buttons.")
 
     # --- Прапорці показу розділів меню ---
-    show_menu_vehicles = fields.Boolean("Автомобілі та моделі")
-    show_menu_showroom = fields.Boolean("Автосалон")
-    show_menu_products = fields.Boolean("Товари та послуги")
-    show_menu_contacts = fields.Boolean("Партнери та користувачі")
-    show_menu_maintenance = fields.Boolean("Обслуговування та ремонт")
-    show_menu_sales = fields.Boolean("Продажі")
-    show_menu_purchases = fields.Boolean("Закупівлі")
-    show_menu_reports = fields.Boolean("Звіти")
+    show_menu_vehicles = fields.Boolean("Vehicles and models")
+    show_menu_showroom = fields.Boolean("Showroom")
+    show_menu_products = fields.Boolean("Products and services")
+    show_menu_contacts = fields.Boolean("Partners and users")
+    show_menu_maintenance = fields.Boolean("Maintenance and repair")
+    show_menu_sales = fields.Boolean("Sales")
+    show_menu_purchases = fields.Boolean("Purchases")
+    show_menu_reports = fields.Boolean("Reports")
 
     def _adealer_lang_selection(self):
         langs = self.env['res.lang'].search([('active', '=', True)])

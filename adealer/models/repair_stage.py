@@ -1,40 +1,40 @@
 # -*- coding: utf-8 -*-
-"""Стадії наряду (kanban-дошка СТО) та журнал станів
+"""Order stages (kanban-дошка СТО) and журнал станів
 (аналог 1С «Альфа-Авто»: Перечисление.СостояниеЗаказНаряда +
 РегистрСведений.ЖурналСостояний).
 
 Нативний repair.order має технічний state (draft/confirmed/done/cancel).
 Тут додаємо бізнесову стадію (stage_id) з довільним набором станів СТО —
-для наочної kanban-дошки завантаження сервісу та історії переходів.
+для наочної kanban-дошки завантаження сервісу and історії переходів.
 """
 from odoo import models, fields, api
 
 
 class RepairStage(models.Model):
     _name = 'adealer.repair.stage'
-    _description = 'Стадія наряду'
+    _description = 'Order stage'
     _order = 'sequence, id'
 
-    name = fields.Char('Назва', required=True, translate=True)
-    sequence = fields.Integer('Порядок', default=10)
-    fold = fields.Boolean('Згорнута у kanban',
-                          help='Згорнути колонку на дошці (для фінальних стадій)')
-    is_closing = fields.Boolean('Завершальна',
-                                help='Наряд у цій стадії вважається закритим')
-    description = fields.Text('Опис')
+    name = fields.Char('Name', required=True, translate=True)
+    sequence = fields.Integer('Order', default=10)
+    fold = fields.Boolean('Collapsed in kanban',
+                          help='Collapse the board column (for final stages)')
+    is_closing = fields.Boolean('Final',
+                                help='An order in this stage is considered closed')
+    description = fields.Text('Description')
     active = fields.Boolean(default=True)
 
 
 class RepairStageHistory(models.Model):
     _name = 'adealer.repair.stage.history'
-    _description = 'Історія станів наряду'
+    _description = 'Repair order stage history'
     _order = 'change_date desc, id desc'
 
-    repair_id = fields.Many2one('repair.order', 'Наряд', required=True,
+    repair_id = fields.Many2one('repair.order', 'Order', required=True,
                                 ondelete='cascade', index=True)
-    stage_id = fields.Many2one('adealer.repair.stage', 'Стадія')
-    change_date = fields.Datetime('Дата зміни', default=fields.Datetime.now)
-    user_id = fields.Many2one('res.users', 'Хто змінив', default=lambda self: self.env.user)
+    stage_id = fields.Many2one('adealer.repair.stage', 'Stage')
+    change_date = fields.Datetime('Change date', default=fields.Datetime.now)
+    user_id = fields.Many2one('res.users', 'Changed by', default=lambda self: self.env.user)
 
 
 class RepairOrderStage(models.Model):
@@ -43,11 +43,11 @@ class RepairOrderStage(models.Model):
     # БЕЗ Python-default: інакше при оновленні модуля default застосується до
     # всіх наявних нарядів і зробить SELECT з ще не створеної таблиці стадій.
     # Стадію за замовчуванням ставимо у create() (виконується під час роботи).
-    stage_id = fields.Many2one('adealer.repair.stage', 'Стадія',
+    stage_id = fields.Many2one('adealer.repair.stage', 'Stage',
                                group_expand='_read_group_stage_ids',
                                tracking=True, copy=False, index=True)
     stage_history_ids = fields.One2many('adealer.repair.stage.history', 'repair_id',
-                                        'Історія станів')
+                                        'State history')
 
     @api.model
     def _read_group_stage_ids(self, stages, domain):

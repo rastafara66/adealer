@@ -2,21 +2,21 @@
     <data>
         <!-- ===== Журнальні списки документів (стиль 1С) ===== -->
 
-        <!-- Замовлення-наряди (repair.order) — аналог журналу ЗаказНаряд у 1С -->
+        <!-- Order-наряди (repair.order) — аналог журналу ЗаказНаряд у 1С -->
         <record id="view_repair_order_journal_list" model="ir.ui.view">
             <field name="name">repair.order.journal.list.adealer</field>
             <field name="model">repair.order</field>
             <field name="priority">100</field>
             <field name="arch" type="xml">
-                <list string="Наряд-замовлення" default_order="schedule_date desc, name desc" create="1">
-                    <field name="schedule_date" string="Дата" widget="date"/>
-                    <field name="name" string="Номер"/>
-                    <field name="partner_id" string="Клієнт"/>
-                    <field name="vehicle_id" string="Автомобіль" optional="show"/>
-                    <field name="amount_total" string="Сума" sum="Разом"/>
+                <list string="Repair order" default_order="schedule_date desc, name desc" create="1">
+                    <field name="schedule_date" string="Date" widget="date"/>
+                    <field name="name" string="Number"/>
+                    <field name="partner_id" string="Customer"/>
+                    <field name="vehicle_id" string="Vehicle" optional="show"/>
+                    <field name="amount_total" string="Amount" sum="Total"/>
                     <field name="currency_id" column_invisible="1"/>
-                    <field name="user_id" string="Відповідальний" widget="many2one_avatar_user" optional="hide"/>
-                    <field name="state" string="Статус" widget="badge"
+                    <field name="user_id" string="Responsible" widget="many2one_avatar_user" optional="hide"/>
+                    <field name="state" string="Status" widget="badge"
                            decoration-info="state in ('draft','confirmed')"
                            decoration-warning="state == 'under_repair'"
                            decoration-success="state == 'done'"
@@ -25,22 +25,22 @@
             </field>
         </record>
 
-        <!-- Замовлення покупців (sale.order) -->
+        <!-- Sale orders (sale.order) -->
         <record id="view_sale_order_journal_list" model="ir.ui.view">
             <field name="name">sale.order.journal.list.adealer</field>
             <field name="model">sale.order</field>
             <field name="priority">100</field>
             <field name="arch" type="xml">
-                <list string="Замовлення покупців" default_order="date_order desc, name desc" create="1">
-                    <field name="date_order" string="Дата" widget="date"/>
-                    <field name="name" string="Номер"/>
-                    <field name="partner_id" string="Клієнт"/>
-                    <field name="vehicle_id" string="Автомобіль" optional="show"/>
-                    <field name="client_order_ref" string="Реф. 1С" optional="hide"/>
-                    <field name="amount_total" string="Сума" sum="Разом"/>
+                <list string="Sale orders" default_order="date_order desc, name desc" create="1">
+                    <field name="date_order" string="Date" widget="date"/>
+                    <field name="name" string="Number"/>
+                    <field name="partner_id" string="Customer"/>
+                    <field name="vehicle_id" string="Vehicle" optional="show"/>
+                    <field name="client_order_ref" string="1C ref." optional="hide"/>
+                    <field name="amount_total" string="Amount" sum="Total"/>
                     <field name="currency_id" column_invisible="1"/>
-                    <field name="user_id" string="Відповідальний" widget="many2one_avatar_user" optional="hide"/>
-                    <field name="state" string="Статус" widget="badge"
+                    <field name="user_id" string="Responsible" widget="many2one_avatar_user" optional="hide"/>
+                    <field name="state" string="Status" widget="badge"
                            decoration-info="state == 'draft'"
                            decoration-warning="state == 'sent'"
                            decoration-success="state == 'sale'"
@@ -49,21 +49,21 @@
             </field>
         </record>
 
-        <!-- Замовлення постачальникам (purchase.order) -->
+        <!-- Purchase orders (purchase.order) -->
         <record id="view_purchase_order_journal_list" model="ir.ui.view">
             <field name="name">purchase.order.journal.list.adealer</field>
             <field name="model">purchase.order</field>
             <field name="priority">100</field>
             <field name="arch" type="xml">
-                <list string="Замовлення постачальникам" default_order="date_order desc, name desc" create="1">
-                    <field name="date_order" string="Дата" widget="date"/>
-                    <field name="name" string="Номер"/>
-                    <field name="partner_id" string="Постачальник"/>
-                    <field name="partner_ref" string="Реф. 1С" optional="hide"/>
-                    <field name="amount_total" string="Сума" sum="Разом"/>
+                <list string="Purchase orders" default_order="date_order desc, name desc" create="1">
+                    <field name="date_order" string="Date" widget="date"/>
+                    <field name="name" string="Number"/>
+                    <field name="partner_id" string="Supplier"/>
+                    <field name="partner_ref" string="1C ref." optional="hide"/>
+                    <field name="amount_total" string="Amount" sum="Total"/>
                     <field name="currency_id" column_invisible="1"/>
-                    <field name="user_id" string="Відповідальний" widget="many2one_avatar_user" optional="hide"/>
-                    <field name="state" string="Статус" widget="badge"
+                    <field name="user_id" string="Responsible" widget="many2one_avatar_user" optional="hide"/>
+                    <field name="state" string="Status" widget="badge"
                            decoration-info="state in ('draft','sent')"
                            decoration-success="state == 'purchase'"
                            decoration-muted="state == 'cancel'"/>
@@ -90,11 +90,11 @@
                             </div>
                             <span t-if="record.default_code.value" class="text-muted">[<field name="default_code"/>]</span>
                             <div class="d-flex justify-content-between mt-2">
-                                <span>Ціна: <field name="list_price"/></span>
-                                <span class="text-muted">Собівартість: <field name="standard_price"/></span>
+                                <span>Price: <field name="list_price"/></span>
+                                <span class="text-muted">Cost: <field name="standard_price"/></span>
                             </div>
                             <div class="mt-1">
-                                <span>Залишок: <field name="qty_available"/> <field name="uom_id"/></span>
+                                <span>On hand: <field name="qty_available"/> <field name="uom_id"/></span>
                             </div>
                         </t>
                     </templates>
@@ -106,7 +106,7 @@
             <field name="name">repair.order.calendar.adealer</field>
             <field name="model">repair.order</field>
             <field name="arch" type="xml">
-                <calendar string="Календар обслуговування" date_start="schedule_date"
+                <calendar string="Service calendar" date_start="schedule_date"
                           color="partner_id" mode="month" quick_create="0">
                     <field name="name"/>
                     <field name="partner_id"/>

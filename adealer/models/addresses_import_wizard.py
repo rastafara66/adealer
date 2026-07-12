@@ -3,13 +3,13 @@ from odoo.exceptions import UserError
 
 class PartnerAddressImportWizard(models.TransientModel):
     _name = 'partner.address.import.wizard'
-    _description = 'Майстер імпорту адрес контрагентів'
+    _description = 'Partner address import wizard'
 
     partner_type = fields.Selection([
-        ('company', 'Юридичні особи'),
-        ('person', 'Фізичні особи'),
-        ('all', 'Всі')
-    ], string='Тип контрагента', default='all', required=True)
+        ('company', 'Legal entities'),
+        ('person', 'Companies'),
+        ('all', 'All')
+    ], string='Counterparty type', default='all', required=True)
 
     def action_import_addresses(self):
         # Знайти модель імпорту

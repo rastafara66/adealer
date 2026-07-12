@@ -26,12 +26,12 @@
                     <attribute name="invisible">1</attribute>
                 </xpath>
                 <xpath expr="//page[@name='parts']" position="before">
-                    <page string="Роботи" name="service_ops">
+                    <page string="Works" name="service_ops">
                         <field name="service_line_ids" mode="list,form">
                             <list editable="bottom">
                                 <field name="product_type" column_invisible="1"/>
                                 <field name="product_id"/>
-                                <field name="product_uom_qty" string="Нормо-години"/>
+                                <field name="product_uom_qty" string="Standard hours"/>
                                 <field name="product_uom" groups="uom.group_uom" optional="hide"/>
                                 <field name="price_unit"/>
                                 <field name="discount"/>
@@ -40,12 +40,12 @@
                             </list>
                         </field>
                     </page>
-                    <page string="Запчастини" name="part_ops">
+                    <page string="Parts" name="part_ops">
                         <field name="part_line_ids" mode="list,form">
                             <list editable="bottom">
                                 <field name="product_type" column_invisible="1"/>
                                 <field name="product_id"/>
-                                <field name="product_uom_qty" string="Кількість"/>
+                                <field name="product_uom_qty" string="Quantity"/>
                                 <field name="product_uom" groups="uom.group_uom" optional="show"/>
                                 <field name="price_unit"/>
                                 <field name="discount"/>
@@ -72,28 +72,28 @@
                 </xpath>
                 <xpath expr="//button[@name='action_repair_cancel_draft']" position="after">
                     <button name="action_create_rakhunok" type="object"
-                            string="Створити рахунок" class="btn-secondary"
+                            string="Create invoice" class="btn-secondary"
                             invisible="state in ('draft', 'cancel')"/>
                     <button name="action_create_vydatkova" type="object"
-                            string="Створити видаткову" class="btn-primary"
+                            string="Create delivery note" class="btn-primary"
                             invisible="state in ('draft', 'cancel')"/>
                     <button name="action_create_akt" type="object"
-                            string="Створити акт" class="btn-secondary"
+                            string="Create act" class="btn-secondary"
                             invisible="state in ('draft', 'cancel')"/>
                     <button name="action_issue_parts" type="object"
-                            string="Видати ЗЧ зі складу" class="btn-secondary"
+                            string="Issue parts from stock" class="btn-secondary"
                             invisible="state in ('draft', 'cancel')"/>
                 </xpath>
                 <xpath expr="//div[@name='button_box']" position="inside">
                     <button name="action_view_invoices" type="object"
                             class="oe_stat_button" icon="fa-file-text-o"
                             invisible="invoice_count == 0">
-                        <field name="invoice_count" widget="statinfo" string="Рахунки/Видаткові/Акти"/>
+                        <field name="invoice_count" widget="statinfo" string="Invoices/Delivery notes/Acts"/>
                     </button>
                     <button name="action_view_pickings" type="object"
                             class="oe_stat_button" icon="fa-truck"
                             invisible="picking_count == 0">
-                        <field name="picking_count" widget="statinfo" string="Відвантаження"/>
+                        <field name="picking_count" widget="statinfo" string="Shipping"/>
                     </button>
                 </xpath>
             </field>

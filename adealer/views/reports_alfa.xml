@@ -5,7 +5,7 @@
         <!--  НАРЯД-ЗАМОВЛЕННЯ (repair.order)                             -->
         <!-- ============================================================ -->
         <record id="action_report_repair_order" model="ir.actions.report">
-            <field name="name">Наряд-замовлення</field>
+            <field name="name">Repair order</field>
             <field name="model">repair.order</field>
             <field name="report_type">qweb-html</field>
             <field name="report_name">adealer.report_repair_order</field>
@@ -20,34 +20,34 @@
                     <t t-call="web.external_layout">
                         <div class="page o_adealer_report">
                             <h2 class="text-center">
-                                Наряд-замовлення № <span t-field="o.name"/>
+                                Repair order No. <span t-field="o.name"/>
                             </h2>
                             <div class="row mt-3">
                                 <div class="col-6">
-                                    <strong>Замовник:</strong> <span t-field="o.partner_id"/><br/>
-                                    <strong>Автомобіль:</strong> <span t-field="o.vehicle_id"/><br/>
+                                    <strong>Customer:</strong> <span t-field="o.partner_id"/><br/>
+                                    <strong>Vehicle:</strong> <span t-field="o.vehicle_id"/><br/>
                                     <strong>VIN:</strong> <span t-field="o.vehicle_id.vin_sn"/><br/>
-                                    <strong>Пробіг:</strong> <span t-field="o.mileage"/> км
+                                    <strong>Mileage:</strong> <span t-field="o.mileage"/> km
                                 </div>
                                 <div class="col-6 text-end">
-                                    <strong>Дата:</strong> <span t-field="o.create_date" t-options='{"widget": "date"}'/><br/>
-                                    <strong>Приймальник:</strong> <span t-field="o.service_advisor_id"/><br/>
-                                    <strong>Механіки:</strong>
+                                    <strong>Date:</strong> <span t-field="o.create_date" t-options='{"widget": "date"}'/><br/>
+                                    <strong>Advisor:</strong> <span t-field="o.service_advisor_id"/><br/>
+                                    <strong>Mechanics:</strong>
                                     <span t-foreach="o.mechanic_ids" t-as="mch">
                                         <span t-field="mch.name"/><t t-if="not mch_last">, </t>
                                     </span><br/>
-                                    <strong>Стадія:</strong> <span t-field="o.stage_id"/>
+                                    <strong>Stage:</strong> <span t-field="o.stage_id"/>
                                 </div>
                             </div>
 
-                            <h4 class="mt-4">Роботи (послуги)</h4>
+                            <h4 class="mt-4">Works (services)</h4>
                             <table class="table table-sm table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Найменування</th>
-                                        <th class="text-end">Нормо-год</th>
-                                        <th class="text-end">Ціна за н-год</th>
-                                        <th class="text-end">Сума</th>
+                                        <th>Name</th>
+                                        <th class="text-end">Std hr</th>
+                                        <th class="text-end">Price per std hr</th>
+                                        <th class="text-end">Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -60,14 +60,14 @@
                                 </tbody>
                             </table>
 
-                            <h4 class="mt-3">Запчастини (матеріали)</h4>
+                            <h4 class="mt-3">Parts (materials)</h4>
                             <table class="table table-sm table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Найменування</th>
-                                        <th class="text-end">Кількість</th>
-                                        <th class="text-end">Ціна</th>
-                                        <th class="text-end">Сума</th>
+                                        <th>Name</th>
+                                        <th class="text-end">Quantity</th>
+                                        <th class="text-end">Price</th>
+                                        <th class="text-end">Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -82,10 +82,10 @@
 
                             <div class="row mt-3">
                                 <div class="col-6">
-                                    Разом нормо-годин: <strong><span t-field="o.total_normo_hours"/></strong>
+                                    Total standard hours: <strong><span t-field="o.total_normo_hours"/></strong>
                                 </div>
                                 <div class="col-6 text-end">
-                                    <strong>Разом до сплати:
+                                    <strong>Total due:
                                         <span t-field="o.amount_total"
                                               t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                                     </strong>
@@ -93,8 +93,8 @@
                             </div>
 
                             <div class="row mt-5">
-                                <div class="col-6">Замовник: _______________</div>
-                                <div class="col-6 text-end">Виконавець: _______________</div>
+                                <div class="col-6">Customer: _______________</div>
+                                <div class="col-6 text-end">Performer: _______________</div>
                             </div>
                         </div>
                     </t>
@@ -106,7 +106,7 @@
         <!--  АКТ ВИКОНАНИХ РОБІТ (repair.order, послуги)                 -->
         <!-- ============================================================ -->
         <record id="action_report_repair_act" model="ir.actions.report">
-            <field name="name">Акт виконаних робіт</field>
+            <field name="name">Act of completed works</field>
             <field name="model">repair.order</field>
             <field name="report_type">qweb-html</field>
             <field name="report_name">adealer.report_repair_act</field>
@@ -121,23 +121,22 @@
                     <t t-call="web.external_layout">
                         <div class="page o_adealer_report">
                             <h2 class="text-center">
-                                Акт виконаних робіт № <span t-field="o.name"/>
+                                Act of completed works No. <span t-field="o.name"/>
                             </h2>
                             <p class="mt-3">
-                                Виконавець <strong><span t-field="o.company_id.name"/></strong>
-                                та замовник <strong><span t-field="o.partner_id"/></strong>
-                                склали цей акт про те, що по автомобілю
-                                <span t-field="o.vehicle_id"/> (VIN <span t-field="o.vehicle_id.vin_sn"/>)
-                                виконано такі роботи:
+                                Performer <strong><span t-field="o.company_id.name"/></strong>
+                                and the customer <strong><span t-field="o.partner_id"/></strong>
+                                have drawn up this act stating that for the vehicle
+                                <span t-field="o.vehicle_id"/> (VIN <span t-field="o.vehicle_id.vin_sn"/>) the following work was performed:
                             </p>
                             <table class="table table-sm table-bordered">
                                 <thead>
                                     <tr>
                                         <th>№</th>
-                                        <th>Найменування роботи</th>
-                                        <th class="text-end">Кількість</th>
-                                        <th class="text-end">Ціна</th>
-                                        <th class="text-end">Сума</th>
+                                        <th>Work name</th>
+                                        <th class="text-end">Quantity</th>
+                                        <th class="text-end">Price</th>
+                                        <th class="text-end">Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -151,15 +150,15 @@
                                 </tbody>
                             </table>
                             <p class="text-end">
-                                <strong>Разом:
+                                <strong>Total:
                                     <span t-field="o.amount_total"
                                           t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                                 </strong>
                             </p>
-                            <p class="mt-2">Роботи виконано в повному обсязі. Замовник претензій не має.</p>
+                            <p class="mt-2">The works were carried out in full. The customer has no claims.</p>
                             <div class="row mt-5">
-                                <div class="col-6">Здав (виконавець): _______________</div>
-                                <div class="col-6 text-end">Прийняв (замовник): _______________</div>
+                                <div class="col-6">Handed over (performer): _______________</div>
+                                <div class="col-6 text-end">Accepted by (customer): _______________</div>
                             </div>
                         </div>
                     </t>
@@ -171,7 +170,7 @@
         <!--  АКТ ПРИЙОМУ-ПЕРЕДАЧІ АВТОМОБІЛЯ (dealer.car)                -->
         <!-- ============================================================ -->
         <record id="action_report_car_handover" model="ir.actions.report">
-            <field name="name">Акт прийому-передачі авто</field>
+            <field name="name">Vehicle handover act</field>
             <field name="model">dealer.car</field>
             <field name="report_type">qweb-html</field>
             <field name="report_name">adealer.report_car_handover</field>
@@ -185,21 +184,21 @@
                 <t t-foreach="docs" t-as="o">
                     <t t-call="web.external_layout">
                         <div class="page o_adealer_report">
-                            <h2 class="text-center">Акт прийому-передачі автомобіля</h2>
+                            <h2 class="text-center">Vehicle handover act</h2>
                             <p class="mt-3">
-                                Продавець <strong><span t-field="o.company_id.name"/></strong>
-                                передав, а покупець <strong><span t-field="o.partner_id"/></strong>
-                                прийняв автомобіль:
+                                Seller <strong><span t-field="o.company_id.name"/></strong>
+                                handed over, and the buyer <strong><span t-field="o.partner_id"/></strong>
+                                accepted the vehicle:
                             </p>
                             <table class="table table-sm table-bordered">
-                                <tr><td>Марка/Модель</td><td><span t-field="o.model_id"/></td></tr>
+                                <tr><td>Brand/Model</td><td><span t-field="o.model_id"/></td></tr>
                                 <tr><td>VIN</td><td><span t-field="o.vin"/></td></tr>
-                                <tr><td>Комплектація</td><td><span t-field="o.complectation_id"/></td></tr>
-                                <tr><td>Колір</td><td><span t-field="o.color_id"/></td></tr>
-                                <tr><td>Рік випуску</td><td><span t-field="o.model_year"/></td></tr>
-                                <tr><td>Обʼєм двигуна, см³</td><td><span t-field="o.engine_volume"/></td></tr>
+                                <tr><td>Trim / configuration</td><td><span t-field="o.complectation_id"/></td></tr>
+                                <tr><td>Color</td><td><span t-field="o.color_id"/></td></tr>
+                                <tr><td>Model year</td><td><span t-field="o.model_year"/></td></tr>
+                                <tr><td>Engine displacement, cc</td><td><span t-field="o.engine_volume"/></td></tr>
                                 <tr>
-                                    <td>Разом до сплати</td>
+                                    <td>Total due</td>
                                     <td>
                                         <span t-field="o.total_price"
                                               t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
@@ -207,12 +206,12 @@
                                 </tr>
                             </table>
                             <p class="mt-2">
-                                Автомобіль оглянуто, комплектність перевірено. Претензій до
-                                технічного стану та комплектації немає.
+                                Vehicle inspected, completeness checked. No claims on
+                                technical condition or completeness.
                             </p>
                             <div class="row mt-5">
-                                <div class="col-6">Передав (продавець): _______________</div>
-                                <div class="col-6 text-end">Прийняв (покупець): _______________</div>
+                                <div class="col-6">Handed over (seller): _______________</div>
+                                <div class="col-6 text-end">Accepted by (buyer): _______________</div>
                             </div>
                         </div>
                     </t>

@@ -74,7 +74,7 @@ def parse_address_list(address_str):
 
 class PartnerAddressImport(models.TransientModel):
     _name = 'res.partner.address.import'
-    _description = 'Імпорт адрес контрагентів з Excel'
+    _description = 'Import partner addresses from Excel'
 
     @api.model
     def import_addresses_from_excel(self):
@@ -89,7 +89,7 @@ class PartnerAddressImport(models.TransientModel):
         try:
             df = pd.read_excel(file_path)
         except Exception as e:
-            raise UserError(_('Не вдалося відкрити файл: %s') % e)
+            raise UserError(_('Could not open the file: %s') % e)
 
         created = 0
         updated = 0
@@ -193,7 +193,7 @@ class PartnerAddressImport(models.TransientModel):
         try:
             df = pd.read_excel(file_path)
         except Exception as e:
-            raise UserError(_('Не вдалося відкрити файл: %s') % e)
+            raise UserError(_('Could not open the file: %s') % e)
 
         created = 0
         updated = 0

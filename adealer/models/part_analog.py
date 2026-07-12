@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-"""Аналоги (крос-номери) запчастин та облік упущеного попиту
+"""Analogs (крос-номери) запчастин and облік упущеного попиту
 (аналог 1С «Альфа-Авто»: РегистрСведений.ГруппыАналогов +
 Обработка.ПодборНоменклатуры + Обработка/Отчет.УпущенныйСпрос).
 
-Група аналогів об'єднує взаємозамінні деталі (оригінал + замінники різних
-виробників). Із будь-якої деталі видно її аналоги і залишки по кожному —
+Analog group об'єднує взаємозамінні деталі (оригінал + замінники різних
+виробників). Із будь-якої деталі видно її аналоги і залишки to кожному —
 щоб підібрати наявний замінник.
 """
 from odoo import models, fields, api
@@ -12,14 +12,14 @@ from odoo import models, fields, api
 
 class PartAnalogGroup(models.Model):
     _name = 'adealer.part.analog.group'
-    _description = 'Група аналогів запчастин'
+    _description = 'Parts analog group'
     _order = 'name'
 
-    name = fields.Char('Назва групи', required=True,
-                       help='Напр. «Фільтр масляний (двигун 1.6)»')
-    note = fields.Text('Опис')
-    product_ids = fields.One2many('product.template', 'analog_group_id', 'Аналоги')
-    product_count = fields.Integer('К-сть аналогів', compute='_compute_product_count')
+    name = fields.Char('Group name', required=True,
+                       help='e.g. "Oil filter (engine 1.6)"')
+    note = fields.Text('Description')
+    product_ids = fields.One2many('product.template', 'analog_group_id', 'Analogs')
+    product_count = fields.Integer('Analogs count', compute='_compute_product_count')
     active = fields.Boolean(default=True)
 
     @api.depends('product_ids')
@@ -31,13 +31,13 @@ class PartAnalogGroup(models.Model):
 class ProductTemplateAnalog(models.Model):
     _inherit = 'product.template'
 
-    analog_group_id = fields.Many2one('adealer.part.analog.group', 'Група аналогів',
+    analog_group_id = fields.Many2one('adealer.part.analog.group', 'Analog group',
                                       index=True,
-                                      help='Взаємозамінні деталі в одній групі')
-    analog_ids = fields.Many2many('product.template', string='Аналоги (замінники)',
+                                      help='Interchangeable parts within one group')
+    analog_ids = fields.Many2many('product.template', string='Analogs (replacements)',
                                   compute='_compute_analog_ids',
-                                  help='Інші деталі з тієї ж групи аналогів')
-    analog_count = fields.Integer('Аналогів', compute='_compute_analog_ids')
+                                  help='Other parts from the same analog group')
+    analog_count = fields.Integer('Analogs', compute='_compute_analog_ids')
 
     @api.depends('analog_group_id', 'analog_group_id.product_ids')
     def _compute_analog_ids(self):
@@ -50,7 +50,7 @@ class ProductTemplateAnalog(models.Model):
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
-            'name': 'Аналоги',
+            'name': 'Analogs',
             'res_model': 'product.template',
             'view_mode': 'list,form',
             'domain': [('id', 'in', self.analog_ids.ids)],
@@ -58,23 +58,23 @@ class ProductTemplateAnalog(models.Model):
 
 
 class LostDemand(models.Model):
-    """Упущений попит: фіксація відмов через відсутність товару на складі."""
+    """Lost demand: фіксація відмов через відсутність товару на складі."""
     _name = 'adealer.lost.demand'
-    _description = 'Упущений попит'
+    _description = 'Lost demand'
     _order = 'date desc, id desc'
     _rec_name = 'product_id'
 
-    date = fields.Datetime('Дата', default=fields.Datetime.now, required=True, index=True)
-    product_id = fields.Many2one('product.template', 'Номенклатура', required=True, index=True)
-    product_qty = fields.Float('Кількість', default=1.0)
-    partner_id = fields.Many2one('res.partner', 'Клієнт')
-    vehicle_id = fields.Many2one('fleet.vehicle', 'Автомобіль')
-    user_id = fields.Many2one('res.users', 'Менеджер', default=lambda self: self.env.user)
+    date = fields.Datetime('Date', default=fields.Datetime.now, required=True, index=True)
+    product_id = fields.Many2one('product.template', 'Product', required=True, index=True)
+    product_qty = fields.Float('Quantity', default=1.0)
+    partner_id = fields.Many2one('res.partner', 'Customer')
+    vehicle_id = fields.Many2one('fleet.vehicle', 'Vehicle')
+    user_id = fields.Many2one('res.users', 'Manager', default=lambda self: self.env.user)
     reason = fields.Selection([
-        ('out_of_stock', 'Немає на складі'),
-        ('price', 'Не влаштувала ціна'),
-        ('no_analog', 'Немає аналога'),
-        ('other', 'Інше'),
-    ], 'Причина', default='out_of_stock', required=True)
-    note = fields.Text('Коментар')
-    company_id = fields.Many2one('res.company', 'Компанія', default=lambda self: self.env.company)
+        ('out_of_stock', 'Out of stock'),
+        ('price', 'Price not acceptable'),
+        ('no_analog', 'No analog'),
+        ('other', 'Other'),
+    ], 'Reason', default='out_of_stock', required=True)
+    note = fields.Text('Comment')
+    company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company)

@@ -5,7 +5,7 @@
         <!--  РАХУНОК НА ОПЛАТУ (sale.order) — аналог 1С «СчетЗаказ»       -->
         <!-- ============================================================ -->
         <record id="action_report_invoice_pay" model="ir.actions.report">
-            <field name="name">Рахунок на оплату</field>
+            <field name="name">Invoice for payment</field>
             <field name="model">sale.order</field>
             <field name="report_type">qweb-html</field>
             <field name="report_name">adealer.report_invoice_pay</field>
@@ -20,34 +20,34 @@
                     <t t-call="web.external_layout">
                         <div class="page o_adealer_report">
                             <h3 class="text-center">
-                                Рахунок на оплату № <span t-field="o.name"/>
-                                від <span t-field="o.date_order" t-options='{"widget": "date"}'/>
+                                Invoice for payment No. <span t-field="o.name"/>
+                                from <span t-field="o.date_order" t-options='{"widget": "date"}'/>
                             </h3>
                             <table class="table table-sm table-borderless mt-2">
                                 <tr>
-                                    <td style="width:120px"><strong>Постачальник:</strong></td>
+                                    <td style="width:120px"><strong>Supplier:</strong></td>
                                     <td>
                                         <span t-field="o.company_id.name"/>
-                                        <t t-if="o.company_id.partner_id.edrpou">, ЄДРПОУ <span t-field="o.company_id.partner_id.edrpou"/></t>
-                                        <t t-if="o.company_id.vat">, ІПН <span t-field="o.company_id.vat"/></t>
+                                        <t t-if="o.company_id.partner_id.edrpou">, EDRPOU <span t-field="o.company_id.partner_id.edrpou"/></t>
+                                        <t t-if="o.company_id.vat">, TIN <span t-field="o.company_id.vat"/></t>
                                     </td>
                                 </tr>
                                 <tr t-if="o.company_id.partner_id.bank_ids">
-                                    <td><strong>Р/рахунок:</strong></td>
+                                    <td><strong>Bank account:</strong></td>
                                     <td>
                                         <span t-field="o.company_id.partner_id.bank_ids[0].acc_number"/>
-                                        <t t-if="o.company_id.partner_id.bank_ids[0].bank_id"> у <span t-field="o.company_id.partner_id.bank_ids[0].bank_id.name"/></t>
+                                        <t t-if="o.company_id.partner_id.bank_ids[0].bank_id"> at <span t-field="o.company_id.partner_id.bank_ids[0].bank_id.name"/></t>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Покупець:</strong></td>
+                                    <td><strong>Buyer:</strong></td>
                                     <td>
                                         <span t-field="o.partner_id.name"/>
-                                        <t t-if="o.partner_id.edrpou">, ЄДРПОУ <span t-field="o.partner_id.edrpou"/></t>
+                                        <t t-if="o.partner_id.edrpou">, EDRPOU <span t-field="o.partner_id.edrpou"/></t>
                                     </td>
                                 </tr>
                                 <tr t-if="o.vehicle_id">
-                                    <td><strong>Автомобіль:</strong></td>
+                                    <td><strong>Vehicle:</strong></td>
                                     <td><span t-field="o.vehicle_id"/> (VIN <span t-field="o.vehicle_id.vin_sn"/>)</td>
                                 </tr>
                             </table>
@@ -56,11 +56,11 @@
                                 <thead>
                                     <tr>
                                         <th>№</th>
-                                        <th>Товар / послуга</th>
-                                        <th class="text-end">Кіл-ть</th>
-                                        <th>Од.</th>
-                                        <th class="text-end">Ціна</th>
-                                        <th class="text-end">Сума</th>
+                                        <th>Product / service</th>
+                                        <th class="text-end">Qty</th>
+                                        <th>Unit</th>
+                                        <th class="text-end">Price</th>
+                                        <th class="text-end">Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -80,15 +80,15 @@
                                 <div class="col-7"/>
                                 <div class="col-5">
                                     <table class="table table-sm table-borderless">
-                                        <tr><td>Разом без ПДВ:</td><td class="text-end"><span t-field="o.amount_untaxed" t-options='{"widget":"monetary","display_currency":o.currency_id}'/></td></tr>
-                                        <tr><td>ПДВ:</td><td class="text-end"><span t-field="o.amount_tax" t-options='{"widget":"monetary","display_currency":o.currency_id}'/></td></tr>
-                                        <tr><td><strong>Всього до сплати:</strong></td><td class="text-end"><strong><span t-field="o.amount_total" t-options='{"widget":"monetary","display_currency":o.currency_id}'/></strong></td></tr>
+                                        <tr><td>Total excl. VAT:</td><td class="text-end"><span t-field="o.amount_untaxed" t-options='{"widget":"monetary","display_currency":o.currency_id}'/></td></tr>
+                                        <tr><td>VAT:</td><td class="text-end"><span t-field="o.amount_tax" t-options='{"widget":"monetary","display_currency":o.currency_id}'/></td></tr>
+                                        <tr><td><strong>Total due:</strong></td><td class="text-end"><strong><span t-field="o.amount_total" t-options='{"widget":"monetary","display_currency":o.currency_id}'/></strong></td></tr>
                                     </table>
                                 </div>
                             </div>
                             <div class="row mt-5">
-                                <div class="col-6">Виписав(ла): _______________</div>
-                                <div class="col-6 text-end">М.П.</div>
+                                <div class="col-6">Issued by: _______________</div>
+                                <div class="col-6 text-end">L.S.</div>
                             </div>
                         </div>
                     </t>
@@ -100,7 +100,7 @@
         <!--  ВИДАТКОВА НАКЛАДНА (account.move) — аналог 1С «Накладная»    -->
         <!-- ============================================================ -->
         <record id="action_report_vydatkova" model="ir.actions.report">
-            <field name="name">Видаткова накладна</field>
+            <field name="name">Delivery note</field>
             <field name="model">account.move</field>
             <field name="report_type">qweb-html</field>
             <field name="report_name">adealer.report_vydatkova</field>
@@ -115,26 +115,26 @@
                     <t t-call="web.external_layout">
                         <div class="page o_adealer_report">
                             <h3 class="text-center">
-                                Видаткова накладна № <span t-field="o.name"/>
-                                від <span t-field="o.invoice_date" t-options='{"widget": "date"}'/>
+                                Delivery note No. <span t-field="o.name"/>
+                                from <span t-field="o.invoice_date" t-options='{"widget": "date"}'/>
                             </h3>
                             <table class="table table-sm table-borderless mt-2">
                                 <tr>
-                                    <td style="width:130px"><strong>Постачальник:</strong></td>
+                                    <td style="width:130px"><strong>Supplier:</strong></td>
                                     <td>
                                         <span t-field="o.company_id.name"/>
-                                        <t t-if="o.company_id.partner_id.edrpou">, ЄДРПОУ <span t-field="o.company_id.partner_id.edrpou"/></t>
+                                        <t t-if="o.company_id.partner_id.edrpou">, EDRPOU <span t-field="o.company_id.partner_id.edrpou"/></t>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Одержувач:</strong></td>
+                                    <td><strong>Recipient:</strong></td>
                                     <td>
                                         <span t-field="o.partner_id.name"/>
-                                        <t t-if="o.partner_id.edrpou">, ЄДРПОУ <span t-field="o.partner_id.edrpou"/></t>
+                                        <t t-if="o.partner_id.edrpou">, EDRPOU <span t-field="o.partner_id.edrpou"/></t>
                                     </td>
                                 </tr>
                                 <tr t-if="o.invoice_origin">
-                                    <td><strong>Підстава:</strong></td>
+                                    <td><strong>Basis:</strong></td>
                                     <td><span t-field="o.invoice_origin"/></td>
                                 </tr>
                             </table>
@@ -143,11 +143,11 @@
                                 <thead>
                                     <tr>
                                         <th>№</th>
-                                        <th>Товар / послуга</th>
-                                        <th class="text-end">Кіл-ть</th>
-                                        <th>Од.</th>
-                                        <th class="text-end">Ціна</th>
-                                        <th class="text-end">Сума</th>
+                                        <th>Product / service</th>
+                                        <th class="text-end">Qty</th>
+                                        <th>Unit</th>
+                                        <th class="text-end">Price</th>
+                                        <th class="text-end">Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -167,15 +167,15 @@
                                 <div class="col-7"/>
                                 <div class="col-5">
                                     <table class="table table-sm table-borderless">
-                                        <tr><td>Разом без ПДВ:</td><td class="text-end"><span t-field="o.amount_untaxed" t-options='{"widget":"monetary","display_currency":o.currency_id}'/></td></tr>
-                                        <tr><td>ПДВ:</td><td class="text-end"><span t-field="o.amount_tax" t-options='{"widget":"monetary","display_currency":o.currency_id}'/></td></tr>
-                                        <tr><td><strong>Всього:</strong></td><td class="text-end"><strong><span t-field="o.amount_total" t-options='{"widget":"monetary","display_currency":o.currency_id}'/></strong></td></tr>
+                                        <tr><td>Total excl. VAT:</td><td class="text-end"><span t-field="o.amount_untaxed" t-options='{"widget":"monetary","display_currency":o.currency_id}'/></td></tr>
+                                        <tr><td>VAT:</td><td class="text-end"><span t-field="o.amount_tax" t-options='{"widget":"monetary","display_currency":o.currency_id}'/></td></tr>
+                                        <tr><td><strong>Total:</strong></td><td class="text-end"><strong><span t-field="o.amount_total" t-options='{"widget":"monetary","display_currency":o.currency_id}'/></strong></td></tr>
                                     </table>
                                 </div>
                             </div>
                             <div class="row mt-5">
-                                <div class="col-6">Відпустив(ла): _______________</div>
-                                <div class="col-6 text-end">Отримав(ла): _______________</div>
+                                <div class="col-6">Released by: _______________</div>
+                                <div class="col-6 text-end">Received by: _______________</div>
                             </div>
                         </div>
                     </t>
@@ -187,7 +187,7 @@
         <!--  ПОВЕРНЕННЯ ВІД ПОКУПЦЯ (account.move out_refund)             -->
         <!-- ============================================================ -->
         <record id="action_report_povernennia" model="ir.actions.report">
-            <field name="name">Накладна на повернення</field>
+            <field name="name">Return note</field>
             <field name="model">account.move</field>
             <field name="report_type">qweb-html</field>
             <field name="report_name">adealer.report_povernennia</field>
@@ -201,18 +201,18 @@
                     <t t-call="web.external_layout">
                         <div class="page o_adealer_report">
                             <h3 class="text-center">
-                                Накладна на повернення № <span t-field="o.name"/>
-                                від <span t-field="o.invoice_date" t-options='{"widget": "date"}'/>
+                                Return note No. <span t-field="o.name"/>
+                                from <span t-field="o.invoice_date" t-options='{"widget": "date"}'/>
                             </h3>
                             <table class="table table-sm table-borderless mt-2">
-                                <tr><td style="width:150px"><strong>Одержувач (від кого):</strong></td>
-                                    <td><span t-field="o.partner_id.name"/><t t-if="o.partner_id.edrpou">, ЄДРПОУ <span t-field="o.partner_id.edrpou"/></t></td></tr>
-                                <tr><td><strong>Постачальник (кому):</strong></td>
-                                    <td><span t-field="o.company_id.name"/><t t-if="o.company_id.partner_id.edrpou">, ЄДРПОУ <span t-field="o.company_id.partner_id.edrpou"/></t></td></tr>
-                                <tr t-if="o.invoice_origin"><td><strong>Підстава:</strong></td><td><span t-field="o.invoice_origin"/></td></tr>
+                                <tr><td style="width:150px"><strong>Recipient (from):</strong></td>
+                                    <td><span t-field="o.partner_id.name"/><t t-if="o.partner_id.edrpou">, EDRPOU <span t-field="o.partner_id.edrpou"/></t></td></tr>
+                                <tr><td><strong>Supplier (to):</strong></td>
+                                    <td><span t-field="o.company_id.name"/><t t-if="o.company_id.partner_id.edrpou">, EDRPOU <span t-field="o.company_id.partner_id.edrpou"/></t></td></tr>
+                                <tr t-if="o.invoice_origin"><td><strong>Basis:</strong></td><td><span t-field="o.invoice_origin"/></td></tr>
                             </table>
                             <table class="table table-sm table-bordered mt-2">
-                                <thead><tr><th>№</th><th>Товар / послуга</th><th class="text-end">Кіл-ть</th><th>Од.</th><th class="text-end">Ціна</th><th class="text-end">Сума</th></tr></thead>
+                                <thead><tr><th>№</th><th>Product / service</th><th class="text-end">Qty</th><th>Unit</th><th class="text-end">Price</th><th class="text-end">Amount</th></tr></thead>
                                 <tbody>
                                     <tr t-foreach="o.invoice_line_ids" t-as="l">
                                         <t t-if="l.display_type == 'product'">
@@ -226,10 +226,10 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <p class="text-end"><strong>Всього: <span t-field="o.amount_total" t-options='{"widget":"monetary","display_currency":o.currency_id}'/></strong></p>
+                            <p class="text-end"><strong>Total: <span t-field="o.amount_total" t-options='{"widget":"monetary","display_currency":o.currency_id}'/></strong></p>
                             <div class="row mt-5">
-                                <div class="col-6">Повернув(ла): _______________</div>
-                                <div class="col-6 text-end">Прийняв(ла): _______________</div>
+                                <div class="col-6">Returned by: _______________</div>
+                                <div class="col-6 text-end">Accepted by: _______________</div>
                             </div>
                         </div>
                     </t>
@@ -241,7 +241,7 @@
         <!--  ПРИБУТКОВА НАКЛАДНА / НАДХОДЖЕННЯ (account.move in_invoice)  -->
         <!-- ============================================================ -->
         <record id="action_report_nadhodzhennia" model="ir.actions.report">
-            <field name="name">Прибуткова накладна</field>
+            <field name="name">Goods-receipt note</field>
             <field name="model">account.move</field>
             <field name="report_type">qweb-html</field>
             <field name="report_name">adealer.report_nadhodzhennia</field>
@@ -255,18 +255,18 @@
                     <t t-call="web.external_layout">
                         <div class="page o_adealer_report">
                             <h3 class="text-center">
-                                Прибуткова накладна № <span t-field="o.name"/>
-                                від <span t-field="o.invoice_date" t-options='{"widget": "date"}'/>
+                                Goods-receipt note No. <span t-field="o.name"/>
+                                from <span t-field="o.invoice_date" t-options='{"widget": "date"}'/>
                             </h3>
                             <table class="table table-sm table-borderless mt-2">
-                                <tr><td style="width:130px"><strong>Постачальник:</strong></td>
-                                    <td><span t-field="o.partner_id.name"/><t t-if="o.partner_id.edrpou">, ЄДРПОУ <span t-field="o.partner_id.edrpou"/></t></td></tr>
-                                <tr><td><strong>Одержувач:</strong></td>
-                                    <td><span t-field="o.company_id.name"/><t t-if="o.company_id.partner_id.edrpou">, ЄДРПОУ <span t-field="o.company_id.partner_id.edrpou"/></t></td></tr>
-                                <tr t-if="o.ref"><td><strong>Документ пост.:</strong></td><td><span t-field="o.ref"/></td></tr>
+                                <tr><td style="width:130px"><strong>Supplier:</strong></td>
+                                    <td><span t-field="o.partner_id.name"/><t t-if="o.partner_id.edrpou">, EDRPOU <span t-field="o.partner_id.edrpou"/></t></td></tr>
+                                <tr><td><strong>Recipient:</strong></td>
+                                    <td><span t-field="o.company_id.name"/><t t-if="o.company_id.partner_id.edrpou">, EDRPOU <span t-field="o.company_id.partner_id.edrpou"/></t></td></tr>
+                                <tr t-if="o.ref"><td><strong>Supplier doc.:</strong></td><td><span t-field="o.ref"/></td></tr>
                             </table>
                             <table class="table table-sm table-bordered mt-2">
-                                <thead><tr><th>№</th><th>Товар / послуга</th><th class="text-end">Кіл-ть</th><th>Од.</th><th class="text-end">Ціна</th><th class="text-end">Сума</th></tr></thead>
+                                <thead><tr><th>№</th><th>Product / service</th><th class="text-end">Qty</th><th>Unit</th><th class="text-end">Price</th><th class="text-end">Amount</th></tr></thead>
                                 <tbody>
                                     <tr t-foreach="o.invoice_line_ids" t-as="l">
                                         <t t-if="l.display_type == 'product'">
@@ -280,10 +280,10 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <p class="text-end"><strong>Всього: <span t-field="o.amount_total" t-options='{"widget":"monetary","display_currency":o.currency_id}'/></strong></p>
+                            <p class="text-end"><strong>Total: <span t-field="o.amount_total" t-options='{"widget":"monetary","display_currency":o.currency_id}'/></strong></p>
                             <div class="row mt-5">
-                                <div class="col-6">Здав(ла): _______________</div>
-                                <div class="col-6 text-end">Прийняв(ла): _______________</div>
+                                <div class="col-6">Handed over by: _______________</div>
+                                <div class="col-6 text-end">Accepted by: _______________</div>
                             </div>
                         </div>
                     </t>
@@ -295,7 +295,7 @@
         <!--  ДОВІРЕНІСТЬ (purchase.order) — спрощена М-2                  -->
         <!-- ============================================================ -->
         <record id="action_report_dovirenist" model="ir.actions.report">
-            <field name="name">Довіреність</field>
+            <field name="name">Power of attorney</field>
             <field name="model">purchase.order</field>
             <field name="report_type">qweb-html</field>
             <field name="report_name">adealer.report_dovirenist</field>
@@ -308,16 +308,16 @@
                 <t t-foreach="docs" t-as="o">
                     <t t-call="web.external_layout">
                         <div class="page o_adealer_report">
-                            <h3 class="text-center">Довіреність № <span t-field="o.name"/></h3>
+                            <h3 class="text-center">Power of attorney No. <span t-field="o.name"/></h3>
                             <p class="mt-2">
-                                Підприємство <strong><span t-field="o.company_id.name"/></strong>
-                                <t t-if="o.company_id.partner_id.edrpou">(ЄДРПОУ <span t-field="o.company_id.partner_id.edrpou"/>)</t>
-                                доручає отримати у постачальника
+                                Company <strong><span t-field="o.company_id.name"/></strong>
+                                <t t-if="o.company_id.partner_id.edrpou">(EDRPOU <span t-field="o.company_id.partner_id.edrpou"/>)</t>
+                                instructs to receive from the supplier
                                 <strong><span t-field="o.partner_id.name"/></strong>
-                                за замовленням <span t-field="o.name"/> такі товарно-матеріальні цінності:
+                                per order <span t-field="o.name"/> the following inventory items:
                             </p>
                             <table class="table table-sm table-bordered mt-2">
-                                <thead><tr><th>№</th><th>Найменування</th><th class="text-end">Кіл-ть</th><th>Од.</th></tr></thead>
+                                <thead><tr><th>№</th><th>Name</th><th class="text-end">Qty</th><th>Unit</th></tr></thead>
                                 <tbody>
                                     <tr t-foreach="o.order_line" t-as="l">
                                         <t t-if="not l.display_type">
@@ -329,11 +329,11 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <p class="mt-3">Довірена особа: _______________________ (посада, ПІБ)</p>
-                            <p>Підпис довіреної особи: _______________ засвідчуємо.</p>
+                            <p class="mt-3">Authorized person: _______________________ (position, full name)</p>
+                            <p>Signature of the authorized person: _______________ we certify.</p>
                             <div class="row mt-4">
-                                <div class="col-6">Керівник: _______________</div>
-                                <div class="col-6 text-end">Головний бухгалтер: _______________</div>
+                                <div class="col-6">Manager: _______________</div>
+                                <div class="col-6 text-end">Chief accountant: _______________</div>
                             </div>
                         </div>
                     </t>
@@ -345,7 +345,7 @@
         <!--  АКТ ЗВІРКИ ВЗАЄМОРОЗРАХУНКІВ (res.partner)                   -->
         <!-- ============================================================ -->
         <record id="action_report_akt_zvirky" model="ir.actions.report">
-            <field name="name">Акт звірки взаєморозрахунків</field>
+            <field name="name">Reconciliation act</field>
             <field name="model">res.partner</field>
             <field name="report_type">qweb-html</field>
             <field name="report_name">adealer.report_akt_zvirky</field>
@@ -359,15 +359,15 @@
                     <t t-call="web.external_layout">
                         <div class="page o_adealer_report">
                             <t t-set="comp" t-value="o.get_report_company()"/>
-                            <h3 class="text-center">Акт звірки взаєморозрахунків</h3>
+                            <h3 class="text-center">Reconciliation act</h3>
                             <p class="mt-2">
-                                між <strong><span t-esc="comp.name"/></strong>
-                                та <strong><span t-field="o.name"/></strong>
-                                <t t-if="o.edrpou">(ЄДРПОУ <span t-field="o.edrpou"/>)</t>
+                                between <strong><span t-esc="comp.name"/></strong>
+                                and <strong><span t-field="o.name"/></strong>
+                                <t t-if="o.edrpou">(EDRPOU <span t-field="o.edrpou"/>)</t>
                             </p>
                             <t t-set="rows" t-value="o.get_reconciliation_lines()"/>
                             <table class="table table-sm table-bordered mt-2">
-                                <thead><tr><th>Дата</th><th>Документ</th><th class="text-end">Дебет</th><th class="text-end">Кредит</th><th class="text-end">Сальдо</th></tr></thead>
+                                <thead><tr><th>Date</th><th>Document</th><th class="text-end">Debit</th><th class="text-end">Credit</th><th class="text-end">Balance</th></tr></thead>
                                 <tbody>
                                     <tr t-foreach="rows" t-as="r">
                                         <td><span t-esc="r['date']" t-options='{"widget": "date"}'/></td>
@@ -378,15 +378,15 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <p t-if="not rows" class="text-muted">Немає проведених взаєморозрахунків.</p>
+                            <p t-if="not rows" class="text-muted">No posted receivables.</p>
                             <p class="mt-2">
-                                Кінцеве сальдо:
+                                Closing balance:
                                 <strong><span t-esc="rows[-1]['balance'] if rows else 0.0" t-options='{"widget":"monetary","display_currency":comp.currency_id}'/></strong>
-                                (додатне — заборгованість контрагента перед нами).
+                                (positive — the counterparty owes us).
                             </p>
                             <div class="row mt-5">
-                                <div class="col-6">Від <span t-esc="comp.name"/>: _______________</div>
-                                <div class="col-6 text-end">Від <span t-field="o.name"/>: _______________</div>
+                                <div class="col-6">From <span t-esc="comp.name"/>: _______________</div>
+                                <div class="col-6 text-end">From <span t-field="o.name"/>: _______________</div>
                             </div>
                         </div>
                     </t>

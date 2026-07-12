@@ -12,33 +12,33 @@ from odoo import models, fields, api, _
 
 class ServiceCampaign(models.Model):
     _name = 'dealer.service.campaign'
-    _description = 'Сервісна кампанія'
+    _description = 'Service campaign'
     _inherit = ['mail.thread']
     _order = 'date_start desc, id desc'
 
-    name = fields.Char('Назва кампанії', required=True, tracking=True)
-    code = fields.Char('Код/номер', copy=False, index=True)
+    name = fields.Char('Campaign name', required=True, tracking=True)
+    code = fields.Char('Code/number', copy=False, index=True)
     campaign_type = fields.Selection([
-        ('recall', 'Відкликання'),
-        ('warranty', 'Гарантійна'),
-        ('service', 'Сервісна акція'),
-    ], 'Тип', default='recall', required=True, tracking=True)
-    date_start = fields.Date('Дата початку', default=fields.Date.context_today)
-    date_end = fields.Date('Дата завершення')
+        ('recall', 'Recall'),
+        ('warranty', 'Warranty'),
+        ('service', 'Service action'),
+    ], 'Type', default='recall', required=True, tracking=True)
+    date_start = fields.Date('Start date', default=fields.Date.context_today)
+    date_end = fields.Date('End date')
     state = fields.Selection([
-        ('draft', 'Чернетка'),
-        ('active', 'Активна'),
-        ('closed', 'Закрита'),
-    ], 'Стан', default='draft', required=True, tracking=True)
-    description = fields.Html('Опис / інструкція')
-    service_product_id = fields.Many2one('product.product', 'Робота по кампанії',
+        ('draft', 'Draft'),
+        ('active', 'Active'),
+        ('closed', 'Closed'),
+    ], 'State', default='draft', required=True, tracking=True)
+    description = fields.Html('Description / instructions')
+    service_product_id = fields.Many2one('product.product', 'Campaign work',
                                          domain="[('type', '=', 'service')]",
-                                         help='Послуга, що виконується в межах кампанії')
-    line_ids = fields.One2many('dealer.service.campaign.line', 'campaign_id', 'Автомобілі')
-    vehicle_count = fields.Integer('Всього авто', compute='_compute_counts', store=True)
-    done_count = fields.Integer('Виконано', compute='_compute_counts', store=True)
-    progress = fields.Float('Прогрес, %', compute='_compute_counts', store=True)
-    company_id = fields.Many2one('res.company', 'Компанія', default=lambda self: self.env.company)
+                                         help='Service performed within the campaign')
+    line_ids = fields.One2many('dealer.service.campaign.line', 'campaign_id', 'Vehicles')
+    vehicle_count = fields.Integer('Total vehicles', compute='_compute_counts', store=True)
+    done_count = fields.Integer('Done', compute='_compute_counts', store=True)
+    progress = fields.Float('Progress, %', compute='_compute_counts', store=True)
+    company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company)
 
     @api.depends('line_ids.state')
     def _compute_counts(self):
@@ -60,7 +60,7 @@ class ServiceCampaign(models.Model):
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
-            'name': _('Додати автомобілі'),
+            'name': _('Add vehicles'),
             'res_model': 'fleet.vehicle',
             'view_mode': 'list',
             'target': 'new',
@@ -69,23 +69,23 @@ class ServiceCampaign(models.Model):
 
 class ServiceCampaignLine(models.Model):
     _name = 'dealer.service.campaign.line'
-    _description = 'Авто у сервісній кампанії'
+    _description = 'Vehicle in a service campaign'
     _order = 'state, id'
 
-    campaign_id = fields.Many2one('dealer.service.campaign', 'Кампанія', required=True,
+    campaign_id = fields.Many2one('dealer.service.campaign', 'Campaign', required=True,
                                   ondelete='cascade', index=True)
-    vehicle_id = fields.Many2one('fleet.vehicle', 'Автомобіль', index=True)
-    vin = fields.Char('VIN', help='VIN, якщо авто ще немає в базі')
-    partner_id = fields.Many2one('res.partner', 'Власник')
+    vehicle_id = fields.Many2one('fleet.vehicle', 'Vehicle', index=True)
+    vin = fields.Char('VIN', help='VIN, if the vehicle is not yet in the database')
+    partner_id = fields.Many2one('res.partner', 'Owner')
     state = fields.Selection([
-        ('pending', 'Очікує'),
-        ('notified', 'Повідомлено'),
-        ('done', 'Виконано'),
-        ('rejected', 'Відмова клієнта'),
-    ], 'Статус', default='pending', required=True, index=True)
-    repair_order_id = fields.Many2one('repair.order', 'Наряд', copy=False,
-                                      help='Наряд, яким закрито кампанію по авто')
-    done_date = fields.Date('Дата виконання')
+        ('pending', 'Pending'),
+        ('notified', 'Notified'),
+        ('done', 'Done'),
+        ('rejected', 'Customer refusal'),
+    ], 'Status', default='pending', required=True, index=True)
+    repair_order_id = fields.Many2one('repair.order', 'Order', copy=False,
+                                      help='The order that closed the vehicle campaign')
+    done_date = fields.Date('Completion date')
 
     @api.onchange('vehicle_id')
     def _onchange_vehicle_id(self):
@@ -103,7 +103,7 @@ class RepairOrderCampaign(models.Model):
 
     active_campaign_ids = fields.Many2many('dealer.service.campaign',
                                            compute='_compute_active_campaigns',
-                                           string='Активні кампанії по авто')
+                                           string='Active campaigns for the vehicle')
     active_campaign_count = fields.Integer(compute='_compute_active_campaigns')
 
     @api.depends('vehicle_id')

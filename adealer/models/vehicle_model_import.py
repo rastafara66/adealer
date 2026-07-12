@@ -19,7 +19,7 @@ def safe_val(val, cast_func=None):
 
 class FleetVehicleModelImport(models.TransientModel):
     _name = 'fleet.vehicle.model.import'
-    _description = 'Імпорт моделей авто з Excel'
+    _description = 'Import vehicle models from Excel'
 
     @api.model
     def import_vehicle_models_from_excel(self):
@@ -27,7 +27,7 @@ class FleetVehicleModelImport(models.TransientModel):
         try:
             df = pd.read_excel(file_path)
         except Exception as e:
-            raise UserError(_('Не вдалося відкрити файл: %s') % e)
+            raise UserError(_('Could not open the file: %s') % e)
 
         # Бренд за замовчуванням (налаштовується параметром adealer.import_default_brand)
         brand_name = self.env['ir.config_parameter'].sudo().get_param('adealer.import_default_brand', 'Auto')

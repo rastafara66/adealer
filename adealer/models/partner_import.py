@@ -32,7 +32,7 @@ def safe_val(val, cast_func=None):
 
 class PartnerImport(models.TransientModel):
     _name = 'res.partner.import'
-    _description = 'Імпорт контрагентів з Excel'
+    _description = 'Import partners from Excel'
 
     @api.model
     def import_partners_from_excel(self):
@@ -44,7 +44,7 @@ class PartnerImport(models.TransientModel):
         try:
             df = pd.read_excel(file_path)
         except Exception as e:
-            raise UserError(_('Не вдалося відкрити файл: %s') % e)
+            raise UserError(_('Could not open the file: %s') % e)
 
         return self.import_partners_from_dataframe(df)
 

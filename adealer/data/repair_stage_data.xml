@@ -3,27 +3,27 @@
     <data noupdate="1">
         <!-- Стандартні стадії наряду СТО (аналог СостоянияЗаказНаряда) -->
         <record id="repair_stage_accepted" model="adealer.repair.stage">
-            <field name="name">Прийнято</field>
+            <field name="name">Accepted</field>
             <field name="sequence">10</field>
         </record>
         <record id="repair_stage_diagnostics" model="adealer.repair.stage">
-            <field name="name">Діагностика</field>
+            <field name="name">Diagnostics</field>
             <field name="sequence">20</field>
         </record>
         <record id="repair_stage_wait_parts" model="adealer.repair.stage">
-            <field name="name">Очікування запчастин</field>
+            <field name="name">Awaiting parts</field>
             <field name="sequence">30</field>
         </record>
         <record id="repair_stage_in_work" model="adealer.repair.stage">
-            <field name="name">В роботі</field>
+            <field name="name">In progress</field>
             <field name="sequence">40</field>
         </record>
         <record id="repair_stage_ready" model="adealer.repair.stage">
-            <field name="name">Готово</field>
+            <field name="name">Done</field>
             <field name="sequence">50</field>
         </record>
         <record id="repair_stage_delivered" model="adealer.repair.stage">
-            <field name="name">Видано клієнту</field>
+            <field name="name">Delivered to customer</field>
             <field name="sequence">60</field>
             <field name="fold" eval="True"/>
             <field name="is_closing" eval="True"/>

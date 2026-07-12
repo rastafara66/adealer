@@ -9,35 +9,35 @@
             <field name="arch" type="xml">
                 <xpath expr="//form" position="inside">
                     <app data-string="3A-dealer" string="3A-dealer" name="adealer">
-                        <block title="Інтерфейс" name="adealer_ui">
-                            <setting string="Фірмова тема + бічне меню (сайдбар)" help="Фірмова тема 3A-dealer (navy/gold) та ліве бічне меню у стилі 1С. Увімкнено за замовчуванням.">
+                        <block title="Interface" name="adealer_ui">
+                            <setting string="Branded theme + side menu (sidebar)" help="3A-dealer branded theme (navy/gold) and the 1C-style left side menu. On by default.">
                                 <field name="adealer_sidebar_enabled"/>
                             </setting>
-                            <setting string="Лого бренда замість фото" help="Показувати лого бренда як зображення авто за замовчуванням">
+                            <setting string="Brand logo instead of photo" help="Show the brand logo as the vehicle image by default">
                                 <field name="adealer_brand_logo_default"/>
                             </setting>
-                            <setting string="Мова інтерфейсу" help="Мова інтерфейсу для поточного користувача">
+                            <setting string="Interface language" help="Interface language for the current user">
                                 <field name="adealer_lang"/>
                             </setting>
-                            <setting string="Стартова сторінка" help="Що відкривати після входу для поточного користувача: СТО — календар, автосалон — автомобілі, менеджер — звіти">
+                            <setting string="Home page" help="What to open after login for the current user: workshop — calendar, showroom — vehicles, manager — reports">
                                 <field name="adealer_home"/>
                             </setting>
-                            <setting string="Формат друкованих форм" help="HTML — форма відкривається у вкладці браузера (без Adobe/завантаження). PDF — завантажується файл.">
+                            <setting string="Printable form format" help="HTML — the form opens in a browser tab (no Adobe/download). PDF — a file is downloaded.">
                                 <field name="adealer_print_format"/>
                             </setting>
-                            <setting string="Авто-реалізація при проведенні наряду" help="При переході наряду у «Відремонтовано» автоматично створювати Акт+Видаткову. Вимкнено — кнопками.">
+                            <setting string="Auto-invoice when the repair order is done" help="When a repair order moves to 'Repaired', automatically create Act+Delivery note. Off — via buttons.">
                                 <field name="adealer_autopost_docs"/>
                             </setting>
                         </block>
-                        <block title="Розділи меню (показувати)" name="adealer_menu_sections">
-                            <setting string="Автомобілі та моделі"><field name="show_menu_vehicles"/></setting>
-                            <setting string="Автосалон"><field name="show_menu_showroom"/></setting>
-                            <setting string="Товари та послуги"><field name="show_menu_products"/></setting>
-                            <setting string="Партнери та користувачі"><field name="show_menu_contacts"/></setting>
-                            <setting string="Обслуговування та ремонт"><field name="show_menu_maintenance"/></setting>
-                            <setting string="Продажі"><field name="show_menu_sales"/></setting>
-                            <setting string="Закупівлі"><field name="show_menu_purchases"/></setting>
-                            <setting string="Звіти"><field name="show_menu_reports"/></setting>
+                        <block title="Menu sections (show)" name="adealer_menu_sections">
+                            <setting string="Vehicles and models"><field name="show_menu_vehicles"/></setting>
+                            <setting string="Showroom"><field name="show_menu_showroom"/></setting>
+                            <setting string="Products and services"><field name="show_menu_products"/></setting>
+                            <setting string="Partners and users"><field name="show_menu_contacts"/></setting>
+                            <setting string="Maintenance and repair"><field name="show_menu_maintenance"/></setting>
+                            <setting string="Sales"><field name="show_menu_sales"/></setting>
+                            <setting string="Purchases"><field name="show_menu_purchases"/></setting>
+                            <setting string="Reports"><field name="show_menu_reports"/></setting>
                         </block>
                     </app>
                 </xpath>
@@ -45,7 +45,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="adealer.action_window_config_settings">
-            <field name="name">Налаштування 3A-dealer</field>
+            <field name="name">3A-dealer settings</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">res.config.settings</field>
             <field name="view_mode">form</field>
@@ -54,8 +54,8 @@
         </record>
 
         <!-- Menu Configuration -->
-        <menuitem name="Налаштування" id="adealer.configuration" parent="adealer.menu_root" sequence="99"/>
-        <menuitem name="Параметри" id="adealer.settings" parent="adealer.configuration" action="adealer.action_window_config_settings" sequence="91"/>
+        <menuitem name="Settings" id="adealer.configuration" parent="adealer.menu_root" sequence="99"/>
+        <menuitem name="Parameters" id="adealer.settings" parent="adealer.configuration" action="adealer.action_window_config_settings" sequence="91"/>
 
     </data>
 </odoo>

@@ -2,29 +2,25 @@
 {
     'name': "3A-dealer — Car Dealership & Service",
 
-    'summary': "Автосалон · Автозапчастини · Авторемонт (СТО) — документообіг у стилі 1С для Odoo",
+    'summary': "Car showroom · Auto parts · Service workshop — 1C-style document flow for Odoo",
 
     'description': """
-3A-dealer — вертикальне рішення для автодилерів і СТО
-=====================================================
+3A-dealer — a vertical solution for car dealers and service workshops
+=====================================================================
 
-Автосалон, склад автозапчастин та авторемонт (СТО) в одному модулі,
-зі звичним для користувачів 1С документообігом.
+Car showroom, auto-parts stock and service workshop in a single module,
+with the document flow familiar to 1C users.
 
-Основні можливості:
+Key features:
 
-* Ланцюжок документів як у 1С: Замовлення клієнта → Наряд-замовлення →
-  Видаткова / Акт / Рахунок (кожен документ «на підставі» попереднього).
-* Наряд-замовлення СТО: клієнт, автомобіль (VIN), пробіг, механіки,
-  сервісний консультант, запчастини й роботи, контроль залишків.
-* Картотека автомобілів клієнтів: VIN, бренд (лого), історія ремонтів,
-  календар записів на обслуговування, нагадування про ТО.
-* Запчастини та аналоги, нормо-години, виробіток механіків.
-* Звіти у двох стилях: «Готові звіти» (як у 1С) та інтерактивний pivot Odoo.
-* Друковані форми (UA): рахунок на оплату, видаткова, повернення,
-  прибуткова накладна, довіреність, акт звірки взаєморозрахунків.
-* Журнали документів у стилі 1С: Дата · Номер · Клієнт · Авто · Сума · Статус.
-* Українська локалізація інтерфейсу.
+* 1C-style document chain: Sale Order, Repair Order, Delivery note / Act / Invoice (each document created "on the basis of" the previous one).
+* Workshop repair orders: customer, vehicle (VIN), mileage, mechanics, service advisor, parts & labour, stock control.
+* Customer vehicle card file: VIN, brand (logo), repair history, service booking calendar, maintenance reminders.
+* Parts & analogs, standard hours, mechanic output.
+* Reports in two styles: "Ready reports" (like 1C) and the interactive Odoo pivot.
+* Printable forms (UA): invoice for payment, delivery note, return note, goods-receipt note, power of attorney, reconciliation act.
+* 1C-style document journals: Date, Number, Customer, Vehicle, Amount, Status.
+* Interface in English and Ukrainian.
     """,
 
     'application': True,

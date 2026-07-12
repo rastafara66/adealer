@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Хелпери для друкованих форм (Акт звірки взаєморозрахунків)."""
+"""Хелпери для друкованих форм (Reconciliation act)."""
 from odoo import models, api
 
 
@@ -7,12 +7,12 @@ class ResPartnerRecon(models.Model):
     _inherit = 'res.partner'
 
     def get_report_company(self):
-        """Компанія для друкованих форм (партнери часто без company_id)."""
+        """Company для друкованих форм (партнери часто без company_id)."""
         return self.company_id or self.env.company
 
     def get_reconciliation_lines(self):
         """Рядки руху взаєморозрахунків для Акту звірки:
-        проведені рядки по рахунках дебіторки/кредиторки, з накопиченим сальдо."""
+        проведені рядки to рахунках дебіторки/кредиторки, з накопиченим сальдо."""
         self.ensure_one()
         AML = self.env['account.move.line']
         lines = AML.search([

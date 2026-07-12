@@ -3,19 +3,19 @@
         <field name="name">partner.address.import.wizard.form</field>
         <field name="model">partner.address.import.wizard</field>
         <field name="arch" type="xml">
-            <form string="Імпорт адрес контрагентів">
+            <form string="Import partner addresses">
                 <group>
                     <field name="partner_type"/>
                 </group>
                 <footer>
-                    <button string="Імпортувати" type="object" name="action_import_addresses" class="btn-primary"/>
-                    <button string="Скасувати" class="btn-secondary" special="cancel"/>
+                    <button string="Import" type="object" name="action_import_addresses" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
                 </footer>
             </form>
         </field>
     </record>
     <record id="action_partner_address_import_wizard" model="ir.actions.act_window">
-        <field name="name">Імпорт адрес контрагентів</field>
+        <field name="name">Import partner addresses</field>
         <field name="res_model">partner.address.import.wizard</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>

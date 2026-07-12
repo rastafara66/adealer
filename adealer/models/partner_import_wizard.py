@@ -6,23 +6,23 @@ import io
 
 class PartnerImportWizard(models.TransientModel):
     _name = 'partner.import.wizard'
-    _description = 'Майстер імпорту контрагентів з Excel'
+    _description = 'Partner import wizard (Excel)'
 
-    file = fields.Binary(string="Excel файл", required=True)
-    file_name = fields.Char(string="Назва файлу")
+    file = fields.Binary(string="Excel file", required=True)
+    file_name = fields.Char(string="File name")
 
     def action_import_partners(self):
         if not self.file:
-            raise UserError(_("Будь ласка, виберіть файл для імпорту."))
+            raise UserError(_("Please select a file to import."))
         if self.file_name and not self.file_name.lower().endswith(('.xls', '.xlsx')):
-            raise UserError(_("Оберіть файл у форматі Excel (.xls або .xlsx)"))
+            raise UserError(_("Select a file in Excel format (.xls or .xlsx)"))
 
         # Зчитування Excel з Binary
         try:
             file_content = base64.b64decode(self.file)
             df = pd.read_excel(io.BytesIO(file_content))
         except Exception as e:
-            raise UserError(_("Не вдалося прочитати Excel файл: %s") % e)
+            raise UserError(_("Could not read the Excel file: %s") % e)
 
         # Викликати логіку імпорту з PartnerImport, передаючи DataFrame
         import_model = self.env['res.partner.import']

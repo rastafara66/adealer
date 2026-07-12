@@ -13,31 +13,31 @@ class RepairOrder(models.Model):
     # Дві відфільтровані «проекції» тих самих рядків (operations) для вкладок:
     # послуги (type='service') і запчастини (товари, type!='service').
     service_line_ids = fields.One2many(
-        'repair.line', 'repair_id', string='Сервісні операції',
+        'repair.line', 'repair_id', string='Service operations',
         domain=[('product_type', '=', 'service')], copy=False, readonly=False)
     part_line_ids = fields.One2many(
-        'repair.line', 'repair_id', string='Запчастини',
+        'repair.line', 'repair_id', string='Parts',
         domain=[('product_type', '!=', 'service')], copy=False, readonly=False)
     partner_id = fields.Many2one(
         'res.partner', 'Customer')
     vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle', index=True)
     vehicle_logo = fields.Image(related='vehicle_id.display_logo', string='Vehicle Logo', readonly=True)
-    mechanic_ids = fields.Many2many('hr.employee', string='Механіки',
-        help='Виконавці робіт по наряду (ИсполнителиРабот з 1С)')
+    mechanic_ids = fields.Many2many('hr.employee', string='Mechanics',
+        help='Work performers on the order (executors, from 1C)')
     mileage = fields.Float(
-        'Пробіг', help='Пробіг авто на момент приймання (аналог поля 1С ЗаказНаряд.Пробег)')
+        'Mileage', help='Vehicle mileage at intake (analog of 1C order Mileage field)')
     service_advisor_id = fields.Many2one(
-        'res.users', string='Менеджер',
-        help='Менеджер/відповідальний наряду (1С: Ответственный)')
+        'res.users', string='Manager',
+        help='Order manager / responsible (1C: Responsible)')
     source_sale_order_id = fields.Many2one(
         'sale.order', string='Source Sale Order', copy=False, index=True,
-        help='Замовлення покупця, з якого створено цей наряд')
+        help='The sale order this repair order was created from')
     currency_id = fields.Many2one(
         'res.currency', string='Currency',
         related='company_id.currency_id', store=True, readonly=True)
     amount_total = fields.Monetary(
-        string='Сума', compute='_compute_amount_total', store=True,
-        currency_field='currency_id', help='Загальна сума наряду (з рядків операцій)')
+        string='Amount', compute='_compute_amount_total', store=True,
+        currency_field='currency_id', help='Total order amount (from operation lines)')
 
     @api.depends('operations.price_subtotal')
     def _compute_amount_total(self):
@@ -79,14 +79,14 @@ class RepairOrder(models.Model):
                     needed = op.product_uom._compute_quantity(op.product_uom_qty, product.uom_id)
                 free = product.with_context(warehouse_id=warehouse.id).free_qty
                 if free < needed:
-                    shortages.append(_("• %(product)s: потрібно %(need)s, вільно %(free)s") % {
+                    shortages.append(_("• %(product)s: needed %(need)s, available %(free)s") % {
                         'product': product.display_name,
                         'need': needed,
                         'free': free,
                     })
             if shortages:
                 raise UserError(
-                    _("Недостатньо запчастин на складі «%(wh)s»:\n%(list)s") % {
+                    _("Not enough parts in warehouse \"%(wh)s\":\n%(list)s") % {
                         'wh': warehouse.display_name,
                         'list': "\n".join(shortages),
                     })
@@ -101,8 +101,8 @@ class RepairLine(models.Model):
 
     repair_id = fields.Many2one('repair.order', string='Repair Order', required=True)
     product_id = fields.Many2one('product.product', string='Product')
-    # тип товару (для розділення на вкладки Запчастини/Сервісні операції); store -> для domain
-    product_type = fields.Selection(related='product_id.type', store=True, string='Тип')
+    # тип товару (для розділення на вкладки Parts/Service operations); store -> для domain
+    product_type = fields.Selection(related='product_id.type', store=True, string='Type')
     product_uom_qty = fields.Float(string='Quantity', default=1.0)
     product_uom = fields.Many2one('uom.uom', string='Unit of Measure')
     price_unit = fields.Float(string='Unit Price')

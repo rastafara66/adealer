@@ -1,26 +1,26 @@
 # -*- coding: utf-8 -*-
-"""Звіти у стилі 1С: шапка параметрів (період, відбори) + кнопка «Сформувати»
-+ таблична частина (відомість). Перший звіт — Взаєморозрахунки з контрагентами."""
+"""Reports у стилі 1С: шапка параметрів (період, відбори) + кнопка «Generate»
++ таблична частина (відомість). Перший звіт — Receivables with counterparties."""
 from odoo import models, fields, api, _
 
 
 class PartnerBalanceWizard(models.TransientModel):
     _name = 'partner.balance.wizard'
-    _description = 'Взаєморозрахунки з контрагентами (відомість, 1С-стиль)'
+    _description = 'Receivables with counterparties (statement, 1C style)'
 
     date_from = fields.Date(
-        'Період з', required=True,
+        'Period from', required=True,
         default=lambda self: fields.Date.context_today(self).replace(month=1, day=1))
     date_to = fields.Date(
-        'по', required=True,
+        'to', required=True,
         default=lambda self: fields.Date.context_today(self))
     partner_id = fields.Many2one(
-        'res.partner', string='Контрагент',
-        help='Порожньо — зведення по всіх контрагентах')
+        'res.partner', string='Counterparty',
+        help='Empty — summary across all counterparties')
     currency_id = fields.Many2one(
         'res.currency', default=lambda self: self.env.company.currency_id.id)
     line_ids = fields.One2many(
-        'partner.balance.wizard.line', 'wizard_id', string='Відомість', readonly=True)
+        'partner.balance.wizard.line', 'wizard_id', string='Statement', readonly=True)
 
     def _aml_domain(self):
         return [('account_id.account_type', 'in', ('asset_receivable', 'liability_payable')),
@@ -44,7 +44,7 @@ class PartnerBalanceWizard(models.TransientModel):
             pdom = [('partner_id', '=', self.partner_id.id)]
             opening = sum(AML.search(
                 self._aml_domain() + pdom + [('date', '<', self.date_from)]).mapped('balance'))
-            add({'line_type': 'opening', 'doc_name': _('Початковий залишок'),
+            add({'line_type': 'opening', 'doc_name': _('Opening balance'),
                  'balance': opening})
             run = opening
             tdeb = tcred = 0.0
@@ -60,12 +60,12 @@ class PartnerBalanceWizard(models.TransientModel):
                      'doc_name': ml.move_id.ref or ml.move_id.name,
                      'move_id': ml.move_id.id,
                      'debit': ml.debit, 'credit': ml.credit, 'balance': run})
-            add({'line_type': 'total', 'doc_name': _('Обороти за період'),
+            add({'line_type': 'total', 'doc_name': _('Turnover for the period'),
                  'debit': tdeb, 'credit': tcred})
-            add({'line_type': 'closing', 'doc_name': _('Кінцевий залишок'),
+            add({'line_type': 'closing', 'doc_name': _('Closing balance'),
                  'balance': run})
         else:
-            # зведення по всіх контрагентах: залишок на початок / обороти / на кінець
+            # зведення to всіх контрагентах: залишок на початок / обороти / на кінець
             data = {}
             for ml in AML.search(self._aml_domain() + [('date', '<=', self.date_to)]):
                 rec = data.setdefault(ml.partner_id, [0.0, 0.0, 0.0])
@@ -85,11 +85,11 @@ class PartnerBalanceWizard(models.TransientModel):
                 g_cred += cred
                 g_close += closing
                 add({'line_type': 'partner',
-                     'doc_name': partner.display_name or _('Без контрагента'),
+                     'doc_name': partner.display_name or _('No counterparty'),
                      'partner_line_id': partner.id or False,
                      'opening': opening, 'debit': deb, 'credit': cred,
                      'balance': closing})
-            add({'line_type': 'total', 'doc_name': _('Разом'),
+            add({'line_type': 'total', 'doc_name': _('Total'),
                  'opening': g_open, 'debit': g_deb, 'credit': g_cred,
                  'balance': g_close})
         return True
@@ -97,26 +97,26 @@ class PartnerBalanceWizard(models.TransientModel):
 
 class PartnerBalanceWizardLine(models.TransientModel):
     _name = 'partner.balance.wizard.line'
-    _description = 'Рядок відомості взаєморозрахунків'
+    _description = 'Receivables statement line'
     _order = 'sequence, id'
 
     wizard_id = fields.Many2one('partner.balance.wizard', required=True, ondelete='cascade')
     sequence = fields.Integer()
     line_type = fields.Selection([
-        ('opening', 'Початковий залишок'),
-        ('move', 'Документ'),
-        ('partner', 'Контрагент'),
-        ('total', 'Обороти'),
-        ('closing', 'Кінцевий залишок')])
-    date = fields.Date('Дата')
-    doc_name = fields.Char('Документ / Контрагент')
-    move_id = fields.Many2one('account.move', string='Документ')
-    partner_line_id = fields.Many2one('res.partner', string='Контрагент')
+        ('opening', 'Opening balance'),
+        ('move', 'Document'),
+        ('partner', 'Counterparty'),
+        ('total', 'Turnover'),
+        ('closing', 'Closing balance')])
+    date = fields.Date('Date')
+    doc_name = fields.Char('Document / Counterparty')
+    move_id = fields.Many2one('account.move', string='Document')
+    partner_line_id = fields.Many2one('res.partner', string='Counterparty')
     currency_id = fields.Many2one('res.currency')
-    opening = fields.Monetary('Поч. залишок', currency_field='currency_id')
-    debit = fields.Monetary('Дебет (нараховано)', currency_field='currency_id')
-    credit = fields.Monetary('Кредит (оплачено)', currency_field='currency_id')
-    balance = fields.Monetary('Залишок', currency_field='currency_id')
+    opening = fields.Monetary('Opening balance', currency_field='currency_id')
+    debit = fields.Monetary('Debit (accrued)', currency_field='currency_id')
+    credit = fields.Monetary('Credit (paid)', currency_field='currency_id')
+    balance = fields.Monetary('On hand', currency_field='currency_id')
 
     def action_open_move(self):
         self.ensure_one()
@@ -130,7 +130,7 @@ class PartnerBalanceWizardLine(models.TransientModel):
         }
 
     def action_open_partner(self):
-        """Провалитись у деталізацію по контрагенту (як у 1С)."""
+        """Провалитись у деталізацію to контрагенту (як у 1С)."""
         self.ensure_one()
         if not self.partner_line_id:
             return False
@@ -142,7 +142,7 @@ class PartnerBalanceWizardLine(models.TransientModel):
         wiz.action_generate()
         return {
             'type': 'ir.actions.act_window',
-            'name': _('Взаєморозрахунки: %s') % self.partner_line_id.display_name,
+            'name': _('Receivables: %s') % self.partner_line_id.display_name,
             'res_model': 'partner.balance.wizard',
             'res_id': wiz.id,
             'view_mode': 'form',
@@ -150,46 +150,46 @@ class PartnerBalanceWizardLine(models.TransientModel):
         }
 
 
-REPAIR_STATES = {'draft': 'Новий', 'confirmed': 'Підтверджено',
-                 'under_repair': 'В ремонті', 'done': 'Відремонтовано',
-                 'cancel': 'Скасовано'}
-SALE_STATES = {'draft': 'Чернетка', 'sent': 'Надіслано', 'sale': 'Підтверджено',
-               'done': 'Виконано', 'cancel': 'Скасовано'}
+REPAIR_STATES = {'draft': 'New', 'confirmed': 'Confirmed',
+                 'under_repair': 'Under repair', 'done': 'Repaired',
+                 'cancel': 'Cancelled'}
+SALE_STATES = {'draft': 'Draft', 'sent': 'Sent', 'sale': 'Confirmed',
+               'done': 'Done', 'cancel': 'Cancelled'}
 
 
 class AdealerReportWizard(models.TransientModel):
     """Універсальний «готовий» звіт у стилі 1С: шапка параметрів + відомість.
     Один тип звіту = одна form-в'юха зі своїми колонками."""
     _name = 'adealer.report.wizard'
-    _description = 'Готовий звіт (1С-стиль)'
+    _description = 'Ready report (1C style)'
 
     report_type = fields.Selection([
-        ('sales', 'Продажі'),
-        ('gross', 'Валовий прибуток'),
-        ('purchases', 'Закупівлі'),
-        ('stock', 'Товари на складах'),
-        ('repairs', 'Історія ремонтів'),
-        ('advisors', 'Виробіток приймальників'),
-        ('orders', 'Аналіз замовлень покупців'),
-        ('to_reminder', 'Нагадування про ТО'),
-        ('inactive', 'Не заїжджавші клієнти'),
-        ('abc_sales', 'ABC-аналіз продажів'),
-        ('abc_customers', 'ABC-аналіз покупців'),
-        ('turnover', 'Оборотність товарів'),
+        ('sales', 'Sales'),
+        ('gross', 'Gross profit'),
+        ('purchases', 'Purchases'),
+        ('stock', 'Stock on hand'),
+        ('repairs', 'Repair history'),
+        ('advisors', 'Advisor output'),
+        ('orders', 'Customer order analysis'),
+        ('to_reminder', 'Maintenance reminders'),
+        ('inactive', 'Inactive customers'),
+        ('abc_sales', 'ABC analysis of sales'),
+        ('abc_customers', 'ABC analysis of customers'),
+        ('turnover', 'Stock turnover'),
     ], required=True, default='sales')
     date_from = fields.Date(
-        'Період з', required=True,
+        'Period from', required=True,
         default=lambda self: fields.Date.context_today(self).replace(month=1, day=1))
     date_to = fields.Date(
-        'по', required=True,
+        'to', required=True,
         default=lambda self: fields.Date.context_today(self))
-    partner_id = fields.Many2one('res.partner', string='Контрагент')
-    product_id = fields.Many2one('product.product', string='Товар')
-    vehicle_id = fields.Many2one('fleet.vehicle', string='Автомобіль')
+    partner_id = fields.Many2one('res.partner', string='Counterparty')
+    product_id = fields.Many2one('product.product', string='Product')
+    vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle')
     currency_id = fields.Many2one(
         'res.currency', default=lambda self: self.env.company.currency_id.id)
     line_ids = fields.One2many(
-        'adealer.report.wizard.line', 'wizard_id', string='Відомість', readonly=True)
+        'adealer.report.wizard.line', 'wizard_id', string='Statement', readonly=True)
 
     def action_generate(self):
         self.ensure_one()
@@ -227,7 +227,7 @@ class AdealerReportWizard(models.TransientModel):
                          'ref3': ml.product_id.display_name or '',
                          'qty': qty, 'amount': amt,
                          'res_model': 'account.move', 'res_id': ml.move_id.id})
-        rows.append({'line_type': 'total', 'name': _('Разом'),
+        rows.append({'line_type': 'total', 'name': _('Total'),
                      'qty': tqty, 'amount': tsum})
         return rows
 
@@ -249,7 +249,7 @@ class AdealerReportWizard(models.TransientModel):
             tq += qty
             trev += rev
             tcost += cost
-        rows.append({'line_type': 'total', 'name': _('Разом'), 'qty': tq,
+        rows.append({'line_type': 'total', 'name': _('Total'), 'qty': tq,
                      'amount': trev, 'amount2': tcost, 'amount3': trev - tcost})
         return rows
 
@@ -266,7 +266,7 @@ class AdealerReportWizard(models.TransientModel):
                          'ref3': po.partner_ref or '',
                          'amount': po.amount_total,
                          'res_model': 'purchase.order', 'res_id': po.id})
-        rows.append({'line_type': 'total', 'name': _('Разом'), 'amount': tsum})
+        rows.append({'line_type': 'total', 'name': _('Total'), 'amount': tsum})
         return rows
 
     def _gen_stock(self):
@@ -290,7 +290,7 @@ class AdealerReportWizard(models.TransientModel):
                          'res_model': 'product.product', 'res_id': product.id})
             tq += qty
             tsum += val
-        rows.append({'line_type': 'total', 'name': _('Разом'), 'qty': tq, 'amount': tsum})
+        rows.append({'line_type': 'total', 'name': _('Total'), 'qty': tq, 'amount': tsum})
         return rows
 
     def _repair_domain(self):
@@ -313,7 +313,7 @@ class AdealerReportWizard(models.TransientModel):
                          'amount': ro.amount_total,
                          'state': REPAIR_STATES.get(ro.state, ro.state),
                          'res_model': 'repair.order', 'res_id': ro.id})
-        rows.append({'line_type': 'total', 'name': _('Разом'), 'amount': tsum})
+        rows.append({'line_type': 'total', 'name': _('Total'), 'amount': tsum})
         return rows
 
     def _gen_advisors(self):
@@ -327,11 +327,11 @@ class AdealerReportWizard(models.TransientModel):
         tn = tsum = 0
         for user, (cnt, total) in sorted(agg.items(), key=lambda kv: -kv[1][1]):
             rows.append({'line_type': 'row',
-                         'name': user.display_name if user else _('Не вказано'),
+                         'name': user.display_name if user else _('Not set'),
                          'qty': cnt, 'amount': total})
             tn += cnt
             tsum += total
-        rows.append({'line_type': 'total', 'name': _('Разом'), 'qty': tn, 'amount': tsum})
+        rows.append({'line_type': 'total', 'name': _('Total'), 'qty': tn, 'amount': tsum})
         return rows
 
     def _gen_orders(self):
@@ -349,13 +349,13 @@ class AdealerReportWizard(models.TransientModel):
                          'amount': so.amount_total,
                          'state': SALE_STATES.get(so.state, so.state),
                          'res_model': 'sale.order', 'res_id': so.id})
-        rows.append({'line_type': 'total', 'name': _('Разом'), 'amount': tsum})
+        rows.append({'line_type': 'total', 'name': _('Total'), 'amount': tsum})
         return rows
 
 
     # ---------- авто-звіти (аналог 1С) ----------
     def _gen_to_reminder(self):
-        """Авто, що не були на ТО з дати «Не було ТО з» (НапоминаниеО_ТО)."""
+        """Авто, що не були на ТО з дати «No service since» (НапоминаниеО_ТО)."""
         last = {}
         for ro in self.env['repair.order'].search([('vehicle_id', '!=', False)],
                                                   order='schedule_date'):
@@ -370,11 +370,11 @@ class AdealerReportWizard(models.TransientModel):
             rows.append({'line_type': 'row', 'date': ro.schedule_date,
                          'name': v.display_name,
                          'ref2': ro.partner_id.display_name or '',
-                         'ref3': _('%d дн. тому') % days,
+                         'ref3': _('%d days ago') % days,
                          'qty': ro.mileage or 0.0,
                          'res_model': 'fleet.vehicle', 'res_id': v.id})
-        rows.append({'line_type': 'total', 'name': _('Разом'),
-                     'ref3': _('авто: %d') % len(items)})
+        rows.append({'line_type': 'total', 'name': _('Total'),
+                     'ref3': _('vehicles: %d') % len(items)})
         return rows
 
     def _gen_inactive(self):
@@ -393,11 +393,11 @@ class AdealerReportWizard(models.TransientModel):
         rows = []
         for p, (dt, cnt, tot) in items:
             rows.append({'line_type': 'row', 'date': dt, 'name': p.display_name,
-                         'ref3': _('%d дн. тому') % (today - dt.date()).days,
+                         'ref3': _('%d days ago') % (today - dt.date()).days,
                          'qty': cnt, 'amount': tot,
                          'res_model': 'res.partner', 'res_id': p.id})
-        rows.append({'line_type': 'total', 'name': _('Разом'),
-                     'ref3': _('клієнтів: %d') % len(items),
+        rows.append({'line_type': 'total', 'name': _('Total'),
+                     'ref3': _('customers: %d') % len(items),
                      'amount': sum(r[1][2] for r in items)})
         return rows
 
@@ -416,7 +416,7 @@ class AdealerReportWizard(models.TransientModel):
                          'ref3': '%.1f%%' % (amt / total * 100.0),
                          'state': klass,
                          'res_model': res_model, 'res_id': rec.id})
-        rows.append({'line_type': 'total', 'name': _('Разом'),
+        rows.append({'line_type': 'total', 'name': _('Total'),
                      'amount': sum(a for _q, a in agg.values()),
                      'ref3': 'A:%d B:%d C:%d' % (counts['A'], counts['B'], counts['C'])})
         return rows
@@ -440,7 +440,7 @@ class AdealerReportWizard(models.TransientModel):
         return self._abc_rows({k: tuple(v) for k, v in agg.items()}, 'res.partner')
 
     def _gen_turnover(self):
-        """Продано за період vs поточний залишок; днів запасу."""
+        """Sold for the period vs поточний залишок; днів запасу."""
         period_days = max((self.date_to - self.date_from).days, 1)
         sold = {}
         for ml in self._sale_move_lines():
@@ -459,31 +459,31 @@ class AdealerReportWizard(models.TransientModel):
             rows.append({'line_type': 'row', 'name': product.display_name,
                          'ref2': product.default_code or '',
                          'qty': q,
-                         'ref3': _('залишок %(oh).0f шт · %(days)d дн.') % {'oh': oh, 'days': days},
+                         'ref3': _('on hand %(oh).0f pcs · %(days)d d.') % {'oh': oh, 'days': days},
                          'res_model': 'product.product', 'res_id': product.id})
             tsold += q
-        rows.append({'line_type': 'total', 'name': _('Разом'), 'qty': tsold})
+        rows.append({'line_type': 'total', 'name': _('Total'), 'qty': tsold})
         return rows
 
 
 class AdealerReportWizardLine(models.TransientModel):
     _name = 'adealer.report.wizard.line'
-    _description = 'Рядок готового звіту'
+    _description = 'Ready report line'
     _order = 'sequence, id'
 
     wizard_id = fields.Many2one('adealer.report.wizard', required=True, ondelete='cascade')
     sequence = fields.Integer()
-    line_type = fields.Selection([('row', 'Рядок'), ('total', 'Разом')])
-    date = fields.Date('Дата')
-    name = fields.Char('Назва')
+    line_type = fields.Selection([('row', 'Line'), ('total', 'Total')])
+    date = fields.Date('Date')
+    name = fields.Char('Name')
     ref2 = fields.Char()
     ref3 = fields.Char()
-    state = fields.Char('Статус')
-    qty = fields.Float('К-сть', digits=(16, 2))
+    state = fields.Char('Status')
+    qty = fields.Float('Qty', digits=(16, 2))
     currency_id = fields.Many2one('res.currency')
-    amount = fields.Monetary('Сума', currency_field='currency_id')
-    amount2 = fields.Monetary('Сума 2', currency_field='currency_id')
-    amount3 = fields.Monetary('Сума 3', currency_field='currency_id')
+    amount = fields.Monetary('Amount', currency_field='currency_id')
+    amount2 = fields.Monetary('Amount 2', currency_field='currency_id')
+    amount3 = fields.Monetary('Amount 3', currency_field='currency_id')
     res_model = fields.Char()
     res_id = fields.Integer()
 

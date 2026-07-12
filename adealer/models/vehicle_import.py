@@ -39,7 +39,7 @@ def parse_1c_date(val):
 
 class FleetVehicleImport(models.TransientModel):
     _name = 'fleet.vehicle.import'
-    _description = 'Імпорт автомобілів з Excel'
+    _description = 'Import vehicles from Excel'
 
     @api.model
     def import_vehicles_from_excel(self):
@@ -48,7 +48,7 @@ class FleetVehicleImport(models.TransientModel):
         try:
             df = pd.read_excel(file_path)
         except Exception as e:
-            raise UserError(_('Не вдалося відкрити файл: %s') % e)
+            raise UserError(_('Could not open the file: %s') % e)
 
         for idx, row in df.iterrows():
             # Обробка transmission

@@ -11,7 +11,7 @@ class FleetVehicle(models.Model):
     partner_id = fields.Many2one('res.partner', string='Partner')
     volume = fields.Integer(string='Volume')
     photo = fields.Image(string='Vehicle Photo', max_width=512, max_height=512,
-                         help='Власне фото авто (необов’язково). Якщо порожнє — показується лого бренда.')
+                         help="The vehicle's own photo (optional). If empty, the brand logo is shown.")
     brand_logo = fields.Image(related='model_id.brand_id.image_128', string='Brand Logo', readonly=True)
     display_logo = fields.Image(string='Logo', compute='_compute_display_logo')
     drive_type = fields.Selection([('4WD', '4WD'), ('AWD', 'AWD'), ('back', 'Back'), ('front', 'Front')], 'Drive Type', help='Drive type Used by the vehicle')
@@ -50,7 +50,7 @@ class FleetVehicle(models.Model):
 
 
 class FleetVehicleModelBrand(models.Model):
-    """Марка авто + вбудована база логотипів.
+    """Brand авто + вбудована база логотипів.
 
     Модуль постачається з набором фірмових логотипів популярних марок
     (static/img/brand_<назва>-image.png). При створенні марки її логотип

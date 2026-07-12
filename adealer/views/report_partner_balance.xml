@@ -3,22 +3,22 @@
         <field name="name">partner.balance.wizard.form</field>
         <field name="model">partner.balance.wizard</field>
         <field name="arch" type="xml">
-            <form string="Взаєморозрахунки з контрагентами" class="adealer-report">
+            <form string="Receivables with counterparties" class="adealer-report">
                 <sheet>
-                    <h2 class="adealer-report__title">Взаєморозрахунки з контрагентами</h2>
+                    <h2 class="adealer-report__title">Receivables with counterparties</h2>
                     <div class="adealer-report__params">
                         <group col="4">
-                            <label for="date_from" string="Період з"/>
+                            <label for="date_from" string="Period from"/>
                             <div class="o_row adealer-period">
                                 <field name="date_from" nolabel="1"/>
-                                <span class="mx-1">по</span>
+                                <span class="mx-1">to</span>
                                 <field name="date_to" nolabel="1"/>
                             </div>
                             <field name="partner_id" options="{'no_create': True}"
-                                   placeholder="Всі контрагенти"/>
+                                   placeholder="All counterparties"/>
                             <field name="currency_id" invisible="1"/>
                         </group>
-                        <button name="action_generate" type="object" string="Сформувати"
+                        <button name="action_generate" type="object" string="Generate"
                                 class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
@@ -29,15 +29,15 @@
                             <field name="line_type" column_invisible="1"/>
                             <field name="currency_id" column_invisible="1"/>
                             <field name="date" column_invisible="not parent.partner_id"/>
-                            <field name="doc_name" string="Документ / Контрагент"/>
+                            <field name="doc_name" string="Document / Counterparty"/>
                             <field name="opening" column_invisible="parent.partner_id"/>
-                            <field name="debit" sum="Разом"/>
-                            <field name="credit" sum="Разом"/>
+                            <field name="debit" sum="Total"/>
+                            <field name="credit" sum="Total"/>
                             <field name="balance"/>
                             <button name="action_open_move" type="object" icon="fa-external-link"
-                                    title="Відкрити документ" column_invisible="not parent.partner_id"/>
+                                    title="Open document" column_invisible="not parent.partner_id"/>
                             <button name="action_open_partner" type="object" icon="fa-search-plus"
-                                    title="Деталізація по контрагенту" column_invisible="parent.partner_id"/>
+                                    title="Details by counterparty" column_invisible="parent.partner_id"/>
                         </list>
                     </field>
                 </sheet>
@@ -46,7 +46,7 @@
     </record>
 
     <record id="action_partner_balance_wizard" model="ir.actions.act_window">
-        <field name="name">Взаєморозрахунки з контрагентами</field>
+        <field name="name">Receivables with counterparties</field>
         <field name="res_model">partner.balance.wizard</field>
         <field name="view_mode">form</field>
         <field name="target">current</field>

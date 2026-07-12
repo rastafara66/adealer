@@ -1,29 +1,29 @@
 <odoo>
     <!-- ========== ГОТОВІ ЗВІТИ (1С-стиль): 1 форма на звіт ========== -->
 
-    <!-- Продажі -->
+    <!-- Sales -->
     <record id="view_report_ready_sales" model="ir.ui.view">
         <field name="name">adealer.report.ready.sales</field>
         <field name="model">adealer.report.wizard</field>
         <field name="priority">10</field>
         <field name="arch" type="xml">
-            <form string="Продажі" class="adealer-report">
+            <form string="Sales" class="adealer-report">
                 <sheet>
-                    <h2 class="adealer-report__title">Продажі</h2>
+                    <h2 class="adealer-report__title">Sales</h2>
                     <div class="adealer-report__params">
                         <group col="4">
                             <field name="report_type" invisible="1"/>
                             <field name="currency_id" invisible="1"/>
-                            <label for="date_from" string="Період з"/>
+                            <label for="date_from" string="Period from"/>
                             <div class="o_row adealer-period">
                                 <field name="date_from" nolabel="1"/>
-                                <span class="mx-1">по</span>
+                                <span class="mx-1">to</span>
                                 <field name="date_to" nolabel="1"/>
                             </div>
-                            <field name="partner_id" string="Клієнт" options="{'no_create': True}" placeholder="Всі"/>
-                            <field name="product_id" options="{'no_create': True}" placeholder="Всі"/>
+                            <field name="partner_id" string="Customer" options="{'no_create': True}" placeholder="All"/>
+                            <field name="product_id" options="{'no_create': True}" placeholder="All"/>
                         </group>
-                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                        <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
                         <list create="0" delete="0" edit="0" limit="200"
@@ -32,13 +32,13 @@
                             <field name="currency_id" column_invisible="1"/>
                             <field name="res_id" column_invisible="1"/>
                             <field name="date"/>
-                            <field name="name" string="Документ"/>
-                            <field name="ref2" string="Клієнт"/>
-                            <field name="ref3" string="Товар"/>
-                            <field name="qty" sum="Разом"/>
-                            <field name="amount" string="Сума" sum="Разом"/>
+                            <field name="name" string="Document"/>
+                            <field name="ref2" string="Customer"/>
+                            <field name="ref3" string="Product"/>
+                            <field name="qty" sum="Total"/>
+                            <field name="amount" string="Amount" sum="Total"/>
                             <button name="action_open" type="object" icon="fa-external-link"
-                                    title="Відкрити документ" invisible="not res_id"/>
+                                    title="Open document" invisible="not res_id"/>
                         </list>
                     </field>
                 </sheet>
@@ -46,28 +46,28 @@
         </field>
     </record>
 
-    <!-- Валовий прибуток -->
+    <!-- Gross profit -->
     <record id="view_report_ready_gross" model="ir.ui.view">
         <field name="name">adealer.report.ready.gross</field>
         <field name="model">adealer.report.wizard</field>
         <field name="priority">11</field>
         <field name="arch" type="xml">
-            <form string="Валовий прибуток" class="adealer-report">
+            <form string="Gross profit" class="adealer-report">
                 <sheet>
-                    <h2 class="adealer-report__title">Валовий прибуток</h2>
+                    <h2 class="adealer-report__title">Gross profit</h2>
                     <div class="adealer-report__params">
                         <group col="4">
                             <field name="report_type" invisible="1"/>
                             <field name="currency_id" invisible="1"/>
-                            <label for="date_from" string="Період з"/>
+                            <label for="date_from" string="Period from"/>
                             <div class="o_row adealer-period">
                                 <field name="date_from" nolabel="1"/>
-                                <span class="mx-1">по</span>
+                                <span class="mx-1">to</span>
                                 <field name="date_to" nolabel="1"/>
                             </div>
-                            <field name="partner_id" string="Клієнт" options="{'no_create': True}" placeholder="Всі"/>
+                            <field name="partner_id" string="Customer" options="{'no_create': True}" placeholder="All"/>
                         </group>
-                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                        <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
                         <list create="0" delete="0" edit="0" limit="200"
@@ -76,13 +76,13 @@
                             <field name="line_type" column_invisible="1"/>
                             <field name="currency_id" column_invisible="1"/>
                             <field name="res_id" column_invisible="1"/>
-                            <field name="name" string="Товар"/>
-                            <field name="qty" sum="Разом"/>
-                            <field name="amount" string="Виручка" sum="Разом"/>
-                            <field name="amount2" string="Собівартість" sum="Разом"/>
-                            <field name="amount3" string="Прибуток" sum="Разом"/>
+                            <field name="name" string="Product"/>
+                            <field name="qty" sum="Total"/>
+                            <field name="amount" string="Revenue" sum="Total"/>
+                            <field name="amount2" string="Cost" sum="Total"/>
+                            <field name="amount3" string="Profit" sum="Total"/>
                             <button name="action_open" type="object" icon="fa-external-link"
-                                    title="Відкрити товар" invisible="not res_id"/>
+                                    title="Open product" invisible="not res_id"/>
                         </list>
                     </field>
                 </sheet>
@@ -90,28 +90,28 @@
         </field>
     </record>
 
-    <!-- Закупівлі -->
+    <!-- Purchases -->
     <record id="view_report_ready_purchases" model="ir.ui.view">
         <field name="name">adealer.report.ready.purchases</field>
         <field name="model">adealer.report.wizard</field>
         <field name="priority">12</field>
         <field name="arch" type="xml">
-            <form string="Закупівлі" class="adealer-report">
+            <form string="Purchases" class="adealer-report">
                 <sheet>
-                    <h2 class="adealer-report__title">Закупівлі</h2>
+                    <h2 class="adealer-report__title">Purchases</h2>
                     <div class="adealer-report__params">
                         <group col="4">
                             <field name="report_type" invisible="1"/>
                             <field name="currency_id" invisible="1"/>
-                            <label for="date_from" string="Період з"/>
+                            <label for="date_from" string="Period from"/>
                             <div class="o_row adealer-period">
                                 <field name="date_from" nolabel="1"/>
-                                <span class="mx-1">по</span>
+                                <span class="mx-1">to</span>
                                 <field name="date_to" nolabel="1"/>
                             </div>
-                            <field name="partner_id" string="Постачальник" options="{'no_create': True}" placeholder="Всі"/>
+                            <field name="partner_id" string="Supplier" options="{'no_create': True}" placeholder="All"/>
                         </group>
-                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                        <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
                         <list create="0" delete="0" edit="0" limit="200"
@@ -120,12 +120,12 @@
                             <field name="currency_id" column_invisible="1"/>
                             <field name="res_id" column_invisible="1"/>
                             <field name="date"/>
-                            <field name="name" string="Замовлення"/>
-                            <field name="ref2" string="Постачальник"/>
-                            <field name="ref3" string="Реф. 1С"/>
-                            <field name="amount" string="Сума" sum="Разом"/>
+                            <field name="name" string="Order"/>
+                            <field name="ref2" string="Supplier"/>
+                            <field name="ref3" string="1C ref."/>
+                            <field name="amount" string="Amount" sum="Total"/>
                             <button name="action_open" type="object" icon="fa-external-link"
-                                    title="Відкрити" invisible="not res_id"/>
+                                    title="Open" invisible="not res_id"/>
                         </list>
                     </field>
                 </sheet>
@@ -133,22 +133,22 @@
         </field>
     </record>
 
-    <!-- Товари на складах -->
+    <!-- Stock on hand -->
     <record id="view_report_ready_stock" model="ir.ui.view">
         <field name="name">adealer.report.ready.stock</field>
         <field name="model">adealer.report.wizard</field>
         <field name="priority">13</field>
         <field name="arch" type="xml">
-            <form string="Товари на складах" class="adealer-report">
+            <form string="Stock on hand" class="adealer-report">
                 <sheet>
-                    <h2 class="adealer-report__title">Товари на складах</h2>
+                    <h2 class="adealer-report__title">Stock on hand</h2>
                     <div class="adealer-report__params">
                         <group col="4">
                             <field name="report_type" invisible="1"/>
                             <field name="currency_id" invisible="1"/>
-                            <field name="product_id" options="{'no_create': True}" placeholder="Всі"/>
+                            <field name="product_id" options="{'no_create': True}" placeholder="All"/>
                         </group>
-                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                        <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
                         <list create="0" delete="0" edit="0" limit="200"
@@ -156,12 +156,12 @@
                             <field name="line_type" column_invisible="1"/>
                             <field name="currency_id" column_invisible="1"/>
                             <field name="res_id" column_invisible="1"/>
-                            <field name="name" string="Товар"/>
-                            <field name="ref2" string="Код"/>
-                            <field name="qty" string="Залишок" sum="Разом"/>
-                            <field name="amount" string="Вартість (с/в)" sum="Разом"/>
+                            <field name="name" string="Product"/>
+                            <field name="ref2" string="Code"/>
+                            <field name="qty" string="On hand" sum="Total"/>
+                            <field name="amount" string="Cost" sum="Total"/>
                             <button name="action_open" type="object" icon="fa-external-link"
-                                    title="Відкрити товар" invisible="not res_id"/>
+                                    title="Open product" invisible="not res_id"/>
                         </list>
                     </field>
                 </sheet>
@@ -169,29 +169,29 @@
         </field>
     </record>
 
-    <!-- Історія ремонтів -->
+    <!-- Repair history -->
     <record id="view_report_ready_repairs" model="ir.ui.view">
         <field name="name">adealer.report.ready.repairs</field>
         <field name="model">adealer.report.wizard</field>
         <field name="priority">14</field>
         <field name="arch" type="xml">
-            <form string="Історія ремонтів" class="adealer-report">
+            <form string="Repair history" class="adealer-report">
                 <sheet>
-                    <h2 class="adealer-report__title">Історія ремонтів</h2>
+                    <h2 class="adealer-report__title">Repair history</h2>
                     <div class="adealer-report__params">
                         <group col="4">
                             <field name="report_type" invisible="1"/>
                             <field name="currency_id" invisible="1"/>
-                            <label for="date_from" string="Період з"/>
+                            <label for="date_from" string="Period from"/>
                             <div class="o_row adealer-period">
                                 <field name="date_from" nolabel="1"/>
-                                <span class="mx-1">по</span>
+                                <span class="mx-1">to</span>
                                 <field name="date_to" nolabel="1"/>
                             </div>
-                            <field name="partner_id" string="Клієнт" options="{'no_create': True}" placeholder="Всі"/>
-                            <field name="vehicle_id" options="{'no_create': True}" placeholder="Всі"/>
+                            <field name="partner_id" string="Customer" options="{'no_create': True}" placeholder="All"/>
+                            <field name="vehicle_id" options="{'no_create': True}" placeholder="All"/>
                         </group>
-                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                        <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
                         <list create="0" delete="0" edit="0" limit="200"
@@ -200,13 +200,13 @@
                             <field name="currency_id" column_invisible="1"/>
                             <field name="res_id" column_invisible="1"/>
                             <field name="date"/>
-                            <field name="name" string="Наряд"/>
-                            <field name="ref2" string="Клієнт"/>
-                            <field name="ref3" string="Автомобіль"/>
-                            <field name="amount" string="Сума" sum="Разом"/>
-                            <field name="state" string="Статус"/>
+                            <field name="name" string="Order"/>
+                            <field name="ref2" string="Customer"/>
+                            <field name="ref3" string="Vehicle"/>
+                            <field name="amount" string="Amount" sum="Total"/>
+                            <field name="state" string="Status"/>
                             <button name="action_open" type="object" icon="fa-external-link"
-                                    title="Відкрити наряд" invisible="not res_id"/>
+                                    title="Open order" invisible="not res_id"/>
                         </list>
                     </field>
                 </sheet>
@@ -214,36 +214,36 @@
         </field>
     </record>
 
-    <!-- Виробіток приймальників -->
+    <!-- Advisor output -->
     <record id="view_report_ready_advisors" model="ir.ui.view">
         <field name="name">adealer.report.ready.advisors</field>
         <field name="model">adealer.report.wizard</field>
         <field name="priority">15</field>
         <field name="arch" type="xml">
-            <form string="Виробіток приймальників" class="adealer-report">
+            <form string="Advisor output" class="adealer-report">
                 <sheet>
-                    <h2 class="adealer-report__title">Виробіток приймальників</h2>
+                    <h2 class="adealer-report__title">Advisor output</h2>
                     <div class="adealer-report__params">
                         <group col="4">
                             <field name="report_type" invisible="1"/>
                             <field name="currency_id" invisible="1"/>
-                            <label for="date_from" string="Період з"/>
+                            <label for="date_from" string="Period from"/>
                             <div class="o_row adealer-period">
                                 <field name="date_from" nolabel="1"/>
-                                <span class="mx-1">по</span>
+                                <span class="mx-1">to</span>
                                 <field name="date_to" nolabel="1"/>
                             </div>
                         </group>
-                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                        <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
                         <list create="0" delete="0" edit="0" limit="200"
                               decoration-bf="line_type == 'total'">
                             <field name="line_type" column_invisible="1"/>
                             <field name="currency_id" column_invisible="1"/>
-                            <field name="name" string="Приймальник"/>
-                            <field name="qty" string="К-сть нарядів" sum="Разом"/>
-                            <field name="amount" string="Сума" sum="Разом"/>
+                            <field name="name" string="Advisor"/>
+                            <field name="qty" string="Orders count" sum="Total"/>
+                            <field name="amount" string="Amount" sum="Total"/>
                         </list>
                     </field>
                 </sheet>
@@ -251,29 +251,29 @@
         </field>
     </record>
 
-    <!-- Аналіз замовлень покупців -->
+    <!-- Customer order analysis -->
     <record id="view_report_ready_orders" model="ir.ui.view">
         <field name="name">adealer.report.ready.orders</field>
         <field name="model">adealer.report.wizard</field>
         <field name="priority">16</field>
         <field name="arch" type="xml">
-            <form string="Аналіз замовлень покупців" class="adealer-report">
+            <form string="Customer order analysis" class="adealer-report">
                 <sheet>
-                    <h2 class="adealer-report__title">Аналіз замовлень покупців</h2>
+                    <h2 class="adealer-report__title">Customer order analysis</h2>
                     <div class="adealer-report__params">
                         <group col="4">
                             <field name="report_type" invisible="1"/>
                             <field name="currency_id" invisible="1"/>
-                            <label for="date_from" string="Період з"/>
+                            <label for="date_from" string="Period from"/>
                             <div class="o_row adealer-period">
                                 <field name="date_from" nolabel="1"/>
-                                <span class="mx-1">по</span>
+                                <span class="mx-1">to</span>
                                 <field name="date_to" nolabel="1"/>
                             </div>
-                            <field name="partner_id" string="Клієнт" options="{'no_create': True}" placeholder="Всі"/>
-                            <field name="vehicle_id" options="{'no_create': True}" placeholder="Всі"/>
+                            <field name="partner_id" string="Customer" options="{'no_create': True}" placeholder="All"/>
+                            <field name="vehicle_id" options="{'no_create': True}" placeholder="All"/>
                         </group>
-                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                        <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
                         <list create="0" delete="0" edit="0" limit="200"
@@ -282,13 +282,13 @@
                             <field name="currency_id" column_invisible="1"/>
                             <field name="res_id" column_invisible="1"/>
                             <field name="date"/>
-                            <field name="name" string="Замовлення"/>
-                            <field name="ref2" string="Клієнт"/>
-                            <field name="ref3" string="Автомобіль"/>
-                            <field name="amount" string="Сума" sum="Разом"/>
-                            <field name="state" string="Статус"/>
+                            <field name="name" string="Order"/>
+                            <field name="ref2" string="Customer"/>
+                            <field name="ref3" string="Vehicle"/>
+                            <field name="amount" string="Amount" sum="Total"/>
+                            <field name="state" string="Status"/>
                             <button name="action_open" type="object" icon="fa-external-link"
-                                    title="Відкрити замовлення" invisible="not res_id"/>
+                                    title="Open order" invisible="not res_id"/>
                         </list>
                     </field>
                 </sheet>
@@ -296,35 +296,35 @@
         </field>
     </record>
 
-    <!-- Нагадування про ТО -->
+    <!-- Maintenance reminders -->
     <record id="view_report_ready_to" model="ir.ui.view">
         <field name="name">adealer.report.ready.to</field>
         <field name="model">adealer.report.wizard</field>
         <field name="priority">17</field>
         <field name="arch" type="xml">
-            <form string="Нагадування про ТО" class="adealer-report">
+            <form string="Maintenance reminders" class="adealer-report">
                 <sheet>
-                    <h2 class="adealer-report__title">Нагадування про ТО</h2>
+                    <h2 class="adealer-report__title">Maintenance reminders</h2>
                     <div class="adealer-report__params">
                         <group col="4">
                             <field name="report_type" invisible="1"/>
                             <field name="currency_id" invisible="1"/>
-                            <field name="date_from" string="Не було ТО з"/>
+                            <field name="date_from" string="No service since"/>
                         </group>
-                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                        <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
                         <list create="0" delete="0" edit="0" limit="200" decoration-bf="line_type == 'total'">
                             <field name="line_type" column_invisible="1"/>
                             <field name="currency_id" column_invisible="1"/>
                             <field name="res_id" column_invisible="1"/>
-                            <field name="date" string="Останній візит"/>
-                            <field name="name" string="Автомобіль"/>
-                            <field name="ref2" string="Клієнт"/>
-                            <field name="ref3" string="Давність"/>
-                            <field name="qty" string="Пробіг"/>
+                            <field name="date" string="Last visit"/>
+                            <field name="name" string="Vehicle"/>
+                            <field name="ref2" string="Customer"/>
+                            <field name="ref3" string="Age"/>
+                            <field name="qty" string="Mileage"/>
                             <button name="action_open" type="object" icon="fa-external-link"
-                                    title="Відкрити авто" invisible="not res_id"/>
+                                    title="Open vehicle" invisible="not res_id"/>
                         </list>
                     </field>
                 </sheet>
@@ -332,35 +332,35 @@
         </field>
     </record>
 
-    <!-- Не заїжджавші клієнти -->
+    <!-- Inactive customers -->
     <record id="view_report_ready_inactive" model="ir.ui.view">
         <field name="name">adealer.report.ready.inactive</field>
         <field name="model">adealer.report.wizard</field>
         <field name="priority">18</field>
         <field name="arch" type="xml">
-            <form string="Не заїжджавші клієнти" class="adealer-report">
+            <form string="Inactive customers" class="adealer-report">
                 <sheet>
-                    <h2 class="adealer-report__title">Не заїжджавші клієнти</h2>
+                    <h2 class="adealer-report__title">Inactive customers</h2>
                     <div class="adealer-report__params">
                         <group col="4">
                             <field name="report_type" invisible="1"/>
                             <field name="currency_id" invisible="1"/>
-                            <field name="date_from" string="Не заїжджали з"/>
+                            <field name="date_from" string="No visits since"/>
                         </group>
-                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                        <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
                         <list create="0" delete="0" edit="0" limit="200" decoration-bf="line_type == 'total'">
                             <field name="line_type" column_invisible="1"/>
                             <field name="currency_id" column_invisible="1"/>
                             <field name="res_id" column_invisible="1"/>
-                            <field name="date" string="Останній візит"/>
-                            <field name="name" string="Клієнт"/>
-                            <field name="ref3" string="Давність"/>
-                            <field name="qty" string="Візитів"/>
-                            <field name="amount" string="Сума за весь час"/>
+                            <field name="date" string="Last visit"/>
+                            <field name="name" string="Customer"/>
+                            <field name="ref3" string="Age"/>
+                            <field name="qty" string="Visits"/>
+                            <field name="amount" string="All-time amount"/>
                             <button name="action_open" type="object" icon="fa-external-link"
-                                    title="Відкрити клієнта" invisible="not res_id"/>
+                                    title="Open customer" invisible="not res_id"/>
                         </list>
                     </field>
                 </sheet>
@@ -368,28 +368,28 @@
         </field>
     </record>
 
-    <!-- ABC-аналіз продажів -->
+    <!-- ABC analysis of sales -->
     <record id="view_report_ready_abc_sales" model="ir.ui.view">
         <field name="name">adealer.report.ready.abc.sales</field>
         <field name="model">adealer.report.wizard</field>
         <field name="priority">19</field>
         <field name="arch" type="xml">
-            <form string="ABC-аналіз продажів" class="adealer-report">
+            <form string="ABC analysis of sales" class="adealer-report">
                 <sheet>
-                    <h2 class="adealer-report__title">ABC-аналіз продажів</h2>
+                    <h2 class="adealer-report__title">ABC analysis of sales</h2>
                     <div class="adealer-report__params">
                         <group col="4">
                             <field name="report_type" invisible="1"/>
                             <field name="currency_id" invisible="1"/>
-                            <label for="date_from" string="Період з"/>
+                            <label for="date_from" string="Period from"/>
                             <div class="o_row adealer-period">
                                 <field name="date_from" nolabel="1"/>
-                                <span class="mx-1">по</span>
+                                <span class="mx-1">to</span>
                                 <field name="date_to" nolabel="1"/>
                             </div>
-                            <field name="partner_id" string="Клієнт" options="{'no_create': True}" placeholder="Всі"/>
+                            <field name="partner_id" string="Customer" options="{'no_create': True}" placeholder="All"/>
                         </group>
-                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                        <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
                         <list create="0" delete="0" edit="0" limit="200"
@@ -400,13 +400,13 @@
                             <field name="line_type" column_invisible="1"/>
                             <field name="currency_id" column_invisible="1"/>
                             <field name="res_id" column_invisible="1"/>
-                            <field name="name" string="Товар"/>
-                            <field name="qty" string="К-сть"/>
-                            <field name="amount" string="Виручка" sum="Разом"/>
-                            <field name="ref3" string="Частка"/>
-                            <field name="state" string="Клас"/>
+                            <field name="name" string="Product"/>
+                            <field name="qty" string="Qty"/>
+                            <field name="amount" string="Revenue" sum="Total"/>
+                            <field name="ref3" string="Share"/>
+                            <field name="state" string="Class"/>
                             <button name="action_open" type="object" icon="fa-external-link"
-                                    title="Відкрити товар" invisible="not res_id"/>
+                                    title="Open product" invisible="not res_id"/>
                         </list>
                     </field>
                 </sheet>
@@ -414,27 +414,27 @@
         </field>
     </record>
 
-    <!-- ABC-аналіз покупців -->
+    <!-- ABC analysis of customers -->
     <record id="view_report_ready_abc_customers" model="ir.ui.view">
         <field name="name">adealer.report.ready.abc.customers</field>
         <field name="model">adealer.report.wizard</field>
         <field name="priority">20</field>
         <field name="arch" type="xml">
-            <form string="ABC-аналіз покупців" class="adealer-report">
+            <form string="ABC analysis of customers" class="adealer-report">
                 <sheet>
-                    <h2 class="adealer-report__title">ABC-аналіз покупців</h2>
+                    <h2 class="adealer-report__title">ABC analysis of customers</h2>
                     <div class="adealer-report__params">
                         <group col="4">
                             <field name="report_type" invisible="1"/>
                             <field name="currency_id" invisible="1"/>
-                            <label for="date_from" string="Період з"/>
+                            <label for="date_from" string="Period from"/>
                             <div class="o_row adealer-period">
                                 <field name="date_from" nolabel="1"/>
-                                <span class="mx-1">по</span>
+                                <span class="mx-1">to</span>
                                 <field name="date_to" nolabel="1"/>
                             </div>
                         </group>
-                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                        <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
                         <list create="0" delete="0" edit="0" limit="200"
@@ -445,12 +445,12 @@
                             <field name="line_type" column_invisible="1"/>
                             <field name="currency_id" column_invisible="1"/>
                             <field name="res_id" column_invisible="1"/>
-                            <field name="name" string="Клієнт"/>
-                            <field name="amount" string="Виручка" sum="Разом"/>
-                            <field name="ref3" string="Частка"/>
-                            <field name="state" string="Клас"/>
+                            <field name="name" string="Customer"/>
+                            <field name="amount" string="Revenue" sum="Total"/>
+                            <field name="ref3" string="Share"/>
+                            <field name="state" string="Class"/>
                             <button name="action_open" type="object" icon="fa-external-link"
-                                    title="Відкрити клієнта" invisible="not res_id"/>
+                                    title="Open customer" invisible="not res_id"/>
                         </list>
                     </field>
                 </sheet>
@@ -458,39 +458,39 @@
         </field>
     </record>
 
-    <!-- Оборотність товарів -->
+    <!-- Stock turnover -->
     <record id="view_report_ready_turnover" model="ir.ui.view">
         <field name="name">adealer.report.ready.turnover</field>
         <field name="model">adealer.report.wizard</field>
         <field name="priority">21</field>
         <field name="arch" type="xml">
-            <form string="Оборотність товарів" class="adealer-report">
+            <form string="Stock turnover" class="adealer-report">
                 <sheet>
-                    <h2 class="adealer-report__title">Оборотність товарів</h2>
+                    <h2 class="adealer-report__title">Stock turnover</h2>
                     <div class="adealer-report__params">
                         <group col="4">
                             <field name="report_type" invisible="1"/>
                             <field name="currency_id" invisible="1"/>
-                            <label for="date_from" string="Період з"/>
+                            <label for="date_from" string="Period from"/>
                             <div class="o_row adealer-period">
                                 <field name="date_from" nolabel="1"/>
-                                <span class="mx-1">по</span>
+                                <span class="mx-1">to</span>
                                 <field name="date_to" nolabel="1"/>
                             </div>
                         </group>
-                        <button name="action_generate" type="object" string="Сформувати" class="btn-primary mb-2"/>
+                        <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
                         <list create="0" delete="0" edit="0" limit="200" decoration-bf="line_type == 'total'">
                             <field name="line_type" column_invisible="1"/>
                             <field name="currency_id" column_invisible="1"/>
                             <field name="res_id" column_invisible="1"/>
-                            <field name="name" string="Товар"/>
-                            <field name="ref2" string="Код"/>
-                            <field name="qty" string="Продано за період" sum="Разом"/>
-                            <field name="ref3" string="Залишок · днів запасу"/>
+                            <field name="name" string="Product"/>
+                            <field name="ref2" string="Code"/>
+                            <field name="qty" string="Sold for the period" sum="Total"/>
+                            <field name="ref3" string="On hand · days of stock"/>
                             <button name="action_open" type="object" icon="fa-external-link"
-                                    title="Відкрити товар" invisible="not res_id"/>
+                                    title="Open product" invisible="not res_id"/>
                         </list>
                     </field>
                 </sheet>
@@ -500,7 +500,7 @@
 
     <!-- ========== Дії ========== -->
     <record id="action_report_ready_sales" model="ir.actions.act_window">
-        <field name="name">Продажі</field>
+        <field name="name">Sales</field>
         <field name="res_model">adealer.report.wizard</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_report_ready_sales"/>
@@ -508,7 +508,7 @@
         <field name="context">{'default_report_type': 'sales'}</field>
     </record>
     <record id="action_report_ready_gross" model="ir.actions.act_window">
-        <field name="name">Валовий прибуток</field>
+        <field name="name">Gross profit</field>
         <field name="res_model">adealer.report.wizard</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_report_ready_gross"/>
@@ -516,7 +516,7 @@
         <field name="context">{'default_report_type': 'gross'}</field>
     </record>
     <record id="action_report_ready_purchases" model="ir.actions.act_window">
-        <field name="name">Закупівлі</field>
+        <field name="name">Purchases</field>
         <field name="res_model">adealer.report.wizard</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_report_ready_purchases"/>
@@ -524,7 +524,7 @@
         <field name="context">{'default_report_type': 'purchases'}</field>
     </record>
     <record id="action_report_ready_stock" model="ir.actions.act_window">
-        <field name="name">Товари на складах</field>
+        <field name="name">Stock on hand</field>
         <field name="res_model">adealer.report.wizard</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_report_ready_stock"/>
@@ -532,7 +532,7 @@
         <field name="context">{'default_report_type': 'stock'}</field>
     </record>
     <record id="action_report_ready_repairs" model="ir.actions.act_window">
-        <field name="name">Історія ремонтів</field>
+        <field name="name">Repair history</field>
         <field name="res_model">adealer.report.wizard</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_report_ready_repairs"/>
@@ -540,7 +540,7 @@
         <field name="context">{'default_report_type': 'repairs'}</field>
     </record>
     <record id="action_report_ready_advisors" model="ir.actions.act_window">
-        <field name="name">Виробіток приймальників</field>
+        <field name="name">Advisor output</field>
         <field name="res_model">adealer.report.wizard</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_report_ready_advisors"/>
@@ -548,7 +548,7 @@
         <field name="context">{'default_report_type': 'advisors'}</field>
     </record>
     <record id="action_report_ready_orders" model="ir.actions.act_window">
-        <field name="name">Аналіз замовлень покупців</field>
+        <field name="name">Customer order analysis</field>
         <field name="res_model">adealer.report.wizard</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_report_ready_orders"/>
@@ -556,7 +556,7 @@
         <field name="context">{'default_report_type': 'orders'}</field>
     </record>
     <record id="action_report_ready_to" model="ir.actions.act_window">
-        <field name="name">Нагадування про ТО</field>
+        <field name="name">Maintenance reminders</field>
         <field name="res_model">adealer.report.wizard</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_report_ready_to"/>
@@ -564,7 +564,7 @@
         <field name="context">{'default_report_type': 'to_reminder'}</field>
     </record>
     <record id="action_report_ready_inactive" model="ir.actions.act_window">
-        <field name="name">Не заїжджавші клієнти</field>
+        <field name="name">Inactive customers</field>
         <field name="res_model">adealer.report.wizard</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_report_ready_inactive"/>
@@ -572,7 +572,7 @@
         <field name="context">{'default_report_type': 'inactive'}</field>
     </record>
     <record id="action_report_ready_abc_sales" model="ir.actions.act_window">
-        <field name="name">ABC-аналіз продажів</field>
+        <field name="name">ABC analysis of sales</field>
         <field name="res_model">adealer.report.wizard</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_report_ready_abc_sales"/>
@@ -580,7 +580,7 @@
         <field name="context">{'default_report_type': 'abc_sales'}</field>
     </record>
     <record id="action_report_ready_abc_customers" model="ir.actions.act_window">
-        <field name="name">ABC-аналіз покупців</field>
+        <field name="name">ABC analysis of customers</field>
         <field name="res_model">adealer.report.wizard</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_report_ready_abc_customers"/>
@@ -588,7 +588,7 @@
         <field name="context">{'default_report_type': 'abc_customers'}</field>
     </record>
     <record id="action_report_ready_turnover" model="ir.actions.act_window">
-        <field name="name">Оборотність товарів</field>
+        <field name="name">Stock turnover</field>
         <field name="res_model">adealer.report.wizard</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_report_ready_turnover"/>

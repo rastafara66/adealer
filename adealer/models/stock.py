@@ -38,9 +38,9 @@ class StockPicking(models.Model):
 
         repair = self.env['repair.order'].search(
             [('source_sale_order_id', '=', sale_order.id)], limit=1)
-        ref = _("наряд №%s") % repair.name if repair else _("замовлення %s") % sale_order.name
-        summary = _("Надійшли ЗЧ — можна відвантажити")
-        note = _("Надійшли запчастини. Замовлення %(order)s забезпечене, можна відвантажити (%(ref)s).") % {
+        ref = _("order No.%s") % repair.name if repair else _("order %s") % sale_order.name
+        summary = _("Parts arrived — ready to ship")
+        note = _("Parts arrived. Order %(order)s is fulfilled and can be shipped (%(ref)s).") % {
             'order': sale_order.name,
             'ref': ref,
         }
