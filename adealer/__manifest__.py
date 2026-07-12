@@ -28,6 +28,7 @@
     """,
 
     'application': True,
+    'post_init_hook': 'post_init_hook',
     'author': "3A Dealer",
     'website': "https://apps.odoo.com",
     'license': "LGPL-3",

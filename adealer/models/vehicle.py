@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import os
+import base64
 from odoo import models, fields, api
 
 class FleetVehicle(models.Model):
@@ -45,6 +47,40 @@ class FleetVehicle(models.Model):
         if not vin:
             return self.browse()
         return self.search([('vin_sn', '=', vin.strip())], limit=1)
+
+
+class FleetVehicleModelBrand(models.Model):
+    """Марка авто + вбудована база логотипів.
+
+    Модуль постачається з набором фірмових логотипів популярних марок
+    (static/img/brand_<назва>-image.png). При створенні марки її логотип
+    підставляється автоматично за назвою; для наявних марок — кнопкою/хуком.
+    """
+    _inherit = 'fleet.vehicle.model.brand'
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        brands = super().create(vals_list)
+        brands._apply_bundled_logo()
+        return brands
+
+    def _apply_bundled_logo(self):
+        """Призначити логотип із вбудованої бази, якщо власного зображення ще немає."""
+        img_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static', 'img')
+        for brand in self:
+            if brand.image_128 or not brand.name:
+                continue
+            slug = brand.name.strip().lower().replace(' ', '-')
+            path = os.path.join(img_dir, 'brand_%s-image.png' % slug)
+            if os.path.exists(path):
+                with open(path, 'rb') as fh:
+                    brand.image_128 = base64.b64encode(fh.read())
+
+    @api.model
+    def action_load_bundled_logos(self):
+        """Призначити логотипи всім маркам без зображення (з вбудованої бази)."""
+        self.search([]).filtered(lambda b: not b.image_128)._apply_bundled_logo()
+        return True
 
 
 class BodyType(models.Model):

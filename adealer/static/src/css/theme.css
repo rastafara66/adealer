@@ -63,9 +63,9 @@ body.adealer-theme .o-dropdown--menu .dropdown-item:focus {
 /* ---------- Кнопки ---------- */
 /* Odoo 19 обчислює колір кнопок через Bootstrap-змінні --bs-btn-*,
    тому перевизначаємо і їх, і властивості напряму. */
-body.adealer-theme .o_web_client .btn-primary,
-body.adealer-theme .o_web_client .o_list_button_add,
-body.adealer-theme .o_web_client .o-kanban-button-new {
+body.adealer-theme .btn-primary,
+body.adealer-theme .o_list_button_add,
+body.adealer-theme .o-kanban-button-new {
     --bs-btn-bg: #2b3a55;
     --bs-btn-border-color: #2b3a55;
     --bs-btn-hover-bg: #1f2b40;
@@ -79,89 +79,89 @@ body.adealer-theme .o_web_client .o-kanban-button-new {
     border-color: #2b3a55 !important;
     color: #ffffff !important;
 }
-body.adealer-theme .o_web_client .btn-primary:hover,
-body.adealer-theme .o_web_client .btn-primary:focus,
-body.adealer-theme .o_web_client .btn-primary:active,
-body.adealer-theme .o_web_client .btn-primary.active,
-body.adealer-theme .o_web_client .o_list_button_add:hover,
-body.adealer-theme .o_web_client .o-kanban-button-new:hover {
+body.adealer-theme .btn-primary:hover,
+body.adealer-theme .btn-primary:focus,
+body.adealer-theme .btn-primary:active,
+body.adealer-theme .btn-primary.active,
+body.adealer-theme .o_list_button_add:hover,
+body.adealer-theme .o-kanban-button-new:hover {
     background-color: #1f2b40 !important;
     border-color: #1f2b40 !important;
     color: #ffd367 !important;
 }
-body.adealer-theme .o_web_client .btn-primary:disabled {
+body.adealer-theme .btn-primary:disabled {
     background-color: #8d99ad !important;
     border-color: #8d99ad !important;
 }
-body.adealer-theme .o_web_client .btn-secondary {
+body.adealer-theme .btn-secondary {
     background-color: #eef3fb !important;
     border-color: #b9c9e2 !important;
     color: #2b3a55 !important;
 }
-body.adealer-theme .o_web_client .btn-secondary:hover,
-body.adealer-theme .o_web_client .btn-secondary:focus,
-body.adealer-theme .o_web_client .btn-secondary:active {
+body.adealer-theme .btn-secondary:hover,
+body.adealer-theme .btn-secondary:focus,
+body.adealer-theme .btn-secondary:active {
     background-color: #dde8f7 !important;
     border-color: #2b3a55 !important;
     color: #1f2b40 !important;
 }
-body.adealer-theme .o_web_client .btn-link {
+body.adealer-theme .btn-link {
     color: #2f4a76;
 }
-body.adealer-theme .o_web_client .btn-link:hover {
+body.adealer-theme .btn-link:hover {
     color: #1f2b40;
 }
 
 /* ---------- Посилання ---------- */
-body.adealer-theme .o_web_client a:not(.btn):not(.nav-link):not(.dropdown-item) {
+body.adealer-theme a:not(.btn):not(.nav-link):not(.dropdown-item) {
     color: #2f4a76;
 }
-body.adealer-theme .o_web_client a:not(.btn):not(.nav-link):not(.dropdown-item):hover {
+body.adealer-theme a:not(.btn):not(.nav-link):not(.dropdown-item):hover {
     color: #1f2b40;
 }
 
 /* ---------- Списки ---------- */
-body.adealer-theme .o_web_client .o_list_table thead th {
+body.adealer-theme .o_list_table thead th {
     background-color: #eef3fb;
     color: #2b3a55;
 }
-body.adealer-theme .o_web_client .o_list_table tfoot td {
+body.adealer-theme .o_list_table tfoot td {
     background-color: #eef3fb;
     font-weight: 600;
 }
-body.adealer-theme .o_web_client .o_list_table tbody tr:hover {
+body.adealer-theme .o_list_table tbody tr:hover {
     background-color: #f4f8fe;
 }
 
 /* ---------- Вкладки форм ---------- */
-body.adealer-theme .o_web_client .nav-tabs .nav-link.active {
+body.adealer-theme .nav-tabs .nav-link.active {
     color: #1f2b40;
     font-weight: 600;
     border-bottom: 2px solid #2b3a55;
 }
-body.adealer-theme .o_web_client .nav-tabs .nav-link:hover {
+body.adealer-theme .nav-tabs .nav-link:hover {
     color: #2b3a55;
 }
 
 /* ---------- Чекбокси / перемикачі ---------- */
-body.adealer-theme .o_web_client .form-check-input:checked {
+body.adealer-theme .form-check-input:checked {
     background-color: #2b3a55;
     border-color: #2b3a55;
 }
-body.adealer-theme .o_web_client .form-check-input:focus {
+body.adealer-theme .form-check-input:focus {
     border-color: #2b3a55;
     box-shadow: 0 0 0 0.2rem rgba(43, 58, 85, 0.25);
 }
 
 /* ---------- Дрібниці ---------- */
-body.adealer-theme .o_web_client .breadcrumb-item.active {
+body.adealer-theme .breadcrumb-item.active {
     color: #1f2b40;
     font-weight: 600;
 }
-body.adealer-theme .o_web_client .o_pager button:hover {
+body.adealer-theme .o_pager button:hover {
     color: #2b3a55;
 }
-body.adealer-theme .o_web_client .o_searchview:focus-within {
+body.adealer-theme .o_searchview:focus-within {
     border-color: #2b3a55;
     box-shadow: 0 0 0 1px #2b3a55;
 }
