@@ -3158,3 +3158,57 @@ msgstr "Код оновлено (%s). Модуль оновлено. Перез�
 #: code:addons/adealer/models/app_update.py:0
 msgid "Application update helper"
 msgstr "Помічник оновлення додатку"
+
+#. module: adealer
+#: model:ir.model,name:adealer.model_dealer_organization
+#: model:ir.model.fields,field_description:adealer.field_account_move__organization_id
+#: model:ir.model.fields,field_description:adealer.field_account_payment__organization_id
+#: model:ir.model.fields,field_description:adealer.field_purchase_order__organization_id
+#: model:ir.model.fields,field_description:adealer.field_repair_order__organization_id
+#: model:ir.model.fields,field_description:adealer.field_sale_order__organization_id
+#: model:ir.model.fields,field_description:adealer.field_stock_picking__organization_id
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_organization_form
+msgid "Organization"
+msgstr "Організація"
+
+#. module: adealer
+#: model:ir.actions.act_window,name:adealer.action_dealer_organization
+#: model:ir.ui.menu,name:adealer.menu_dealer_organization
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_organization_list
+msgid "Organizations"
+msgstr "Організації"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_organization__full_name
+msgid "Full name"
+msgstr "Повна назва"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_organization__vat_code
+msgid "Tax ID"
+msgstr "ІПН"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_organization__is_vat_payer
+msgid "VAT payer"
+msgstr "Платник ПДВ"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_organization__vat_certificate
+msgid "VAT certificate No."
+msgstr "№ свідоцтва ПДВ"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_organization__prefix
+msgid "Document prefix"
+msgstr "Префікс документів"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_organization__is_default
+msgid "Default organization"
+msgstr "Основна організація"
+
+#. module: adealer
+#: model_terms:ir.actions.act_window,help:adealer.action_dealer_organization
+msgid "Add your first organization"
+msgstr "Додайте першу організацію"
