@@ -75,6 +75,7 @@ Key features:
         'views/reports_ua.xml',  # друковані форми UA: рахунок, видаткова, повернення, прибуткова, довіреність, акт звірки
         'views/sale.xml',
         'views/res_config_settings_views.xml',
+        'views/organization.xml',  # generic: Organization dimension on every document
         'views/report_partner_balance.xml',
         'views/report_wizards.xml',
         'views/reports.xml',
