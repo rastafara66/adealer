@@ -1,4 +1,4 @@
-import pandas as pd
+from .excel_util import read_xlsx_rows
 import math
 import os
 from datetime import datetime
@@ -46,11 +46,11 @@ class FleetVehicleImport(models.TransientModel):
         # Вкажіть шлях до файлу Excel
         file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'import_vehicles.xlsx')
         try:
-            df = pd.read_excel(file_path)
+            df = read_xlsx_rows(file_path)
         except Exception as e:
             raise UserError(_('Could not open the file: %s') % e)
 
-        for idx, row in df.iterrows():
+        for idx, row in enumerate(df):
             # Обробка transmission
             transmission_raw = str(safe_val(row.get('КПП'), str)).lower()
             if 'механ' in transmission_raw:

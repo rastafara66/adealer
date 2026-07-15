@@ -1,4 +1,5 @@
-import pandas as pd
+from .excel_util import read_xlsx_rows
+import math
 import os
 from odoo import models, api, _
 from odoo.exceptions import UserError
@@ -6,7 +7,7 @@ from odoo.exceptions import UserError
 def safe_val(val, cast_func=None):
     if val is None:
         return False
-    if isinstance(val, float) and pd.isna(val):
+    if isinstance(val, float) and math.isnan(val):
         return False
     if isinstance(val, str) and not val.strip():
         return False
@@ -25,7 +26,7 @@ class FleetVehicleModelImport(models.TransientModel):
     def import_vehicle_models_from_excel(self):
         file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'import_vehicle_models.xlsx')
         try:
-            df = pd.read_excel(file_path)
+            df = read_xlsx_rows(file_path)
         except Exception as e:
             raise UserError(_('Could not open the file: %s') % e)
 
@@ -35,7 +36,7 @@ class FleetVehicleModelImport(models.TransientModel):
         if not brand:
             brand = self.env['fleet.vehicle.model.brand'].create({'name': brand_name})
 
-        for idx, row in df.iterrows():
+        for idx, row in enumerate(df):
             model_name = safe_val(row.get('Найменування'))
             if not model_name:
                 continue

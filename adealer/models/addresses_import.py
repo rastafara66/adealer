@@ -1,4 +1,4 @@
-import pandas as pd
+from .excel_util import read_xlsx_rows
 import re
 import os
 from datetime import datetime
@@ -87,7 +87,7 @@ class PartnerAddressImport(models.TransientModel):
 
         file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'import_addresses.xlsx')
         try:
-            df = pd.read_excel(file_path)
+            df = read_xlsx_rows(file_path)
         except Exception as e:
             raise UserError(_('Could not open the file: %s') % e)
 
@@ -95,7 +95,7 @@ class PartnerAddressImport(models.TransientModel):
         updated = 0
         skipped = 0
 
-        for idx, row in df.iterrows():
+        for idx, row in enumerate(df):
             # if idx < 1001 or idx > 3000:
             #     continue
             write_log("==========")
@@ -191,7 +191,7 @@ class PartnerAddressImport(models.TransientModel):
         write_log(f"Початок імпорту: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'import_addresses.xlsx')
         try:
-            df = pd.read_excel(file_path)
+            df = read_xlsx_rows(file_path)
         except Exception as e:
             raise UserError(_('Could not open the file: %s') % e)
 
@@ -199,7 +199,7 @@ class PartnerAddressImport(models.TransientModel):
         updated = 0
         skipped = 0
 
-        for idx, row in df.iterrows():
+        for idx, row in enumerate(df):
             name = str(row.get('Контрагент')).strip() if row.get('Контрагент') else ''
             if not name:
                 skipped += 1

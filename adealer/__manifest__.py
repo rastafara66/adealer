@@ -97,7 +97,6 @@ Key features:
             'adealer/static/src/xml/adealer_sidebar.xml',
         ],
     },
-    'external_dependencies': {
-        'python': ['pandas', 'openpyxl'],
-    },
+    # Без зовнішніх Python-залежностей: .xlsx читаємо через openpyxl,
+    # який входить у стандартні залежності Odoo (працює і на Odoo Online).
 }

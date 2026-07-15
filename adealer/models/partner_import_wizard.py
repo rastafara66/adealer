@@ -1,8 +1,7 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 import base64
-import pandas as pd
-import io
+from .excel_util import read_xlsx_rows
 
 class PartnerImportWizard(models.TransientModel):
     _name = 'partner.import.wizard'
@@ -20,7 +19,7 @@ class PartnerImportWizard(models.TransientModel):
         # Зчитування Excel з Binary
         try:
             file_content = base64.b64decode(self.file)
-            df = pd.read_excel(io.BytesIO(file_content))
+            df = read_xlsx_rows(file_content)
         except Exception as e:
             raise UserError(_("Could not read the Excel file: %s") % e)
 

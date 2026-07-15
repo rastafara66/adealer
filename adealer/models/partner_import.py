@@ -1,4 +1,4 @@
-import pandas as pd
+from .excel_util import read_xlsx_rows
 import math
 from odoo import models, api, _
 from odoo.exceptions import UserError
@@ -42,7 +42,7 @@ class PartnerImport(models.TransientModel):
         write_log(f"Файл: {file_path}")
 
         try:
-            df = pd.read_excel(file_path)
+            df = read_xlsx_rows(file_path)
         except Exception as e:
             raise UserError(_('Could not open the file: %s') % e)
 
@@ -54,7 +54,7 @@ class PartnerImport(models.TransientModel):
         skipped_duplicate = 0
         added = 0
 
-        for idx, row in df.iterrows():
+        for idx, row in enumerate(df):
             name = safe_val(row.get('Наименование'))
             phone = safe_val(row.get('Телефон'))
             email = safe_val(row.get('E-mail'))
