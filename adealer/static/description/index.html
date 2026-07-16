@@ -82,6 +82,16 @@
         <h2 style="color: #2b3a55;">Changelog / &#1065;&#1086; &#1085;&#1086;&#1074;&#1086;&#1075;&#1086;</h2>
 
         <div style="background: #f6f9fd; border-left: 4px solid #ffd367; border-radius: 6px; padding: 14px 16px; margin-bottom: 12px;">
+            <p style="margin: 0 0 4px; font-size: 15px;"><b>19.0.1.1.2</b> &mdash; 2026-07-16</p>
+            <p style="margin: 0; font-size: 14px; line-height: 1.7;">
+                <b>Fixed:</b> an upgrade crash from versions &le;1.1.0 (introduced by the Organization feature) &mdash;
+                the <code>organization_id</code> default could run before the <code>dealer_organization</code> table
+                existed. Upgrades now apply cleanly.<br/>
+                <i>&#1042;&#1080;&#1087;&#1088;&#1072;&#1074;&#1083;&#1077;&#1085;&#1086;: &#1079;&#1073;&#1110;&#1081; &#1086;&#1085;&#1086;&#1074;&#1083;&#1077;&#1085;&#1085;&#1103; &#1079; &#1074;&#1077;&#1088;&#1089;&#1110;&#1081; &#8804;1.1.0 &#1095;&#1077;&#1088;&#1077;&#1079; &#1092;&#1110;&#1095;&#1091; &#171;&#1054;&#1088;&#1075;&#1072;&#1085;&#1110;&#1079;&#1072;&#1094;&#1110;&#1103;&#187; &#8212; &#1090;&#1077;&#1087;&#1077;&#1088; &#1086;&#1085;&#1086;&#1074;&#1083;&#1077;&#1085;&#1085;&#1103; &#1087;&#1088;&#1086;&#1093;&#1086;&#1076;&#1080;&#1090;&#1100; &#1095;&#1080;&#1089;&#1090;&#1086;.</i>
+            </p>
+        </div>
+
+        <div style="background: #f6f9fd; border-left: 4px solid #cfd9e8; border-radius: 6px; padding: 14px 16px; margin-bottom: 12px;">
             <p style="margin: 0 0 4px; font-size: 15px;"><b>19.0.1.1.1</b> &mdash; 2026-07-15</p>
             <p style="margin: 0; font-size: 14px; line-height: 1.7;">
                 <b>Fixed:</b> removed the <code>pandas</code> external dependency &mdash; Excel import now uses
