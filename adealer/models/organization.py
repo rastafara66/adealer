@@ -29,7 +29,18 @@ class DealerOrganization(models.Model):
 
     @api.model
     def _default_org(self):
-        """The organization put on new documents by default."""
+        """The organization put on new documents by default.
+
+        Guard against install/upgrade time: when Odoo adds the
+        ``organization_id`` column to an existing model and fills the default
+        for the existing rows, this default runs while the
+        ``dealer_organization`` table may not be created yet. Without the guard
+        the upgrade from a version without this feature crashes with
+        ``relation "dealer_organization" does not exist`` and rolls back.
+        """
+        self.env.cr.execute("SELECT to_regclass('dealer_organization')")
+        if not self.env.cr.fetchone()[0]:
+            return self.browse()
         org = self.search([('is_default', '=', True)], limit=1)
         if not org:
             org = self.search([], limit=1)

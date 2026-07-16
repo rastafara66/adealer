@@ -3,6 +3,16 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## [19.0.1.1.2] — 2026-07-16
+### Fixed / Виправлено
+- **Виправлено збій оновлення з версій ≤1.1.0** через фічу «Організація». Дефолт поля
+  `organization_id` міг виконуватись під час додавання колонки, коли таблиця `dealer_organization`
+  ще не створена → `relation "dealer_organization" does not exist` і відкат апгрейду. Тепер
+  `_default_org` перевіряє наявність таблиці (`to_regclass`) і безпечно повертає порожньо під час install/upgrade.
+- Fixed an upgrade crash from versions ≤1.1.0 introduced by the Organization feature: the
+  `organization_id` default could run while the `dealer_organization` table did not yet exist,
+  aborting the upgrade. `_default_org` now guards on table existence.
+
 ## [19.0.1.1.1] — 2026-07-15
 ### Fixed / Виправлено
 - **Прибрано зовнішню залежність `pandas`.** Імпорт Excel (.xlsx) тепер через **openpyxl**
