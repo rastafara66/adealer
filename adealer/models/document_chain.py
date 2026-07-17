@@ -211,10 +211,11 @@ class RepairOrderChain(models.Model):
                 continue
             akt = order._build_chain_move('services', _("Act"), post=True, silent=True)
             vyd = order._build_chain_move('goods', _("Delivery note"), post=True, silent=True)
-            created = [m.name for m in (akt + vyd) if m]
-            if created:
+            parts = ["%s — %.2f %s" % (m.name, m.amount_total, m.currency_id.symbol or '')
+                     for m in (akt + vyd) if m]
+            if parts:
                 order.message_post(body=_(
-                    "Repair order invoiced (sold to customer): %s.") % ", ".join(created))
+                    "Repair order posted (sold to customer): %s.") % "; ".join(parts))
         return res
 
     def action_view_source_order(self):

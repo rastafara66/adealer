@@ -257,3 +257,10 @@ body.adealer-app .o_searchview .o_searchview_input {
 .o_adealer_repair_form .o_form_sheet > .o_group .o_field_widget {
     font-weight: 500;
 }
+
+/* Вужчий боковий чатер (стандартні 530px займають забагато ширини у документах).
+   Звужуємо до 380px; поле документа отримує більше місця. */
+.o-mail-ChatterContainer.o-aside,
+.o-mail-Form-chatter.o-aside {
+    width: 380px !important;
+}

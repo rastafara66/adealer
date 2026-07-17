@@ -7,7 +7,7 @@
 Тут додаємо бізнесову стадію (stage_id) з довільним набором станів СТО —
 для наочної kanban-дошки завантаження сервісу and історії переходів.
 """
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 
 class RepairStage(models.Model):
@@ -64,10 +64,14 @@ class RepairOrderStage(models.Model):
     def write(self, vals):
         if 'stage_id' in vals and vals.get('stage_id'):
             history = self.env['adealer.repair.stage.history']
+            new_stage = self.env['adealer.repair.stage'].browse(vals['stage_id'])
             for order in self:
                 if order.stage_id.id != vals['stage_id']:
                     history.create({
                         'repair_id': order.id,
                         'stage_id': vals['stage_id'],
                     })
+                    # Змістовний запис у чат на закритті наряду (окрім tracking стадії).
+                    if new_stage.is_closing:
+                        order.message_post(body=_("Order closed — stage: %s.") % new_stage.name)
         return super().write(vals)

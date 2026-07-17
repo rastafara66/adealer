@@ -30,7 +30,7 @@ Key features:
     'website': "https://apps.odoo.com",
     'license': "LGPL-3",
     'category': 'Sales',
-    'version': '19.0.1.1.2',
+    'version': '19.0.1.1.3',
     'images': [
         'static/description/screenshot_1.png',
         'static/description/screenshot_2.png',
