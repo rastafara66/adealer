@@ -3227,3 +3227,23 @@ msgstr "Наряд-замовлення №%s"
 #: code:addons/adealer/models/sale.py:0
 msgid "Customer order No. %s"
 msgstr "Замовлення клієнта №%s"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__sale_order__state__draft
+msgid "Being drawn up"
+msgstr "Оформлюється"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__sale_order__state__sent
+msgid "Agreed with customer"
+msgstr "Узгоджено з клієнтом"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__sale_order__state__sale
+msgid "Confirmed"
+msgstr "Підтверджено"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__sale_order__state__cancel
+msgid "Cancelled"
+msgstr "Скасовано"

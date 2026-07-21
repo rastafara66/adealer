@@ -9,6 +9,17 @@ class SaleOrder(models.Model):
     vehicle_logo = fields.Image(related='vehicle_id.display_logo', string='Vehicle Logo', readonly=True)
     # ? domain="[('partner_id', '=', 'partner_id')]",
 
+    # Same keys as core, different labels. Here the document is the customer's
+    # order TO US, so the core wording ("Quotation" / "Quotation Sent" /
+    # "Sales Order") described the opposite direction and misled users into
+    # thinking we were about to email out an offer.
+    state = fields.Selection(selection=[
+        ('draft', "Being drawn up"),
+        ('sent', "Agreed with customer"),
+        ('sale', "Confirmed"),
+        ('cancel', "Cancelled"),
+    ])
+
     # Must NOT be named repair_order_ids: the core `repair` module already
     # defines that field on sale.order (inverse sale_order_id). Overriding it
     # broke the core "Repairs" stat button, which then counted our own records

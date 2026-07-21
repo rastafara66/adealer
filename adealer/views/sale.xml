@@ -21,6 +21,34 @@
                             string="Create order" class="btn-secondary"
                             invisible="state not in ('sale', 'done')"/>
                 </xpath>
+
+                <!-- A sale.order here is the customer's order TO US (car brought in
+                     for service), never an outgoing quotation we email out. The core
+                     form is built around the quotation flow, which read as if we were
+                     about to send the customer an offer. Strip that flow out. -->
+                <xpath expr="//button[@id='quotation_send_primary']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//button[@id='quotation_send']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//button[@id='send_proforma_primary']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//button[@id='send_proforma']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_preview_sale_order']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <!-- "Valid until" only means anything for an offer we issued -->
+                <xpath expr="//field[@name='validity_date']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <!-- drop the "Quotation Sent" step from the pipeline -->
+                <xpath expr="//field[@name='state'][@widget='statusbar']" position="attributes">
+                    <attribute name="statusbar_visible">draft,sale</attribute>
+                </xpath>
             </field>
         </record>
 
