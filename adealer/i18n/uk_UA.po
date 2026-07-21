@@ -1419,6 +1419,7 @@ msgstr "Не було ТО з"
 
 #. module: adealer
 #. odoo-python
+#. odoo-python
 #: code:addons/adealer/models/sale.py:0
 msgid "No vehicle is specified on the order."
 msgstr "У замовленні не вказано автомобіль."
@@ -1435,6 +1436,7 @@ msgid "No warehouse found for the company."
 msgstr "Не знайдено склад для компанії."
 
 #. module: adealer
+#. odoo-python
 #. odoo-python
 #: code:addons/adealer/models/service.py:0
 msgid ""
@@ -2992,6 +2994,7 @@ msgstr "авто: %d"
 
 #. module: adealer
 #. odoo-python
+#. odoo-python
 #: code:addons/adealer/models/service.py:0
 msgid "• %(product)s: needed %(need)s, available %(free)s"
 msgstr "• %(product)s: потрібно %(need)s, вільно %(free)s"
@@ -3212,3 +3215,15 @@ msgstr "Основна організація"
 #: model_terms:ir.actions.act_window,help:adealer.action_dealer_organization
 msgid "Add your first organization"
 msgstr "Додайте першу організацію"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/service.py:0
+msgid "Repair order No. %s"
+msgstr "Наряд-замовлення №%s"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/sale.py:0
+msgid "Customer order No. %s"
+msgstr "Замовлення клієнта №%s"

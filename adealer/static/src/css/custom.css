@@ -193,13 +193,15 @@ body.adealer-app .o_control_panel {
 body.adealer-app .o_searchview .o_searchview_input {
     caret-color: #4a90d9;
 }
-/* ============== 3A-dealer: збільшення хлібних крихт / номера документа ============== */
-/* Назва списку, номер запису і шестерня у breadcrumb — за замовчуванням дрібні */
+/* ============== 3A-dealer: хлібні крихти / номер документа ============== */
+/* Крихти тепер несуть і ТИП документа ("Наряд-замовлення №1704"), тому вони
+   довші за колишній голий номер: шрифт зменшено з 1.15rem, щоб ланцюг із
+   трьох документів вміщався в рядок і не переносився. */
 .o_breadcrumb,
 .o_breadcrumb .o_last_breadcrumb_item,
 .o_breadcrumb .breadcrumb-item,
 .breadcrumb-item > a {
-    font-size: 1.15rem !important;
+    font-size: 0.95rem !important;
 }
 .o_breadcrumb .o_last_breadcrumb_item {
     font-weight: 600;

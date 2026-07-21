@@ -23,6 +23,14 @@ class SaleOrder(models.Model):
         for order in self:
             order.own_repair_order_count = len(order.own_repair_order_ids)
 
+    @api.depends('name')
+    def _compute_display_name(self):
+        """Name the document kind in breadcrumbs and m2o fields (1C style),
+        so "Customer order No. 3455" is not confused with the repair order
+        it produced. Same rationale as repair.order._compute_display_name."""
+        for order in self:
+            order.display_name = _("Customer order No. %s") % (order.name or '/')
+
     def action_create_repair_order(self):
         """Create order (repair.order) на основі замовлення покупця.
         Аналог 1С ОбработкаЗаполнения: копіює партнера, авто and рядки."""

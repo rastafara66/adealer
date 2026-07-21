@@ -44,6 +44,14 @@ class RepairOrder(models.Model):
         for order in self:
             order.amount_total = sum(order.operations.mapped('price_subtotal'))
 
+    @api.depends('name')
+    def _compute_display_name(self):
+        """Name the document kind in breadcrumbs and m2o fields (1C style).
+        A bare "1704" was ambiguous once several documents of the chain
+        (order -> repair order -> invoice) sat next to each other."""
+        for order in self:
+            order.display_name = _("Repair order No. %s") % (order.name or '/')
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
