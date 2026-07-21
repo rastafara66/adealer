@@ -12,8 +12,8 @@
                 <xpath expr="//div[@name='button_box']" position="inside">
                     <button name="action_view_repair_orders" type="object"
                             class="oe_stat_button" icon="fa-wrench"
-                            invisible="repair_order_count == 0">
-                        <field name="repair_order_count" widget="statinfo" string="Repair orders"/>
+                            invisible="own_repair_order_count == 0">
+                        <field name="own_repair_order_count" widget="statinfo" string="Repair orders"/>
                     </button>
                 </xpath>
                 <xpath expr="//button[@name='action_confirm']" position="after">

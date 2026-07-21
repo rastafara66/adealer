@@ -9,15 +9,19 @@ class SaleOrder(models.Model):
     vehicle_logo = fields.Image(related='vehicle_id.display_logo', string='Vehicle Logo', readonly=True)
     # ? domain="[('partner_id', '=', 'partner_id')]",
 
-    repair_order_ids = fields.One2many(
+    # Must NOT be named repair_order_ids: the core `repair` module already
+    # defines that field on sale.order (inverse sale_order_id). Overriding it
+    # broke the core "Repairs" stat button, which then counted our own records
+    # and appeared as a duplicate of the button below.
+    own_repair_order_ids = fields.One2many(
         'repair.order', 'source_sale_order_id', string='Repair Orders')
-    repair_order_count = fields.Integer(
-        string='Repair Order Count', compute='_compute_repair_order_count')
+    own_repair_order_count = fields.Integer(
+        string='Repair Order Count', compute='_compute_own_repair_order_count')
 
-    @api.depends('repair_order_ids')
-    def _compute_repair_order_count(self):
+    @api.depends('own_repair_order_ids')
+    def _compute_own_repair_order_count(self):
         for order in self:
-            order.repair_order_count = len(order.repair_order_ids)
+            order.own_repair_order_count = len(order.own_repair_order_ids)
 
     def action_create_repair_order(self):
         """Create order (repair.order) на основі замовлення покупця.
@@ -63,8 +67,8 @@ class SaleOrder(models.Model):
             'res_model': 'repair.order',
             'domain': [('source_sale_order_id', '=', self.id)],
         }
-        if self.repair_order_count == 1:
-            action.update(view_mode='form', res_id=self.repair_order_ids.id)
+        if self.own_repair_order_count == 1:
+            action.update(view_mode='form', res_id=self.own_repair_order_ids.id)
         else:
             action.update(view_mode='list,form')
         return action
