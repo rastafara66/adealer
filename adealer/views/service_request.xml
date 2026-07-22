@@ -1,0 +1,147 @@
+<odoo>
+    <data>
+        <!-- Service request: the entry point of the service chain.
+             Request -> Sale order -> Repair order -> Delivery note -->
+
+        <record id="view_service_request_list" model="ir.ui.view">
+            <field name="name">adealer.service.request.list</field>
+            <field name="model">adealer.service.request</field>
+            <field name="arch" type="xml">
+                <list string="Service requests" decoration-muted="state == 'cancel'"
+                      decoration-success="state == 'done'">
+                    <field name="name"/>
+                    <field name="scheduled_date"/>
+                    <field name="partner_id"/>
+                    <field name="vehicle_id"/>
+                    <field name="reason" optional="show"/>
+                    <field name="service_advisor_id" optional="hide"/>
+                    <field name="sale_order_id" optional="hide"/>
+                    <field name="state" widget="badge"
+                           decoration-info="state == 'confirmed'"
+                           decoration-success="state == 'done'"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_service_request_form" model="ir.ui.view">
+            <field name="name">adealer.service.request.form</field>
+            <field name="model">adealer.service.request</field>
+            <field name="arch" type="xml">
+                <form string="Service request">
+                    <header>
+                        <button name="action_confirm" string="Confirm" type="object"
+                                class="btn-primary" invisible="state != 'draft'"/>
+                        <button name="action_create_sale_order" string="Create Sale Order"
+                                type="object" class="btn-primary"
+                                invisible="state not in ('draft', 'confirmed') or sale_order_id"/>
+                        <button name="action_cancel" string="Cancel" type="object"
+                                invisible="state in ('done', 'cancel')"/>
+                        <button name="action_draft" string="Set to New" type="object"
+                                invisible="state != 'cancel'"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,confirmed,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_open_sale_order" type="object"
+                                    class="oe_stat_button" icon="fa-shopping-cart"
+                                    invisible="not sale_order_id">
+                                <span class="o_stat_text">Sale Order</span>
+                            </button>
+                        </div>
+                        <field name="vehicle_logo" widget="image" class="oe_avatar"
+                               invisible="not vehicle_logo"/>
+                        <div class="oe_title">
+                            <h1><field name="name" readonly="1"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="scheduled_date"/>
+                                <field name="partner_id"/>
+                                <field name="vehicle_id"/>
+                                <field name="mileage"/>
+                            </group>
+                            <group>
+                                <field name="service_advisor_id"/>
+                                <field name="sale_order_id" readonly="1"
+                                       invisible="not sale_order_id"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                        </group>
+                        <group string="Reason">
+                            <field name="reason" nolabel="1" placeholder="What the customer complains about..."/>
+                        </group>
+                        <group string="Internal note">
+                            <field name="note" nolabel="1"/>
+                        </group>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_service_request_calendar" model="ir.ui.view">
+            <field name="name">adealer.service.request.calendar</field>
+            <field name="model">adealer.service.request</field>
+            <field name="arch" type="xml">
+                <calendar string="Service calendar" date_start="scheduled_date"
+                          color="service_advisor_id" mode="week" quick_create="0">
+                    <field name="partner_id"/>
+                    <field name="vehicle_id"/>
+                    <field name="state"/>
+                </calendar>
+            </field>
+        </record>
+
+        <record id="view_service_request_search" model="ir.ui.view">
+            <field name="name">adealer.service.request.search</field>
+            <field name="model">adealer.service.request</field>
+            <field name="arch" type="xml">
+                <search string="Service requests">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="vehicle_id"/>
+                    <filter name="f_open" string="Open"
+                            domain="[('state', 'in', ('draft', 'confirmed'))]"/>
+                    <filter name="f_done" string="Order created"
+                            domain="[('state', '=', 'done')]"/>
+                    <separator/>
+                    <filter name="f_today" string="Today"
+                            domain="[('scheduled_date', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00')),
+                                     ('scheduled_date', '&lt;=', context_today().strftime('%Y-%m-%d 23:59:59'))]"/>
+                    <separator/>
+                    <filter name="g_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="g_advisor" string="Manager" context="{'group_by': 'service_advisor_id'}"/>
+                    <filter name="g_partner" string="Customer" context="{'group_by': 'partner_id'}"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_window_service_requests">
+            <field name="name">Maintenance requests</field>
+            <field name="res_model">adealer.service.request</field>
+            <field name="view_mode">list,calendar,form</field>
+            <field name="search_view_id" ref="view_service_request_search"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_window_service_request_calendar">
+            <field name="name">Service calendar</field>
+            <field name="res_model">adealer.service.request</field>
+            <field name="view_mode">calendar,list,form</field>
+            <field name="view_id" ref="view_service_request_calendar"/>
+            <field name="search_view_id" ref="view_service_request_search"/>
+        </record>
+
+        <!-- Rewire the two menus that used to point elsewhere:
+             "Maintenance requests" opened plain sale orders (the very same
+             action as Sales / Sale orders — two menus, one list), and the
+             workshop calendar was built on repair orders, which appear only
+             two documents later in the chain. -->
+        <record id="requests" model="ir.ui.menu">
+            <field name="action" ref="action_window_service_requests"/>
+        </record>
+        <record id="request_calendar" model="ir.ui.menu">
+            <field name="action" ref="action_window_service_request_calendar"/>
+        </record>
+    </data>
+</odoo>

@@ -7,5 +7,12 @@
             <field name="padding">5</field>
             <field name="company_id" eval="False"/>
         </record>
+        <record id="seq_service_request" model="ir.sequence">
+            <field name="name">3A Service Request</field>
+            <field name="code">adealer.service.request</field>
+            <field name="prefix">SR</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
     </data>
 </odoo>

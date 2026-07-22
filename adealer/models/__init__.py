@@ -12,6 +12,7 @@ from . import res_config_settings
 from . import res_users
 from . import sale
 from . import service
+from . import service_request
 from . import document_chain
 from . import stock
 from . import ir_http

@@ -3,6 +3,21 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## [19.0.1.2.0] — 2026-07-22
+### Added / Додано
+- **Заявка на обслуговування** — нова модель `adealer.service.request`: дата/час візиту,
+  клієнт, авто, пробіг, причина звернення, менеджер, статус. Кнопка **«Створити Замовлення»**
+  породжує Замовлення клієнта (перенося клієнта й авто) — це вхідна точка ланцюга
+  Заявка → Замовлення → Наряд → Видаткова. Календар СТО тепер будується на заявках, а не
+  на нарядах (наряд у ланцюзі зʼявляється на два документи пізніше).
+- New **Service request** model (`adealer.service.request`): scheduled date/time, customer,
+  vehicle, mileage, reason, manager, status; a **Create Sale Order** button turns the request
+  into a customer order. The workshop calendar is now built on requests, not repair orders.
+### Changed / Змінено
+- Меню **«Заявки на обслуговування»** відкриває заявки, а не список замовлень (раніше воно
+  дублювало меню «Замовлення клієнтів» — обидва вели на ту саму дію).
+- The **Maintenance requests** menu now opens requests instead of duplicating the Sale orders list.
+
 ## [19.0.1.1.3] — 2026-07-17
 ### Changed / Змінено
 - **Вужчий боковий чатер** у формах документів — 380px замість стандартних 530px (більше місця під форму).
