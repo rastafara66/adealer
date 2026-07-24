@@ -12,6 +12,12 @@
                 </div>
                 <div class="adealer-sidebar__body" t-if="!state.collapsed">
                     <t t-foreach="state.groups" t-as="group" t-key="group.id">
+                        <t t-if="!group.childrenTree or !group.childrenTree.length">
+                            <!-- Топ-рівневий пункт без підменю (напр. «Головна»): одразу клікабельний, без каретки -->
+                            <div class="adealer-sidebar__item adealer-sidebar__item--top"
+                                 t-on-click="() => this.onSelect(group)" t-esc="group.name"/>
+                        </t>
+                        <t t-else="">
                         <div class="adealer-sidebar__group"
                              t-att-class="{ 'adealer-sidebar__group--open': isExpanded(group.id) }">
                             <div class="adealer-sidebar__group-title" t-on-click="() => this.toggleGroup(group.id)">
@@ -40,11 +46,9 @@
                                              t-on-click="() => this.onSelect(sub)" t-esc="sub.name"/>
                                     </t>
                                 </t>
-                                <div class="adealer-sidebar__item adealer-sidebar__item--self"
-                                     t-if="!group.childrenTree.length"
-                                     t-on-click="() => this.onSelect(group)" t-esc="group.name"/>
                             </div>
                         </div>
+                        </t>
                     </t>
                 </div>
             </div>

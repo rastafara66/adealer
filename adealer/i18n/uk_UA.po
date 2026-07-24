@@ -3250,8 +3250,8 @@ msgstr "Скасовано"
 
 
 #. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/dashboard.py:0
+#: model:ir.ui.menu,name:adealer.menu_dashboard
+#: model:ir.actions.client,name:adealer.action_dashboard
 msgid "Home"
 msgstr "Головна"
 
@@ -3429,3 +3429,28 @@ msgstr "Дашборд (Головна)"
 #: code:addons/adealer/models/dashboard.py:0
 msgid "All vehicles in base"
 msgstr "Всього авто в базі"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Vehicles sold in period"
+msgstr "Продано авто за період"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Vehicle sales in period"
+msgstr "Продажі авто за період"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Recently sold vehicles"
+msgstr "Нещодавно продані авто"
+
+#. module: adealer
+#: model:ir.ui.menu,name:adealer.menu_sales_realizatsii
+#: model:ir.actions.act_window,name:adealer.action_window_realizatsii
+msgid "Sales invoices"
+msgstr "Реалізації"
+

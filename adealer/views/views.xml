@@ -71,7 +71,17 @@
             <field name="view_mode">list,kanban,form</field>
             <field name="view_id" ref="adealer.view_purchase_order_journal_list"/>
         </record>
-            
+
+        <!-- Реалізації / Видаткові (account.move out_invoice) -->
+        <record model="ir.actions.act_window" id="adealer.action_window_realizatsii">
+            <field name="name">Sales invoices</field>
+            <field name="res_model">account.move</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="adealer.view_account_move_realiz_list"/>
+            <field name="domain">[('move_type', '=', 'out_invoice')]</field>
+            <field name="context">{'default_move_type': 'out_invoice'}</field>
+        </record>
+
         <!-- Root menu item -->
         <menuitem name="3A-dealer" id="adealer.menu_root" web_icon="adealer,static/src/img/icons/adealer_app.png"/>
         <!-- menu Products -->
@@ -108,6 +118,8 @@
                 action="adealer.action_window_sale_orders" sequence="51"/>
         <menuitem name="Repair order" id="adealer.menu_sales_repair_orders" parent="adealer.menu_sales"
                 action="adealer.action_window_repair_orders" sequence="52"/>
+        <menuitem name="Sales invoices" id="adealer.menu_sales_realizatsii" parent="adealer.menu_sales"
+                action="adealer.action_window_realizatsii" sequence="53"/>
 
         <!-- menu Purchases -->
         <menuitem name="Purchases" id="adealer.menu_purchases" parent="adealer.menu_root" sequence="7"/>

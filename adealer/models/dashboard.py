@@ -13,6 +13,10 @@ from dateutil.relativedelta import relativedelta
 
 from odoo import api, fields, models, _
 
+# Префікси назв номенклатури, що позначають авто (для дашборду «Автосалон»).
+# 1С-конвенція Ford: «Автомобіль …», «Автобус …»; + загальні EN-варіанти для store.
+VEHICLE_NAME_PREFIXES = ('Автомобіль', 'Автобус', 'Автомашина', 'Car ', 'Vehicle ')
+
 
 def _d(s, default):
     """Розпарсити 'YYYY-MM-DD' → date; None/порожнє → default."""
@@ -62,44 +66,60 @@ class AdealerDashboard(models.AbstractModel):
                                      ('status', 'in', ['in_stock', 'reserved'])])
         total_cars = Car.search_count([])
 
-        # продані за період: дата продажу = sale_order_id.date_order, інакше write_date
-        sold = Car.search([('status', 'in', ['sold', 'delivered'])])
-        buckets = {k: {'count': 0, 'amount': 0.0} for k, _lbl in _months(dfrom, dto)}
-        sold_count = 0
-        sold_amount = 0.0
-        recent = []
-        for car in sold:
-            sdt = car.sale_order_id.date_order or car.write_date
-            sday = sdt.date() if sdt else None
-            if not sday or not (dfrom <= sday <= dto):
-                continue
-            amt = car.sale_price or car.total_price or 0.0
-            sold_count += 1
-            sold_amount += amt
-            key = sday.replace(day=1)
-            if key in buckets:
-                buckets[key]['count'] += 1
-                buckets[key]['amount'] += amt
-            recent.append((sday, car.name, car.partner_id.name or '', amt))
+        # Продажі авто — з Реалізацій (out_invoice): рядки, де товар є авто.
+        # Ознака авто = префікс назви номенклатури (1С: «Автомобіль …», «Автобус …»).
+        # dealer.car у Ford не ведеться, а авто продаються саме як позиції Реалізації.
+        AML = self.env['account.move.line']
+        veh_dom = ['|'] * (len(VEHICLE_NAME_PREFIXES) - 1)
+        for pref in VEHICLE_NAME_PREFIXES:
+            veh_dom.append(('product_id.name', '=ilike', pref + '%'))
+        lines = AML.search([
+            ('parent_state', '=', 'posted'),
+            ('move_id.move_type', '=', 'out_invoice'),
+            ('move_id.invoice_date', '>=', dfrom),
+            ('move_id.invoice_date', '<=', dto),
+            ('display_type', '=', 'product'),
+        ] + veh_dom)
 
-        recent.sort(reverse=True)
+        buckets = {k: {'count': 0, 'amount': 0.0} for k, _lbl in _months(dfrom, dto)}
+        # агрегуємо по (документ, товар): один авто = один рядок навіть якщо в 1С розбитий
+        per_car = {}
+        for ln in lines:
+            mv = ln.move_id
+            day = mv.invoice_date
+            if not day:
+                continue
+            key = (mv.id, ln.product_id.id)
+            rec = per_car.setdefault(key, {'day': day, 'name': ln.product_id.display_name,
+                                           'partner': mv.partner_id.name or '', 'amount': 0.0})
+            rec['amount'] += ln.price_subtotal
+        sold_amount = 0.0
+        for rec in per_car.values():
+            sold_amount += rec['amount']
+            mkey = rec['day'].replace(day=1)
+            if mkey in buckets:
+                buckets[mkey]['count'] += 1
+                buckets[mkey]['amount'] += rec['amount']
+        sold_count = len(per_car)
+        recent = sorted(per_car.values(), key=lambda r: r['day'], reverse=True)
+
         series = [{'label': lbl, 'value': buckets[k]['amount'], 'count': buckets[k]['count']}
                   for k, lbl in _months(dfrom, dto)]
         return {
             'currency': self._currency(),
             'kpis': [
                 {'label': _('Vehicles in stock'), 'value': in_stock, 'kind': 'int', 'icon': 'fa-car'},
-                {'label': _('Sold in period'), 'value': sold_count, 'kind': 'int', 'icon': 'fa-handshake-o'},
-                {'label': _('Sales in period'), 'value': sold_amount, 'kind': 'money', 'icon': 'fa-money'},
+                {'label': _('Vehicles sold in period'), 'value': sold_count, 'kind': 'int', 'icon': 'fa-handshake-o'},
+                {'label': _('Vehicle sales in period'), 'value': sold_amount, 'kind': 'money', 'icon': 'fa-money'},
                 {'label': _('Trade-in in stock'), 'value': trade_in, 'kind': 'int', 'icon': 'fa-exchange'},
                 {'label': _('All vehicles in base'), 'value': total_cars, 'kind': 'int', 'icon': 'fa-database'},
             ],
             'series': {'title': _('Vehicle sales by month'), 'data': series},
             'list': {
-                'title': _('Recently sold'),
+                'title': _('Recently sold vehicles'),
                 'cols': [_('Date'), _('Vehicle'), _('Buyer'), _('Amount')],
-                'rows': [[d.strftime('%d.%m.%Y'), nm, pn, {'money': amt}]
-                         for d, nm, pn, amt in recent[:12]],
+                'rows': [[r['day'].strftime('%d.%m.%Y'), r['name'], r['partner'], {'money': r['amount']}]
+                         for r in recent[:12]],
             },
         }
 
