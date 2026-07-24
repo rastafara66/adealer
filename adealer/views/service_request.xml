@@ -140,8 +140,11 @@
         <record id="requests" model="ir.ui.menu">
             <field name="action" ref="action_window_service_requests"/>
         </record>
+        <!-- «Календар обслуговування» показує НАРЯДИ (repair.order за schedule_date) —
+             у базі є 3000+ нарядів, а заявок ще нема; заявки мають власний календар
+             у меню «Заявки на обслуговування» (view_mode list,calendar). -->
         <record id="request_calendar" model="ir.ui.menu">
-            <field name="action" ref="action_window_service_request_calendar"/>
+            <field name="action" ref="adealer.action_window_repair_calendar"/>
         </record>
     </data>
 </odoo>

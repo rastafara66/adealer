@@ -16,6 +16,10 @@ All notable changes. Newest on top.
   а не лише з довідника авто — тепер показує реальні продажі Ford.
 - The **Home dashboard** is now the default landing page and a single top-level menu item; the
   **Showroom** tab counts vehicle sales from delivery notes (vehicle lines), not only the car register.
+- **«Календар обслуговування»** знову показує наряди (repair.order за `schedule_date`) — раніше він
+  був переведений на «Заявки», яких у базі ще нема, тож виглядав порожнім; заявки лишаються зі своїм
+  календарем у меню «Заявки на обслуговування».
+- The **Service calendar** menu shows repair orders again (was pointing at the empty Requests model).
 
 ## [19.0.1.3.0] — 2026-07-24
 ### Added / Додано
