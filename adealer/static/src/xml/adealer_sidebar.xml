@@ -28,6 +28,7 @@
                                 <t t-foreach="group.childrenTree" t-as="sub" t-key="sub.id">
                                     <t t-if="sub.childrenTree and sub.childrenTree.length">
                                         <div class="adealer-sidebar__subgroup-title"
+                                             t-att-class="{ 'adealer-sidebar__subgroup-title--open': isExpanded(sub.id) }"
                                              t-on-click="() => this.toggleGroup(sub.id)">
                                             <span class="adealer-sidebar__caret"
                                                   t-esc="isExpanded(sub.id) ? '▾' : '▸'"/>

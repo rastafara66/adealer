@@ -115,6 +115,14 @@ a.fw-bold.text-truncate[data-tooltip] {
 .adealer-sidebar__group--open > .adealer-sidebar__group-title .adealer-sidebar__caret {
     color: #ffd367;
 }
+/* Відкритий батьківський пункт — золотим; згорнутий — звичайним кольором */
+.adealer-sidebar__group--open > .adealer-sidebar__group-title {
+    color: #ffd367;
+}
+.adealer-sidebar__subgroup-title--open,
+.adealer-sidebar__subgroup-title--open > .adealer-sidebar__caret {
+    color: #ffd367;
+}
 .adealer-sidebar__item {
     padding: 7px 12px 7px 22px;
     cursor: pointer;
