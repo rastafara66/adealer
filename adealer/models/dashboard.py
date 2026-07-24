@@ -126,8 +126,9 @@ class AdealerDashboard(models.AbstractModel):
     # ------------------------------------------------------- Автосервіс
     def _service(self, dfrom, dto):
         RO = self.env['repair.order']
-        dom_period = [('create_date', '>=', datetime.combine(dfrom, datetime.min.time())),
-                      ('create_date', '<=', datetime.combine(dto, datetime.max.time()))]
+        # Ділова дата наряду = schedule_date (create_date = час імпорту, у Ford усі в 1 міс.).
+        dom_period = [('schedule_date', '>=', datetime.combine(dfrom, datetime.min.time())),
+                      ('schedule_date', '<=', datetime.combine(dto, datetime.max.time()))]
         period = RO.search(dom_period)
         rev = sum(period.mapped('amount_total'))
         cnt = len(period)
@@ -135,17 +136,24 @@ class AdealerDashboard(models.AbstractModel):
         in_work = RO.search_count([('state', 'not in', ['done', 'cancel'])])
         avg = (rev / cnt) if cnt else 0.0
 
-        # ряд: виручка по місяцях
+        # ряд: виручка по місяцях (за schedule_date)
         buckets = {k: 0.0 for k, _l in _months(dfrom, dto)}
         for o in period:
-            key = o.create_date.date().replace(day=1)
+            key = o.schedule_date.date().replace(day=1)
             if key in buckets:
                 buckets[key] += o.amount_total
         series = [{'label': lbl, 'value': buckets[k]} for k, lbl in _months(dfrom, dto)]
 
-        # календар найближчих ремонтів
-        upcoming = RO.search([('schedule_date', '>=', datetime.now())],
+        # Найближчі ремонти: заплановані наперед (schedule_date >= сьогодні, ще не завершені).
+        # Якщо майбутніх немає (історичний знімок) — показуємо поточні відкриті наряди.
+        today0 = datetime.combine(date.today(), datetime.min.time())
+        upcoming = RO.search([('schedule_date', '>=', today0), ('state', 'not in', ['done', 'cancel'])],
                              order='schedule_date asc', limit=12)
+        list_title = _('Upcoming repairs (calendar)')
+        if not upcoming:
+            upcoming = RO.search([('state', 'not in', ['done', 'cancel'])],
+                                 order='schedule_date desc', limit=12)
+            list_title = _('Repairs in progress')
         rows = []
         for o in upcoming:
             rows.append([o.schedule_date.strftime('%d.%m.%Y %H:%M') if o.schedule_date else '',
@@ -164,7 +172,7 @@ class AdealerDashboard(models.AbstractModel):
             ],
             'series': {'title': _('Service revenue by month'), 'data': series},
             'list': {
-                'title': _('Upcoming repairs (calendar)'),
+                'title': list_title,
                 'cols': [_('When'), _('Order'), _('Customer'), _('Vehicle'), _('Amount')],
                 'rows': rows,
             },
@@ -173,16 +181,17 @@ class AdealerDashboard(models.AbstractModel):
     # ------------------------------------------------------- Автозапчастини
     def _parts(self, dfrom, dto):
         Line = self.env['repair.line']
+        # Ділова дата = schedule_date наряду (create_date = час імпорту).
         dom = [('product_type', '!=', 'service'),
-               ('repair_id.create_date', '>=', datetime.combine(dfrom, datetime.min.time())),
-               ('repair_id.create_date', '<=', datetime.combine(dto, datetime.max.time()))]
+               ('repair_id.schedule_date', '>=', datetime.combine(dfrom, datetime.min.time())),
+               ('repair_id.schedule_date', '<=', datetime.combine(dto, datetime.max.time()))]
         lines = Line.search(dom)
         qty_issued = sum(lines.mapped('product_uom_qty'))
         parts_amount = sum(lines.mapped('price_subtotal'))
 
         buckets = {k: 0.0 for k, _l in _months(dfrom, dto)}
         for ln in lines:
-            cd = ln.repair_id.create_date
+            cd = ln.repair_id.schedule_date
             if not cd:
                 continue
             key = cd.date().replace(day=1)

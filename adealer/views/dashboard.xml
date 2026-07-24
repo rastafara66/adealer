@@ -6,7 +6,7 @@
         <field name="tag">adealer_dashboard</field>
     </record>
 
-    <!-- Перший пункт застосунку (sequence 1) → відкривається за замовчуванням -->
+    <!-- Найперший пункт застосунку (sequence 0, раніше за menu_vehicles=1) → стартова -->
     <menuitem name="Home" id="menu_dashboard" parent="adealer.menu_root"
-              action="adealer.action_dashboard" sequence="1"/>
+              action="adealer.action_dashboard" sequence="0"/>
 </odoo>

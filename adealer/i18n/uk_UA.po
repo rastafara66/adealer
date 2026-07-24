@@ -3454,3 +3454,9 @@ msgstr "Нещодавно продані авто"
 msgid "Sales invoices"
 msgstr "Реалізації"
 
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Repairs in progress"
+msgstr "Ремонти в роботі"
