@@ -3,6 +3,19 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## [19.0.1.3.0] — 2026-07-24
+### Added / Додано
+- **Дашборд «Головна»** — новий перший пункт застосунку (відкривається за замовчуванням).
+  Перемикач типу дашборду: **Автосалон** (авто в наявності, продано за період, продажі авто),
+  **Автосервіс** (наряди за період, виручка СТО, у роботі, календар найближчих ремонтів),
+  **Автозапчастини** (позиції на складі, видача запчастин, продаж, вартість складу).
+  Період вибирається (з/по); KPI-плитки + стовпчиковий графік по місяцях + список.
+  Можна зробити стартовою сторінкою (Налаштування → Home page → «Дашборд»).
+- New **Home dashboard** — the first app menu, opened by default. A dashboard-type switch:
+  **Showroom** (vehicles in stock, sold in period, sales), **Service** (repair orders,
+  revenue, in-progress, upcoming-repairs calendar), **Parts** (stock positions, parts issued,
+  sales, stock value). Selectable period; KPI tiles + monthly bar chart + a details list.
+
 ## [19.0.1.2.0] — 2026-07-22
 ### Added / Додано
 - **Заявка на обслуговування** — нова модель `adealer.service.request`: дата/час візиту,

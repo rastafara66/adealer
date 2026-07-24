@@ -3247,3 +3247,185 @@ msgstr "Підтверджено"
 #: model:ir.model.fields.selection,name:adealer.selection__sale_order__state__cancel
 msgid "Cancelled"
 msgstr "Скасовано"
+
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Home"
+msgstr "Головна"
+
+#. module: adealer
+#. odoo-javascript
+#: code:addons/adealer/static/src/js/dashboard/dashboard.js:0
+msgid "Service"
+msgstr "Автосервіс"
+
+#. module: adealer
+#. odoo-javascript
+#: code:addons/adealer/static/src/xml/dashboard.xml:0
+msgid "To"
+msgstr "По"
+
+#. module: adealer
+#. odoo-javascript
+#: code:addons/adealer/static/src/xml/dashboard.xml:0
+msgid "Show"
+msgstr "Показати"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "When"
+msgstr "Коли"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Value"
+msgstr "Вартість"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Qty on hand"
+msgstr "Кількість на складі"
+
+#. module: adealer
+#. odoo-javascript
+#: code:addons/adealer/static/src/xml/dashboard.xml:0
+msgid "No records"
+msgstr "Немає записів"
+
+#. module: adealer
+#. odoo-javascript
+#: code:addons/adealer/static/src/xml/dashboard.xml:0
+msgid "No data for the period"
+msgstr "Немає даних за період"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Average ticket"
+msgstr "Середній чек"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Stock value"
+msgstr "Вартість складу"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Vehicles in stock"
+msgstr "Авто в наявності"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Sold in period"
+msgstr "Продано за період"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Sales in period"
+msgstr "Продажі за період"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Trade-in in stock"
+msgstr "Trade-in у наявності"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Vehicle sales by month"
+msgstr "Продажі авто по місяцях"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Recently sold"
+msgstr "Нещодавно продані"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Repair orders in period"
+msgstr "Наряди за період"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Service revenue in period"
+msgstr "Виручка СТО за період"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "In progress now"
+msgstr "В роботі зараз"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Completed in period"
+msgstr "Завершено за період"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Service revenue by month"
+msgstr "Виручка СТО по місяцях"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Upcoming repairs (calendar)"
+msgstr "Найближчі ремонти (календар)"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Stock positions"
+msgstr "Позицій на складі"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Parts issued in period"
+msgstr "Видано запчастин за період"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Parts sales in period"
+msgstr "Продаж запчастин за період"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Parts sales by month"
+msgstr "Продаж запчастин по місяцях"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Top stock by quantity"
+msgstr "Топ складу за кількістю"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "Dashboard (Home)"
+msgstr "Дашборд (Головна)"
+
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dashboard.py:0
+msgid "All vehicles in base"
+msgstr "Всього авто в базі"

@@ -4,6 +4,7 @@ from odoo import api, fields, models, _
 
 # Home page користувача -> дія (res.users.action_id)
 HOME_ACTIONS = {
+    'dashboard': 'adealer.action_dashboard',
     'calendar': 'adealer.action_window_repair_calendar',
     'vehicles': 'adealer.action_window_vehicles',
     'repairs': 'adealer.action_window_repair_orders',
@@ -60,6 +61,7 @@ class ResConfigSettings(models.TransientModel):
              "HTML — the form opens directly in a browser tab (no Adobe/download).")
     adealer_home = fields.Selection([
         ('none', 'Default (last app)'),
+        ('dashboard', 'Dashboard (Home)'),
         ('calendar', 'Service calendar (workshop)'),
         ('vehicles', 'Vehicles (showroom)'),
         ('repairs', 'Repair order'),

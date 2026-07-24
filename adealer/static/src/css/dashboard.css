@@ -1,0 +1,118 @@
+/* Дашборд «Головна» — плитки, графік, списки. Нейтральні кольори + акцент теми. */
+.adealer-dash {
+    padding: 16px 20px;
+    background: var(--adealer-bg, #f4f6f9);
+    min-height: 100%;
+    overflow: auto;
+}
+
+/* Панель керування */
+.adealer-dash__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+.adealer-dash__types { display: flex; gap: 6px; flex-wrap: wrap; }
+.adealer-dash__type {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid #d6dbe3;
+    background: #fff;
+    color: #33415c;
+    font-weight: 500;
+}
+.adealer-dash__type i { opacity: .8; }
+.adealer-dash__type--active {
+    background: var(--adealer-accent, #1a3a6b);
+    border-color: var(--adealer-accent, #1a3a6b);
+    color: #fff;
+}
+.adealer-dash__period {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+.adealer-dash__period label { margin: 0 2px 0 6px; font-size: 13px; color: #5a6472; }
+.adealer-dash__period .o_input { max-width: 160px; }
+
+/* KPI-плитки */
+.adealer-dash__kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+}
+.adealer-dash__kpi {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #fff;
+    border: 1px solid #e6e9ef;
+    border-radius: 10px;
+    padding: 14px 16px;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, .04);
+}
+.adealer-dash__kpi-icon {
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 10px;
+    background: var(--adealer-accent-soft, #eaf0fb);
+    color: var(--adealer-accent, #1a3a6b);
+    font-size: 20px;
+    flex: 0 0 auto;
+}
+.adealer-dash__kpi-value { font-size: 22px; font-weight: 700; color: #1c2536; line-height: 1.1; }
+.adealer-dash__kpi-label { font-size: 13px; color: #667085; margin-top: 2px; }
+
+/* Сітка графік + список */
+.adealer-dash__grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 16px;
+}
+@media (max-width: 1100px) {
+    .adealer-dash__grid { grid-template-columns: 1fr; }
+}
+.adealer-dash__card {
+    background: #fff;
+    border: 1px solid #e6e9ef;
+    border-radius: 10px;
+    padding: 14px 16px;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, .04);
+}
+.adealer-dash__card-title { font-weight: 600; color: #33415c; margin-bottom: 12px; }
+
+/* Графік */
+.adealer-dash__svg {
+    width: 100%;
+    height: 220px;
+    display: block;
+    border-bottom: 1px solid #e6e9ef;
+}
+.adealer-dash__bar {
+    fill: var(--adealer-accent, #1a3a6b);
+    opacity: .85;
+    transition: opacity .15s;
+}
+.adealer-dash__bar:hover { opacity: 1; }
+.adealer-dash__xaxis {
+    display: flex;
+    justify-content: space-around;
+    font-size: 11px;
+    color: #98a2b3;
+    margin-top: 6px;
+}
+.adealer-dash__xaxis span { flex: 1; text-align: center; }
+
+/* Список */
+.adealer-dash__list table { margin: 0; }
+.adealer-dash__list th { font-size: 12px; color: #667085; text-transform: uppercase; }
+.adealer-dash__list td { font-size: 13px; color: #1c2536; }
+
+.adealer-dash__empty { color: #98a2b3; text-align: center; padding: 24px 0; }
+.adealer-dash__loading { text-align: center; padding: 60px 0; color: var(--adealer-accent, #1a3a6b); }

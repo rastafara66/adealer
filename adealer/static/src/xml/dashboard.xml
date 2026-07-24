@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="adealer.Dashboard">
+        <div class="adealer-dash o_action">
+            <!-- Панель керування: перемикач типу + період -->
+            <div class="adealer-dash__toolbar">
+                <div class="adealer-dash__types">
+                    <button t-foreach="types" t-as="tp" t-key="tp.id"
+                            class="adealer-dash__type btn"
+                            t-att-class="{ 'adealer-dash__type--active': state.type === tp.id }"
+                            t-on-click="() => this.setType(tp.id)">
+                        <i class="fa" t-att-class="tp.icon"/>
+                        <span t-esc="tp.label"/>
+                    </button>
+                </div>
+                <div class="adealer-dash__period">
+                    <label>From</label>
+                    <input type="date" class="o_input" t-att-value="state.date_from"
+                           t-on-change="(ev) => this.onDate('date_from', ev)"/>
+                    <label>To</label>
+                    <input type="date" class="o_input" t-att-value="state.date_to"
+                           t-on-change="(ev) => this.onDate('date_to', ev)"/>
+                    <button class="btn btn-primary" t-on-click="() => this.load()">
+                        <i class="fa fa-refresh me-1"/> Show
+                    </button>
+                </div>
+            </div>
+
+            <t t-if="state.loading">
+                <div class="adealer-dash__loading">
+                    <i class="fa fa-spinner fa-spin fa-2x"/>
+                </div>
+            </t>
+            <t t-elif="state.data">
+                <!-- KPI-плитки -->
+                <div class="adealer-dash__kpis">
+                    <div t-foreach="state.data.kpis" t-as="k" t-key="k_index" class="adealer-dash__kpi">
+                        <div class="adealer-dash__kpi-icon"><i class="fa" t-att-class="k.icon"/></div>
+                        <div class="adealer-dash__kpi-body">
+                            <div class="adealer-dash__kpi-value" t-esc="fmtKpi(k)"/>
+                            <div class="adealer-dash__kpi-label" t-esc="k.label"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="adealer-dash__grid">
+                    <!-- Стовпчиковий графік -->
+                    <div class="adealer-dash__card adealer-dash__chart">
+                        <div class="adealer-dash__card-title" t-esc="state.data.series.title"/>
+                        <t t-if="bars.length">
+                            <svg class="adealer-dash__svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <rect t-foreach="bars" t-as="b" t-key="b_index"
+                                      t-att-x="b.x" t-att-y="b.y" t-att-width="b.w" t-att-height="b.h"
+                                      class="adealer-dash__bar">
+                                    <title t-esc="b.label + ': ' + b.valueLabel"/>
+                                </rect>
+                            </svg>
+                            <div class="adealer-dash__xaxis">
+                                <span t-foreach="bars" t-as="b" t-key="b_index" t-esc="b.label"/>
+                            </div>
+                        </t>
+                        <div t-else="" class="adealer-dash__empty">No data for the period</div>
+                    </div>
+
+                    <!-- Список (продажі / календар / топ складу) -->
+                    <div class="adealer-dash__card adealer-dash__list">
+                        <div class="adealer-dash__card-title" t-esc="state.data.list.title"/>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th t-foreach="state.data.list.cols" t-as="c" t-key="c_index" t-esc="c"/>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-if="!state.data.list.rows.length">
+                                    <td t-att-colspan="state.data.list.cols.length"
+                                        class="adealer-dash__empty">No records</td>
+                                </tr>
+                                <tr t-foreach="state.data.list.rows" t-as="row" t-key="row_index">
+                                    <td t-foreach="row" t-as="cell" t-key="cell_index" t-esc="fmtCell(cell)"/>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </t>
+</templates>

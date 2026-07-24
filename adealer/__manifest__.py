@@ -30,7 +30,7 @@ Key features:
     'website': "https://apps.odoo.com",
     'license': "LGPL-3",
     'category': 'Sales',
-    'version': '19.0.1.2.0',
+    'version': '19.0.1.3.0',
     'images': [
         'static/description/screenshot_1.png',
         'static/description/screenshot_2.png',
@@ -63,6 +63,7 @@ Key features:
         'views/partner_import_wizard.xml', # <-- цей файл має бути раніше за views.xml!
         'views/journals.xml',  # <-- журнальні list-view; мають бути раніше за views.xml (actions на них посилаються)
         'views/views.xml',
+        'views/dashboard.xml',  # <-- ПІСЛЯ views.xml: меню «Головна» посилається на menu_root
         'views/templates.xml',
         'views/partner_view.xml',
         'views/vehicles.xml',
@@ -93,9 +94,12 @@ Key features:
         'web.assets_backend': [
             'adealer/static/src/css/custom.css',
             'adealer/static/src/css/theme.css',  # фірмова тема (navy/gold), гейт body.adealer-theme
+            'adealer/static/src/css/dashboard.css',
             'adealer/static/src/js/custom.js',
             'adealer/static/src/js/adealer_sidebar.js',
             'adealer/static/src/xml/adealer_sidebar.xml',
+            'adealer/static/src/js/dashboard/dashboard.js',
+            'adealer/static/src/xml/dashboard.xml',
         ],
     },
     # Без зовнішніх Python-залежностей: .xlsx читаємо через openpyxl,
