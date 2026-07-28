@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Послідовність номерів записів -->
+        <record id="seq_service_booking" model="ir.sequence">
+            <field name="name">Service booking</field>
+            <field name="code">adealer.service.booking</field>
+            <field name="prefix">ПЗ</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- ===== Попередній запис (booking) ===== -->
+        <record id="view_service_booking_form" model="ir.ui.view">
+            <field name="name">adealer.service.booking.form</field>
+            <field name="model">adealer.service.booking</field>
+            <field name="arch" type="xml">
+                <form string="Service booking">
+                    <header>
+                        <button name="action_create_repair_order" type="object"
+                                string="Create repair order" class="btn-primary"
+                                invisible="repair_order_id"/>
+                        <button name="action_create_repair_order" type="object"
+                                string="Open repair order" class="btn-secondary"
+                                invisible="not repair_order_id"/>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,confirmed,arrived,done"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1><field name="name" readonly="1"/></h1>
+                        </div>
+                        <group>
+                            <group string="Appointment">
+                                <field name="appointment_datetime"/>
+                                <field name="work_duration"/>
+                                <field name="intake_time"/>
+                                <field name="workplace_id"/>
+                                <field name="employee_id"/>
+                                <field name="advisor_id"/>
+                                <field name="repair_type_id"/>
+                            </group>
+                            <group string="Customer &amp; vehicle">
+                                <field name="partner_id"/>
+                                <field name="phone"/>
+                                <field name="vehicle_id"/>
+                                <field name="model_id"/>
+                                <field name="year"/>
+                                <field name="plate"/>
+                                <field name="vin"/>
+                                <field name="repair_order_id" readonly="1"/>
+                            </group>
+                        </group>
+                        <group string="Requested works">
+                            <field name="requested_works" nolabel="1"/>
+                        </group>
+                        <field name="guid_1c" invisible="1"/>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_service_booking_list" model="ir.ui.view">
+            <field name="name">adealer.service.booking.list</field>
+            <field name="model">adealer.service.booking</field>
+            <field name="arch" type="xml">
+                <list string="Service bookings" default_order="appointment_datetime desc">
+                    <field name="appointment_datetime" string="When"/>
+                    <field name="name" string="Number"/>
+                    <field name="workplace_id" string="Post" optional="show"/>
+                    <field name="partner_id" string="Customer"/>
+                    <field name="vehicle_id" string="Vehicle" optional="show"/>
+                    <field name="plate" string="Plate" optional="hide"/>
+                    <field name="employee_id" string="Mechanic" optional="show"/>
+                    <field name="advisor_id" string="Advisor" optional="hide"/>
+                    <field name="repair_type_id" string="Type" optional="hide"/>
+                    <field name="requested_works" string="Requested works" optional="hide"/>
+                    <field name="repair_order_id" string="Order" optional="show"/>
+                    <field name="state" string="Status" widget="badge"
+                           decoration-info="state in ('draft','confirmed')"
+                           decoration-warning="state == 'arrived'"
+                           decoration-success="state == 'done'"
+                           decoration-muted="state == 'cancel'"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_service_booking_calendar" model="ir.ui.view">
+            <field name="name">adealer.service.booking.calendar</field>
+            <field name="model">adealer.service.booking</field>
+            <field name="arch" type="xml">
+                <calendar string="Service bookings" date_start="appointment_datetime"
+                          date_stop="stop_datetime" color="workplace_id" mode="week" quick_create="0">
+                    <field name="workplace_id" filters="1"/>
+                    <field name="partner_id"/>
+                    <field name="vehicle_id"/>
+                    <field name="employee_id"/>
+                    <field name="state"/>
+                </calendar>
+            </field>
+        </record>
+
+        <record id="view_service_booking_search" model="ir.ui.view">
+            <field name="name">adealer.service.booking.search</field>
+            <field name="model">adealer.service.booking</field>
+            <field name="arch" type="xml">
+                <search string="Service bookings">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="vehicle_id"/>
+                    <field name="plate"/>
+                    <field name="vin"/>
+                    <field name="workplace_id"/>
+                    <field name="employee_id"/>
+                    <filter name="f_planned" string="Planned"
+                            domain="[('state', 'in', ('draft','confirmed'))]"/>
+                    <filter name="f_done" string="Order created" domain="[('state', '=', 'done')]"/>
+                    <separator/>
+                    <filter name="f_upcoming" string="Upcoming"
+                            domain="[('appointment_datetime', '&gt;=', context_today().strftime('%Y-%m-%d 00:00:00'))]"/>
+                    <separator/>
+                    <filter name="g_workplace" string="Post" context="{'group_by': 'workplace_id'}"/>
+                    <filter name="g_mechanic" string="Mechanic" context="{'group_by': 'employee_id'}"/>
+                    <filter name="g_advisor" string="Advisor" context="{'group_by': 'advisor_id'}"/>
+                    <filter name="g_state" string="Status" context="{'group_by': 'state'}"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_service_bookings">
+            <field name="name">Service bookings</field>
+            <field name="res_model">adealer.service.booking</field>
+            <field name="view_mode">calendar,list,form</field>
+            <field name="search_view_id" ref="view_service_booking_search"/>
+        </record>
+
+        <!-- ===== Пости (workplace) ===== -->
+        <record id="view_workplace_list" model="ir.ui.view">
+            <field name="name">adealer.workplace.list</field>
+            <field name="model">adealer.workplace</field>
+            <field name="arch" type="xml">
+                <list string="Workplaces" editable="bottom">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="color" widget="color_picker"/>
+                    <field name="active" widget="boolean_toggle"/>
+                </list>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_workplace">
+            <field name="name">Workplaces / posts</field>
+            <field name="res_model">adealer.workplace</field>
+            <field name="view_mode">list</field>
+        </record>
+
+        <!-- ===== Види ремонту (repair type) ===== -->
+        <record id="view_repair_type_list" model="ir.ui.view">
+            <field name="name">adealer.repair.type.list</field>
+            <field name="model">adealer.repair.type</field>
+            <field name="arch" type="xml">
+                <list string="Repair types" editable="bottom">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="is_warranty" widget="boolean_toggle"/>
+                    <field name="active" widget="boolean_toggle"/>
+                </list>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_repair_type">
+            <field name="name">Repair types</field>
+            <field name="res_model">adealer.repair.type</field>
+            <field name="view_mode">list</field>
+        </record>
+
+        <!-- ===== Меню ===== -->
+        <menuitem name="Service bookings" id="menu_service_bookings"
+                  parent="adealer.menu_maintenance"
+                  action="action_service_bookings" sequence="40"/>
+        <menuitem name="Workplaces / posts" id="menu_workplace"
+                  parent="adealer.configuration"
+                  action="action_workplace" sequence="6"/>
+        <menuitem name="Repair types" id="menu_repair_type"
+                  parent="adealer.configuration"
+                  action="action_repair_type" sequence="7"/>
+    </data>
+</odoo>

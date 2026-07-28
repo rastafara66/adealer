@@ -3460,3 +3460,67 @@ msgstr "Реалізації"
 #: code:addons/adealer/models/dashboard.py:0
 msgid "Repairs in progress"
 msgstr "Ремонти в роботі"
+
+#. module: adealer
+#: model:ir.ui.menu,name:adealer.menu_service_bookings
+#: model:ir.actions.act_window,name:adealer.action_service_bookings
+msgid "Service bookings"
+msgstr "Попередні записи"
+
+#. module: adealer
+#: model:ir.ui.menu,name:adealer.menu_workplace
+#: model:ir.actions.act_window,name:adealer.action_workplace
+msgid "Workplaces / posts"
+msgstr "Робочі місця / пости"
+
+#. module: adealer
+#: model:ir.ui.menu,name:adealer.menu_repair_type
+#: model:ir.actions.act_window,name:adealer.action_repair_type
+msgid "Repair types"
+msgstr "Види ремонту"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__appointment_datetime
+msgid "Appointment date/time"
+msgstr "Дата/час запису"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__work_duration
+msgid "Work duration, h"
+msgstr "Тривалість робіт, год"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__intake_time
+msgid "Vehicle intake time"
+msgstr "Час прийому а/м"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__requested_works
+msgid "Requested works"
+msgstr "Заявлені роботи"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__plate
+msgid "Plate number"
+msgstr "Держномер"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__advisor_id
+msgid "Service advisor"
+msgstr "Майстер-приймальник"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__workplace_id
+msgid "Workplace / post"
+msgstr "Робоче місце / пост"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__repair_type_id
+msgid "Repair type"
+msgstr "Вид ремонту"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_adealer_repair_type__is_warranty
+msgid "Warranty (unpaid)"
+msgstr "Гарантія (безкоштовно)"
+

@@ -33,3 +33,4 @@ from . import report_helpers
 from . import app_update
 from . import organization
 from . import dashboard
+from . import service_booking
