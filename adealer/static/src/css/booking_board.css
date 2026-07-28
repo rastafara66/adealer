@@ -1,0 +1,81 @@
+/* Дошка записів по постах (колонки-пости, як у 1С) */
+.adealer-board {
+    padding: 12px 16px;
+    background: var(--adealer-bg, #f4f6f9);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.adealer-board__toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.adealer-board__nav { display: flex; align-items: center; gap: 6px; }
+.adealer-board__date { max-width: 150px; }
+.adealer-board__daylabel { font-weight: 600; color: #33415c; margin-left: 8px; text-transform: capitalize; }
+.adealer-board__views { display: flex; gap: 4px; }
+.adealer-board__view {
+    border: 1px solid #d6dbe3; background: #fff; color: #33415c; font-weight: 500;
+}
+.adealer-board__view--active {
+    background: var(--adealer-accent, #1a3a6b); border-color: var(--adealer-accent, #1a3a6b); color: #fff;
+}
+
+.adealer-board__grid {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+    background: #fff;
+    border: 1px solid #e6e9ef;
+    border-radius: 8px;
+    overflow: auto;
+}
+/* Вісь часу */
+.adealer-board__timecol { flex: 0 0 56px; position: sticky; left: 0; background: #fff; z-index: 3; }
+.adealer-board__poststub { height: 40px; border-bottom: 1px solid #e6e9ef; }
+.adealer-board__timeaxis, .adealer-board__lane {
+    position: relative;
+    height: calc((21 - 7) * 48px); /* DAY_END-DAY_START */
+}
+.adealer-board__hour {
+    height: 48px; font-size: 11px; color: #98a2b3; text-align: right;
+    padding-right: 6px; box-sizing: border-box; border-top: 1px solid #eef1f5;
+}
+
+/* Колонки-пости */
+.adealer-board__cols { display: flex; flex: 1; }
+.adealer-board__col { flex: 1 0 150px; border-left: 1px solid #eef1f5; min-width: 150px; }
+.adealer-board__col--nopost { background: #fbfaf5; }
+.adealer-board__posthead {
+    height: 40px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 8px; font-weight: 600; font-size: 12px; color: #1c2536;
+    border-bottom: 1px solid #e6e9ef; border-top: 3px solid #1a3a6b;
+    position: sticky; top: 0; background: #fff; z-index: 2;
+}
+.adealer-board__posthead--muted { border-top-color: #cfd9e8; color: #667085; }
+.adealer-board__count {
+    background: #eef1f5; color: #667085; border-radius: 10px; padding: 0 7px; font-size: 11px;
+}
+.adealer-board__lane { position: relative; }
+.adealer-board__gridline { height: 48px; border-top: 1px solid #f2f4f7; }
+
+/* Подія */
+.adealer-board__event {
+    position: absolute; left: 3px; right: 3px;
+    background: #eaf0fb; border: 1px solid #d6e0f5; border-left: 3px solid #1a3a6b;
+    border-radius: 5px; padding: 3px 6px; overflow: hidden; cursor: pointer;
+    font-size: 11px; line-height: 1.25; box-shadow: 0 1px 2px rgba(16,24,40,.06);
+}
+.adealer-board__event:hover { filter: brightness(0.97); box-shadow: 0 2px 6px rgba(16,24,40,.14); z-index: 5; }
+.adealer-board__event--done { background: #e7f6ee; border-color: #b7e4cd; }
+.adealer-board__ev-time { font-weight: 700; color: #1c2536; }
+.adealer-board__ev-main { font-weight: 600; color: #1c2536; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.adealer-board__ev-works { color: #475467; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.adealer-board__ev-mech { color: #98a2b3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.adealer-board__loading { text-align: center; padding: 60px 0; color: var(--adealer-accent, #1a3a6b); }

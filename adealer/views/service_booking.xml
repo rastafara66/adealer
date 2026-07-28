@@ -140,6 +140,12 @@
             <field name="search_view_id" ref="view_service_booking_search"/>
         </record>
 
+        <!-- Дошка по постах (OWL client action) — вигляд «По постах» -->
+        <record model="ir.actions.client" id="action_booking_board">
+            <field name="name">Service bookings</field>
+            <field name="tag">adealer_booking_board</field>
+        </record>
+
         <!-- ===== Пости (workplace) ===== -->
         <record id="view_workplace_list" model="ir.ui.view">
             <field name="name">adealer.workplace.list</field>
@@ -181,7 +187,7 @@
         <!-- ===== Меню ===== -->
         <menuitem name="Service bookings" id="menu_service_bookings"
                   parent="adealer.menu_maintenance"
-                  action="action_service_bookings" sequence="40"/>
+                  action="action_booking_board" sequence="40"/>
         <menuitem name="Workplaces / posts" id="menu_workplace"
                   parent="adealer.configuration"
                   action="action_workplace" sequence="6"/>
