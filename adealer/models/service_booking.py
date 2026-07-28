@@ -51,13 +51,15 @@ class AdealerServiceBooking(models.Model):
     stop_datetime = fields.Datetime('End', compute='_compute_stop', store=True)
     workplace_id = fields.Many2one('adealer.workplace', 'Workplace / post', index=True, tracking=True)
     employee_id = fields.Many2one('hr.employee', 'Mechanic', index=True)
-    advisor_id = fields.Many2one('res.users', 'Service advisor',
+    advisor_id = fields.Many2one('hr.employee', 'Service advisor',
                                  help='МП — мастер-приёмщик')
     work_duration = fields.Float('Work duration, h', help='ВремяРабот', default=1.0)
     intake_time = fields.Char('Vehicle intake time', help='ВремяПриемАМ')
 
+    sale_order_id = fields.Many2one('sale.order', 'Customer order', copy=False, index=True,
+                                    help='Заказ — the customer order linked to this booking (1C: ЗаказПокупателя)')
     repair_order_id = fields.Many2one('repair.order', 'Repair order', copy=False, index=True,
-                                      help='Заказ — the repair order created from this booking (optional)')
+                                      help='The repair order created from this booking (optional)')
 
     partner_id = fields.Many2one('res.partner', 'Customer', tracking=True)
     vehicle_id = fields.Many2one('fleet.vehicle', 'Vehicle')
@@ -109,9 +111,19 @@ class AdealerServiceBooking(models.Model):
                 vals['name'] = self.env['ir.sequence'].next_by_code('adealer.service.booking') or '/'
         return super().create(vals_list)
 
+    @api.depends('name', 'plate', 'vehicle_id', 'requested_works', 'partner_id')
     def _compute_display_name(self):
         for b in self:
-            b.display_name = _('Booking No. %s') % (b.name or '/')
+            who = b.plate or (b.vehicle_id.name if b.vehicle_id else '') or (b.partner_id.name if b.partner_id else '')
+            works = (b.requested_works or '').strip().replace('\n', ' ')
+            if len(works) > 30:
+                works = works[:30] + '…'
+            parts = [b.name or '/']
+            if who:
+                parts.append(who)
+            if works:
+                parts.append(works)
+            b.display_name = ' · '.join(parts)
 
     def action_create_repair_order(self):
         """Створити наряд-замовлення з запису й прив'язати (реквізит Заказ)."""
@@ -123,7 +135,6 @@ class AdealerServiceBooking(models.Model):
                 'partner_id': self.partner_id.id,
                 'vehicle_id': self.vehicle_id.id,
                 'schedule_date': self.appointment_datetime,
-                'service_advisor_id': self.advisor_id.id,
             })
             self.repair_order_id = ro.id
             self.state = 'done'

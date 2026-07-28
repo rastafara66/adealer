@@ -48,6 +48,7 @@
                                 <field name="year"/>
                                 <field name="plate"/>
                                 <field name="vin"/>
+                                <field name="sale_order_id"/>
                                 <field name="repair_order_id" readonly="1"/>
                             </group>
                         </group>
@@ -93,9 +94,13 @@
                 <calendar string="Service bookings" date_start="appointment_datetime"
                           date_stop="stop_datetime" color="workplace_id" mode="week" quick_create="0">
                     <field name="workplace_id" filters="1"/>
+                    <field name="plate"/>
+                    <field name="requested_works"/>
                     <field name="partner_id"/>
                     <field name="vehicle_id"/>
+                    <field name="phone"/>
                     <field name="employee_id"/>
+                    <field name="repair_type_id"/>
                     <field name="state"/>
                 </calendar>
             </field>
