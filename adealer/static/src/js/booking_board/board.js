@@ -4,7 +4,9 @@ import { Component, useState, onWillStart } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 import { _t } from "@web/core/l10n/translation";
-import { DateTime } from "luxon";
+
+// luxon постачається Odoo як ГЛОБАЛ (web/static/lib/luxon), а не як ES-модуль "luxon".
+const { DateTime } = luxon;
 
 // Вікно робочого дня на дошці (години)
 const DAY_START = 7;
