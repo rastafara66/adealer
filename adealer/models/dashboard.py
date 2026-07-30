@@ -13,10 +13,6 @@ from dateutil.relativedelta import relativedelta
 
 from odoo import api, fields, models, _
 
-# Префікси назв номенклатури, що позначають авто (для дашборду «Автосалон»).
-# 1С-конвенція Ford: «Автомобіль …», «Автобус …»; + загальні EN-варіанти для store.
-VEHICLE_NAME_PREFIXES = ('Автомобіль', 'Автобус', 'Автомашина', 'Car ', 'Vehicle ')
-
 
 def _d(s, default):
     """Розпарсити 'YYYY-MM-DD' → date; None/порожнє → default."""
@@ -59,49 +55,36 @@ class AdealerDashboard(models.AbstractModel):
 
     # ------------------------------------------------------- Автосалон
     def _showroom(self, dfrom, dto):
+        # Продаж авто рахуємо за РЕАЛЬНИМ обʼєктом авто (dealer.car — довідник Автомобілі
+        # з 1С: VIN, модель, двигун, коробка, колір), а НЕ за назвою рядка реалізації.
+        # Немає авто в базі → немає продажів (для СТО/запчастин салон = 0, і це правильно).
         Car = self.env['dealer.car']
-        # знімок складу авто (у наявності = на складі + резерв)
         in_stock = Car.search_count([('status', 'in', ['in_stock', 'reserved'])])
         trade_in = Car.search_count([('is_trade_in', '=', True),
                                      ('status', 'in', ['in_stock', 'reserved'])])
         total_cars = Car.search_count([])
 
-        # Продажі авто — з Реалізацій (out_invoice): рядки, де товар є авто.
-        # Ознака авто = префікс назви номенклатури (1С: «Автомобіль …», «Автобус …»).
-        # dealer.car у Ford не ведеться, а авто продаються саме як позиції Реалізації.
-        AML = self.env['account.move.line']
-        veh_dom = ['|'] * (len(VEHICLE_NAME_PREFIXES) - 1)
-        for pref in VEHICLE_NAME_PREFIXES:
-            veh_dom.append(('product_id.name', '=ilike', pref + '%'))
-        lines = AML.search([
-            ('parent_state', '=', 'posted'),
-            ('move_id.move_type', '=', 'out_invoice'),
-            ('move_id.invoice_date', '>=', dfrom),
-            ('move_id.invoice_date', '<=', dto),
-            ('display_type', '=', 'product'),
-        ] + veh_dom)
-
+        # Продані за період: авто зі статусом sold/delivered, дата продажу в періоді.
+        sold = Car.search([('status', 'in', ['sold', 'delivered'])])
         buckets = {k: {'count': 0, 'amount': 0.0} for k, _lbl in _months(dfrom, dto)}
-        # агрегуємо по (документ, товар): один авто = один рядок навіть якщо в 1С розбитий
-        per_car = {}
-        for ln in lines:
-            mv = ln.move_id
-            day = mv.invoice_date
-            if not day:
-                continue
-            key = (mv.id, ln.product_id.id)
-            rec = per_car.setdefault(key, {'day': day, 'name': ln.product_id.display_name,
-                                           'partner': mv.partner_id.name or '', 'amount': 0.0})
-            rec['amount'] += ln.price_subtotal
+        recent = []
+        sold_count = 0
         sold_amount = 0.0
-        for rec in per_car.values():
-            sold_amount += rec['amount']
-            mkey = rec['day'].replace(day=1)
+        for car in sold:
+            sdt = car.sale_order_id.date_order or car.write_date
+            sday = sdt.date() if sdt else None
+            if not sday or not (dfrom <= sday <= dto):
+                continue
+            amt = car.sale_price or car.total_price or 0.0
+            sold_count += 1
+            sold_amount += amt
+            mkey = sday.replace(day=1)
             if mkey in buckets:
                 buckets[mkey]['count'] += 1
-                buckets[mkey]['amount'] += rec['amount']
-        sold_count = len(per_car)
-        recent = sorted(per_car.values(), key=lambda r: r['day'], reverse=True)
+                buckets[mkey]['amount'] += amt
+            recent.append({'day': sday, 'name': car.name,
+                           'partner': car.partner_id.name or '', 'amount': amt})
+        recent.sort(key=lambda r: r['day'], reverse=True)
 
         series = [{'label': lbl, 'value': buckets[k]['amount'], 'count': buckets[k]['count']}
                   for k, lbl in _months(dfrom, dto)]
