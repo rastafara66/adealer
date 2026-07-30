@@ -60,6 +60,9 @@
                     <field name="name" string="Number"/>
                     <field name="partner_id" string="Customer"/>
                     <field name="ref" string="1C ref." optional="show"/>
+                    <field name="dealer_car_count" column_invisible="1"/>
+                    <field name="is_vehicle_sale" string="Vehicle" widget="boolean_toggle"
+                           optional="show" readonly="1"/>
                     <field name="amount_total" string="Amount" sum="Total"/>
                     <field name="currency_id" column_invisible="1"/>
                     <field name="invoice_user_id" string="Responsible" widget="many2one_avatar_user" optional="hide"/>

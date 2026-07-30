@@ -72,13 +72,43 @@
             <field name="view_id" ref="adealer.view_purchase_order_journal_list"/>
         </record>
 
+        <!-- Пошук Реалізацій: фільтр «Продаж авто» (документи з авто-рядком) -->
+        <record id="adealer.view_account_move_realiz_search" model="ir.ui.view">
+            <field name="name">account.move.realiz.search.adealer</field>
+            <field name="model">account.move</field>
+            <field name="arch" type="xml">
+                <search string="Sales invoices">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="ref"/>
+                    <filter name="f_vehicle_sale" string="Vehicle sale"
+                            domain="[('is_vehicle_sale', '=', True)]"/>
+                    <filter name="f_posted" string="Posted" domain="[('state', '=', 'posted')]"/>
+                    <separator/>
+                    <filter name="g_partner" string="Customer" context="{'group_by': 'partner_id'}"/>
+                </search>
+            </field>
+        </record>
+
         <!-- Реалізації / Видаткові (account.move out_invoice) -->
         <record model="ir.actions.act_window" id="adealer.action_window_realizatsii">
             <field name="name">Sales invoices</field>
             <field name="res_model">account.move</field>
             <field name="view_mode">list,form</field>
             <field name="view_id" ref="adealer.view_account_move_realiz_list"/>
+            <field name="search_view_id" ref="adealer.view_account_move_realiz_search"/>
             <field name="domain">[('move_type', '=', 'out_invoice')]</field>
+            <field name="context">{'default_move_type': 'out_invoice'}</field>
+        </record>
+
+        <!-- Продажі авто — тільки Реалізації з авто-рядком (за VIN-обʼєктом) -->
+        <record model="ir.actions.act_window" id="adealer.action_window_vehicle_sales">
+            <field name="name">Vehicle sales</field>
+            <field name="res_model">account.move</field>
+            <field name="view_mode">list,form</field>
+            <field name="view_id" ref="adealer.view_account_move_realiz_list"/>
+            <field name="search_view_id" ref="adealer.view_account_move_realiz_search"/>
+            <field name="domain">[('move_type', '=', 'out_invoice'), ('is_vehicle_sale', '=', True)]</field>
             <field name="context">{'default_move_type': 'out_invoice'}</field>
         </record>
 
@@ -120,6 +150,8 @@
                 action="adealer.action_window_repair_orders" sequence="52"/>
         <menuitem name="Sales invoices" id="adealer.menu_sales_realizatsii" parent="adealer.menu_sales"
                 action="adealer.action_window_realizatsii" sequence="53"/>
+        <menuitem name="Vehicle sales" id="adealer.menu_sales_vehicle_sales" parent="adealer.menu_sales"
+                action="adealer.action_window_vehicle_sales" sequence="54"/>
 
         <!-- menu Purchases -->
         <menuitem name="Purchases" id="adealer.menu_purchases" parent="adealer.menu_root" sequence="7"/>

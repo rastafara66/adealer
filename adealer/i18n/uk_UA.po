@@ -3524,3 +3524,35 @@ msgstr "Вид ремонту"
 msgid "Warranty (unpaid)"
 msgstr "Гарантія (безкоштовно)"
 
+
+#. module: adealer
+#: model:ir.ui.menu,name:adealer.menu_sales_vehicle_sales
+#: model:ir.actions.act_window,name:adealer.action_window_vehicle_sales
+msgid "Vehicle sales"
+msgstr "Продажі авто"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_account_move__is_vehicle_sale
+msgid "Vehicle sale"
+msgstr "Продаж авто"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__sale_move_id
+msgid "Sale invoice"
+msgstr "Документ продажу"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__sale_date
+msgid "Sale date"
+msgstr "Дата продажу"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__model_name_1c
+msgid "Model (text)"
+msgstr "Модель (текст)"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_account_move__dealer_car_ids
+msgid "Vehicles sold"
+msgstr "Продані авто"
+

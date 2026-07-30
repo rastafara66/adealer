@@ -129,6 +129,8 @@ class DealerCar(models.Model):
     sale_order_id = fields.Many2one('sale.order', 'Sale order', copy=False)
     sale_date = fields.Date('Sale date', copy=False,
                             help='Date the vehicle was sold (from the sale document)')
+    sale_move_id = fields.Many2one('account.move', 'Sale invoice', copy=False, index=True,
+                                   help='The delivery note / invoice this vehicle was sold on')
     vin_1c = fields.Char('1C VIN key', copy=False, index=True,
                          help='VIN as imported from 1C Автомобілі catalog (dedup key)')
     fleet_vehicle_id = fields.Many2one('fleet.vehicle', 'Customer vehicle (fleet)', copy=False,
@@ -232,8 +234,46 @@ class DealerCar(models.Model):
             'view_mode': 'form',
         }
 
+    def action_view_sale_move(self):
+        """Відкрити документ продажу (Реалізацію) цього авто."""
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Sale invoice'),
+            'res_model': 'account.move',
+            'res_id': self.sale_move_id.id,
+            'view_mode': 'form',
+        }
+
     @api.model
     def find_by_vin(self, vin):
         if not vin:
             return self.browse()
         return self.search([('vin', '=', vin.strip())], limit=1)
+
+
+class AccountMoveVehicle(models.Model):
+    """Позначка «продаж авто» на Реалізації + перелік проданих у ній машин."""
+    _inherit = 'account.move'
+
+    dealer_car_ids = fields.One2many('dealer.car', 'sale_move_id', string='Vehicles sold')
+    is_vehicle_sale = fields.Boolean('Vehicle sale', compute='_compute_vehicle_sale',
+                                     store=True, index=True,
+                                     help='This delivery note sells at least one vehicle')
+    dealer_car_count = fields.Integer('Vehicles', compute='_compute_vehicle_sale', store=True)
+
+    @api.depends('dealer_car_ids')
+    def _compute_vehicle_sale(self):
+        for move in self:
+            move.dealer_car_count = len(move.dealer_car_ids)
+            move.is_vehicle_sale = bool(move.dealer_car_ids)
+
+    def action_view_dealer_cars(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Vehicles sold'),
+            'res_model': 'dealer.car',
+            'domain': [('sale_move_id', '=', self.id)],
+            'view_mode': 'list,form',
+        }
