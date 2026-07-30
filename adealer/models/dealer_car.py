@@ -79,8 +79,12 @@ class DealerCar(models.Model):
     name = fields.Char('Name', compute='_compute_name', store=True)
     vin = fields.Char('VIN', copy=False, index=True, tracking=True,
                       help='Vehicle identification number (unique)')
-    model_id = fields.Many2one('fleet.vehicle.model', 'Model', required=True,
-                               tracking=True, index=True)
+    model_id = fields.Many2one('fleet.vehicle.model', 'Model',
+                               tracking=True, index=True,
+                               help='Optional: matched fleet model. Imported cars may carry '
+                                    'the model as text in "Model (text)" instead.')
+    model_name_1c = fields.Char('Model (text)',
+                                help='Model description as imported from 1C (when no fleet model matched)')
     brand_id = fields.Many2one(related='model_id.brand_id', store=True, string='Brand')
     brand_logo = fields.Image(related='model_id.brand_id.image_128', string='Logo', readonly=True)
     complectation_id = fields.Many2one('dealer.car.complectation', 'Trim / configuration',
@@ -123,6 +127,10 @@ class DealerCar(models.Model):
                                   domain="[('supplier_rank', '>', 0)]")
     partner_id = fields.Many2one('res.partner', 'Buyer', tracking=True)
     sale_order_id = fields.Many2one('sale.order', 'Sale order', copy=False)
+    sale_date = fields.Date('Sale date', copy=False,
+                            help='Date the vehicle was sold (from the sale document)')
+    vin_1c = fields.Char('1C VIN key', copy=False, index=True,
+                         help='VIN as imported from 1C Автомобілі catalog (dedup key)')
     fleet_vehicle_id = fields.Many2one('fleet.vehicle', 'Customer vehicle (fleet)', copy=False,
                                        help='Created when the vehicle is delivered to the customer')
 
@@ -139,11 +147,11 @@ class DealerCar(models.Model):
     def _expand_status(self, statuses, domain):
         return [s[0] for s in type(self).status.selection]
 
-    @api.depends('model_id.brand_id.name', 'model_id.name', 'vin', 'color_id.name')
+    @api.depends('model_id.brand_id.name', 'model_id.name', 'model_name_1c', 'vin', 'color_id.name')
     def _compute_name(self):
         for car in self:
             parts = [car.model_id.brand_id.name or '', car.model_id.name or '']
-            label = '/'.join(p for p in parts if p)
+            label = '/'.join(p for p in parts if p) or (car.model_name_1c or '')
             if car.color_id:
                 label = '%s (%s)' % (label, car.color_id.name)
             if car.vin:

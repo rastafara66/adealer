@@ -71,8 +71,11 @@ class AdealerDashboard(models.AbstractModel):
         sold_count = 0
         sold_amount = 0.0
         for car in sold:
-            sdt = car.sale_order_id.date_order or car.write_date
-            sday = sdt.date() if sdt else None
+            if car.sale_date:
+                sday = car.sale_date
+            else:
+                sdt = car.sale_order_id.date_order or car.write_date
+                sday = sdt.date() if sdt else None
             if not sday or not (dfrom <= sday <= dto):
                 continue
             amt = car.sale_price or car.total_price or 0.0
