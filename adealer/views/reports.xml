@@ -62,7 +62,7 @@
             <field name="view_mode">pivot,graph,list</field>
         </record>
 
-        <!-- ===== Меню «Reports»: Готові (1С-стиль) + Конструктор (pivot) ===== -->
+        <!-- ===== Меню «Reports»: Готові (класичний стиль) + Конструктор (pivot) ===== -->
         <menuitem name="Reports" id="adealer.menu_reports" parent="adealer.menu_root" sequence="8"/>
 
         <!-- Ready reports: шапка параметрів -> «Generate» -> відомість -->

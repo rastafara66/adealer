@@ -3,15 +3,21 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## [19.0.1.6.1] — 2026-07-30
+### Changed / Змінено
+- Причесано формулювання інтерфейсу та внутрішню документацію (нейтральні generic-назви;
+  деякі мітки полів перейменовано на загальні, напр. «Ext. ref.», «WH ID (source)»).
+- Interface wording and in-repo documentation tidied up (neutral, generic naming).
+
 ## [19.0.1.6.0] — 2026-07-30
 ### Added / Додано
-- **Дошка записів по постах** — новий вигляд «По постах» (колонки-пости, як у 1С) з перемикачем
+- **Дошка записів по постах** — новий вигляд «По постах» (колонки-пости) з перемикачем
   **Пости / Період**: кілька записів на один час стоять у різних колонках-постах.
 - **Продажі авто** — окремий пункт меню в розділі Продажі + фільтр «Продаж авто» у списку
   Реалізацій (лише документи, що продають авто) + лінк **авто ↔ Реалізація** в обидва боки.
 - **Автомобіль як обʼєкт** — `dealer.car` отримав дату й документ продажу, VIN-ключ, текст моделі;
-  імпорт проданих авто з довідника Автомобілі 1С (за VIN-обʼєктом).
-- New **Posts board** (workplace columns, 1C-style) with a Posts/Period switch; **Vehicle sales**
+  імпорт проданих авто з довідника автомобілів (за VIN-обʼєктом).
+- New **Posts board** (workplace columns, classic style) with a Posts/Period switch; **Vehicle sales**
   menu + filter + car↔invoice link; vehicles imported as real objects (`dealer.car`).
 ### Changed / Змінено
 - **Автосалон** тепер рахує продажі авто за **реальним обʼєктом** (`dealer.car` / VIN), а не за
@@ -29,26 +35,26 @@ All notable changes. Newest on top.
 ## [19.0.1.5.0] — 2026-07-28
 ### Added / Додано
 - **Попередній запис на обслуговування** — нова модель `adealer.service.booking`, що дзеркалить
-  1С-регістр «ПредварительнаяЗапись»: дата/час запису, пост (робоче місце), механік,
+  регістр попередніх записів: дата/час запису, пост (робоче місце), механік,
   майстер-приймальник, тривалість робіт, час прийому а/м, клієнт, авто, модель, рік, держномер,
   телефон, VIN, заявлені роботи, вид ремонту, GUID. Наряд-замовлення може бути прив'язаний до
   запису (реквізит «Заказ») — кнопка «Створити наряд». Календар записів (по постах), список, форма.
   Довідники **«Робочі місця / пости»** та **«Види ремонту»** у Налаштуваннях.
-- New **Service booking** model (mirrors the 1C preliminary-appointment register): post/workplace,
+- New **Service booking** model (mirrors the preliminary-appointment register): post/workplace,
   mechanic, advisor, duration, customer, vehicle, requested works, repair type; a repair order can
   be linked to a booking. Calendar/list/form + Workplaces and Repair types reference lists.
 
 ## [19.0.1.4.0] — 2026-07-24
 ### Added / Додано
 - **«Реалізації»** — новий пункт меню в розділі **Продажі**: журнал документів реалізації
-  (Видаткові, `account.move` out_invoice) у стилі 1С — Дата, Номер, Клієнт, 1С-ref, Сума,
+  (Видаткові, `account.move` out_invoice) у класичному стилі — Дата, Номер, Клієнт, Ext. ref, Сума,
   Статус, Оплата.
-- New **Sales invoices** menu under Sales — a 1C-style journal of delivery notes.
+- New **Sales invoices** menu under Sales — a classic journal of delivery notes.
 ### Changed / Змінено
 - **Дашборд «Головна»** тепер стартова сторінка **за замовчуванням** (для користувачів без
   власної стартової) і показується єдиним пунктом без підменю; отримав українську назву.
 - **Автосалон** рахує продажі авто з **Реалізацій** (позиції-авто за назвою «Автомобіль…/Автобус…»),
-  а не лише з довідника авто — тепер показує реальні продажі Ford.
+  а не лише з довідника авто — тепер показує реальні продажі авто.
 - The **Home dashboard** is now the default landing page and a single top-level menu item; the
   **Showroom** tab counts vehicle sales from delivery notes (vehicle lines), not only the car register.
 - **«Календар обслуговування»** знову показує наряди (repair.order за `schedule_date`) — раніше він

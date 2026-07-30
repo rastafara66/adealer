@@ -40,12 +40,12 @@ class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
     # WareHouses
     wh_id_3a = fields.Char("WH ID 3A", default="WareHouse ID 3A")
-    wh_id_1c = fields.Char('WH ID 1C', default="WareHouse ID 1C")    
+    wh_id_1c = fields.Char('WH ID (source)', default="WareHouse ID (source)")    
     wh_name_3a = fields.Char('WH Name 3A', default="WareHouse Name 3A")
-    wh_name_1c = fields.Char("WH Name 1C", default="WareHouse Name 1C")
+    wh_name_1c = fields.Char("WH Name (source)", default="WareHouse Name (source)")
     adealer_sidebar_enabled = fields.Boolean(
         string="Branded theme + side menu (sidebar)",
-        help="Enable the 3A-dealer branded theme (navy/gold) and the 1C-style left side "
+        help="Enable the 3A-dealer branded theme (navy/gold) and the classic left side "
              "menu. On by default.")
     adealer_brand_logo_default = fields.Boolean(
         string="Brand logo instead of photo",

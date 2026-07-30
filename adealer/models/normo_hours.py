@@ -18,8 +18,8 @@ class RepairLineNormo(models.Model):
 
     normo_hours = fields.Float('Standard hours', digits=(12, 2),
                                compute='_compute_normo_hours', store=True, readonly=False,
-                               help='Line standard hours. For services = quantity (in 1C the '
-                                    'work quantity = standard hours); can be adjusted manually')
+                               help='Line standard hours. For services = quantity '
+                                    '(work quantity = standard hours); can be adjusted manually')
 
     @api.depends('product_id', 'product_id.type', 'product_uom_qty')
     def _compute_normo_hours(self):

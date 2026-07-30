@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
-"""Склад автомобілів для продажу (аналог 1С «Альфа-Авто»: облік авто як
-окремої облікової одиниці — РегистрНакопления.ОстаткиАвтомобилей,
-Справочник.Автомобили в розрізі VIN, СтатусыАвтомобилей, ЖурналСостояний,
-ВариантыКомплектации, Опции, ЦеныОпций, Цвета).
+"""Склад автомобілів для продажу — облік авто як окремої облікової одиниці
+(за VIN): статуси, варіанти комплектації, опції, кольори, ціни.
 
-Ключова відмінність from fleet.vehicle: fleet.vehicle описує авто КЛІЄНТА
+Ключова відмінність від fleet.vehicle: fleet.vehicle описує авто КЛІЄНТА
 (на обслуговуванні), а dealer.car — це товарний запас авто АВТОСАЛОНУ на
 продаж, зі своїм життєвим циклом: замовлено → в дорозі → на складі →
 резерв → продано → видано. Після продажу авто може бути зареєстроване як
@@ -26,7 +24,7 @@ class CarColor(models.Model):
 
 
 class CarComplectation(models.Model):
-    """Варіант комплектації моделі (ВариантыКомплектации)."""
+    """Варіант комплектації моделі."""
     _name = 'dealer.car.complectation'
     _description = 'Trim / configuration'
     _order = 'model_id, name'
@@ -44,7 +42,7 @@ class CarComplectation(models.Model):
 
 
 class CarOption(models.Model):
-    """Option/додаткове обладнання авто (Опции + ЦеныОпций)."""
+    """Option/додаткове обладнання авто."""
     _name = 'dealer.car.option'
     _description = 'Vehicle option'
     _order = 'category, name'
@@ -84,7 +82,7 @@ class DealerCar(models.Model):
                                help='Optional: matched fleet model. Imported cars may carry '
                                     'the model as text in "Model (text)" instead.')
     model_name_1c = fields.Char('Model (text)',
-                                help='Model description as imported from 1C (when no fleet model matched)')
+                                help='Model description as text (when no fleet model matched)')
     brand_id = fields.Many2one(related='model_id.brand_id', store=True, string='Brand')
     brand_logo = fields.Image(related='model_id.brand_id.image_128', string='Logo', readonly=True)
     complectation_id = fields.Many2one('dealer.car.complectation', 'Trim / configuration',
@@ -131,8 +129,8 @@ class DealerCar(models.Model):
                             help='Date the vehicle was sold (from the sale document)')
     sale_move_id = fields.Many2one('account.move', 'Sale invoice', copy=False, index=True,
                                    help='The delivery note / invoice this vehicle was sold on')
-    vin_1c = fields.Char('1C VIN key', copy=False, index=True,
-                         help='VIN as imported from 1C Автомобілі catalog (dedup key)')
+    vin_1c = fields.Char('Import VIN key', copy=False, index=True,
+                         help='VIN as imported from the source vehicle catalog (dedup key)')
     fleet_vehicle_id = fields.Many2one('fleet.vehicle', 'Customer vehicle (fleet)', copy=False,
                                        help='Created when the vehicle is delivered to the customer')
 

@@ -1,5 +1,5 @@
 <odoo>
-    <!-- ========== ГОТОВІ ЗВІТИ (1С-стиль): 1 форма на звіт ========== -->
+    <!-- ========== ГОТОВІ ЗВІТИ (класичний стиль): 1 форма на звіт ========== -->
 
     <!-- Sales -->
     <record id="view_report_ready_sales" model="ir.ui.view">
@@ -122,7 +122,7 @@
                             <field name="date"/>
                             <field name="name" string="Order"/>
                             <field name="ref2" string="Supplier"/>
-                            <field name="ref3" string="1C ref."/>
+                            <field name="ref3" string="Ext. ref."/>
                             <field name="amount" string="Amount" sum="Total"/>
                             <button name="action_open" type="object" icon="fa-external-link"
                                     title="Open" invisible="not res_id"/>

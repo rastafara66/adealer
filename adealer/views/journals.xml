@@ -36,7 +36,7 @@
                     <field name="name" string="Number"/>
                     <field name="partner_id" string="Customer"/>
                     <field name="vehicle_id" string="Vehicle" optional="show"/>
-                    <field name="client_order_ref" string="1C ref." optional="hide"/>
+                    <field name="client_order_ref" string="Ext. ref." optional="hide"/>
                     <field name="amount_total" string="Amount" sum="Total"/>
                     <field name="currency_id" column_invisible="1"/>
                     <field name="user_id" string="Responsible" widget="many2one_avatar_user" optional="hide"/>
@@ -59,7 +59,7 @@
                     <field name="invoice_date" string="Date" widget="date"/>
                     <field name="name" string="Number"/>
                     <field name="partner_id" string="Customer"/>
-                    <field name="ref" string="1C ref." optional="show"/>
+                    <field name="ref" string="Ext. ref." optional="show"/>
                     <field name="dealer_car_count" column_invisible="1"/>
                     <field name="is_vehicle_sale" string="Vehicle" widget="boolean_toggle"
                            optional="show" readonly="1"/>
@@ -88,7 +88,7 @@
                     <field name="date_order" string="Date" widget="date"/>
                     <field name="name" string="Number"/>
                     <field name="partner_id" string="Supplier"/>
-                    <field name="partner_ref" string="1C ref." optional="hide"/>
+                    <field name="partner_ref" string="Ext. ref." optional="hide"/>
                     <field name="amount_total" string="Amount" sum="Total"/>
                     <field name="currency_id" column_invisible="1"/>
                     <field name="user_id" string="Responsible" widget="many2one_avatar_user" optional="hide"/>
@@ -99,7 +99,7 @@
                 </list>
             </field>
         </record>
-        <!-- Картка товару (канбан у стилі 1С, без зображення) -->
+        <!-- Картка товару (канбан у класичному стилі, без зображення) -->
         <record id="view_product_card_kanban" model="ir.ui.view">
             <field name="name">product.product.card.kanban.adealer</field>
             <field name="model">product.product</field>

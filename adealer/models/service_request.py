@@ -7,7 +7,7 @@ Until now the "Maintenance requests" menu opened plain sale orders, so a call
 could only be recorded by creating a real order — and the workshop calendar had
 to be built on repair orders, which appear even later in the chain.
 
-Document chain (1C style):
+Document chain:
 
     Service request  ->  Sale order  ->  Repair order  ->  Delivery note
 
@@ -70,7 +70,7 @@ class ServiceRequest(models.Model):
 
     @api.depends('name')
     def _compute_display_name(self):
-        """Name the document kind in breadcrumbs and m2o fields (1C style),
+        """Name the document kind in breadcrumbs and m2o fields,
         same rationale as repair.order and sale.order in this module."""
         for req in self:
             req.display_name = _("Service request No. %s") % (req.name or '/')

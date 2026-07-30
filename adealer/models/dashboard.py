@@ -112,7 +112,7 @@ class AdealerDashboard(models.AbstractModel):
     # ------------------------------------------------------- Автосервіс
     def _service(self, dfrom, dto):
         RO = self.env['repair.order']
-        # Ділова дата наряду = schedule_date (create_date = час імпорту, у Ford усі в 1 міс.).
+        # Ділова дата наряду = schedule_date (create_date може бути датою імпорту).
         dom_period = [('schedule_date', '>=', datetime.combine(dfrom, datetime.min.time())),
                       ('schedule_date', '<=', datetime.combine(dto, datetime.max.time()))]
         period = RO.search(dom_period)

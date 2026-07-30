@@ -53,15 +53,15 @@ msgstr ", ІПН"
 #: model_terms:ir.ui.view,arch_db:adealer.view_purchase_order_journal_list
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_purchases
 #: model_terms:ir.ui.view,arch_db:adealer.view_sale_order_journal_list
-msgid "1C ref."
+msgid "Ext. ref."
 msgstr "Реф. 1С"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
 msgid ""
-"3A-dealer branded theme (navy/gold) and the 1C-style left side menu. On by "
+"3A-dealer branded theme (navy/gold) and the classic left side menu. On by "
 "default."
-msgstr "Фірмова тема 3A-dealer (navy/gold) та ліве бічне меню у стилі 1С. Увімкнено за замовчуванням."
+msgstr "Фірмова тема 3A-dealer (navy/gold) та ліве бічне меню у класичному стилі. Увімкнено за замовчуванням."
 
 #. module: adealer
 #: model:ir.actions.act_window,name:adealer.action_window_config_settings
@@ -936,9 +936,9 @@ msgstr "Порожньо — зведення по всіх контрагент
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_sidebar_enabled
 msgid ""
-"Enable the 3A-dealer branded theme (navy/gold) and the 1C-style left side "
+"Enable the 3A-dealer branded theme (navy/gold) and the classic left side "
 "menu. On by default."
-msgstr "Увімкнути фірмову тему 3A-dealer (navy/gold) та ліве бічне меню у стилі 1С. Увімкнено за замовчуванням."
+msgstr "Увімкнути фірмову тему 3A-dealer (navy/gold) та ліве бічне меню у класичному стилі. Увімкнено за замовчуванням."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign__date_end
@@ -1231,7 +1231,7 @@ msgstr "Тип рядка"
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_repair_line__normo_hours
 msgid ""
-"Line standard hours. For services = quantity (in 1C the work quantity = "
+"Line standard hours. For services = quantity (work quantity = "
 "standard hours); can be adjusted manually"
 msgstr "Нормо-години рядка. Для послуг = кількість (у 1С ЗаказНаряд кількість роботи = нормо-години); можна відкоригувати вручну"
 
@@ -1600,7 +1600,7 @@ msgstr "У наряді %s немає складських запчастин д
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_repair_order__service_advisor_id
-msgid "Order manager / responsible (1C: Responsible)"
+msgid "Order manager / responsible"
 msgstr "Менеджер/відповідальний наряду (1С: Ответственный)"
 
 #. module: adealer
@@ -1952,8 +1952,8 @@ msgstr "Кількість"
 
 #. module: adealer
 #: model:ir.model,name:adealer.model_adealer_report_wizard
-msgid "Ready report (1C style)"
-msgstr "Готовий звіт (1С-стиль)"
+msgid "Ready report"
+msgstr "Готовий звіт (класичний стиль)"
 
 #. module: adealer
 #: model:ir.model,name:adealer.model_adealer_report_wizard_line
@@ -1991,8 +1991,8 @@ msgstr "Взаєморозрахунки з контрагентами"
 
 #. module: adealer
 #: model:ir.model,name:adealer.model_partner_balance_wizard
-msgid "Receivables with counterparties (statement, 1C style)"
-msgstr "Взаєморозрахунки з контрагентами (відомість, 1С-стиль)"
+msgid "Receivables with counterparties (statement)"
+msgstr "Взаєморозрахунки з контрагентами (відомість, класичний стиль)"
 
 #. module: adealer
 #. odoo-python
@@ -2732,7 +2732,7 @@ msgstr "Автомобіль оглянуто, комплектність пер
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_repair_order__mileage
-msgid "Vehicle mileage at intake (analog of 1C order Mileage field)"
+msgid "Vehicle mileage at intake"
 msgstr "Пробіг авто на момент приймання (аналог поля 1С ЗаказНаряд.Пробег)"
 
 #. module: adealer
@@ -2799,8 +2799,8 @@ msgstr "Об'єм"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_res_config_settings__wh_id_1c
-msgid "WH ID 1C"
-msgstr "Склад ID 1C"
+msgid "WH ID (source)"
+msgstr "Склад ID (джерело)"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_res_config_settings__wh_id_3a
@@ -2809,8 +2809,8 @@ msgstr "Склад ID 3A"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_res_config_settings__wh_name_1c
-msgid "WH Name 1C"
-msgstr "Назва складу 1C"
+msgid "WH Name (source)"
+msgstr "Назва складу (джерело)"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_res_config_settings__wh_name_3a
@@ -2854,7 +2854,7 @@ msgstr "Найменування роботи"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_repair_order__mechanic_ids
-msgid "Work performers on the order (executors, from 1C)"
+msgid "Work performers on the order (executors)"
 msgstr "Виконавці робіт по наряду (ИсполнителиРабот з 1С)"
 
 #. module: adealer

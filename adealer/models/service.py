@@ -23,12 +23,12 @@ class RepairOrder(models.Model):
     vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle', index=True)
     vehicle_logo = fields.Image(related='vehicle_id.display_logo', string='Vehicle Logo', readonly=True)
     mechanic_ids = fields.Many2many('hr.employee', string='Mechanics',
-        help='Work performers on the order (executors, from 1C)')
+        help='Work performers on the order (executors)')
     mileage = fields.Float(
-        'Mileage', help='Vehicle mileage at intake (analog of 1C order Mileage field)')
+        'Mileage', help='Vehicle mileage at intake (vehicle mileage at intake)')
     service_advisor_id = fields.Many2one(
         'res.users', string='Manager',
-        help='Order manager / responsible (1C: Responsible)')
+        help='Order manager / responsible')
     source_sale_order_id = fields.Many2one(
         'sale.order', string='Source Sale Order', copy=False, index=True,
         help='The sale order this repair order was created from')
@@ -46,7 +46,7 @@ class RepairOrder(models.Model):
 
     @api.depends('name')
     def _compute_display_name(self):
-        """Name the document kind in breadcrumbs and m2o fields (1C style).
+        """Name the document kind in breadcrumbs and m2o fields.
         A bare "1704" was ambiguous once several documents of the chain
         (order -> repair order -> invoice) sat next to each other."""
         for order in self:

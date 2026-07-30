@@ -10,7 +10,7 @@
                 <xpath expr="//form" position="inside">
                     <app data-string="3A-dealer" string="3A-dealer" name="adealer">
                         <block title="Interface" name="adealer_ui">
-                            <setting string="Branded theme + side menu (sidebar)" help="3A-dealer branded theme (navy/gold) and the 1C-style left side menu. On by default.">
+                            <setting string="Branded theme + side menu (sidebar)" help="3A-dealer branded theme (navy/gold) and the classic left side menu. On by default.">
                                 <field name="adealer_sidebar_enabled"/>
                             </setting>
                             <setting string="Brand logo instead of photo" help="Show the brand logo as the vehicle image by default">

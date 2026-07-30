@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-"""Reports у стилі 1С: шапка параметрів (період, відбори) + кнопка «Generate»
+"""Reports у класичному стилі: шапка параметрів (період, відбори) + кнопка «Generate»
 + таблична частина (відомість). Перший звіт — Receivables with counterparties."""
 from odoo import models, fields, api, _
 
 
 class PartnerBalanceWizard(models.TransientModel):
     _name = 'partner.balance.wizard'
-    _description = 'Receivables with counterparties (statement, 1C style)'
+    _description = 'Receivables with counterparties (statement)'
 
     date_from = fields.Date(
         'Period from', required=True,
@@ -158,10 +158,10 @@ SALE_STATES = {'draft': 'Draft', 'sent': 'Sent', 'sale': 'Confirmed',
 
 
 class AdealerReportWizard(models.TransientModel):
-    """Універсальний «готовий» звіт у стилі 1С: шапка параметрів + відомість.
+    """Універсальний «готовий» звіт у класичному стилі: шапка параметрів + відомість.
     Один тип звіту = одна form-в'юха зі своїми колонками."""
     _name = 'adealer.report.wizard'
-    _description = 'Ready report (1C style)'
+    _description = 'Ready report'
 
     report_type = fields.Selection([
         ('sales', 'Sales'),

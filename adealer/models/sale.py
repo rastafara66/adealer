@@ -36,7 +36,7 @@ class SaleOrder(models.Model):
 
     @api.depends('name')
     def _compute_display_name(self):
-        """Name the document kind in breadcrumbs and m2o fields (1C style),
+        """Name the document kind in breadcrumbs and m2o fields,
         so "Customer order No. 3455" is not confused with the repair order
         it produced. Same rationale as repair.order._compute_display_name."""
         for order in self:

@@ -1,17 +1,10 @@
 # -*- coding: utf-8 -*-
-"""Попередній запис на обслуговування (1С: регістр відомостей «ПредварительнаяЗапись»).
+"""Попередній запис на обслуговування — окремий обʼєкт, НЕ наряд.
 
-У 1С запис клієнта на СТО — це окремий об'єкт (регістр), НЕ наряд. Наряд-замовлення
-може бути прив'язаний до запису (реквізит «Заказ»), а може й ні (клієнт записався, але
-наряд ще не створено / не приїхав). Календар СТО будується саме на цих записах: по постах
-(РабочееМесто) і часу, з тривалістю робіт.
-
-Модель дзеркалить реквізити 1С-регістра:
-  Період → appointment_datetime; РабочееМесто → workplace_id; Сотрудник → employee_id;
-  ВремяРабот → work_duration; МП → advisor_id; ВремяПриемАМ → intake_time; Заказ →
-  repair_order_id; Контрагент → partner_id; Автомобиль → vehicle_id; Модель → model_id;
-  ГодВыпуска → year; ГосНомер → plate; Телефон → phone; ВинКод → vin;
-  ЗаявленныеРаботы → requested_works; ВидРемонта → repair_type_id; УникальныйИдентификатор → guid_1c.
+Запис клієнта на СТО (пост, дата/час, механік, тривалість) робиться ДО наряду.
+Наряд-замовлення може бути привʼязаний до запису, а може й ні (клієнт записався,
+але наряд ще не створено / не приїхав). Календар СТО будується саме на цих
+записах — по постах і часу, з тривалістю робіт.
 """
 from odoo import api, fields, models, _
 
@@ -52,12 +45,12 @@ class AdealerServiceBooking(models.Model):
     workplace_id = fields.Many2one('adealer.workplace', 'Workplace / post', index=True, tracking=True)
     employee_id = fields.Many2one('hr.employee', 'Mechanic', index=True)
     advisor_id = fields.Many2one('hr.employee', 'Service advisor',
-                                 help='МП — мастер-приёмщик')
-    work_duration = fields.Float('Work duration, h', help='ВремяРабот', default=1.0)
-    intake_time = fields.Char('Vehicle intake time', help='ВремяПриемАМ')
+                                 help='Service receptionist')
+    work_duration = fields.Float('Work duration, h', default=1.0)
+    intake_time = fields.Char('Vehicle intake time')
 
     sale_order_id = fields.Many2one('sale.order', 'Customer order', copy=False, index=True,
-                                    help='Заказ — the customer order linked to this booking (1C: ЗаказПокупателя)')
+                                    help='The customer order linked to this booking')
     repair_order_id = fields.Many2one('repair.order', 'Repair order', copy=False, index=True,
                                       help='The repair order created from this booking (optional)')
 
@@ -70,8 +63,8 @@ class AdealerServiceBooking(models.Model):
     vin = fields.Char('VIN')
     requested_works = fields.Text('Requested works')
     repair_type_id = fields.Many2one('adealer.repair.type', 'Repair type')
-    guid_1c = fields.Char('1C identifier', copy=False, index=True,
-                          help='УникальныйИдентификатор — for sync idempotency')
+    guid_1c = fields.Char('External identifier', copy=False, index=True,
+                          help='External identifier for sync idempotency')
 
     state = fields.Selection([
         ('draft', 'Planned'),
@@ -126,7 +119,7 @@ class AdealerServiceBooking(models.Model):
             b.display_name = ' · '.join(parts)
 
     def action_create_repair_order(self):
-        """Створити наряд-замовлення з запису й прив'язати (реквізит Заказ)."""
+        """Створити наряд-замовлення з запису й привʼязати до нього."""
         self.ensure_one()
         if self.repair_order_id:
             ro = self.repair_order_id

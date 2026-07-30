@@ -30,7 +30,7 @@ Key features:
     'website': "https://apps.odoo.com",
     'license': "LGPL-3",
     'category': 'Sales',
-    'version': '19.0.1.6.0',
+    'version': '19.0.1.6.1',
     'images': [
         'static/description/screenshot_1.png',
         'static/description/screenshot_2.png',
@@ -70,7 +70,7 @@ Key features:
         'views/product_template.xml',
         'views/service.xml',
         'views/service_request.xml',  # <-- має бути ПІСЛЯ views.xml: перевизначає меню requests/request_calendar
-        'views/service_booking.xml',  # попередній запис (1С регістр ПредварительнаяЗапись) + пости + види ремонту
+        'views/service_booking.xml',  # попередній запис + пости + види ремонту
         'data/repair_stage_data.xml',  # стандартні стадії наряду (перед alfa_features)
         'views/alfa_features.xml',  # розширення: нормо-години, стадії, склад авто, кампанії, аналоги
         'views/vehicle_service.xml',  # історія обслуговування + нагадування про ТО
