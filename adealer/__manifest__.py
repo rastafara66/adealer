@@ -26,11 +26,11 @@ Key features:
 
     'application': True,
     'post_init_hook': 'post_init_hook',
-    'author': "3A Dealer",
+    'author': "chukhin",
     'website': "https://apps.odoo.com",
     'license': "LGPL-3",
     'category': 'Sales',
-    'version': '19.0.1.6.1',
+    'version': '19.0.1.6.2',
     'images': [
         'static/description/screenshot_1.png',
         'static/description/screenshot_2.png',

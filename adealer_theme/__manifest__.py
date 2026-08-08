@@ -7,7 +7,7 @@
         верхня панель, меню, кнопки, списки, вкладки, чекбокси.
         Встановлюється/видаляється окремо від модуля adealer.
     """,
-    'author': "ser.chukhin@gmail.com",
+    'author': "chukhin",
     'license': "GPL-3",
     'category': 'Themes/Backend',
     'version': '19.0.1.0.0',

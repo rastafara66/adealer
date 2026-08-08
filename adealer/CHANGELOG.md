@@ -3,6 +3,14 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## [19.0.1.6.2] — 2026-08-08
+### Changed / Змінено
+- **Єдиний автор для всіх додатків** — поле `author` зведено до `chukhin` (було «3A Dealer»
+  у `adealer` і «ser.chukhin@gmail.com» у `adealer_theme`). Через різні значення пошук у
+  App Store за автором не показував усі додатки разом.
+- Single `author` value (`chukhin`) across the modules, so all published apps are found
+  together in the App Store.
+
 ## [19.0.1.6.1] — 2026-07-30
 ### Changed / Змінено
 - Причесано формулювання інтерфейсу та внутрішню документацію (нейтральні generic-назви;
