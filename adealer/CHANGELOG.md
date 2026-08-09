@@ -3,6 +3,15 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## [19.0.1.6.3] — 2026-08-09
+### Changed / Змінено
+- **Картка додатка в App Store** — замість скріншота тепер намальований банер
+  з назвою й трьома напрямками двома мовами. Скріншот у мініатюрі читався
+  як сіра пляма; самі скріншоти лишились — в галереї.
+- The App Store card is a drawn banner (bilingual) instead of a screenshot; the
+  screenshots remain as the gallery. Drawn from code by `tools/make_banner.py`,
+  taking its colours from the module icon.
+
 ## [19.0.1.6.2] — 2026-08-08
 ### Changed / Змінено
 - **Єдиний автор для всіх додатків** — поле `author` зведено до `chukhin` (було «3A Dealer»
