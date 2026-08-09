@@ -2,6 +2,7 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 import base64
 from .excel_util import read_xlsx_rows
+from .error_report import report_errors
 
 class PartnerImportWizard(models.TransientModel):
     _name = 'partner.import.wizard'
@@ -10,6 +11,7 @@ class PartnerImportWizard(models.TransientModel):
     file = fields.Binary(string="Excel file", required=True)
     file_name = fields.Char(string="File name")
 
+    @report_errors('wizard_import_partners')
     def action_import_partners(self):
         if not self.file:
             raise UserError(_("Please select a file to import."))

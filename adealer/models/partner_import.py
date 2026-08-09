@@ -1,4 +1,5 @@
 from .excel_util import read_xlsx_rows
+from .error_report import report_errors
 import math
 from odoo import models, api, _
 from odoo.exceptions import UserError
@@ -35,6 +36,7 @@ class PartnerImport(models.TransientModel):
     _description = 'Import partners from Excel'
 
     @api.model
+    @report_errors('import_partners')
     def import_partners_from_excel(self):
         # TODO: Додати вибір файлу через діалог
         write_log(f"=== Початок імпорту контрагентів з Excel ===")

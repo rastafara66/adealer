@@ -30,7 +30,7 @@ Key features:
     'website': "https://apps.odoo.com",
     'license': "LGPL-3",
     'category': 'Sales',
-    'version': '19.0.1.6.3',
+    'version': '19.0.1.7.0',
     'images': [
         # The first image is the card picture in the App Store listing. A
         # screenshot shrunk to a thumbnail reads as a grey smudge; the banner
@@ -82,6 +82,7 @@ Key features:
         'views/reports_ua.xml',  # друковані форми UA: рахунок, видаткова, повернення, прибуткова, довіреність, акт звірки
         'views/sale.xml',
         'views/res_config_settings_views.xml',
+        'views/error_report_views.xml',  # звіти про помилки: список/форма/меню (ПІСЛЯ settings — вживає menu configuration)
         'views/organization.xml',  # generic: Organization dimension on every document
         'views/report_partner_balance.xml',
         'views/report_wizards.xml',

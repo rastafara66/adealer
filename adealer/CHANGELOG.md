@@ -3,6 +3,31 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## [19.0.1.7.0] — 2026-08-09
+### Added / Додано
+- **Автоматичні звіти про помилки (за згодою, типово вимкнено)** — нова модель
+  `adealer.error.report`. Коли всередині модуля стається **несподіваний** збій, у чергу
+  лягає короткий звіт і кроном відправляється розробнику. Летить лише **тип** помилки
+  (`KeyError`) і **рядок коду** (`adealer/models/document_chain.py:88`) — **ніколи не текст
+  помилки** і нічого про ваші авто, клієнтів чи суми. Кожен звіт у черзі видно наперед
+  (поле «What gets sent» = сам майбутній запит), його можна прочитати, доповнити коментарем
+  або видалити. Дедуп за `fingerprint` + стеля на добу; відправка окремим кроном, не в
+  момент падіння; окремий курсор, тож звіт переживає відкат транзакції.
+- **Розмова з користувачем — не звітується.** `UserError`/`ValidationError` та рідня (не
+  заповнено VIN, авто немає на складі, немає механіка) — це модуль **розмовляє з
+  користувачем**, а не ламається. Такі винятки не відправляються **ніколи** (і шум, і витік:
+  саме там живуть VIN та імена клієнтів). Один декоратор `report_errors` на входах (імпорти,
+  перевірка оновлень, ланцюг документів, крони) — єдина точка, через яку проходять збої.
+- Згода: **Налаштування → 3A-dealer → Error reports** (типово Off) + окремий пункт меню
+  **Settings → Error reports** зі списком черги. Перший набір тестів у модулі: «отруєне»
+  повідомлення (VIN/номер/сума в тексті винятку) не потрапляє у вихідний JSON.
+- New **automatic error reports** (opt-in, off by default): model `adealer.error.report`.
+  Only the exception **class** and the **line of code** travel — never the message, never
+  anything about vehicles, customers or amounts. `UserError`/`ValidationError` and family
+  are never reported (they are the module talking to the user). One `report_errors`
+  decorator on the entry points is the single seam every failure passes through. The queue
+  is visible and readable before sending; dedup + daily cap; sent by cron on its own cursor.
+
 ## [19.0.1.6.3] — 2026-08-09
 ### Changed / Змінено
 - **Картка додатка в App Store** — замість скріншота тепер намальований банер

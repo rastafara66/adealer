@@ -2,6 +2,8 @@
 
 from odoo import api, fields, models, _
 
+from .error_report import DEFAULT_URL, PARAM_CONSENT, PARAM_URL
+
 # Home page користувача -> дія (res.users.action_id)
 HOME_ACTIONS = {
     'dashboard': 'adealer.action_dashboard',
@@ -76,6 +78,24 @@ class ResConfigSettings(models.TransientModel):
              "the Act (services) + Delivery note (goods). If off, documents are created "
              "with the \"Create act/delivery note\" buttons.")
 
+    # --- Automatic error reports (opt-in, off by default) ---
+    adealer_error_reports = fields.Selection(
+        [
+            ("on", "Send automatic error reports"),
+            ("off", "Do not send anything"),
+        ],
+        string="Error reports",
+        config_parameter=PARAM_CONSENT,
+        help="Reports carry the error type and the line of code that failed, "
+             "never the text of the error, and never anything about your vehicles, "
+             "customers or amounts. You can read every queued report before it leaves.")
+    adealer_report_url = fields.Char(
+        string="Reporting endpoint",
+        config_parameter=PARAM_URL,
+        default=DEFAULT_URL,
+        help="Where reports are sent. Point it at your own collector if your "
+             "policy forbids outbound calls to third parties.")
+
     # --- Прапорці показу розділів меню ---
     show_menu_vehicles = fields.Boolean("Vehicles and models")
     show_menu_showroom = fields.Boolean("Showroom")
@@ -144,4 +164,8 @@ class ResConfigSettings(models.TransientModel):
                     home = key
                     break
         res['adealer_home'] = home
+        # Незадана згода на екрані має читатись як «off»: форма не повинна
+        # показувати згоду, якої не давали ([[error_report]] — три стани, не булеве).
+        if not res.get('adealer_error_reports'):
+            res['adealer_error_reports'] = 'off'
         return res

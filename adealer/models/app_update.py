@@ -20,6 +20,8 @@ from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 from odoo.modules.module import get_module_path
 
+from .error_report import report_errors
+
 _logger = logging.getLogger(__name__)
 
 DEFAULT_CHANNEL_URL = (
@@ -68,6 +70,7 @@ class AdealerAppUpdate(models.TransientModel):
         return latest, available
 
     @api.model
+    @report_errors('cron_check_update')
     def _cron_check_update(self):
         """Weekly check; only logs and caches the result (shown in Settings)."""
         try:
@@ -80,6 +83,7 @@ class AdealerAppUpdate(models.TransientModel):
                             latest, self.installed_version())
 
     @api.model
+    @report_errors('update_from_git')
     def update_from_git(self):
         """git pull --ff-only in the module checkout, then upgrade the module."""
         path = get_module_path('adealer')

@@ -9,6 +9,8 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 
+from .error_report import report_errors
+
 
 class AccountMove(models.Model):
     _inherit = 'account.move'
@@ -100,14 +102,17 @@ class RepairOrderChain(models.Model):
             'view_mode': 'form',
         }
 
+    @report_errors('chain_create_invoice')
     def action_create_rakhunok(self):
         """Invoice (проформа, товари+послуги) — лишається чернеткою."""
         return self._create_chain_invoice('all', _("Invoice"))
 
+    @report_errors('chain_create_delivery_note')
     def action_create_vydatkova(self):
         """Delivery note (товари) — проводить дохід to товарах."""
         return self._create_chain_invoice('goods', _("Delivery note"))
 
+    @report_errors('chain_create_act')
     def action_create_akt(self):
         """Act of completed works (послуги) — проводить дохід to послугах."""
         return self._create_chain_invoice('services', _("Act"))
@@ -181,6 +186,7 @@ class RepairOrderChain(models.Model):
         picking.action_confirm()
         return picking
 
+    @report_errors('chain_issue_parts')
     def action_issue_parts(self):
         """Видати ЗЧ у цех (внутрішнє переміщення) — на підставі наряду."""
         self.ensure_one()
@@ -200,6 +206,7 @@ class RepairOrderChain(models.Model):
         return self.env['ir.config_parameter'].sudo().get_param(
             'adealer.autopost_repair_docs', 'False') in ('True', 'true', '1', True)
 
+    @report_errors('chain_repair_end_autopost')
     def action_repair_end(self):
         """Проведення наряду (авто віддали клієнту): якщо в налаштуваннях увімкнено
         авто-режим — формуємо реалізацію: Act (послуги) + Delivery note (товари)."""

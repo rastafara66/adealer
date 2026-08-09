@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from . import error_report  # декоратор report_errors + модель звітів (перший — його імпортують інші)
 from . import addresses_import
 from . import addresses_import_wizard
 from . import maintenance

@@ -1,4 +1,5 @@
 from .excel_util import read_xlsx_rows
+from .error_report import report_errors
 import re
 import os
 from datetime import datetime
@@ -77,6 +78,7 @@ class PartnerAddressImport(models.TransientModel):
     _description = 'Import partner addresses from Excel'
 
     @api.model
+    @report_errors('import_addresses')
     def import_addresses_from_excel(self):
         # За замовчуванням режим - оновлювати існуючих контрагентів
         mode = 'update'
@@ -181,6 +183,7 @@ class PartnerAddressImport(models.TransientModel):
         }
 
     @api.model
+    @report_errors('import_addresses_filtered')
     def import_addresses_from_excel_filtered(self, partner_type='all'):
         """
         Імпорт адрес з Excel з фільтрацією по типу контрагента.

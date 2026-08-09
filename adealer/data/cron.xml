@@ -9,6 +9,16 @@
         <field name="active">True</field>
     </record>
 
+    <record id="ir_cron_adealer_send_error_reports" model="ir.cron">
+        <field name="name">3A-dealer: send queued error reports</field>
+        <field name="model_id" ref="model_adealer_error_report"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_send_reports()</field>
+        <field name="interval_number">4</field>
+        <field name="interval_type">hours</field>
+        <field name="active">True</field>
+    </record>
+
     <record id="model_fleet_vehicle_import" model="ir.model">
         <field name="name">fleet.vehicle.import</field>
         <field name="model">fleet.vehicle.import</field>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="adealer_error_report_view_list" model="ir.ui.view">
+        <field name="name">adealer.error.report.list</field>
+        <field name="model">adealer.error.report</field>
+        <field name="arch" type="xml">
+            <list string="Error reports">
+                <field name="create_date" string="First seen"/>
+                <field name="error_type"/>
+                <field name="operation"/>
+                <field name="http_status" optional="show"/>
+                <field name="occurrences" string="Times"/>
+                <field name="state" widget="badge"
+                       decoration-info="state == 'pending'"
+                       decoration-success="state == 'sent'"
+                       decoration-warning="state == 'failed'"/>
+                <field name="sent_date" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="adealer_error_report_view_form" model="ir.ui.view">
+        <field name="name">adealer.error.report.form</field>
+        <field name="model">adealer.error.report</field>
+        <field name="arch" type="xml">
+            <form string="Error report">
+                <header>
+                    <button name="action_send_now" type="object" string="Send now"
+                            class="btn-primary" invisible="state == 'sent'"/>
+                    <button name="action_discard" type="object" string="Discard"
+                            confirm="Delete this report? It will not be sent."/>
+                    <field name="state" widget="statusbar" statusbar_visible="pending,sent"/>
+                </header>
+                <sheet>
+                    <div class="alert alert-info" role="alert">
+                        Below is the exact text that will be sent -- not a summary of it.
+                        It carries the type of the error and the line of code that failed,
+                        never the text of the error and nothing about your vehicles,
+                        customers or amounts.
+                    </div>
+                    <group>
+                        <group>
+                            <field name="error_type"/>
+                            <field name="operation"/>
+                            <field name="http_status"/>
+                        </group>
+                        <group>
+                            <field name="occurrences"/>
+                            <field name="fingerprint"/>
+                            <field name="attempts"/>
+                            <field name="sent_date"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group string="Anything you want to add?">
+                        <field name="comment" nolabel="1" colspan="2"
+                               placeholder="What were you doing when this happened? Written as typed -- do not paste VINs, customer names or amounts."/>
+                    </group>
+                    <group string="What gets sent">
+                        <field name="payload" nolabel="1" colspan="2" widget="ace"
+                               options="{'mode': 'json'}" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="adealer_error_report_action" model="ir.actions.act_window">
+        <field name="name">Error reports</field>
+        <field name="res_model">adealer.error.report</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Nothing has gone wrong</p>
+            <p>
+                When something breaks unexpectedly, a report appears here so the
+                problem can be fixed. You can read each one in full before it is
+                sent, and turn reporting off entirely in Settings.
+            </p>
+        </field>
+    </record>
+
+    <menuitem name="Error reports" id="menu_adealer_error_reports"
+              parent="adealer.configuration"
+              action="adealer_error_report_action"
+              groups="base.group_system" sequence="95"/>
+
+</odoo>

@@ -30,3 +30,4 @@ access_adealer_service_request,adealer.service.request,model_adealer_service_req
 access_adealer_workplace,adealer.workplace,model_adealer_workplace,base.group_user,1,1,1,1
 access_adealer_repair_type,adealer.repair_type,model_adealer_repair_type,base.group_user,1,1,1,1
 access_adealer_service_booking,adealer.service_booking,model_adealer_service_booking,base.group_user,1,1,1,1
+access_adealer_error_report,adealer.error_report,model_adealer_error_report,base.group_system,1,1,1,1

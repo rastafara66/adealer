@@ -1,5 +1,6 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
+from .error_report import report_errors
 
 class PartnerAddressImportWizard(models.TransientModel):
     _name = 'partner.address.import.wizard'
@@ -11,6 +12,7 @@ class PartnerAddressImportWizard(models.TransientModel):
         ('all', 'All')
     ], string='Counterparty type', default='all', required=True)
 
+    @report_errors('wizard_import_addresses')
     def action_import_addresses(self):
         # Знайти модель імпорту
         import_model = self.env['res.partner.address.import']

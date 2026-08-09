@@ -1,4 +1,5 @@
 from .excel_util import read_xlsx_rows
+from .error_report import report_errors
 import math
 import os
 from datetime import datetime
@@ -42,6 +43,7 @@ class FleetVehicleImport(models.TransientModel):
     _description = 'Import vehicles from Excel'
 
     @api.model
+    @report_errors('import_vehicles')
     def import_vehicles_from_excel(self):
         # Вкажіть шлях до файлу Excel
         file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'import_vehicles.xlsx')

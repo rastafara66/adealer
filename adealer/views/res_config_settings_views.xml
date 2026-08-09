@@ -39,6 +39,19 @@
                             <setting string="Purchases"><field name="show_menu_purchases"/></setting>
                             <setting string="Reports"><field name="show_menu_reports"/></setting>
                         </block>
+                        <block title="Error reports" name="adealer_error_reports_block">
+                            <setting string="Automatic error reports"
+                                     help="Off by default. When on, an unexpected failure sends a report — the error type and the line of code, never the text and nothing about your vehicles, customers or amounts. Read every queued report before it leaves.">
+                                <field name="adealer_error_reports" widget="radio"/>
+                                <div class="mt8 text-muted" invisible="adealer_error_reports != 'on'">
+                                    Queued reports: Settings menu -> Error reports.
+                                </div>
+                            </setting>
+                            <setting string="Reporting endpoint"
+                                     help="Where reports are sent. Point it at your own collector if your policy forbids outbound calls to third parties.">
+                                <field name="adealer_report_url"/>
+                            </setting>
+                        </block>
                         <block title="Updates" name="adealer_updates">
                             <setting string="Application version"
                                      help="Installed vs. the latest published version">

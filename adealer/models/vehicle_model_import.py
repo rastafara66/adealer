@@ -1,4 +1,5 @@
 from .excel_util import read_xlsx_rows
+from .error_report import report_errors
 import math
 import os
 from odoo import models, api, _
@@ -23,6 +24,7 @@ class FleetVehicleModelImport(models.TransientModel):
     _description = 'Import vehicle models from Excel'
 
     @api.model
+    @report_errors('import_vehicle_models')
     def import_vehicle_models_from_excel(self):
         file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data', 'import_vehicle_models.xlsx')
         try:
