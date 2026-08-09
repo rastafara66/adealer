@@ -3,6 +3,15 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## [19.0.1.7.1] — 2026-08-09
+### Changed / Змінено
+- **Ендпоінт звітів про помилки** — типовий `Reporting endpoint` переведено на нейтральний
+  шлях `/odoo-report` (замість технічного дефолта попередньої версії). Значення й далі
+  налаштовуване (`ir.config_parameter` `adealer.report_url`); наявні бази з уже заданим
+  значенням не зачіпає. Старий шлях лишається робочим, тож порядок оновлення баз некритичний.
+- Default reporting endpoint switched to the neutral `/odoo-report` path (still configurable;
+  the old path keeps working, so update order across installs does not matter).
+
 ## [19.0.1.7.0] — 2026-08-09
 ### Added / Додано
 - **Автоматичні звіти про помилки (за згодою, типово вимкнено)** — нова модель

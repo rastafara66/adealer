@@ -56,14 +56,14 @@ _logger = logging.getLogger(__name__)
 # Where reports go. Overridable per database, so a customer with a policy
 # against outbound calls can point it at their own collector.
 #
-# The receiver already runs on the VPS at ``/bank-sync/report`` and whitelists
-# exactly the fields adealer sends; it tells the modules apart by ``module``.
-# A semantic alias ``/odoo-report`` -> same upstream is planned; when it exists,
-# bump this default. Until then this path is the live, tested one.
+# The receiver whitelists exactly the fields adealer sends and tells modules
+# apart by ``module``. ``/odoo-report`` is a semantic alias to the same upstream
+# as the Bank Sync receiver (both proven live, 09.08.2026); the ``/bank-sync``
+# path also still works, so the order in which installs update does not matter.
 PARAM_URL = "adealer.report_url"
 PARAM_CONSENT = "adealer.error_reports"
 PARAM_INSTALL_ID = "adealer.install_id"
-DEFAULT_URL = "https://yellow.in.ua/bank-sync/report"
+DEFAULT_URL = "https://yellow.in.ua/odoo-report"
 
 # The report format, so an old client and a new collector can still talk.
 SCHEMA = 1

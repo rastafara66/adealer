@@ -30,7 +30,7 @@ Key features:
     'website': "https://apps.odoo.com",
     'license': "LGPL-3",
     'category': 'Sales',
-    'version': '19.0.1.7.0',
+    'version': '19.0.1.7.1',
     'images': [
         # The first image is the card picture in the App Store listing. A
         # screenshot shrunk to a thumbnail reads as a grey smudge; the banner
