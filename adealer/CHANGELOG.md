@@ -3,6 +3,14 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## [19.0.1.7.4] — 2026-08-11
+### Changed / Змінено
+- **Повна англійська галерея скріншотів** — додано ще 5 кадрів на демо-даних: дашборд
+  Автосервіс, форма наряду, календар обслуговування, картотека авто клієнтів, журнал нарядів
+  (разом із раніше доданими Автосалон/Автозапчастини/Продажі/ABC — 9 кадрів + банер-картка).
+- Full English screenshot gallery: added Service dashboard, repair order form, service calendar,
+  customer-vehicle file and repair-order journal (9 screenshots total on demo data).
+
 ## [19.0.1.7.3] — 2026-08-11
 ### Changed / Змінено
 - **Демо-дані інтернаціоналізовано (English).** Уся демонстраційна база (`demo/demo.xml`) —
