@@ -19,8 +19,8 @@ class DealerOrganization(models.Model):
 
     name = fields.Char('Name', required=True)
     full_name = fields.Char('Full name')
-    edrpou = fields.Char('EDRPOU', help='State registry code (ЄДРПОУ)')
-    vat_code = fields.Char('Tax ID', help='Individual tax number (ІПН)')
+    edrpou = fields.Char('EDRPOU', help='Company state registration code')
+    vat_code = fields.Char('Tax ID', help='Individual taxpayer number')
     is_vat_payer = fields.Boolean('VAT payer')
     vat_certificate = fields.Char('VAT certificate No.')
     prefix = fields.Char('Document prefix')

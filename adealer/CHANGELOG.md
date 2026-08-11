@@ -3,6 +3,14 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## [19.0.1.7.2] — 2026-08-09
+### Changed / Змінено
+- **Англійський UI звірено для міжнародного вжитку** — прибрано останні не-англійські підказки
+  (кириличні абревіатури в тултипах полів організації); усі видимі написи, включно з дашбордом
+  (KPI, заголовки, колонки, місяці), — англійські (переклад UA лишається у `i18n`).
+- English UI reviewed for international use: removed the last non-English hints from field
+  tooltips; all visible labels, including the dashboard, are English (UA stays as a translation).
+
 ## [19.0.1.7.1] — 2026-08-09
 ### Changed / Змінено
 - **Ендпоінт звітів про помилки** — типовий `Reporting endpoint` переведено на нейтральний
