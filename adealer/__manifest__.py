@@ -30,18 +30,18 @@ Key features:
     'website': "https://apps.odoo.com",
     'license': "LGPL-3",
     'category': 'Sales',
-    'version': '19.0.1.7.2',
+    'version': '19.0.1.7.3',
     'images': [
         # The first image is the card picture in the App Store listing. A
         # screenshot shrunk to a thumbnail reads as a grey smudge; the banner
         # keeps the name legible. The screenshots stay, as the gallery.
         'static/description/banner.png',
-        'static/description/screenshot_1.png',
-        'static/description/screenshot_2.png',
-        'static/description/screenshot_3.png',
-        'static/description/screenshot_4.png',
-        'static/description/screenshot_5.png',
-        'static/description/screenshot_7.png',
+        'static/description/screenshot_1.png',  # Showroom dashboard (EN, USD)
+        'static/description/screenshot_3.png',  # Parts dashboard (EN)
+        'static/description/screenshot_6.png',  # Sales — ready report (EN)
+        'static/description/screenshot_7.png',  # ABC analysis report (EN)
+        # screenshot_2 (Service dashboard), _4 (Repair order), _5 (Vehicles) —
+        # to be re-taken against the now-English demo, then re-added here.
     ],
 
     # any module necessary for this one to work correctly
