@@ -3,6 +3,14 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## [19.0.1.7.5] — 2026-08-11
+### Changed / Змінено
+- **Розділ «Звіти про помилки» на сторінці опису** App Store — пояснює, що йде у звіті
+  (тип помилки + рядок коду, ніколи текст), чого немає ніколи (VIN, клієнти, суми), і як
+  надіслати звіт вручну (Settings → Error reports). Заохочує вмикати звітування.
+- Added an **Error reports** section to the App Store description page: what is sent, what is
+  never sent, and how to review/send a report manually.
+
 ## [19.0.1.7.4] — 2026-08-11
 ### Changed / Змінено
 - **Повна англійська галерея скріншотів** — додано ще 5 кадрів на демо-даних: дашборд
