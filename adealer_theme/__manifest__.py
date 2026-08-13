@@ -8,9 +8,9 @@
         Встановлюється/видаляється окремо від модуля adealer.
     """,
     'author': "chukhin",
-    'license': "GPL-3",
+    'license': "LGPL-3",
     'category': 'Themes/Backend',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.1.0',
     'depends': ['web'],
     'assets': {
         'web.assets_backend': [
