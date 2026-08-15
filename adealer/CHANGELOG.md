@@ -3,6 +3,11 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## [19.0.1.8.2] — 2026-08-15
+### Changed / Змінено
+- **Сторінка опису в App Store** — секцію Changelog доповнено записами 1.8.1/1.8.2.
+- **Store description page** — changelog section brought up to date (1.8.1/1.8.2).
+
 ## [19.0.1.8.1] — 2026-08-15
 ### Changed / Змінено
 - **Автозвіт про помилки тепер знає модуль-джерело.** `report_errors(operation, module="adealer")`
