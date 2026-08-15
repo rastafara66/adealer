@@ -92,7 +92,7 @@ EXPECTED_EXCEPTIONS = (
 )
 
 
-def report_errors(operation):
+def report_errors(operation, module="adealer"):
     """Wrap an entry point so *unexpected* failures inside it report themselves.
 
     This is the single point the whole design turns on. adealer has no one
@@ -119,7 +119,7 @@ def report_errors(operation):
             except Exception:
                 # Reporting must never mask or replace the real error.
                 try:
-                    self.env["adealer.error.report"]._capture(operation)
+                    self.env["adealer.error.report"]._capture(operation, module)
                 except Exception:  # noqa: BLE001
                     _logger.exception("Could not queue a 3A-dealer error report")
                 raise
@@ -139,7 +139,7 @@ def _short_path(path):
     """
     parts = path.replace("\\", "/").split("/")
     for index, part in enumerate(parts):
-        if part == "adealer":
+        if part == "adealer" or part.startswith("adealer_"):
             return "/".join(parts[index:])
     return "/".join(parts[-2:])
 
@@ -174,6 +174,12 @@ class AdealerErrorReport(models.Model):
     )
     error_type = fields.Char(required=True, help="The exception class, never its text.")
     operation = fields.Char()
+    module = fields.Char(
+        default="adealer",
+        required=True,
+        index=True,
+        help="Which 3A-dealer module raised it, so the collector tells reports apart.",
+    )
     http_status = fields.Integer()
     frames = fields.Text(help="Where in the code it failed. Paths are cut to the module root.")
     occurrences = fields.Integer(default=1)
@@ -218,7 +224,7 @@ class AdealerErrorReport(models.Model):
             "schema": SCHEMA,
             "install_id": self.env["ir.config_parameter"].sudo().get_param(PARAM_INSTALL_ID, ""),
             "odoo_version": self._odoo_version(),
-            "module": "adealer",
+            "module": self.module or "adealer",
             "module_version": self._module_version(),
             "operation": self.operation or "",
             "error_type": self.error_type,
@@ -237,7 +243,7 @@ class AdealerErrorReport(models.Model):
 
     def _module_version(self):
         module = self.env["ir.module.module"].sudo().search(
-            [("name", "=", "adealer")], limit=1
+            [("name", "=", self.module or "adealer")], limit=1
         )
         return module.installed_version or ""
 
@@ -245,7 +251,7 @@ class AdealerErrorReport(models.Model):
     # Capture
     # ------------------------------------------------------------------
     @api.model
-    def _capture(self, operation):
+    def _capture(self, operation, module="adealer"):
         """Queue a report for the exception currently being handled.
 
         Called from inside an ``except`` block, so ``sys.exc_info()`` is the
@@ -263,7 +269,7 @@ class AdealerErrorReport(models.Model):
             return False
 
         company = self.env.company
-        vals = self._build_vals(exc_type, exc_value, exc_tb, operation, company)
+        vals = self._build_vals(exc_type, exc_value, exc_tb, operation, company, module)
         try:
             with self.env.registry.cursor() as cr:
                 cr.execute("SET LOCAL lock_timeout = '5s'")
@@ -290,7 +296,7 @@ class AdealerErrorReport(models.Model):
             return False
 
     @api.model
-    def _build_vals(self, exc_type, exc_value, exc_tb, operation, company):
+    def _build_vals(self, exc_type, exc_value, exc_tb, operation, company, module="adealer"):
         frames = [
             "%s:%s in %s" % (_short_path(frame.filename), frame.lineno, frame.name)
             for frame in traceback.extract_tb(exc_tb)[-KEEP_FRAMES:]
@@ -299,15 +305,17 @@ class AdealerErrorReport(models.Model):
         status = _http_status(exc_value)
         # Deliberately hashes only what is already in the report: two reports
         # with the same fingerprint are the same report, and the hash reveals
-        # nothing that the payload does not.
+        # nothing that the payload does not. The module is folded in so the same
+        # failure in two modules stays two distinct reports.
         digest = hashlib.sha256(
-            "|".join([error_type, str(status), operation or ""] + frames).encode()
+            "|".join([module or "", error_type, str(status), operation or ""] + frames).encode()
         ).hexdigest()[:16]
         return {
             "company_id": company.id,
             "fingerprint": digest,
             "error_type": error_type,
             "operation": operation or "",
+            "module": module or "adealer",
             "http_status": status,
             "frames": "\n".join(frames),
         }

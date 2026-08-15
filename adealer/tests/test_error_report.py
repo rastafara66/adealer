@@ -175,7 +175,18 @@ class TestErrorReport(TransactionCase):
         with patch.object(type(self.Report), "_capture", return_value=1) as cap:
             with self.assertRaises(KeyError):
                 boom(self.Report)
-        cap.assert_called_once_with("probe-unexpected")
+        cap.assert_called_once_with("probe-unexpected", "adealer")
+
+    def test_decorator_passes_the_module_through(self):
+        """A paid add-on tags its reports with its own module name."""
+        @report_errors("probe-pro", module="adealer_pro_sales")
+        def boom(_rec):
+            raise KeyError("boom")
+
+        with patch.object(type(self.Report), "_capture", return_value=1) as cap:
+            with self.assertRaises(KeyError):
+                boom(self.Report)
+        cap.assert_called_once_with("probe-pro", "adealer_pro_sales")
 
     def test_decorator_preserves_the_return_value(self):
         @report_errors("probe-ok")

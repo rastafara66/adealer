@@ -3,6 +3,16 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## [19.0.1.8.1] — 2026-08-15
+### Changed / Змінено
+- **Автозвіт про помилки тепер знає модуль-джерело.** `report_errors(operation, module="adealer")`
+  і поле `module` у `adealer.error.report` — платні надбудови (Sales/Service/Parts/AUTO.RIA/VIN/
+  Bank&Leasing) використовують той самий механізм, і приймач розрізняє, звідки прийшла помилка.
+  Зворотно-сумісно: старі виклики працюють як були (типово «adealer»).
+- **Error reports now carry the source module.** `report_errors(operation, module=...)` and a
+  `module` field on `adealer.error.report`, so paid add-ons reuse the same reporting and the
+  collector tells them apart. Backward compatible (defaults to "adealer").
+
 ## [19.0.1.8.0] — 2026-08-13
 ### Added / Додано
 - **Фотогалерея авто** — у картки автомобіля зʼявилося головне фото (`image_1920`) і галерея
