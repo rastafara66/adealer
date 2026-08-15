@@ -85,6 +85,11 @@ class DealerCar(models.Model):
                                 help='Model description as text (when no fleet model matched)')
     brand_id = fields.Many2one(related='model_id.brand_id', store=True, string='Brand')
     brand_logo = fields.Image(related='model_id.brand_id.image_128', string='Logo', readonly=True)
+    image_1920 = fields.Image('Main photo', max_width=1920, max_height=1920)
+    image_128 = fields.Image('Main photo (thumb)', related='image_1920',
+                             max_width=128, max_height=128, store=True)
+    image_ids = fields.One2many('dealer.car.image', 'car_id', 'Photos')
+    image_count = fields.Integer(compute='_compute_image_count')
     complectation_id = fields.Many2one('dealer.car.complectation', 'Trim / configuration',
                                        domain="[('model_id', '=', model_id)]")
     color_id = fields.Many2one('dealer.car.color', 'Color')
@@ -162,6 +167,11 @@ class DealerCar(models.Model):
     def _compute_options_price(self):
         for car in self:
             car.options_price = sum(car.option_ids.mapped('price'))
+
+    @api.depends('image_1920', 'image_ids')
+    def _compute_image_count(self):
+        for car in self:
+            car.image_count = (1 if car.image_1920 else 0) + len(car.image_ids)
 
     @api.depends('sale_price', 'options_price')
     def _compute_total_price(self):

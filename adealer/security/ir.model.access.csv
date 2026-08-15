@@ -22,6 +22,7 @@ access_dealer_car_complectation,dealer.car.complectation,model_dealer_car_comple
 access_dealer_car_option,dealer.car.option,model_dealer_car_option,base.group_user,1,1,1,1
 access_dealer_car_status_history,dealer.car.status.history,model_dealer_car_status_history,base.group_user,1,1,1,1
 access_dealer_car,dealer.car,model_dealer_car,base.group_user,1,1,1,1
+access_dealer_car_image,dealer.car.image,model_dealer_car_image,base.group_user,1,1,1,1
 access_dealer_service_campaign,dealer.service.campaign,model_dealer_service_campaign,base.group_user,1,1,1,1
 access_dealer_service_campaign_line,dealer.service.campaign.line,model_dealer_service_campaign_line,base.group_user,1,1,1,1
 access_adealer_app_update,adealer.app.update,model_adealer_app_update,base.group_system,1,0,0,0

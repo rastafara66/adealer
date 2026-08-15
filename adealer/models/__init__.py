@@ -28,6 +28,7 @@ from . import mechanic_report
 from . import repair_stage
 from . import part_analog
 from . import dealer_car
+from . import car_image
 from . import service_campaign
 from . import vehicle_service
 from . import report_helpers

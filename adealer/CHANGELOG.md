@@ -3,6 +3,15 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## [19.0.1.8.0] — 2026-08-13
+### Added / Додано
+- **Фотогалерея авто** — у картки автомобіля зʼявилося головне фото (`image_1920`) і галерея
+  додаткових знімків (`dealer.car.image`): вкладка «Photos», фото як аватар у формі. Це база
+  для вітрини салону й для експортів оголошень (напр. AUTO.RIA), де оголошення без фото —
+  мертве.
+- **Vehicle photo gallery** — a main photo plus an extra-photos gallery on the vehicle card
+  (Photos tab). The base the showroom and ad exports (e.g. AUTO.RIA) build on.
+
 ## [19.0.1.7.5] — 2026-08-11
 ### Changed / Змінено
 - **Розділ «Звіти про помилки» на сторінці опису** App Store — пояснює, що йде у звіті
