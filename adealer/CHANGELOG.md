@@ -3,6 +3,21 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## [19.0.1.8.3] — 2026-08-16
+### Fixed / Виправлено
+- **Черга звітів більше не засмічується розмовами з користувачем.** Перевірка
+  «очікуваних» винятків (`UserError`, `ValidationError`) жила лише в декораторі
+  `report_errors`, тож звернення до `_capture` напряму — або точка входу, яку
+  забули обгорнути, — ставило в чергу й їх. Дані не витікали (текст помилки не
+  надсилається взагалі), але справжня помилка тонула серед сотень «не заповнено
+  VIN». Перевірку продубльовано в самому `_capture`.
+- **Report queue no longer fills with the module talking to the user.** The
+  expected-exception check lived only in the `report_errors` decorator, so
+  reaching `_capture` directly — or an entry point someone forgot to wrap —
+  queued `UserError` as well. Nothing leaked, as the message is never sent, but
+  the one real bug drowned in hundreds of "VIN not filled". The check is now
+  repeated inside `_capture` itself.
+
 ## [19.0.1.8.2] — 2026-08-15
 ### Changed / Змінено
 - **Сторінка опису в App Store** — секцію Changelog доповнено записами 1.8.1/1.8.2.

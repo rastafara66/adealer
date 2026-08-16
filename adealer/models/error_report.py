@@ -265,6 +265,15 @@ class AdealerErrorReport(models.Model):
         exc_type, exc_value, exc_tb = sys.exc_info()
         if exc_value is None:
             return False
+        # The same check the decorator makes, deliberately repeated here. Until
+        # now it lived only in the decorator, so a caller reaching ``_capture``
+        # directly -- or a future entry point someone forgets to wrap -- would
+        # queue ``UserError`` too. Nothing leaks either way, since the message is
+        # never sent; but the queue fills up with the module talking to the user,
+        # and the one real bug drowns in it. A rule has to hold where it applies,
+        # not only at the door.
+        if isinstance(exc_value, EXPECTED_EXCEPTIONS):
+            return False
         if not self._reporting_enabled():
             return False
 

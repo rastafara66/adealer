@@ -156,6 +156,21 @@ class TestErrorReport(TransactionCase):
                 boom(self.Report)
         cap.assert_not_called()
 
+    def test_capture_itself_refuses_expected_exceptions(self):
+        """The rule holds even without the decorator.
+
+        The check used to live only in ``report_errors``, so ``_capture`` reached
+        directly -- or from an entry point someone forgets to wrap -- queued
+        ``UserError`` too. Nothing leaked, since the message is never sent; but
+        the queue filled with the module talking to the user, and the one real
+        bug drowned in it.
+        """
+        self.env["ir.config_parameter"].sudo().set_param(reporting.PARAM_CONSENT, "on")
+        try:
+            raise UserError(POISONED_MESSAGE)
+        except UserError:
+            self.assertFalse(self.Report._capture("import_vehicles"))
+
     def test_validation_errors_are_not_reported(self):
         @report_errors("probe-expected")
         def boom(_rec):
