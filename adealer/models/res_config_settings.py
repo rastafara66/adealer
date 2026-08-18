@@ -84,13 +84,13 @@ class ResConfigSettings(models.TransientModel):
             ("on", "Send automatic error reports"),
             ("off", "Do not send anything"),
         ],
-        string="Error reports",
+        string="3A-dealer error reports",
         config_parameter=PARAM_CONSENT,
         help="Reports carry the error type and the line of code that failed, "
              "never the text of the error, and never anything about your vehicles, "
              "customers or amounts. You can read every queued report before it leaves.")
     adealer_report_url = fields.Char(
-        string="Reporting endpoint",
+        string="3A-dealer reporting endpoint",
         config_parameter=PARAM_URL,
         default=DEFAULT_URL,
         help="Where reports are sent. Point it at your own collector if your "

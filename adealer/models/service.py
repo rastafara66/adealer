@@ -16,7 +16,7 @@ class RepairOrder(models.Model):
         'repair.line', 'repair_id', string='Service operations',
         domain=[('product_type', '=', 'service')], copy=False, readonly=False)
     part_line_ids = fields.One2many(
-        'repair.line', 'repair_id', string='Parts',
+        'repair.line', 'repair_id', string='Service parts',
         domain=[('product_type', '!=', 'service')], copy=False, readonly=False)
     partner_id = fields.Many2one(
         'res.partner', 'Customer')

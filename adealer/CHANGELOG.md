@@ -3,6 +3,11 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## [Unreleased]
+### Fixed / Виправлено
+- **Унікальні підписи полів** — перейменовано службові підписи полів `res.config.settings` і `repair.order`, що збігалися з `bank_sync_base` та штатним `repair` (Reporting endpoint / Installed version / Error reports / Parts). Чиста метадана — підписи користувачу не видно (view дає власний текст), на екрані без змін. Поїде з наступним випуском.
+- **Unique field labels** — renamed internal field labels that collided with `bank_sync_base` and the standard `repair` module. Metadata only; nothing changes on screen.
+
 ## [19.0.1.8.3] — 2026-08-16
 ### Fixed / Виправлено
 - **Черга звітів більше не засмічується розмовами з користувачем.** Перевірка

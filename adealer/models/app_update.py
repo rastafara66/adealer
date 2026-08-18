@@ -111,7 +111,7 @@ class AdealerAppUpdate(models.TransientModel):
 class ResConfigSettingsUpdate(models.TransientModel):
     _inherit = 'res.config.settings'
 
-    adealer_version_installed = fields.Char("Installed version", readonly=True)
+    adealer_version_installed = fields.Char("3A-dealer installed version", readonly=True)
     adealer_version_latest = fields.Char("Latest published version", readonly=True)
     adealer_version_checked = fields.Char("Last checked", readonly=True)
     adealer_update_available = fields.Boolean("Update available", readonly=True)
