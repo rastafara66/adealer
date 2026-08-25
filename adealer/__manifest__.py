@@ -27,6 +27,10 @@ Key features:
     'application': True,
     'post_init_hook': 'post_init_hook',
     'author': "chukhin",
+    # Адреса для звернень покупців (видима лише тим, хто завантажив модуль).
+    # Її не було взагалі — тобто людині, у якої модуль не встановився, не було
+    # куди написати; 17 завантажень і жодного листа саме тому й дивними не були.
+    'support': "adealer@yellow.in.ua",
     'website': "https://apps.odoo.com",
     # Кнопка «Live Preview» на сторінці додатка в Odoo Apps. Це єдиний дозволений
     # спосіб дати зовнішнє посилання: в описі й маніфесті сторонні лінки
@@ -35,7 +39,7 @@ Key features:
     'live_test_url': "https://demo-3adealer.yellow.in.ua",
     'license': "LGPL-3",
     'category': 'Sales',
-    'version': '19.0.1.8.6',
+    'version': '19.0.1.8.7',
     'images': [
         # The first image is the card picture in the App Store listing. A
         # screenshot shrunk to a thumbnail reads as a grey smudge; the banner
