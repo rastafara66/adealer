@@ -37,7 +37,10 @@ a.fw-bold.text-truncate[data-tooltip] {
 }
 .adealer-sidebar {
     position: fixed;
-    top: 46px;
+    /* Верх міряється в adealer_sidebar.js від реального низу навбара, а не
+       46px хардкодом: на нейтралізованій демо-базі згори висить банер, що
+       зсуває навбар униз, і сайдбар накривав верхнє меню. 46px — запас. */
+    top: var(--adealer-sb-top, 46px);
     left: 0;
     bottom: 0;
     width: var(--adealer-sb-width);

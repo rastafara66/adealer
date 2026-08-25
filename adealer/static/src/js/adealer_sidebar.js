@@ -1,6 +1,6 @@
 /** @odoo-module **/
 
-import { Component, useState, onWillStart, onWillUnmount } from "@odoo/owl";
+import { Component, useState, onWillStart, onMounted, onWillUnmount } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 import { session } from "@web/session";
@@ -20,13 +20,34 @@ export class AdealerSidebar extends Component {
             groups: [],
             expanded: {},
         });
-        this._onAppChanged = () => this._update();
+        this._onAppChanged = () => { this._update(); this._syncTop(); };
+        this._onResize = () => this._syncTop();
         onWillStart(() => this._update());
         this.env.bus.addEventListener("MENUS:APP-CHANGED", this._onAppChanged);
+        onMounted(() => {
+            this._syncTop();
+            // Банер нейтралізації на демо-базі домальовується після монтування
+            // й зсуває навбар — переміряти на наступному кадрі.
+            requestAnimationFrame(() => this._syncTop());
+            window.addEventListener("resize", this._onResize);
+        });
         onWillUnmount(() => {
             this.env.bus.removeEventListener("MENUS:APP-CHANGED", this._onAppChanged);
+            window.removeEventListener("resize", this._onResize);
             this._setBody(false, false, false);
         });
+    }
+
+    // Прив'язати верх сайдбара до РЕАЛЬНОГО низу навбара (не хардкод 46px):
+    // на демо згори висить банер нейтралізації, що зсуває навбар униз.
+    _syncTop() {
+        try {
+            const nav = document.querySelector(".o_main_navbar");
+            const top = nav ? Math.round(nav.getBoundingClientRect().bottom) : 46;
+            document.documentElement.style.setProperty("--adealer-sb-top", top + "px");
+        } catch (e) {
+            // no-op
+        }
     }
 
     _update() {
