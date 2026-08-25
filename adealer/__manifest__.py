@@ -28,9 +28,14 @@ Key features:
     'post_init_hook': 'post_init_hook',
     'author': "chukhin",
     'website': "https://apps.odoo.com",
+    # Кнопка «Live Preview» на сторінці додатка в Odoo Apps. Це єдиний дозволений
+    # спосіб дати зовнішнє посилання: в описі й маніфесті сторонні лінки
+    # заборонені правилами стору, а для цього поля воно й передбачене.
+    # Вхід demo/demo, дані вигадані й щоніч перестворюються.
+    'live_test_url': "https://demo.yellow.in.ua",
     'license': "LGPL-3",
     'category': 'Sales',
-    'version': '19.0.1.8.3',
+    'version': '19.0.1.8.4',
     'images': [
         # The first image is the card picture in the App Store listing. A
         # screenshot shrunk to a thumbnail reads as a grey smudge; the banner
@@ -70,6 +75,13 @@ Key features:
         'views/partner_import_wizard.xml', # <-- цей файл має бути раніше за views.xml!
         'views/journals.xml',  # <-- журнальні list-view; мають бути раніше за views.xml (actions на них посилаються)
         'views/views.xml',
+        # 🔴 ОДРАЗУ після views.xml, хоч це й файл налаштувань: тут оголошено меню
+        # adealer.configuration, а батьком його називають service_booking.xml,
+        # error_report_views.xml і organization.xml нижче. На ЧИСТІЙ базі файли
+        # читаються по порядку, тож із попереднім місцем (22-м) встановлення падало
+        # ParseError «External ID not found: adealer.configuration». Оновлення
+        # наявної бази цього не показувало — меню там уже було з минулих версій.
+        'views/res_config_settings_views.xml',
         'views/dashboard.xml',  # <-- ПІСЛЯ views.xml: меню «Головна» посилається на menu_root
         'views/templates.xml',
         'views/partner_view.xml',
@@ -84,7 +96,6 @@ Key features:
         'views/reports_alfa.xml',  # друковані форми UA: наряд, акт робіт, акт прийому-передачі авто
         'views/reports_ua.xml',  # друковані форми UA: рахунок, видаткова, повернення, прибуткова, довіреність, акт звірки
         'views/sale.xml',
-        'views/res_config_settings_views.xml',
         'views/error_report_views.xml',  # звіти про помилки: список/форма/меню (ПІСЛЯ settings — вживає menu configuration)
         'views/organization.xml',  # generic: Organization dimension on every document
         'views/report_partner_balance.xml',
