@@ -61,6 +61,13 @@ class ResConfigSettings(models.TransientModel):
     ], string="Printable form format", default='qweb-pdf',
         help="PDF — a file is downloaded (opens in a PDF viewer). "
              "HTML — the form opens directly in a browser tab (no Adobe/download).")
+    adealer_dashboard_tab = fields.Selection([
+        ('showroom', 'Showroom'),
+        ('service', 'Service'),
+        ('parts', 'Parts'),
+    ], string="Dashboard tab on open", default='showroom',
+        help="Which dashboard tab opens first. A workshop wants Service, "
+             "a showroom wants Showroom — the tab used to be fixed in the code.")
     adealer_home = fields.Selection([
         ('none', 'Default (last app)'),
         ('dashboard', 'Dashboard (Home)'),
@@ -120,6 +127,7 @@ class ResConfigSettings(models.TransientModel):
         ICP.set_param('adealer.sidebar_enabled', self.adealer_sidebar_enabled)
         ICP.set_param('adealer.brand_logo_default', self.adealer_brand_logo_default)
         ICP.set_param('adealer.autopost_repair_docs', self.adealer_autopost_docs)
+        ICP.set_param('adealer.dashboard_default_tab', self.adealer_dashboard_tab or 'showroom')
         if self.adealer_lang and self.adealer_lang != self.env.user.lang:
             self.env.user.lang = self.adealer_lang
         if self.adealer_home and self.adealer_home != 'none':
@@ -150,6 +158,7 @@ class ResConfigSettings(models.TransientModel):
             'adealer_brand_logo_default': ICP.get_param('adealer.brand_logo_default', 'True') in ('True', 'true', '1', True),
             'adealer_lang': self.env.user.lang,
             'adealer_autopost_docs': ICP.get_param('adealer.autopost_repair_docs') in ('True', 'true', '1', True),
+            'adealer_dashboard_tab': ICP.get_param('adealer.dashboard_default_tab', 'showroom'),
         })
         for fname, xmlid in MENU_SECTIONS.items():
             menu = self.env.ref(xmlid, raise_if_not_found=False)

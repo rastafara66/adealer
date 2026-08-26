@@ -22,6 +22,9 @@
                             <setting string="Home page" help="What to open after login for the current user: workshop — calendar, showroom — vehicles, manager — reports">
                                 <field name="adealer_home"/>
                             </setting>
+                            <setting string="Dashboard tab on open" help="Which tab of the Home dashboard opens first: a workshop wants Service, a showroom wants Showroom.">
+                                <field name="adealer_dashboard_tab"/>
+                            </setting>
                             <setting string="Printable form format" help="HTML — the form opens in a browser tab (no Adobe/download). PDF — a file is downloaded.">
                                 <field name="adealer_print_format"/>
                             </setting>

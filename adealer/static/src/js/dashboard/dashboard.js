@@ -27,7 +27,10 @@ export class AdealerDashboard extends Component {
         this.orm = useService("orm");
         this.types = TYPES;
         this.state = useState({
-            type: "showroom",
+            // Порожньо, а не "showroom": першу вкладку називає СЕРВЕР за
+            // налаштуванням (Налаштування → 3A-dealer). Інакше СТО щоразу
+            // відкривало порожній Автосалон.
+            type: null,
             date_from: yearStartISO(),
             date_to: todayISO(),
             loading: true,
@@ -44,6 +47,11 @@ export class AdealerDashboard extends Component {
                 this.state.date_from,
                 this.state.date_to,
             ]);
+            // Перший виклик іде з type=null — сервер сам обирає вкладку за
+            // налаштуванням і повертає її назву.
+            if (this.state.data && this.state.data.tab) {
+                this.state.type = this.state.data.tab;
+            }
         } finally {
             this.state.loading = false;
         }

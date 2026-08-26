@@ -40,14 +40,30 @@ class AdealerDashboard(models.AbstractModel):
 
     # ------------------------------------------------------------------ API
     @api.model
-    def get_data(self, dash_type, date_from=None, date_to=None):
+    def get_data(self, dash_type=None, date_from=None, date_to=None):
+        """Дані для вкладки дашборда.
+
+        dash_type=None означає «яку вкладку відкривати першою» — її бере з
+        налаштувань (Налаштування → 3A-dealer). Раніше вкладка була зашита в
+        JS, тож СТО щоразу починало з порожнього Автосалону.
+        Обрану вкладку повертаємо в ключі `tab`, щоб клієнт не робив ДРУГИЙ
+        запит лише заради назви.
+        """
+        if not dash_type:
+            dash_type = self.env['ir.config_parameter'].sudo().get_param(
+                'adealer.dashboard_default_tab', 'showroom')
+        if dash_type not in ('showroom', 'service', 'parts'):
+            dash_type = 'showroom'
         dfrom = _d(date_from, date.today().replace(month=1, day=1))
         dto = _d(date_to, date.today())
         if dash_type == 'showroom':
-            return self._showroom(dfrom, dto)
-        if dash_type == 'parts':
-            return self._parts(dfrom, dto)
-        return self._service(dfrom, dto)
+            data = self._showroom(dfrom, dto)
+        elif dash_type == 'parts':
+            data = self._parts(dfrom, dto)
+        else:
+            data = self._service(dfrom, dto)
+        data['tab'] = dash_type
+        return data
 
     def _currency(self):
         return {'symbol': self.env.company.currency_id.symbol or '',

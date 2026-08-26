@@ -3560,3 +3560,13 @@ msgstr "Продані авто"
 #: model:ir.ui.menu,name:adealer.menu_service_booking_board
 msgid "Service bookings by post"
 msgstr "Попередні записи (по постах)"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_res_config_settings__adealer_dashboard_tab
+msgid "Dashboard tab on open"
+msgstr "Вкладка дашборда при відкритті"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_dashboard_tab
+msgid "Which dashboard tab opens first. A workshop wants Service, a showroom wants Showroom — the tab used to be fixed in the code."
+msgstr "Яка вкладка дашборда відкривається першою. СТО потрібен Автосервіс, салону — Автосалон; раніше вкладка була зашита в коді."
