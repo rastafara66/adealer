@@ -185,9 +185,15 @@
         </record>
 
         <!-- ===== Меню ===== -->
+        <!-- Пункт меню відкриває вигляд «по періодах» (календар/список): саме він
+             потрібен щодня, а дошка по постах — окремим пунктом поруч.
+             Було навпаки; змінено 26.08.2026 на прохання власника. -->
         <menuitem name="Service bookings" id="menu_service_bookings"
                   parent="adealer.menu_maintenance"
-                  action="action_booking_board" sequence="40"/>
+                  action="action_service_bookings" sequence="40"/>
+        <menuitem name="Service bookings by post" id="menu_service_booking_board"
+                  parent="adealer.menu_maintenance"
+                  action="action_booking_board" sequence="41"/>
         <menuitem name="Workplaces / posts" id="menu_workplace"
                   parent="adealer.configuration"
                   action="action_workplace" sequence="6"/>
