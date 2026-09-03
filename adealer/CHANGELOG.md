@@ -17,9 +17,8 @@ All notable changes. Newest on top.
   **disappears by itself** once that add-on is installed, and all of them can be
   switched off in **Settings → 3A-dealer → Show add-on hints**.
 
-## [Unreleased]
 ### Fixed / Виправлено
-- **Унікальні підписи полів** — перейменовано службові підписи полів `res.config.settings` і `repair.order`, що збігалися з `bank_sync_base` та штатним `repair` (Reporting endpoint / Installed version / Error reports / Parts). Чиста метадана — підписи користувачу не видно (view дає власний текст), на екрані без змін. Поїде з наступним випуском.
+- **Унікальні підписи полів** — перейменовано службові підписи полів `res.config.settings` і `repair.order`, що збігалися з `bank_sync_base` та штатним `repair` (Reporting endpoint / Installed version / Error reports / Parts). Чиста метадана — підписи користувачу не видно (view дає власний текст), на екрані без змін.
 - **Unique field labels** — renamed internal field labels that collided with `bank_sync_base` and the standard `repair` module. Metadata only; nothing changes on screen.
 
 ## [19.0.1.8.3] — 2026-08-16
