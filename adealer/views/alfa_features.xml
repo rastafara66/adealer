@@ -415,6 +415,11 @@
                                 <field name="note"/>
                             </page>
                         </notebook>
+                        <!-- Що ще вміє лінійка 3A-dealer. Порожнє (і невидиме),
+                             якщо надбудови вже встановлено або підказки вимкнено
+                             в Налаштуваннях. -->
+                        <field name="addon_hint_html" nolabel="1" readonly="1"
+                               invisible="not addon_hint_html"/>
                     </sheet>
                     <chatter/>
                 </form>
@@ -498,6 +503,12 @@
                             invisible="not source_sale_order_id">
                         <span>Order</span>
                     </button>
+                </xpath>
+                <!-- Підказка про Service Pro — унизу наряду, там де майстер уже
+                     побачив, чого в наряді бракує (огляду DVI). -->
+                <xpath expr="//sheet" position="inside">
+                    <field name="addon_hint_html" nolabel="1" readonly="1"
+                           invisible="not addon_hint_html"/>
                 </xpath>
             </field>
         </record>

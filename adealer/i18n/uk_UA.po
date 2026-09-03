@@ -3570,3 +3570,55 @@ msgstr "Вкладка дашборда при відкритті"
 #: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_dashboard_tab
 msgid "Which dashboard tab opens first. A workshop wants Service, a showroom wants Showroom — the tab used to be fixed in the code."
 msgstr "Яка вкладка дашборда відкривається першою. СТО потрібен Автосервіс, салону — Автосалон; раніше вкладка була зашита в коді."
+
+#. module: adealer
+#: code:addons/adealer/models/addon_hint.py:0
+msgid "Also available for 3A-dealer"
+msgstr "Що ще вміє 3A-dealer"
+
+#. module: adealer
+#: code:addons/adealer/models/addon_hint.py:0
+msgid "Days in stock (aging), reconditioning costs and margin per vehicle, reservation deposits, trade-in appraisals, test drives and finance offers."
+msgstr "Днів на майданчику (aging), витрати на передпродажну підготовку й маржа по кожному авто, завдаток на бронювання, оцінка трейд-ін, тест-драйви та кредитні пропозиції."
+
+#. module: adealer
+#: code:addons/adealer/models/addon_hint.py:0
+msgid "Digital vehicle inspection (DVI) with a green / yellow / red checklist that turns findings into a priced quotation, plus loaner cars, prepaid service plans and warranty claims."
+msgstr "Електронний огляд авто (DVI): чек-лист «зелене / жовте / червоне», зі знахідок якого одним кліком виходить комерційна пропозиція; плюс підмінні авто, передплачені сервісні плани та гарантійні претензії."
+
+#. module: adealer
+#: code:addons/adealer/models/addon_hint.py:0
+msgid "OEM cross-reference so the counter finds the part by any number it is known by, min / max reorder list and barcode lookup."
+msgstr "Крос-довідник OEM: запчастина знаходиться за будь-яким номером, під яким її знають; список до замовлення за мін/макс і пошук за штрихкодом."
+
+#. module: adealer
+#: code:addons/adealer/models/addon_hint.py:0
+msgid "Publish your stock to AUTO.RIA as an import feed the cabinet fetches on a schedule — no retyping, photos included."
+msgstr "Публікація складу на AUTO.RIA фідом, який кабінет автосалону забирає за розкладом, — без перебивання руками, разом із фото."
+
+#. module: adealer
+#: code:addons/adealer/models/addon_hint.py:0
+msgid "Auto-loan / leasing application built from the customer and the car, with an indicative monthly payment to quote on the spot and a printable application."
+msgstr "Заявка на автокредит/лізинг із даних клієнта й авто: орієнтовний щомісячний платіж, який можна назвати одразу, і друкована форма заявки."
+
+#. module: adealer
+#: code:addons/adealer/models/addon_hint.py:0
+msgid "Decode the VIN into model year, region and manufacturer, and catch typos by the check digit — offline, no key needed."
+msgstr "Розшифровка VIN: модельний рік, регіон і виробник, а контрольна цифра ловить одруківки, — офлайн, без жодного ключа."
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__addon_hint_html
+#: model:ir.model.fields,field_description:adealer.field_product_template__addon_hint_html
+#: model:ir.model.fields,field_description:adealer.field_repair_order__addon_hint_html
+msgid "Add-ons"
+msgstr "Надбудови"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_res_config_settings__adealer_addon_hints
+msgid "Show add-on hints"
+msgstr "Показувати підказки про надбудови"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_addon_hints
+msgid "A short note on the vehicle, repair-order and part forms about what the paid 3A-dealer add-ons would add there. A hint disappears by itself once that add-on is installed."
+msgstr "Короткий напис на картці авто, у наряді й на картці запчастини — що додала б туди платна надбудова 3A-dealer. Підказка зникає сама, щойно надбудову встановлено."

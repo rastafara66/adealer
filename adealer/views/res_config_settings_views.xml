@@ -31,6 +31,9 @@
                             <setting string="Auto-invoice when the repair order is done" help="When a repair order moves to 'Repaired', automatically create Act+Delivery note. Off — via buttons.">
                                 <field name="adealer_autopost_docs"/>
                             </setting>
+                            <setting string="Show add-on hints" help="A short note on the vehicle, repair-order and part forms about what the paid 3A-dealer add-ons would add there. Each hint disappears by itself once that add-on is installed.">
+                                <field name="adealer_addon_hints"/>
+                            </setting>
                         </block>
                         <block title="Menu sections (show)" name="adealer_menu_sections">
                             <setting string="Vehicles and models"><field name="show_menu_vehicles"/></setting>

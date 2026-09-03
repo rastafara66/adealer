@@ -3,6 +3,20 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## [19.0.1.10.0] — 2026-09-03
+### Added / Додано
+- **Підказки про платні надбудови** на картці авто, у наряді й на картці
+  запчастини: короткий блок «що ще вміє 3A-dealer» з посиланням на сторінку
+  надбудови в Odoo Apps. Раніше про надбудови не було де дізнатися взагалі —
+  користувач роками міг вважати, що модуль не рахує маржу по авто, хоча Sales
+  Pro існує. Підказка **зникає сама**, щойно відповідну надбудову встановлено
+  (той, хто заплатив, реклами свого ж додатка не бачить), і вимикається цілком:
+  **Налаштування → 3A-dealer → Show add-on hints**.
+- **Paid add-on hints** on the vehicle, repair-order and part forms: a short
+  "also available" note linking to the add-on page on Odoo Apps. Each hint
+  **disappears by itself** once that add-on is installed, and all of them can be
+  switched off in **Settings → 3A-dealer → Show add-on hints**.
+
 ## [Unreleased]
 ### Fixed / Виправлено
 - **Унікальні підписи полів** — перейменовано службові підписи полів `res.config.settings` і `repair.order`, що збігалися з `bank_sync_base` та штатним `repair` (Reporting endpoint / Installed version / Error reports / Parts). Чиста метадана — підписи користувачу не видно (view дає власний текст), на екрані без змін. Поїде з наступним випуском.

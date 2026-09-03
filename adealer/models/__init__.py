@@ -36,3 +36,5 @@ from . import app_update
 from . import organization
 from . import dashboard
 from . import service_booking
+# Підказки про платні надбудови. Останнім: домішує міксин у моделі вище.
+from . import addon_hint

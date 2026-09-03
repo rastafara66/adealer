@@ -4,6 +4,12 @@ from odoo import api, fields, models, _
 
 from .error_report import DEFAULT_URL, PARAM_CONSENT, PARAM_URL
 
+# Той самий ключ, що й `addon_hint.PARAM_HIDE`, але НЕ імпортований звідти:
+# `res_config_settings` завантажується першим, і будь-який імпорт з `addon_hint`
+# витягнув би його моделі-розширення в реєстр раніше за `dealer.car`, який вони
+# розширюють, — Odoo 19 падає на цьому з «Model 'dealer.car' does not exist».
+PARAM_HIDE_HINTS = 'adealer.hide_addon_hints'
+
 # Home page користувача -> дія (res.users.action_id)
 HOME_ACTIONS = {
     'dashboard': 'adealer.action_dashboard',
@@ -103,6 +109,13 @@ class ResConfigSettings(models.TransientModel):
         help="Where reports are sent. Point it at your own collector if your "
              "policy forbids outbound calls to third parties.")
 
+    # --- Підказки про платні надбудови ---
+    adealer_addon_hints = fields.Boolean(
+        string="Show add-on hints",
+        help="A short note on the vehicle, repair-order and part forms about what the "
+             "paid 3A-dealer add-ons would add there. A hint disappears by itself once "
+             "that add-on is installed.")
+
     # --- Прапорці показу розділів меню ---
     show_menu_vehicles = fields.Boolean("Vehicles and models")
     show_menu_showroom = fields.Boolean("Showroom")
@@ -128,6 +141,10 @@ class ResConfigSettings(models.TransientModel):
         ICP.set_param('adealer.brand_logo_default', self.adealer_brand_logo_default)
         ICP.set_param('adealer.autopost_repair_docs', self.adealer_autopost_docs)
         ICP.set_param('adealer.dashboard_default_tab', self.adealer_dashboard_tab or 'showroom')
+        # Зберігаємо ІНВЕРТОВАНО (hide_*): «параметра немає» має означати
+        # «підказки показуються». Прямий прапорець показу зробив би кожну базу,
+        # оновлену зі старої версії, мовчки німою.
+        ICP.set_param(PARAM_HIDE_HINTS, not self.adealer_addon_hints)
         if self.adealer_lang and self.adealer_lang != self.env.user.lang:
             self.env.user.lang = self.adealer_lang
         if self.adealer_home and self.adealer_home != 'none':
@@ -159,6 +176,8 @@ class ResConfigSettings(models.TransientModel):
             'adealer_lang': self.env.user.lang,
             'adealer_autopost_docs': ICP.get_param('adealer.autopost_repair_docs') in ('True', 'true', '1', True),
             'adealer_dashboard_tab': ICP.get_param('adealer.dashboard_default_tab', 'showroom'),
+            'adealer_addon_hints': not (
+                ICP.get_param(PARAM_HIDE_HINTS) in ('True', 'true', '1', True)),
         })
         for fname, xmlid in MENU_SECTIONS.items():
             menu = self.env.ref(xmlid, raise_if_not_found=False)

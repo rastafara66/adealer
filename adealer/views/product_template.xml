@@ -13,6 +13,12 @@
                 <xpath expr="//field[@name='type']" position="before">
                     <field name="base_service"/>
                 </xpath>
+                <!-- Підказка про Parts Pro — лише на товарі: послузі крос-номери
+                     й точка замовлення ні до чого. -->
+                <xpath expr="//sheet" position="inside">
+                    <field name="addon_hint_html" nolabel="1" readonly="1"
+                           invisible="not addon_hint_html or type != 'consu'"/>
+                </xpath>
             </field>
         </record>
     </data>
