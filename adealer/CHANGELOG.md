@@ -3,6 +3,17 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## 19.0.1.10.1 — 2026-09-04
+
+### Changed
+
+- **Store description rebuilt on the shared layout of the line** — Odoo's own
+  classes (`oe_container` / `oe_row` / `oe_span6`) instead of hand-rolled inline
+  styles: in the catalogue the modules looked like products by different authors.
+  Generated from `3A/tools/store/specs/adealer.py`, so the layout cannot drift again.
+- **"What's new" grouped** by the size of the change instead of one entry per build.
+  The version comes from `__manifest__.py`, so page and manifest cannot disagree.
+
 ## [19.0.1.10.0] — 2026-09-03
 ### Added / Додано
 - **Підказки про платні надбудови** на картці авто, у наряді й на картці
