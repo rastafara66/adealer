@@ -10,7 +10,7 @@
     'author': "chukhin",
     'license': "LGPL-3",
     'category': 'Themes/Backend',
-    'version': '19.0.1.1.1',
+    'version': '19.0.1.1.2',
     'depends': ['web'],
     'assets': {
         'web.assets_backend': [
