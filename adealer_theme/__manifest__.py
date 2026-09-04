@@ -8,9 +8,10 @@
         Встановлюється/видаляється окремо від модуля adealer.
     """,
     'author': "chukhin",
+    "support": "adealer@yellow.in.ua",
     'license': "LGPL-3",
     'category': 'Themes/Backend',
-    'version': '19.0.1.1.2',
+    'version': '19.0.1.1.3',
     'depends': ['web'],
     'assets': {
         'web.assets_backend': [
