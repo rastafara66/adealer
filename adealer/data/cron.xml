@@ -1,10 +1,14 @@
 <odoo>
     <record id="ir_cron_adealer_update_check" model="ir.cron">
-        <field name="name">3A-dealer: weekly update check</field>
+        <field name="name">3A-dealer: daily update check</field>
         <field name="model_id" ref="model_adealer_app_update"/>
         <field name="state">code</field>
         <field name="code">model._cron_check_update()</field>
-        <field name="interval_number">7</field>
+        <!-- Раз на добу, а не раз на тиждень. Тиждень означав, що виправлення,
+             опубліковане в понеділок, доходило до частини баз аж наступного
+             понеділка, — а сенс перевірки саме в тому, щоб зламана збірка не
+             жила довго. Коштує це нічого: голий GET без ідентифікатора. -->
+        <field name="interval_number">1</field>
         <field name="interval_type">days</field>
         <field name="active">True</field>
     </record>

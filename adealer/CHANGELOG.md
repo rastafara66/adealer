@@ -3,6 +3,48 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## 19.0.1.11.0 — 2026-09-05
+
+### Added
+
+- 🔴 **The version check now covers the paid add-ons, not just the core
+  module.** It has existed since the beginning, but it only ever looked at
+  `adealer` itself. The six add-ons (€49..€149, €624 together) were covered by
+  nothing at all: a fix published for Sales Pro or the VIN decoder reached
+  nobody, and no test pointed at it — a module left off a list breaks nothing.
+
+  Their repository is private, so the manifest cannot be read from GitHub the
+  way the core module's is. The versions come from the line's shared endpoint
+  instead, which reads the manifests on branch `19.0` — that is, what the store
+  actually serves.
+
+  A newer version is announced on the vehicle card and on the repair order —
+  the two screens a dealership has open all day. Settings would only show it to
+  whoever already went looking for updates, which is precisely why Odoo's own
+  "Upgrade" button does not help.
+
+- The list of covered modules is **derived from the add-on hints**, not written
+  out a second time: two hand-kept lists drift apart, and they drift silently.
+  A test fails the build if a paid add-on is ever missing from it, and another
+  fails on any module of ours sitting beside the core that nobody listed.
+
+### Changed
+
+- The update check runs **daily instead of weekly**. A week meant a fix
+  published on Monday reached some databases the following Monday, and the
+  point of the check is that a broken build should not live long. The request
+  is a bare GET carrying no identifier, so the extra runs cost nothing.
+
+- One button checks both. Two buttons side by side ("check core" / "check
+  add-ons") would require the user to know the difference, and they should not
+  have to.
+
+### Fixed
+
+- The settings page no longer says "up to date" when nothing has been checked.
+  With no answer that is a guess presented as a fact — and a customer who
+  believes they are current is exactly what this feature exists to prevent.
+
 ## 19.0.1.10.2 — 2026-09-04
 
 ### Fixed

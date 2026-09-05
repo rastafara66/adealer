@@ -85,6 +85,12 @@
                                     </div>
                                 </div>
                             </setting>
+                            <setting string="Paid add-ons"
+                                     help="Odoo never asks the store whether a third-party module was updated, so without this a published fix would go unnoticed. Checked once a day, together with the core module. Nothing is downloaded or installed automatically.">
+                                <div class="mt8">
+                                    <field name="adealer_addons_status" readonly="1" nolabel="1"/>
+                                </div>
+                            </setting>
                             <setting string="Update check URL"
                                      help="URL used to read the latest published version">
                                 <field name="adealer_update_channel_url"/>

@@ -72,7 +72,17 @@ class AdealerAppUpdate(models.TransientModel):
     @api.model
     @report_errors('cron_check_update')
     def _cron_check_update(self):
-        """Weekly check; only logs and caches the result (shown in Settings)."""
+        """Daily check; only logs and caches the result (shown in Settings).
+
+        Two questions, on purpose. This one reads the `adealer` manifest on
+        GitHub — the module is public, and the answer also feeds "Update from
+        GitHub" below. The second covers the whole family, including the six
+        paid add-ons, whose repository is private and cannot be read that way;
+        see ``adealer_update.py``.
+        """
+        # Ніколи не заважає першій: збій перевірки надбудов не має скасовувати
+        # перевірку ядра, і навпаки.
+        self.env['adealer.update']._cron_check()
         try:
             latest, available = self.check_latest()
         except UserError as e:
@@ -119,6 +129,10 @@ class ResConfigSettingsUpdate(models.TransientModel):
         "Update check URL",
         help="URL used to read the latest published version "
              "(a raw __manifest__.py or a text containing 'version': 'x.y.z').")
+    # Одним рядком, зібраним у Python. Текст упереміш із полями у вигляді
+    # виглядає так само, але до перекладача доходить обрізками, з яких
+    # української фрази не скласти.
+    adealer_addons_status = fields.Char("Add-ons", readonly=True)
 
     def get_values(self):
         res = super().get_values()
@@ -126,6 +140,7 @@ class ResConfigSettingsUpdate(models.TransientModel):
         upd = self.env['adealer.app.update']
         installed = upd.installed_version()
         latest = ICP.get_param('adealer.latest_version', '')
+        res['adealer_addons_status'] = self._adealer_addons_status()
         res.update({
             'adealer_version_installed': installed,
             'adealer_version_latest': latest or _('(not checked yet)'),
@@ -136,6 +151,30 @@ class ResConfigSettingsUpdate(models.TransientModel):
         })
         return res
 
+    def _adealer_addons_status(self):
+        """Одне речення про платні надбудови. Ніколи не бреше про «все свіже».
+
+        Три різні стани, і жоден із них не можна показувати як інший:
+        встановлених надбудов немає / є і всі свіжі / є застарілі. Четвертий —
+        «ми ще не питали»: сказати тоді «все свіже» означало б видати здогад за
+        факт, а покупець, який вірить, що в нього найновіше, — це рівно те, що
+        ця перевірка має відвертати.
+        """
+        update = self.env['adealer.update']
+        known = [name for name in update._known_modules() if name != 'adealer']
+        installed = self.env['ir.module.module'].sudo().search(
+            [('name', 'in', known), ('state', '=', 'installed')])
+        if not installed:
+            return _("No paid add-ons are installed.")
+        outdated = [row for row in update._outdated() if row[0] != 'adealer']
+        if outdated:
+            return _("Newer versions published: %s.") % ', '.join(
+                '%s %s' % (name, newest) for name, _inst, newest in outdated)
+        if not update._published():
+            return _("%(count)s installed. Not checked yet.",
+                     count=len(installed))
+        return _("%(count)s installed, all up to date.", count=len(installed))
+
     def set_values(self):
         super().set_values()
         if self.adealer_update_channel_url:
@@ -143,9 +182,23 @@ class ResConfigSettingsUpdate(models.TransientModel):
                 'adealer.update_channel_url', self.adealer_update_channel_url)
 
     def action_adealer_check_update(self):
+        # Одна кнопка — обидві перевірки. Дві кнопки поруч («перевірити ядро» /
+        # «перевірити надбудови») означали б, що користувач має знати, чим вони
+        # відрізняються; а він не має.
+        ok, reason = self.env['adealer.update']._run_check()
         latest, available = self.env['adealer.app.update'].check_latest()
         msg = (_("A newer version %s is available.") % latest) if available \
             else (_("You are up to date (version %s).") % self.env['adealer.app.update'].installed_version())
+        outdated = self.env['adealer.update']._outdated()
+        addons = [row for row in outdated if row[0] != 'adealer']
+        if addons:
+            available = True
+            msg += ' ' + _("Add-ons with a newer version: %s.") % ', '.join(
+                '%s %s' % (name, newest) for name, _installed, newest in addons)
+        elif not ok and reason:
+            # Мовчання тут читалося б як «з надбудовами все гаразд», хоча
+            # насправді ми про них нічого не дізнались.
+            msg += ' ' + _("Add-ons were not checked: %s") % reason
         return {
             'type': 'ir.actions.client',
             'tag': 'display_notification',

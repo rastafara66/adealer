@@ -3622,3 +3622,131 @@ msgstr "Показувати підказки про надбудови"
 #: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_addon_hints
 msgid "A short note on the vehicle, repair-order and part forms about what the paid 3A-dealer add-ons would add there. A hint disappears by itself once that add-on is installed."
 msgstr "Короткий напис на картці авто, у наряді й на картці запчастини — що додала б туди платна надбудова 3A-dealer. Підказка зникає сама, щойно надбудову встановлено."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "%(count)s installed, all up to date."
+msgstr "Встановлено %(count)s, усі найновіші."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "%(count)s installed. Not checked yet."
+msgstr "Встановлено %(count)s. Ще не перевірялись."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/adealer_update.py:0
+msgid "%(url)s knows of no %(series)s version of these modules."
+msgstr "%(url)s не знає версії %(series)s для цих модулів."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/adealer_update.py:0
+msgid "%s answered with something that is not a version list."
+msgstr "%s відповів не переліком версій."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/adealer_update.py:0
+msgid "%s more of your 3A-dealer modules can be updated too."
+msgstr "Ще %s ваших модулів 3A-dealer теж можна оновити."
+
+#. module: adealer
+#: model:ir.model,name:adealer.model_adealer_update
+msgid "3A-dealer version check"
+msgstr "3A-dealer: перевірка версій"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/adealer_update.py:0
+msgid ""
+"A newer version of %(module)s is available: %(latest)s (you have "
+"%(installed)s)."
+msgstr "Вийшла новіша версія %(module)s: %(latest)s (у вас %(installed)s)."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "Add-ons were not checked: %s"
+msgstr "Надбудови не перевірено: %s"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "Add-ons with a newer version: %s."
+msgstr "Надбудови з новішою версією: %s."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/adealer_update.py:0
+msgid "Could not reach %(url)s: %(error)s"
+msgstr "Не вдалося звернутись до %(url)s: %(error)s"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "Newer versions published: %s."
+msgstr "Опубліковано новіші версії: %s."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/adealer_update.py:0
+msgid "No address is configured for the version check."
+msgstr "Адресу перевірки версій не задано."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/app_update.py:0
+msgid "No paid add-ons are installed."
+msgstr "Платних надбудов не встановлено."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
+msgid ""
+"Odoo never asks the store whether a third-party module was updated, so "
+"without this a published fix would go unnoticed. Checked once a day, "
+"together with the core module. Nothing is downloaded or installed "
+"automatically."
+msgstr "Odoo ніколи не питає магазин, чи оновився сторонній модуль, тож без цієї перевірки опубліковане виправлення лишилось би непоміченим. Перевіряється раз на добу, разом із ядром. Нічого не завантажується і не встановлюється автоматично."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
+msgid "Paid add-ons"
+msgstr "Платні надбудови"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/adealer_update.py:0
+msgid "Version checking is switched off."
+msgstr "Перевірку версій вимкнено."
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_res_config_settings__adealer_version_installed
+msgid "3A-dealer installed version"
+msgstr "Встановлена версія 3A-dealer"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
+msgid ""
+"A short note on the vehicle, repair-order and part forms about what the paid"
+" 3A-dealer add-ons would add there. Each hint disappears by itself once that"
+" add-on is installed."
+msgstr "Короткий рядок на картці авто, в наряді та на запчастині про те, що додали б туди платні надбудови 3A-dealer. Кожна підказка зникає сама, щойно ту надбудову встановлено."
+
+#. module: adealer
+#: model:ir.model,name:adealer.model_adealer_addon_hint_mixin
+msgid "Paid add-on hint"
+msgstr "Підказка про платну надбудову"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_addon_hint_mixin__addon_hint_html
+#: model:ir.model.fields,help:adealer.field_dealer_car__addon_hint_html
+#: model:ir.model.fields,help:adealer.field_product_product__addon_hint_html
+#: model:ir.model.fields,help:adealer.field_product_template__addon_hint_html
+#: model:ir.model.fields,help:adealer.field_repair_order__addon_hint_html
+msgid ""
+"What the paid 3A-dealer add-ons would add here. Hidden once the add-on is "
+"installed; can be switched off in Settings."
+msgstr "Що додали б тут платні надбудови 3A-dealer. Зникає, щойно надбудову встановлено; вимикається в Налаштуваннях."
