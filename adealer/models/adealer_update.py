@@ -38,7 +38,7 @@ import logging
 
 from odoo import _, api, fields, models
 
-from .addon_hint import ADDONS, STORE_URL
+from .addon_hint import ADDONS
 
 _logger = logging.getLogger(__name__)
 
@@ -197,6 +197,39 @@ class AdealerUpdate(models.AbstractModel):
         return out
 
     @api.model
+    def _store_url(self, name, series):
+        """Адреса сторінки в магазині — з правильної РОДИНИ і правильної СЕРІЇ.
+
+        🔴 Дві пастки, обидві дають посилання в нікуди, і обидві тихі:
+
+        1. **Тема — не модуль.** Теми лежать під `/apps/themes/`, звичайні
+           додатки — під `/apps/modules/`. `adealer_theme` має категорію
+           `Themes/Backend`, і посилання «модульного» виду на неї віддає 404.
+           Я на цьому спіймався 05.09.2026 навпаки: перевіряв тему модульною
+           адресою, отримав 404 і сказав власникові, що тему не опубліковано.
+           Вона була опублікована весь час.
+        2. **Серія.** Сторінка є для кожної серії окремо, і посилати
+           інсталяцію 16.0 на сторінку 19.0 означає пропонувати збірку, яку
+           вона встановити не може, — та сама помилка, від якої захищає
+           `series_of()` у порівнянні версій.
+
+        Родину визначаємо з категорії самого модуля, а не зі списку назв:
+        список довелося б памʼятати оновлювати, а категорія вже лежить у базі.
+        """
+        category = self.env['ir.module.module'].sudo().search(
+            [('name', '=', name)], limit=1).category_id
+        family = 'modules'
+        # Категорія 'Themes/Backend' у базі — це дитина 'Backend' у батька
+        # 'Themes', тож дивимось і на предків.
+        while category:
+            if (category.name or '').strip().lower() == 'themes':
+                family = 'themes'
+                break
+            category = category.parent_id
+        return 'https://apps.odoo.com/apps/%s/%s/%s/' % (
+            family, series or '19.0', name)
+
+    @api.model
     def _banner_for(self, name, installed, latest):
         """Текст і посилання для одного модуля.
 
@@ -208,7 +241,7 @@ class AdealerUpdate(models.AbstractModel):
         return _("A newer version of %(module)s is available: %(latest)s "
                  "(you have %(installed)s).",
                  module=title, latest=latest, installed=installed), \
-            STORE_URL % name
+            self._store_url(name, series_of(installed))
 
     @api.model
     def update_banner(self):

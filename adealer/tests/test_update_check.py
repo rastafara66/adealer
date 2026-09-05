@@ -102,6 +102,38 @@ class TestUpdateCheck(TransactionCase):
         self.assertIn('Sales Pro', message)
         self.assertIn('adealer_pro_sales', url)
 
+    def test_a_theme_gets_a_theme_url(self):
+        """🔴 Теми в магазині лежать під /apps/themes/, а не /apps/modules/.
+
+        Посилання не тієї родини віддає 404 — тобто єдине повідомлення, яке ми
+        маємо право надіслати, приводить у нікуди. Спіймано 05.09.2026 з
+        протилежного боку: я перевіряв тему модульною адресою, отримав 404 і
+        оголосив її неопублікованою. Вона була опублікована весь час.
+        """
+        theme = self.env['ir.module.module'].sudo().search(
+            [('name', '=', 'adealer_theme')], limit=1)
+        if not theme:
+            self.skipTest('тему не встановлено в цій базі')
+        url = self.Update._store_url('adealer_theme', '19.0')
+        self.assertIn('/apps/themes/', url)
+        self.assertNotIn('/apps/modules/', url)
+
+    def test_a_module_gets_a_module_url(self):
+        url = self.Update._store_url('adealer', '19.0')
+        self.assertIn('/apps/modules/', url)
+
+    def test_the_link_points_at_our_own_series(self):
+        """Сторінка є для кожної серії окремо.
+
+        Послати інсталяцію 16.0 на сторінку 19.0 — це запропонувати збірку,
+        якої вона встановити не може: та сама помилка, від якої захищає
+        порівняння версій у межах серії.
+        """
+        self.assertIn('/16.0/', self.Update._store_url('adealer', '16.0'))
+        _message, url = self.Update._banner_for(
+            'adealer', '16.0.1.0.0', '16.0.9.0.0')
+        self.assertIn('/16.0/', url)
+
     # -- сама перевірка -----------------------------------------------------
     def test_check_is_skipped_when_switched_off(self):
         self.params.set_param(updating.PARAM_UPDATE_CHECK, 'off')

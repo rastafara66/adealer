@@ -3,6 +3,27 @@
 Navy & gold backend theme for Odoo. Newest on top.
 Тема оформлення бекенду. Найновіше — зверху.
 
+## 19.0.1.1.5 — 2026-09-05
+
+### Fixed
+
+- 🔴 **The card picture was the wrong shape.** The first replacement was
+  landscape, 560×315, the format the line uses for ordinary apps. A theme card
+  in the store is a browser-window mock and is **portrait**: measured across
+  ten published themes, the ratio runs 0.78–0.83. At 1.78 ours was shown as a
+  narrow strip between white bands — it read as abandoned rather than as a
+  theme. Now 800×1000, drawn from the theme's own colours, showing what the
+  theme does to a real backend screen.
+
+### Changed
+
+- The summary says **backend** in its first words. Most cards in the Themes
+  catalogue are website themes, and a buyer reads ours the same way by habit.
+  Learning it after installing costs a refund and a one-star review, for a
+  module that works exactly as intended.
+- Author website points at the dedicated apps page,
+  `https://aktiv.in.ua/dodatky/`.
+
 ## 19.0.1.1.4 — 2026-09-05
 
 ### Fixed
