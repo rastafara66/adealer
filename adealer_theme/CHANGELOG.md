@@ -3,6 +3,27 @@
 Navy & gold backend theme for Odoo. Newest on top.
 Тема оформлення бекенду. Найновіше — зверху.
 
+## 19.0.1.1.4 — 2026-09-05
+
+### Fixed
+
+- 🔴 **The card had no picture, and the description page opened with a broken
+  one.** `index.html` referenced `banner.png`, which was never in the folder,
+  and the manifest had no `images` key at all — so the listing would have shown
+  a grey rectangle beside the rest of the line, and the page a broken image at
+  the very top. Nothing failed along the way: the module installs, the tests
+  are green, and only a pair of eyes on the finished page would have caught it.
+
+  Found while preparing the module for publication — which is itself the point:
+  the theme has been ready in the repository for a while, but a module in a
+  repository is not published by itself. Each app is registered separately in
+  the author dashboard, and that step had never been done.
+
+  The banner is generated from the theme's own colours
+  (`3A/tools/store/make_banner_theme.py`), so it can be rebuilt and compared,
+  and it shows what the theme actually does to the backend rather than an
+  abstract gradient.
+
 ## 19.0.1.1.3 — 2026-09-04
 
 ### Fixed
