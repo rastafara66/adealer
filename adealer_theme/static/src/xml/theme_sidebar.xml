@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="adealer_theme.Sidebar">
+        <t t-if="state.enabled and state.visible">
+            <div class="adt-sidebar" t-att-class="{ 'adt-sidebar--collapsed': state.collapsed }">
+                <div class="adt-sidebar__head">
+                    <span class="adt-sidebar__brand" t-if="!state.collapsed"
+                          t-esc="state.appName"/>
+                    <button class="adt-sidebar__toggle" t-on-click="toggle"
+                            t-esc="state.collapsed ? '»' : '«'"/>
+                </div>
+                <div class="adt-sidebar__body" t-if="!state.collapsed">
+                    <t t-foreach="state.groups" t-as="group" t-key="group.id">
+                        <!-- Пункт без підпунктів — просте посилання: каретка й
+                             вкладений дубль самого себе тут лише плутали б. -->
+                        <t t-if="!group.childrenTree.length">
+                            <div class="adt-sidebar__item adt-sidebar__item--top"
+                                 t-on-click="() => this.onSelect(group)" t-esc="group.name"/>
+                        </t>
+                        <div t-else="" class="adt-sidebar__group"
+                             t-att-class="{ 'adt-sidebar__group--open': isExpanded(group.id) }">
+                            <div class="adt-sidebar__group-title" t-on-click="() => this.toggleGroup(group.id)">
+                                <span class="adt-sidebar__caret" t-esc="isExpanded(group.id) ? '▾' : '▸'"/>
+                                <span class="adt-sidebar__group-name" t-esc="group.name"/>
+                            </div>
+                            <div class="adt-sidebar__items" t-if="isExpanded(group.id)">
+                                <t t-foreach="group.childrenTree" t-as="sub" t-key="sub.id">
+                                    <t t-if="sub.childrenTree and sub.childrenTree.length">
+                                        <div class="adt-sidebar__subgroup-title"
+                                             t-on-click="() => this.toggleGroup(sub.id)">
+                                            <span class="adt-sidebar__caret"
+                                                  t-esc="isExpanded(sub.id) ? '▾' : '▸'"/>
+                                            <span t-esc="sub.name"/>
+                                        </div>
+                                        <div class="adt-sidebar__items adt-sidebar__items--nested"
+                                             t-if="isExpanded(sub.id)">
+                                            <t t-foreach="sub.childrenTree" t-as="leaf" t-key="leaf.id">
+                                                <div class="adt-sidebar__item"
+                                                     t-on-click="() => this.onSelect(leaf)" t-esc="leaf.name"/>
+                                            </t>
+                                        </div>
+                                    </t>
+                                    <t t-else="">
+                                        <div class="adt-sidebar__item"
+                                             t-on-click="() => this.onSelect(sub)" t-esc="sub.name"/>
+                                    </t>
+                                </t>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </t>
+</templates>

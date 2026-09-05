@@ -150,3 +150,53 @@
     border-color: #2b3a55;
     box-shadow: 0 0 0 1px #2b3a55;
 }
+
+/* ---------- Бічне меню ----------
+   Дерево меню поточного застосунку, згортається. Працює в будь-якому
+   застосунку: тему купують окремо від додатка 3A-dealer, і меню має бути
+   скрізь, а не лише в чужому для покупця застосунку.
+   Верх (--adt-sb-top) міряє JS від реального низу навбара: на нейтралізованій
+   демо-базі згори з'являється банер, який зсуває навбар, і сайдбар із
+   фіксованим top:46px накривав би верхнє меню. 46px — запас, якщо JS не встиг. */
+.adt-sidebar {
+    position: fixed; top: var(--adt-sb-top, 46px); left: 0; bottom: 0;
+    width: 220px;
+    background: linear-gradient(180deg, #2b3a55 0%, #1f2b40 100%);
+    color: #e8edf5;
+    z-index: 900; overflow-y: auto;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.12);
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+    transition: width 0.15s ease;
+}
+.adt-sidebar--collapsed { width: 44px; }
+.adt-sidebar__head {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 8px; padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    font-weight: 700; color: #ffd367;
+}
+.adt-sidebar__toggle {
+    background: transparent; border: none; color: #ffd367;
+    cursor: pointer; font-size: 16px; line-height: 1;
+}
+.adt-sidebar__group-title, .adt-sidebar__subgroup-title {
+    display: flex; align-items: center; gap: 6px; padding: 8px 10px;
+    cursor: pointer; font-weight: 700; color: #ffffff; user-select: none;
+}
+.adt-sidebar__subgroup-title { padding-left: 18px; font-weight: 600; font-size: 0.94em; }
+.adt-sidebar__group-title:hover, .adt-sidebar__subgroup-title:hover {
+    background: rgba(255, 255, 255, 0.10);
+}
+.adt-sidebar__caret { width: 12px; color: #ffd367; }
+.adt-sidebar__item {
+    padding: 7px 10px 7px 26px; cursor: pointer;
+    border-left: 3px solid transparent; color: #e8edf5; font-size: 0.94em;
+}
+.adt-sidebar__items--nested .adt-sidebar__item { padding-left: 36px; }
+.adt-sidebar__item:hover {
+    background: rgba(255, 255, 255, 0.10);
+    border-left-color: #ffd367;
+    color: #ffd367; font-weight: 600;
+}
+body.adt-has-sidebar .o_action_manager { margin-left: 220px; }
+body.adt-has-sidebar.adt-sidebar-collapsed .o_action_manager { margin-left: 44px; }

@@ -3,6 +3,25 @@
 Navy & gold backend theme for Odoo. Newest on top.
 Тема оформлення бекенду. Найновіше — зверху.
 
+## 19.0.1.2.0 — 2026-09-05
+
+### Added
+
+- **Menu sidebar.** The current app's menu tree on the left, collapsible with
+  one click, in **any** Odoo app — the theme is bought separately from the
+  3A-dealer module, so a buyer who installed only the theme should get the menu
+  everywhere, not just inside an app they may not own.
+
+  It came from the card, not from a plan: the store picture showed a sidebar
+  and the theme had none. Drawing one anyway would have promised something the
+  buyer does not get, so the theme grew the feature instead.
+
+  🔴 **It stands down where the 3A-dealer module already draws its own.** That
+  module has an app-scoped sidebar behind a setting; without the guard, anyone
+  with both installed would see two identical menus stacked on each other. The
+  theme checks the same session flag and yields — cheaper and more reliable
+  than two modules negotiating, and it works whichever was installed first.
+
 ## 19.0.1.1.5 — 2026-09-05
 
 ### Fixed
