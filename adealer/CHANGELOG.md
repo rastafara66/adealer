@@ -3,6 +3,14 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## 19.0.1.11.1 — 2026-09-05
+
+### Changed
+
+- Author website now points at the line's own apps page,
+  `https://aktiv.in.ua/dodatky/`. It used to point at the App Store itself —
+  the page the visitor had just come from — or at a GitHub repository.
+
 ## 19.0.1.11.0 — 2026-09-05
 
 ### Added

@@ -31,7 +31,7 @@ Key features:
     # Її не було взагалі — тобто людині, у якої модуль не встановився, не було
     # куди написати; 17 завантажень і жодного листа саме тому й дивними не були.
     'support': "adealer@yellow.in.ua",
-    'website': "https://apps.odoo.com",
+    'website': "https://aktiv.in.ua/dodatky/",
     # Кнопка «Live Preview» на сторінці додатка в Odoo Apps. Це єдиний дозволений
     # спосіб дати зовнішнє посилання: в описі й маніфесті сторонні лінки
     # заборонені правилами стору, а для цього поля воно й передбачене.
@@ -39,7 +39,7 @@ Key features:
     'live_test_url': "https://demo-3adealer.yellow.in.ua",
     'license': "LGPL-3",
     'category': 'Sales',
-    'version': '19.0.1.11.0',
+    'version': '19.0.1.11.1',
     'images': [
         # The first image is the card picture in the App Store listing. A
         # screenshot shrunk to a thumbnail reads as a grey smudge; the banner
