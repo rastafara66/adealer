@@ -201,10 +201,13 @@ class AdealerErrorReport(models.Model):
         help="Exactly what leaves this database. Nothing else is transmitted.",
     )
 
-    _fingerprint_company_uniq = models.Constraint(
-        "UNIQUE(fingerprint, company_id)",
-        "The same failure is only queued once per company.",
-    )
+    # Odoo 18 does not know `models.Constraint` (it arrived in 19.0) - the same
+    # constraint is declared through `_sql_constraints`.
+    _sql_constraints = [
+        ("fingerprint_company_uniq",
+         "UNIQUE(fingerprint, company_id)",
+         "The same failure is only queued once per company."),
+    ]
 
     @api.depends("fingerprint", "error_type", "operation", "http_status",
                  "frames", "occurrences", "comment")

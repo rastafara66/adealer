@@ -26,10 +26,12 @@
                      for service), never an outgoing quotation we email out. The core
                      form is built around the quotation flow, which read as if we were
                      about to send the customer an offer. Strip that flow out. -->
-                <xpath expr="//button[@id='quotation_send_primary']" position="attributes">
+                <!-- Odoo 18 calls these buttons `send_by_email*`; 19.0 renamed them
+                     to `quotation_send*`. Same buttons, same purpose. -->
+                <xpath expr="//button[@id='send_by_email_primary']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
-                <xpath expr="//button[@id='quotation_send']" position="attributes">
+                <xpath expr="//button[@id='send_by_email']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
                 <xpath expr="//button[@id='send_proforma_primary']" position="attributes">
