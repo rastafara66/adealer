@@ -3,6 +3,19 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## 19.0.1.11.2 — 2026-09-06
+
+### Changed
+
+- **`vehicle dealer` у назві й summary.** Замір у магазині 06.09.2026: за
+  запитом `car dealership` цей модуль знаходиться, а за `vehicle dealer`
+  видача — **три** додатки на весь каталог, і нашого серед них немає. Усі троє
+  мають слово `Vehicle` у назві. Питання не в конкуренції — ніша порожня, нас
+  там просто нема кому знайти.
+  &mdash; `vehicle dealer` added to the name and summary: the store returns
+  three apps for that query and none of them was ours, while `car dealership`
+  finds this module fine.
+
 ## 19.0.1.11.1 — 2026-09-05
 
 ### Changed

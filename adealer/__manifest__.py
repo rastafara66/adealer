@@ -1,8 +1,13 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "3A-dealer — Car Dealership & Service",
+    # 🔴 «vehicle dealer» тут не синонім заради краси, а замір. У магазині
+    # 06.09.2026: за запитом `car dealership` цей модуль знаходиться, а за
+    # `vehicle dealer` видача — ТРИ додатки на весь каталог, і нашого серед них
+    # немає. Усі троє мають слово `Vehicle` у назві. Ніша порожня, тож питання
+    # не в конкуренції, а в тому, що нас там просто нема кому знайти.
+    'name': "3A-dealer — Car Dealership, Vehicle Dealer & Service Workshop",
 
-    'summary': "Car showroom · Auto parts · Service workshop — document-centric workflow for Odoo",
+    'summary': "Car showroom · Auto parts · Service workshop — vehicle dealer management with a document-centric workflow for Odoo",
 
     'description': """
 3A-dealer — a vertical solution for car dealers and service workshops
@@ -39,7 +44,7 @@ Key features:
     'live_test_url': "https://demo-3adealer.yellow.in.ua",
     'license': "LGPL-3",
     'category': 'Sales',
-    'version': '19.0.1.11.1',
+    'version': '19.0.1.11.2',
     'images': [
         # The first image is the card picture in the App Store listing. A
         # screenshot shrunk to a thumbnail reads as a grey smudge; the banner
