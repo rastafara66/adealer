@@ -89,5 +89,5 @@ class SaleOrder(models.Model):
         if self.own_repair_order_count == 1:
             action.update(view_mode='form', res_id=self.own_repair_order_ids.id)
         else:
-            action.update(view_mode='list,form')
+            action.update(view_mode='tree,form')
         return action

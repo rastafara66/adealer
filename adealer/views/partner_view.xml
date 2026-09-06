@@ -15,11 +15,11 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Partner contacts" name="partner_contacts_tab">
                     <field name="partners_contacts">
-                        <list string="Partner contacts">
+                        <tree string="Partner contacts">
                             <field name="display_name"/>
                             <field name="email"/>
                             <field name="phone"/>
-                            </list>
+                            </tree>
                     </field>
                 </page>
             </xpath>
@@ -27,12 +27,12 @@
             <xpath expr="//page[@name='partner_contacts_tab']" position="after">
                 <page string="Partner vehicles" name="partner_vehicles_tab">
                     <field name="partner_vehicles">
-                        <list string="Partner vehicles">
+                        <tree string="Partner vehicles">
                             <field name="name"/>
                             <field name="license_plate"/>
                             <field name="drive_type"/>
                             <field name="transmission"/>
-                            </list>
+                            </tree>
                     </field>
                 </page>
             </xpath>

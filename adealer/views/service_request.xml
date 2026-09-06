@@ -7,7 +7,7 @@
             <field name="name">adealer.service.request.list</field>
             <field name="model">adealer.service.request</field>
             <field name="arch" type="xml">
-                <list string="Service requests" decoration-muted="state == 'cancel'"
+                <tree string="Service requests" decoration-muted="state == 'cancel'"
                       decoration-success="state == 'done'">
                     <field name="name"/>
                     <field name="scheduled_date"/>
@@ -19,7 +19,7 @@
                     <field name="state" widget="badge"
                            decoration-info="state == 'confirmed'"
                            decoration-success="state == 'done'"/>
-                </list>
+                </tree>
             </field>
         </record>
 
@@ -120,14 +120,14 @@
         <record model="ir.actions.act_window" id="action_window_service_requests">
             <field name="name">Maintenance requests</field>
             <field name="res_model">adealer.service.request</field>
-            <field name="view_mode">list,calendar,form</field>
+            <field name="view_mode">tree,calendar,form</field>
             <field name="search_view_id" ref="view_service_request_search"/>
         </record>
 
         <record model="ir.actions.act_window" id="action_window_service_request_calendar">
             <field name="name">Service calendar</field>
             <field name="res_model">adealer.service.request</field>
-            <field name="view_mode">calendar,list,form</field>
+            <field name="view_mode">calendar,tree,form</field>
             <field name="view_id" ref="view_service_request_calendar"/>
             <field name="search_view_id" ref="view_service_request_search"/>
         </record>
@@ -142,7 +142,7 @@
         </record>
         <!-- «Календар обслуговування» показує НАРЯДИ (repair.order за schedule_date) —
              у базі є 3000+ нарядів, а заявок ще нема; заявки мають власний календар
-             у меню «Заявки на обслуговування» (view_mode list,calendar). -->
+             у меню «Заявки на обслуговування» (view_mode tree,calendar). -->
         <record id="request_calendar" model="ir.ui.menu">
             <field name="action" ref="adealer.action_window_repair_calendar"/>
         </record>

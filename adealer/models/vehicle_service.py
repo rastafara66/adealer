@@ -60,7 +60,7 @@ class FleetVehicleServiceHistory(models.Model):
             'type': 'ir.actions.act_window',
             'name': _('Service history'),
             'res_model': 'repair.order',
-            'view_mode': 'list,form',
+            'view_mode': 'tree,form',
             'domain': [('vehicle_id', '=', self.id)],
             'context': {'default_vehicle_id': self.id},
         }

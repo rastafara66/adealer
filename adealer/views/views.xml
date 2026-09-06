@@ -6,19 +6,19 @@
         <record model="ir.actions.act_window" id="adealer.action_window_product_category">
             <field name="name">Product category</field>
             <field name="res_model">product.category</field>
-            <field name="view_mode">kanban,list,form</field>
+            <field name="view_mode">kanban,tree,form</field>
         </record>
         <record model="ir.actions.act_window" id="adealer.action_window_products">
             <field name="name">Products</field>
             <field name="res_model">product.product</field>
-            <field name="view_mode">kanban,list,form</field>
+            <field name="view_mode">kanban,tree,form</field>
             <field name="view_id" ref="adealer.view_product_card_kanban"/>
         </record>
 
         <record model="ir.actions.act_window" id="adealer.action_window_partners">
             <field name="name">Partners</field>
             <field name="res_model">res.partner</field>
-            <field name="view_mode">kanban,list,form</field>
+            <field name="view_mode">kanban,tree,form</field>
         </record>
         <record model="ir.actions.act_window" id="adealer.action_window_res_partner_kanban_view">
             <field name="name">Partners cards</field>
@@ -28,7 +28,7 @@
         <record model="ir.actions.act_window" id="adealer.action_window_res_users_view">
             <field name="name">Users</field>
             <field name="res_model">res.users</field>
-            <field name="view_mode">kanban,list,form</field>
+            <field name="view_mode">kanban,tree,form</field>
         </record>        
 
         <record model="ir.actions.act_window" id="adealer.action_window_maintenance">
@@ -39,7 +39,7 @@
         <record model="ir.actions.act_window" id="adealer.action_window_requests">
             <field name="name">Requests</field>
             <field name="res_model">maintenance.request</field>
-            <field name="view_mode">kanban,list,form</field>
+            <field name="view_mode">kanban,tree,form</field>
         </record>  
         <record model="ir.actions.act_window" id="adealer.action_window_request_calendar">
             <field name="name">Requests calendar</field>
@@ -49,26 +49,26 @@
         <record model="ir.actions.act_window" id="adealer.action_window_repair_calendar">
             <field name="name">Service calendar</field>
             <field name="res_model">repair.order</field>
-            <field name="view_mode">calendar,list,form</field>
+            <field name="view_mode">calendar,tree,form</field>
             <field name="view_id" ref="adealer.view_repair_order_calendar"/>
         </record>
         <record model="ir.actions.act_window" id="adealer.action_window_repair_orders">
             <field name="name">Repair order</field>
             <field name="res_model">repair.order</field>
-            <field name="view_mode">list,kanban,form</field>
+            <field name="view_mode">tree,kanban,form</field>
             <field name="view_id" ref="adealer.view_repair_order_journal_list"/>
         </record>
 
         <record model="ir.actions.act_window" id="adealer.action_window_sale_orders">
             <field name="name">Sale orders</field>
             <field name="res_model">sale.order</field>
-            <field name="view_mode">list,kanban,form</field>
+            <field name="view_mode">tree,kanban,form</field>
             <field name="view_id" ref="adealer.view_sale_order_journal_list"/>
         </record>
         <record model="ir.actions.act_window" id="adealer.action_window_purchase_orders">
             <field name="name">Purchase orders</field>
             <field name="res_model">purchase.order</field>
-            <field name="view_mode">list,kanban,form</field>
+            <field name="view_mode">tree,kanban,form</field>
             <field name="view_id" ref="adealer.view_purchase_order_journal_list"/>
         </record>
 
@@ -94,7 +94,7 @@
         <record model="ir.actions.act_window" id="adealer.action_window_realizatsii">
             <field name="name">Sales invoices</field>
             <field name="res_model">account.move</field>
-            <field name="view_mode">list,form</field>
+            <field name="view_mode">tree,form</field>
             <field name="view_id" ref="adealer.view_account_move_realiz_list"/>
             <field name="search_view_id" ref="adealer.view_account_move_realiz_search"/>
             <field name="domain">[('move_type', '=', 'out_invoice')]</field>
@@ -105,7 +105,7 @@
         <record model="ir.actions.act_window" id="adealer.action_window_vehicle_sales">
             <field name="name">Vehicle sales</field>
             <field name="res_model">account.move</field>
-            <field name="view_mode">list,form</field>
+            <field name="view_mode">tree,form</field>
             <field name="view_id" ref="adealer.view_account_move_realiz_list"/>
             <field name="search_view_id" ref="adealer.view_account_move_realiz_search"/>
             <field name="domain">[('move_type', '=', 'out_invoice'), ('is_vehicle_sale', '=', True)]</field>

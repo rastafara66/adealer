@@ -33,7 +33,10 @@
                         <field name="partner_id"/>
                     </div>
                 </xpath>
-                <xpath expr="//field[@name='image_128']" position="replace">
+                <!-- Odoo 17 малює фото авто тегом <img> із kanban_image(), а не
+                     полем `image_128` (полем воно стало у 18.0). Ціль інша, намір
+                     той самий: замість фото показати логотип марки. -->
+                <xpath expr="//div[hasclass('o_kanban_image')]/img" position="replace">
                     <field name="display_logo" widget="image" options="{'img_class': 'object-fit-cover'}"/>
                 </xpath>
             </field>
@@ -54,14 +57,14 @@
         <record model="ir.actions.act_window" id="adealer.action_window_vehicles">
             <field name="name">Vehicles</field>
             <field name="res_model">fleet.vehicle</field>
-            <field name="view_mode">list,form</field>
+            <field name="view_mode">tree,form</field>
             <field name="context">{'group_by': []}</field>
         </record>
 
         <record model="ir.actions.act_window" id="adealer.action_window_vehicles_models">
             <field name="name">Vehicles models</field>
             <field name="res_model">fleet.vehicle.model</field>
-            <field name="view_mode">kanban,list,form</field>
+            <field name="view_mode">kanban,tree,form</field>
         </record>
 
         <!-- menu Vehicles -->

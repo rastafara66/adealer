@@ -18,9 +18,16 @@
 from markupsafe import Markup, escape
 
 from odoo import api, fields, models
-from odoo.tools import LazyTranslate
 
-_lt = LazyTranslate(__name__)
+# Ліниві переклади: Odoo 18+ дає фабрику `LazyTranslate(__name__)`, а в Odoo 17
+# `_lt` - це сам клас, який модуля не питає. Викликається однаково: `_lt("...")`,
+# тож нижче нічого не змінюється.
+try:
+    from odoo.tools import LazyTranslate
+
+    _lt = LazyTranslate(__name__)
+except ImportError:  # Odoo 17 і старіші
+    from odoo.tools.translate import _lt
 
 # Параметр вимкнення підказок (Налаштування → 3A-dealer).
 PARAM_HIDE = 'adealer.hide_addon_hints'

@@ -128,7 +128,7 @@ class RepairOrderChain(models.Model):
         if self.invoice_count == 1:
             action.update(view_mode='form', res_id=self.invoice_ids.id)
         else:
-            action.update(view_mode='list,form')
+            action.update(view_mode='tree,form')
         return action
 
     # ---------- видача ЗЧ у цех: внутрішнє переміщення (для нового наряду) ----------
@@ -247,5 +247,5 @@ class RepairOrderChain(models.Model):
         if self.picking_count == 1:
             action.update(view_mode='form', res_id=self.picking_ids.id)
         else:
-            action.update(view_mode='list,form')
+            action.update(view_mode='tree,form')
         return action

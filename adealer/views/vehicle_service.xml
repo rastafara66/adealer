@@ -30,20 +30,20 @@
             <field name="name">fleet.vehicle.service.due.list</field>
             <field name="model">fleet.vehicle</field>
             <field name="arch" type="xml">
-                <list string="Maintenance reminders" decoration-danger="service_due">
+                <tree string="Maintenance reminders" decoration-danger="service_due">
                     <field name="name"/>
                     <field name="partner_id"/>
                     <field name="last_service_date"/>
                     <field name="next_service_date"/>
                     <field name="service_due" widget="boolean_toggle"/>
-                </list>
+                </tree>
             </field>
         </record>
 
         <record id="action_service_reminders" model="ir.actions.act_window">
             <field name="name">Maintenance reminders</field>
             <field name="res_model">fleet.vehicle</field>
-            <field name="view_mode">list,form</field>
+            <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_fleet_vehicle_service_due_list"/>
             <field name="domain">[('service_due', '=', True)]</field>
         </record>

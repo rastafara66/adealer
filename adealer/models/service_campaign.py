@@ -62,7 +62,7 @@ class ServiceCampaign(models.Model):
             'type': 'ir.actions.act_window',
             'name': _('Add vehicles'),
             'res_model': 'fleet.vehicle',
-            'view_mode': 'list',
+            'view_mode': 'tree',
             'target': 'new',
         }
 

@@ -6,7 +6,7 @@
         <record id="report_sales" model="ir.actions.act_window">
             <field name="name">Sales</field>
             <field name="res_model">account.invoice.report</field>
-            <field name="view_mode">pivot,graph,list</field>
+            <field name="view_mode">pivot,graph,tree</field>
             <field name="domain">[('move_type', '=', 'out_invoice'), ('state', '=', 'posted')]</field>
         </record>
 
@@ -14,7 +14,7 @@
         <record id="report_gross_profit" model="ir.actions.act_window">
             <field name="name">Gross profit</field>
             <field name="res_model">account.invoice.report</field>
-            <field name="view_mode">pivot,graph,list</field>
+            <field name="view_mode">pivot,graph,tree</field>
             <field name="domain">[('move_type', 'in', ('out_invoice', 'out_refund')), ('state', '=', 'posted')]</field>
         </record>
 
@@ -22,14 +22,14 @@
         <record id="report_purchases" model="ir.actions.act_window">
             <field name="name">Purchases</field>
             <field name="res_model">purchase.report</field>
-            <field name="view_mode">pivot,graph,list</field>
+            <field name="view_mode">pivot,graph,tree</field>
         </record>
 
         <!-- Stock on hand -->
         <record id="report_stock_on_hand" model="ir.actions.act_window">
             <field name="name">Stock on hand</field>
             <field name="res_model">stock.quant</field>
-            <field name="view_mode">list,pivot</field>
+            <field name="view_mode">tree,pivot</field>
             <field name="domain">[('location_id.usage', '=', 'internal')]</field>
         </record>
 
@@ -37,21 +37,21 @@
         <record id="report_repair_history" model="ir.actions.act_window">
             <field name="name">Repair history</field>
             <field name="res_model">repair.order</field>
-            <field name="view_mode">list,pivot,graph,form</field>
+            <field name="view_mode">tree,pivot,graph,form</field>
         </record>
 
         <!-- Advisor output -->
         <record id="report_advisor_output" model="ir.actions.act_window">
             <field name="name">Advisor output</field>
             <field name="res_model">repair.order</field>
-            <field name="view_mode">pivot,graph,list</field>
+            <field name="view_mode">pivot,graph,tree</field>
         </record>
 
         <!-- Receivables with counterparties -->
         <record id="report_partner_balance" model="ir.actions.act_window">
             <field name="name">Receivables with counterparties</field>
             <field name="res_model">account.move.line</field>
-            <field name="view_mode">pivot,list</field>
+            <field name="view_mode">pivot,tree</field>
             <field name="domain">[('account_id.account_type', 'in', ('asset_receivable', 'liability_payable')), ('parent_state', '=', 'posted')]</field>
         </record>
 
@@ -59,7 +59,7 @@
         <record id="report_sale_orders" model="ir.actions.act_window">
             <field name="name">Customer order analysis</field>
             <field name="res_model">sale.order.line</field>
-            <field name="view_mode">pivot,graph,list</field>
+            <field name="view_mode">pivot,graph,tree</field>
         </record>
 
         <!-- ===== Меню «Reports»: Готові (класичний стиль) + Конструктор (pivot) ===== -->

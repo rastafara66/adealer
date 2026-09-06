@@ -283,5 +283,5 @@ class AccountMoveVehicle(models.Model):
             'name': _('Vehicles sold'),
             'res_model': 'dealer.car',
             'domain': [('sale_move_id', '=', self.id)],
-            'view_mode': 'list,form',
+            'view_mode': 'tree,form',
         }

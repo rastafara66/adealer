@@ -8,7 +8,7 @@
             <field name="model">repair.order</field>
             <field name="priority">100</field>
             <field name="arch" type="xml">
-                <list string="Repair order" default_order="schedule_date desc, name desc" create="1">
+                <tree string="Repair order" default_order="schedule_date desc, name desc" create="1">
                     <field name="schedule_date" string="Date" widget="date"/>
                     <field name="name" string="Number"/>
                     <field name="partner_id" string="Customer"/>
@@ -21,7 +21,7 @@
                            decoration-warning="state == 'under_repair'"
                            decoration-success="state == 'done'"
                            decoration-muted="state == 'cancel'"/>
-                </list>
+                </tree>
             </field>
         </record>
 
@@ -31,7 +31,7 @@
             <field name="model">sale.order</field>
             <field name="priority">100</field>
             <field name="arch" type="xml">
-                <list string="Sale orders" default_order="date_order desc, name desc" create="1">
+                <tree string="Sale orders" default_order="date_order desc, name desc" create="1">
                     <field name="date_order" string="Date" widget="date"/>
                     <field name="name" string="Number"/>
                     <field name="partner_id" string="Customer"/>
@@ -45,7 +45,7 @@
                            decoration-warning="state == 'sent'"
                            decoration-success="state == 'sale'"
                            decoration-muted="state == 'cancel'"/>
-                </list>
+                </tree>
             </field>
         </record>
 
@@ -55,7 +55,7 @@
             <field name="model">account.move</field>
             <field name="priority">100</field>
             <field name="arch" type="xml">
-                <list string="Sales invoices" default_order="invoice_date desc, name desc" create="1">
+                <tree string="Sales invoices" default_order="invoice_date desc, name desc" create="1">
                     <field name="invoice_date" string="Date" widget="date"/>
                     <field name="name" string="Number"/>
                     <field name="partner_id" string="Customer"/>
@@ -74,7 +74,7 @@
                            decoration-success="payment_state in ('paid','in_payment')"
                            decoration-warning="payment_state == 'partial'"
                            decoration-danger="payment_state == 'not_paid'"/>
-                </list>
+                </tree>
             </field>
         </record>
 
@@ -84,7 +84,7 @@
             <field name="model">purchase.order</field>
             <field name="priority">100</field>
             <field name="arch" type="xml">
-                <list string="Purchase orders" default_order="date_order desc, name desc" create="1">
+                <tree string="Purchase orders" default_order="date_order desc, name desc" create="1">
                     <field name="date_order" string="Date" widget="date"/>
                     <field name="name" string="Number"/>
                     <field name="partner_id" string="Supplier"/>
@@ -96,7 +96,7 @@
                            decoration-info="state in ('draft','sent')"
                            decoration-success="state == 'purchase'"
                            decoration-muted="state == 'cancel'"/>
-                </list>
+                </tree>
             </field>
         </record>
         <!-- Картка товару (канбан у класичному стилі, без зображення) -->

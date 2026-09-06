@@ -66,7 +66,7 @@
             <field name="name">adealer.service.booking.list</field>
             <field name="model">adealer.service.booking</field>
             <field name="arch" type="xml">
-                <list string="Service bookings" default_order="appointment_datetime desc">
+                <tree string="Service bookings" default_order="appointment_datetime desc">
                     <field name="appointment_datetime" string="When"/>
                     <field name="name" string="Number"/>
                     <field name="workplace_id" string="Post" optional="show"/>
@@ -83,7 +83,7 @@
                            decoration-warning="state == 'arrived'"
                            decoration-success="state == 'done'"
                            decoration-muted="state == 'cancel'"/>
-                </list>
+                </tree>
             </field>
         </record>
 
@@ -136,7 +136,7 @@
         <record model="ir.actions.act_window" id="action_service_bookings">
             <field name="name">Service bookings</field>
             <field name="res_model">adealer.service.booking</field>
-            <field name="view_mode">calendar,list,form</field>
+            <field name="view_mode">calendar,tree,form</field>
             <field name="search_view_id" ref="view_service_booking_search"/>
         </record>
 
@@ -151,18 +151,18 @@
             <field name="name">adealer.workplace.list</field>
             <field name="model">adealer.workplace</field>
             <field name="arch" type="xml">
-                <list string="Workplaces" editable="bottom">
+                <tree string="Workplaces" editable="bottom">
                     <field name="sequence" widget="handle"/>
                     <field name="name"/>
                     <field name="color" widget="color_picker"/>
                     <field name="active" widget="boolean_toggle"/>
-                </list>
+                </tree>
             </field>
         </record>
         <record model="ir.actions.act_window" id="action_workplace">
             <field name="name">Workplaces / posts</field>
             <field name="res_model">adealer.workplace</field>
-            <field name="view_mode">list</field>
+            <field name="view_mode">tree</field>
         </record>
 
         <!-- ===== Види ремонту (repair type) ===== -->
@@ -170,18 +170,18 @@
             <field name="name">adealer.repair.type.list</field>
             <field name="model">adealer.repair.type</field>
             <field name="arch" type="xml">
-                <list string="Repair types" editable="bottom">
+                <tree string="Repair types" editable="bottom">
                     <field name="name"/>
                     <field name="code"/>
                     <field name="is_warranty" widget="boolean_toggle"/>
                     <field name="active" widget="boolean_toggle"/>
-                </list>
+                </tree>
             </field>
         </record>
         <record model="ir.actions.act_window" id="action_repair_type">
             <field name="name">Repair types</field>
             <field name="res_model">adealer.repair.type</field>
-            <field name="view_mode">list</field>
+            <field name="view_mode">tree</field>
         </record>
 
         <!-- ===== Меню ===== -->

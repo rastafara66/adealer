@@ -26,7 +26,7 @@
                         <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
-                        <list create="0" delete="0" edit="0" limit="200"
+                        <tree create="0" delete="0" edit="0" limit="200"
                               decoration-bf="line_type == 'total'">
                             <field name="line_type" column_invisible="1"/>
                             <field name="currency_id" column_invisible="1"/>
@@ -39,7 +39,7 @@
                             <field name="amount" string="Amount" sum="Total"/>
                             <button name="action_open" type="object" icon="fa-external-link"
                                     title="Open document" invisible="not res_id"/>
-                        </list>
+                        </tree>
                     </field>
                 </sheet>
             </form>
@@ -70,7 +70,7 @@
                         <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
-                        <list create="0" delete="0" edit="0" limit="200"
+                        <tree create="0" delete="0" edit="0" limit="200"
                               decoration-bf="line_type == 'total'"
                               decoration-danger="amount3 &lt; 0">
                             <field name="line_type" column_invisible="1"/>
@@ -83,7 +83,7 @@
                             <field name="amount3" string="Profit" sum="Total"/>
                             <button name="action_open" type="object" icon="fa-external-link"
                                     title="Open product" invisible="not res_id"/>
-                        </list>
+                        </tree>
                     </field>
                 </sheet>
             </form>
@@ -114,7 +114,7 @@
                         <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
-                        <list create="0" delete="0" edit="0" limit="200"
+                        <tree create="0" delete="0" edit="0" limit="200"
                               decoration-bf="line_type == 'total'">
                             <field name="line_type" column_invisible="1"/>
                             <field name="currency_id" column_invisible="1"/>
@@ -126,7 +126,7 @@
                             <field name="amount" string="Amount" sum="Total"/>
                             <button name="action_open" type="object" icon="fa-external-link"
                                     title="Open" invisible="not res_id"/>
-                        </list>
+                        </tree>
                     </field>
                 </sheet>
             </form>
@@ -151,7 +151,7 @@
                         <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
-                        <list create="0" delete="0" edit="0" limit="200"
+                        <tree create="0" delete="0" edit="0" limit="200"
                               decoration-bf="line_type == 'total'">
                             <field name="line_type" column_invisible="1"/>
                             <field name="currency_id" column_invisible="1"/>
@@ -162,7 +162,7 @@
                             <field name="amount" string="Cost" sum="Total"/>
                             <button name="action_open" type="object" icon="fa-external-link"
                                     title="Open product" invisible="not res_id"/>
-                        </list>
+                        </tree>
                     </field>
                 </sheet>
             </form>
@@ -194,7 +194,7 @@
                         <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
-                        <list create="0" delete="0" edit="0" limit="200"
+                        <tree create="0" delete="0" edit="0" limit="200"
                               decoration-bf="line_type == 'total'">
                             <field name="line_type" column_invisible="1"/>
                             <field name="currency_id" column_invisible="1"/>
@@ -207,7 +207,7 @@
                             <field name="state" string="Status"/>
                             <button name="action_open" type="object" icon="fa-external-link"
                                     title="Open order" invisible="not res_id"/>
-                        </list>
+                        </tree>
                     </field>
                 </sheet>
             </form>
@@ -237,14 +237,14 @@
                         <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
-                        <list create="0" delete="0" edit="0" limit="200"
+                        <tree create="0" delete="0" edit="0" limit="200"
                               decoration-bf="line_type == 'total'">
                             <field name="line_type" column_invisible="1"/>
                             <field name="currency_id" column_invisible="1"/>
                             <field name="name" string="Advisor"/>
                             <field name="qty" string="Orders count" sum="Total"/>
                             <field name="amount" string="Amount" sum="Total"/>
-                        </list>
+                        </tree>
                     </field>
                 </sheet>
             </form>
@@ -276,7 +276,7 @@
                         <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
-                        <list create="0" delete="0" edit="0" limit="200"
+                        <tree create="0" delete="0" edit="0" limit="200"
                               decoration-bf="line_type == 'total'">
                             <field name="line_type" column_invisible="1"/>
                             <field name="currency_id" column_invisible="1"/>
@@ -289,7 +289,7 @@
                             <field name="state" string="Status"/>
                             <button name="action_open" type="object" icon="fa-external-link"
                                     title="Open order" invisible="not res_id"/>
-                        </list>
+                        </tree>
                     </field>
                 </sheet>
             </form>
@@ -314,7 +314,7 @@
                         <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
-                        <list create="0" delete="0" edit="0" limit="200" decoration-bf="line_type == 'total'">
+                        <tree create="0" delete="0" edit="0" limit="200" decoration-bf="line_type == 'total'">
                             <field name="line_type" column_invisible="1"/>
                             <field name="currency_id" column_invisible="1"/>
                             <field name="res_id" column_invisible="1"/>
@@ -325,7 +325,7 @@
                             <field name="qty" string="Mileage"/>
                             <button name="action_open" type="object" icon="fa-external-link"
                                     title="Open vehicle" invisible="not res_id"/>
-                        </list>
+                        </tree>
                     </field>
                 </sheet>
             </form>
@@ -350,7 +350,7 @@
                         <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
-                        <list create="0" delete="0" edit="0" limit="200" decoration-bf="line_type == 'total'">
+                        <tree create="0" delete="0" edit="0" limit="200" decoration-bf="line_type == 'total'">
                             <field name="line_type" column_invisible="1"/>
                             <field name="currency_id" column_invisible="1"/>
                             <field name="res_id" column_invisible="1"/>
@@ -361,7 +361,7 @@
                             <field name="amount" string="All-time amount"/>
                             <button name="action_open" type="object" icon="fa-external-link"
                                     title="Open customer" invisible="not res_id"/>
-                        </list>
+                        </tree>
                     </field>
                 </sheet>
             </form>
@@ -392,7 +392,7 @@
                         <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
-                        <list create="0" delete="0" edit="0" limit="200"
+                        <tree create="0" delete="0" edit="0" limit="200"
                               decoration-bf="line_type == 'total'"
                               decoration-success="state == 'A'"
                               decoration-warning="state == 'B'"
@@ -407,7 +407,7 @@
                             <field name="state" string="Class"/>
                             <button name="action_open" type="object" icon="fa-external-link"
                                     title="Open product" invisible="not res_id"/>
-                        </list>
+                        </tree>
                     </field>
                 </sheet>
             </form>
@@ -437,7 +437,7 @@
                         <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
-                        <list create="0" delete="0" edit="0" limit="200"
+                        <tree create="0" delete="0" edit="0" limit="200"
                               decoration-bf="line_type == 'total'"
                               decoration-success="state == 'A'"
                               decoration-warning="state == 'B'"
@@ -451,7 +451,7 @@
                             <field name="state" string="Class"/>
                             <button name="action_open" type="object" icon="fa-external-link"
                                     title="Open customer" invisible="not res_id"/>
-                        </list>
+                        </tree>
                     </field>
                 </sheet>
             </form>
@@ -481,7 +481,7 @@
                         <button name="action_generate" type="object" string="Generate" class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
-                        <list create="0" delete="0" edit="0" limit="200" decoration-bf="line_type == 'total'">
+                        <tree create="0" delete="0" edit="0" limit="200" decoration-bf="line_type == 'total'">
                             <field name="line_type" column_invisible="1"/>
                             <field name="currency_id" column_invisible="1"/>
                             <field name="res_id" column_invisible="1"/>
@@ -491,7 +491,7 @@
                             <field name="ref3" string="On hand · days of stock"/>
                             <button name="action_open" type="object" icon="fa-external-link"
                                     title="Open product" invisible="not res_id"/>
-                        </list>
+                        </tree>
                     </field>
                 </sheet>
             </form>

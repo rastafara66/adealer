@@ -52,7 +52,7 @@ class ProductTemplateAnalog(models.Model):
             'type': 'ir.actions.act_window',
             'name': 'Analogs',
             'res_model': 'product.template',
-            'view_mode': 'list,form',
+            'view_mode': 'tree,form',
             'domain': [('id', 'in', self.analog_ids.ids)],
         }
 

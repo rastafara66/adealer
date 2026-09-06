@@ -22,7 +22,7 @@
                                 class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
-                        <list create="0" delete="0" edit="0" limit="200"
+                        <tree create="0" delete="0" edit="0" limit="200"
                               decoration-bf="line_type in ('opening','closing','total')"
                               decoration-info="line_type in ('opening','closing')"
                               decoration-danger="balance &lt; 0">
@@ -38,7 +38,7 @@
                                     title="Open document" column_invisible="not parent.partner_id"/>
                             <button name="action_open_partner" type="object" icon="fa-search-plus"
                                     title="Details by counterparty" column_invisible="parent.partner_id"/>
-                        </list>
+                        </tree>
                     </field>
                 </sheet>
             </form>

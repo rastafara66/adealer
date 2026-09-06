@@ -28,7 +28,7 @@
                 <xpath expr="//page[@name='parts']" position="before">
                     <page string="Works" name="service_ops">
                         <field name="service_line_ids" mode="list,form">
-                            <list editable="bottom">
+                            <tree editable="bottom">
                                 <field name="product_type" column_invisible="1"/>
                                 <field name="product_id"/>
                                 <field name="product_uom_qty" string="Standard hours"/>
@@ -37,12 +37,12 @@
                                 <field name="discount"/>
                                 <field name="price_subtotal" widget="monetary"/>
                                 <field name="currency_id" column_invisible="1"/>
-                            </list>
+                            </tree>
                         </field>
                     </page>
                     <page string="Parts" name="part_ops">
                         <field name="part_line_ids" mode="list,form">
-                            <list editable="bottom">
+                            <tree editable="bottom">
                                 <field name="product_type" column_invisible="1"/>
                                 <field name="product_id"/>
                                 <field name="product_uom_qty" string="Quantity"/>
@@ -51,7 +51,7 @@
                                 <field name="discount"/>
                                 <field name="price_subtotal" widget="monetary"/>
                                 <field name="currency_id" column_invisible="1"/>
-                            </list>
+                            </tree>
                         </field>
                     </page>
                 </xpath>

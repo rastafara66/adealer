@@ -30,7 +30,7 @@
             <field name="name">adealer.mechanic.output.list</field>
             <field name="model">adealer.mechanic.output.report</field>
             <field name="arch" type="xml">
-                <list string="Mechanic output">
+                <tree string="Mechanic output">
                     <field name="date"/>
                     <field name="mechanic_id"/>
                     <field name="repair_id"/>
@@ -38,7 +38,7 @@
                     <field name="product_id"/>
                     <field name="normo_hours" sum="Std hrs"/>
                     <field name="amount" sum="Amount"/>
-                </list>
+                </tree>
             </field>
         </record>
         <record id="view_mechanic_output_search" model="ir.ui.view">
@@ -58,7 +58,7 @@
         <record id="action_mechanic_output" model="ir.actions.act_window">
             <field name="name">Mechanic output</field>
             <field name="res_model">adealer.mechanic.output.report</field>
-            <field name="view_mode">pivot,graph,list</field>
+            <field name="view_mode">pivot,graph,tree</field>
             <field name="search_view_id" ref="view_mechanic_output_search"/>
         </record>
 
@@ -69,18 +69,18 @@
             <field name="name">adealer.repair.stage.list</field>
             <field name="model">adealer.repair.stage</field>
             <field name="arch" type="xml">
-                <list string="Order stages" editable="bottom">
+                <tree string="Order stages" editable="bottom">
                     <field name="sequence" widget="handle"/>
                     <field name="name"/>
                     <field name="fold"/>
                     <field name="is_closing"/>
-                </list>
+                </tree>
             </field>
         </record>
         <record id="action_repair_stage" model="ir.actions.act_window">
             <field name="name">Order stages</field>
             <field name="res_model">adealer.repair.stage</field>
-            <field name="view_mode">list,form</field>
+            <field name="view_mode">tree,form</field>
         </record>
 
         <record id="view_repair_stage_kanban" model="ir.ui.view">
@@ -108,7 +108,7 @@
         <record id="action_repair_board" model="ir.actions.act_window">
             <field name="name">Workshop board (orders)</field>
             <field name="res_model">repair.order</field>
-            <field name="view_mode">kanban,list,form</field>
+            <field name="view_mode">kanban,tree,form</field>
             <field name="view_id" ref="view_repair_stage_kanban"/>
         </record>
 
@@ -119,7 +119,7 @@
             <field name="name">dealer.service.campaign.list</field>
             <field name="model">dealer.service.campaign</field>
             <field name="arch" type="xml">
-                <list string="Service campaigns">
+                <tree string="Service campaigns">
                     <field name="code"/>
                     <field name="name"/>
                     <field name="campaign_type"/>
@@ -130,7 +130,7 @@
                     <field name="progress" widget="progressbar"/>
                     <field name="state" widget="badge"
                            decoration-success="state == 'active'" decoration-muted="state == 'closed'"/>
-                </list>
+                </tree>
             </field>
         </record>
 
@@ -166,7 +166,7 @@
                         <notebook>
                             <page string="Vehicles">
                                 <field name="line_ids">
-                                    <list editable="bottom">
+                                    <tree editable="bottom">
                                         <field name="vehicle_id"/>
                                         <field name="vin"/>
                                         <field name="partner_id"/>
@@ -177,7 +177,7 @@
                                         <button name="action_mark_done" type="object"
                                                 string="Done" icon="fa-check"
                                                 invisible="state == 'done'"/>
-                                    </list>
+                                    </tree>
                                 </field>
                             </page>
                             <page string="Description / instructions">
@@ -193,7 +193,7 @@
         <record id="action_service_campaign" model="ir.actions.act_window">
             <field name="name">Service campaigns</field>
             <field name="res_model">dealer.service.campaign</field>
-            <field name="view_mode">list,form</field>
+            <field name="view_mode">tree,form</field>
         </record>
 
         <!-- ======================================================= -->
@@ -203,10 +203,10 @@
             <field name="name">adealer.part.analog.group.list</field>
             <field name="model">adealer.part.analog.group</field>
             <field name="arch" type="xml">
-                <list string="Analog groups">
+                <tree string="Analog groups">
                     <field name="name"/>
                     <field name="product_count"/>
-                </list>
+                </tree>
             </field>
         </record>
         <record id="view_analog_group_form" model="ir.ui.view">
@@ -221,12 +221,12 @@
                         </div>
                         <field name="note" placeholder="Analog group description..."/>
                         <field name="product_ids">
-                            <list>
+                            <tree>
                                 <field name="default_code"/>
                                 <field name="name"/>
                                 <field name="qty_available"/>
                                 <field name="list_price"/>
-                            </list>
+                            </tree>
                         </field>
                     </sheet>
                 </form>
@@ -235,14 +235,14 @@
         <record id="action_analog_group" model="ir.actions.act_window">
             <field name="name">Parts analog groups</field>
             <field name="res_model">adealer.part.analog.group</field>
-            <field name="view_mode">list,form</field>
+            <field name="view_mode">tree,form</field>
         </record>
 
         <record id="view_lost_demand_list" model="ir.ui.view">
             <field name="name">adealer.lost.demand.list</field>
             <field name="model">adealer.lost.demand</field>
             <field name="arch" type="xml">
-                <list string="Lost demand" editable="bottom">
+                <tree string="Lost demand" editable="bottom">
                     <field name="date"/>
                     <field name="product_id"/>
                     <field name="product_qty"/>
@@ -250,13 +250,13 @@
                     <field name="partner_id" optional="show"/>
                     <field name="vehicle_id" optional="hide"/>
                     <field name="user_id" optional="hide"/>
-                </list>
+                </tree>
             </field>
         </record>
         <record id="action_lost_demand" model="ir.actions.act_window">
             <field name="name">Lost demand</field>
             <field name="res_model">adealer.lost.demand</field>
-            <field name="view_mode">list,form</field>
+            <field name="view_mode">tree,form</field>
         </record>
 
         <!-- ======================================================= -->
@@ -266,7 +266,7 @@
             <field name="name">dealer.car.list</field>
             <field name="model">dealer.car</field>
             <field name="arch" type="xml">
-                <list string="Vehicle stock" decoration-success="status == 'in_stock'"
+                <tree string="Vehicle stock" decoration-success="status == 'in_stock'"
                       decoration-info="status == 'reserved'" decoration-muted="status in ('sold','delivered')">
                     <field name="vin"/>
                     <field name="brand_id"/>
@@ -281,7 +281,7 @@
                            decoration-success="status == 'in_stock'"
                            decoration-info="status == 'reserved'"/>
                     <field name="currency_id" column_invisible="1"/>
-                </list>
+                </tree>
             </field>
         </record>
 
@@ -389,12 +389,12 @@
                             </page>
                             <page string="Photos">
                                 <field name="image_ids">
-                                    <list editable="bottom">
+                                    <tree editable="bottom">
                                         <field name="sequence" widget="handle"/>
                                         <field name="image_1920" widget="image"
                                                options="{'size': [80, 80]}"/>
                                         <field name="name" placeholder="Title (optional)"/>
-                                    </list>
+                                    </tree>
                                 </field>
                             </page>
                             <page string="Sale">
@@ -414,11 +414,11 @@
                             </page>
                             <page string="Status history">
                                 <field name="status_history_ids">
-                                    <list>
+                                    <tree>
                                         <field name="change_date"/>
                                         <field name="status"/>
                                         <field name="user_id"/>
-                                    </list>
+                                    </tree>
                                 </field>
                             </page>
                             <page string="Notes">
@@ -460,7 +460,7 @@
         <record id="action_dealer_car" model="ir.actions.act_window">
             <field name="name">Vehicle stock</field>
             <field name="res_model">dealer.car</field>
-            <field name="view_mode">kanban,list,form</field>
+            <field name="view_mode">kanban,tree,form</field>
             <field name="search_view_id" ref="view_dealer_car_search"/>
         </record>
 
@@ -468,17 +468,17 @@
         <record id="action_car_complectation" model="ir.actions.act_window">
             <field name="name">Trims / configurations</field>
             <field name="res_model">dealer.car.complectation</field>
-            <field name="view_mode">list,form</field>
+            <field name="view_mode">tree,form</field>
         </record>
         <record id="action_car_option" model="ir.actions.act_window">
             <field name="name">Options</field>
             <field name="res_model">dealer.car.option</field>
-            <field name="view_mode">list,form</field>
+            <field name="view_mode">tree,form</field>
         </record>
         <record id="action_car_color" model="ir.actions.act_window">
             <field name="name">Colors</field>
             <field name="res_model">dealer.car.color</field>
-            <field name="view_mode">list,form</field>
+            <field name="view_mode">tree,form</field>
         </record>
 
         <!-- ======================================================= -->
@@ -508,6 +508,10 @@
                 </xpath>
                 <!-- зв'язок вгору: джерело-замовлення покупця -->
                 <xpath expr="//div[@name='button_box']" position="inside">
+                    <!-- 🔴 Odoo 17 вимагає, щоб поле з модифікатора БУЛО у вигляді;
+                         18 і 19 його відсутність терплять. Без цього рядка модуль
+                         на 17-й падає прямо при встановленні. -->
+                    <field name="source_sale_order_id" invisible="1"/>
                     <button name="action_view_source_order" type="object"
                             class="oe_stat_button" icon="fa-shopping-cart"
                             invisible="not source_sale_order_id">

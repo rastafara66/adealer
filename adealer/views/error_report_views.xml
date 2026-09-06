@@ -5,7 +5,7 @@
         <field name="name">adealer.error.report.list</field>
         <field name="model">adealer.error.report</field>
         <field name="arch" type="xml">
-            <list string="Error reports">
+            <tree string="Error reports">
                 <field name="create_date" string="First seen"/>
                 <field name="error_type"/>
                 <field name="operation"/>
@@ -16,7 +16,7 @@
                        decoration-success="state == 'sent'"
                        decoration-warning="state == 'failed'"/>
                 <field name="sent_date" optional="hide"/>
-            </list>
+            </tree>
         </field>
     </record>
 
@@ -69,7 +69,7 @@
     <record id="adealer_error_report_action" model="ir.actions.act_window">
         <field name="name">Error reports</field>
         <field name="res_model">adealer.error.report</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Nothing has gone wrong</p>
             <p>

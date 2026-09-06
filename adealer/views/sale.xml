@@ -60,10 +60,16 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_sale_order_kanban"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='partner_id']" position="before">
+                <!-- 🔴 Канбан у Odoo 17 побудований інакше, ніж у 18/19: <footer>
+                     тут немає, а партнер і номер виводяться через t-out, не полями.
+                     Причому xpath //field[@name='partner_id'] у 17-й ВСЕ ОДНО
+                     знаходиться - але в блоці ОГОЛОШЕННЯ полів угорі картки, тож
+                     логотип не впав би з помилкою, а просто ніде не намалювався.
+                     Ціль інша, намір той самий. -->
+                <xpath expr="//div[hasclass('o_kanban_record_headings')]" position="before">
                     <field name="vehicle_logo" widget="image" class="me-2" options="{'size': [36, 36]}"/>
                 </xpath>
-                <xpath expr="//footer//field[@name='name']" position="after">
+                <xpath expr="//div[hasclass('oe_kanban_bottom_left')]/span" position="inside">
                     <field name="vehicle_id"/>
                 </xpath>
             </field>
