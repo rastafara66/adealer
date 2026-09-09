@@ -8,6 +8,12 @@
                     <field name="file" filename="file_name" placeholder="Select an Excel file to import"/>
                     <field name="file_name" invisible="1"/>
                 </group>
+                <!-- Звіт про імпорт. Без нього вікно просто зачинялось, і
+                     пропущені рядки не бачив ніхто. -->
+                <group string="Результат" invisible="not result_summary">
+                    <field name="result_summary" nolabel="1" readonly="1"
+                           widget="text"/>
+                </group>
                 <footer>
                     <button name="action_import_partners" type="object" string="Import" class="btn-primary"/>
                     <button string="Cancel" class="btn-secondary" special="cancel"/>

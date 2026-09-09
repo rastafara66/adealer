@@ -10,12 +10,19 @@ import re
 # TODO: Додати імпорт коментарів
 _logger = logging.getLogger(__name__)
 
-LOG_PATH = os.path.join(os.path.dirname(__file__), '..', 'log', 'import.log')
-
 def write_log(msg):
-    # msg - це str, тут явно кодуємо в utf-8
-    with open(LOG_PATH, 'a', encoding='utf-8') as f:
-        f.write(msg + '\n')
+    """Технічний слід імпорту — у журнал Odoo.
+
+    🔴 Раніше писалось у файл ВСЕРЕДИНІ теки модуля (`adealer/log/import.log`).
+    Дві біди. По-перше, у більшості установок `addons` доступна лише для
+    читання, і тоді `open(..., 'a')` валив увесь імпорт помилкою запису, яка
+    не має жодного стосунку до даних. По-друге, це був ЄДИНИЙ слід того, які
+    рядки пропущено, — тобто користувач не бачив їх ніколи.
+
+    Тепер слід іде в журнал сервера, а те, що стосується користувача,
+    повертається йому звітом (конвенції §9).
+    """
+    _logger.info("[adealer import] %s", msg)
 
 def safe_val(val, cast_func=None):
     if val is None:
@@ -52,9 +59,27 @@ class PartnerImport(models.TransientModel):
 
     @api.model
     def import_partners_from_dataframe(self, df):
+        """Імпорт із ЗВІТОМ: що додано, що пропущено і чому саме.
+
+        🔴 Конвенції §9. Раніше метод повертав словник лічильників, який
+        Odoo нікуди не показувала, а причини пропусків писались у файл
+        збоку. Тобто користувач бачив рівно нічого: рядки зникали мовчки,
+        і дізнатись про це можна було, лише перерахувавши контрагентів.
+
+        Тепер кожен пропущений рядок називає СЕБЕ — номером у файлі,
+        причиною і тим, що з цим робити.
+        """
         skipped_no_data = 0
         skipped_duplicate = 0
         added = 0
+        updated_count = 0
+        problems = []
+
+        def note(idx, what, why, howto):
+            # Номер рядка ЯК У ФАЙЛІ: заголовок + нумерація з одиниці.
+            problems.append({
+                "row": idx + 2, "what": what, "why": why, "howto": howto,
+            })
 
         for idx, row in enumerate(df):
             name = safe_val(row.get('Наименование'))
@@ -85,12 +110,27 @@ class PartnerImport(models.TransientModel):
 
             if not name:
                 write_log(f"Пропущено рядок без імені: {log_row}")
+                note(idx, _("немає назви"),
+                     _("контрагента без назви створити не можна"),
+                     _("заповніть колонку «Наименование» або приберіть рядок"))
+                skipped_no_data += 1
                 continue
 
             if not any([phone, email, inn, address, edrpou]):
                 write_log(f"Пропущено рядок без даних: {log_row}")
+                note(idx, _("«%s» — лише назва") % name,
+                     _("немає жодного реквізиту: ні телефону, ні пошти, "
+                       "ні коду, ні адреси"),
+                     _("додайте хоч один реквізит — інакше контрагента "
+                       "не буде з чим зіставити"))
                 skipped_no_data += 1
                 continue
+
+            if edrpou_note:
+                note(idx, _("«%s» — код ЄДРПОУ не взято") % name,
+                     _("у файлі «%s»: має бути 8 або 10 цифр") % raw_edrpou,
+                     _("контрагента створено без коду; виправте код у файлі "
+                       "й повторіть імпорт, або допишіть код у картці"))
 
             # Динамічний пошук по edrpou, vat, name
             search_domain = []
@@ -120,6 +160,7 @@ class PartnerImport(models.TransientModel):
                     updated = True
                 if updated:
                     write_log(f"Оновлено партнера: {log_row}")
+                    updated_count += 1
                 else:
                     write_log(f"Дубльований партнер: {log_row}")
                 skipped_duplicate += 1
@@ -142,12 +183,46 @@ class PartnerImport(models.TransientModel):
             write_log(f"Додано партнера: {log_row}")
             added += 1
 
-        write_log(f"=== Імпорт завершено ===")
+        write_log("=== Імпорт завершено ===")
         write_log(f"Пропущено без даних: {skipped_no_data}")
         write_log(f"Дубльованих: {skipped_duplicate}")
         write_log(f"Додано партнерів: {added}")
         return {
+            'rows': len(df),
             'skipped_no_data': skipped_no_data,
             'skipped_duplicate': skipped_duplicate,
+            'updated': updated_count,
             'added': added,
+            'problems': problems,
         }
+
+    @api.model
+    def format_import_report(self, result):
+        """Звіт для людини: спершу обсяг, потім кожен рядок із причиною.
+
+        ⚠️ Порядок навмисний. Обсяг першим — щоб було видно, скільки роботи,
+        ще до читання переліку; без нього людина читає двадцять рядків, аби
+        зрозуміти, що їх двадцять.
+        """
+        lines = [
+            _("Оброблено рядків: %s") % result.get('rows', 0),
+            _("Додано контрагентів: %s") % result.get('added', 0),
+            _("Оновлено: %s") % result.get('updated', 0),
+            _("Пропущено як дублікати: %s") % result.get('skipped_duplicate', 0),
+            _("Пропущено без даних: %s") % result.get('skipped_no_data', 0),
+        ]
+        problems = result.get('problems') or []
+        if problems:
+            lines.append("")
+            lines.append(_("Потребують уваги — %s:") % len(problems))
+            for p in problems:
+                lines.append(_("Рядок %(row)s: %(what)s\n    Чому: %(why)s\n"
+                               "    Що зробити: %(howto)s",
+                               row=p['row'], what=p['what'],
+                               why=p['why'], howto=p['howto']))
+        else:
+            # 🔴 Успіх теж пояснює себе: «нічого не сказали» і «все чисто»
+            # мусять виглядати по-різному.
+            lines.append("")
+            lines.append(_("Рядків із проблемами немає."))
+        return "\n".join(lines)
