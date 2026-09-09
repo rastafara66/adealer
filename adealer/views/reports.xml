@@ -73,7 +73,8 @@
         <menuitem name="Stock on hand" id="menu_ready_stock" parent="menu_reports_ready" action="action_report_ready_stock" sequence="4"/>
         <menuitem name="Repair history" id="menu_ready_repairs" parent="menu_reports_ready" action="action_report_ready_repairs" sequence="5"/>
         <menuitem name="Advisor output" id="menu_ready_advisors" parent="menu_reports_ready" action="action_report_ready_advisors" sequence="6"/>
-        <menuitem name="Receivables with counterparties" id="menu_report_partner_balance" parent="menu_reports_ready" action="action_partner_balance_wizard" sequence="7"/>
+        <menuitem name="Receivables with counterparties" id="menu_report_partner_balance" parent="menu_reports_ready" action="action_partner_balance_wizard" sequence="7"
+              groups="adealer.group_adealer_manager"/>
         <menuitem name="Customer order analysis" id="menu_ready_orders" parent="menu_reports_ready" action="action_report_ready_orders" sequence="8"/>
         <menuitem name="Maintenance reminders" id="menu_ready_to" parent="menu_reports_ready" action="action_report_ready_to" sequence="10"/>
         <menuitem name="Inactive customers" id="menu_ready_inactive" parent="menu_reports_ready" action="action_report_ready_inactive" sequence="11"/>
@@ -89,7 +90,8 @@
         <menuitem name="Stock on hand" id="menu_report_stock" parent="menu_reports_custom" action="report_stock_on_hand" sequence="4"/>
         <menuitem name="Repair history" id="menu_report_repair_history" parent="menu_reports_custom" action="report_repair_history" sequence="5"/>
         <menuitem name="Advisor output" id="menu_report_advisor" parent="menu_reports_custom" action="report_advisor_output" sequence="6"/>
-        <menuitem name="Receivables with counterparties" id="menu_custom_partner_balance" parent="menu_reports_custom" action="report_partner_balance" sequence="7"/>
+        <menuitem name="Receivables with counterparties" id="menu_custom_partner_balance" parent="menu_reports_custom" action="report_partner_balance" sequence="7"
+              groups="adealer.group_adealer_manager"/>
         <menuitem name="Customer order analysis" id="menu_report_sale_orders" parent="menu_reports_custom" action="report_sale_orders" sequence="8"/>
     </data>
 </odoo>

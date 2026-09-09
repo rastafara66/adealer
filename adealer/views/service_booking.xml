@@ -196,9 +196,11 @@
                   action="action_booking_board" sequence="41"/>
         <menuitem name="Workplaces / posts" id="menu_workplace"
                   parent="adealer.configuration"
-                  action="action_workplace" sequence="6"/>
+                  action="action_workplace" sequence="6"
+              groups="adealer.group_adealer_manager"/>
         <menuitem name="Repair types" id="menu_repair_type"
                   parent="adealer.configuration"
-                  action="action_repair_type" sequence="7"/>
+                  action="action_repair_type" sequence="7"
+              groups="adealer.group_adealer_manager"/>
     </data>
 </odoo>

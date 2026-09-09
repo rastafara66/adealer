@@ -77,6 +77,7 @@ Key features:
                 ],
     # always loaded
     'data': [
+        'security/adealer_groups.xml',
         'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
         'views/partner_child_cleanup_wizard_view.xml',  # <-- цей файл має бути раніше за views.xml!

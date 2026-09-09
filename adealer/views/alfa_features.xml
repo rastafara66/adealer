@@ -541,11 +541,14 @@
         <menuitem name="Vehicle stock" id="menu_dealer_car" parent="menu_showroom"
                   action="action_dealer_car" sequence="71"/>
         <menuitem name="Trims / configurations" id="menu_car_complectation" parent="menu_showroom"
-                  action="action_car_complectation" sequence="72"/>
+                  action="action_car_complectation" sequence="72"
+              groups="adealer.group_adealer_manager"/>
         <menuitem name="Options" id="menu_car_option" parent="menu_showroom"
-                  action="action_car_option" sequence="73"/>
+                  action="action_car_option" sequence="73"
+              groups="adealer.group_adealer_manager"/>
         <menuitem name="Colors" id="menu_car_color" parent="menu_showroom"
-                  action="action_car_color" sequence="74"/>
+                  action="action_car_color" sequence="74"
+              groups="adealer.group_adealer_manager"/>
 
         <!-- у розділ Maintenance and Repair -->
         <menuitem name="Workshop board (orders)" id="menu_repair_board" parent="adealer.menu_maintenance"
@@ -555,11 +558,13 @@
         <menuitem name="Service campaigns" id="menu_service_campaign" parent="adealer.menu_maintenance"
                   action="action_service_campaign" sequence="47"/>
         <menuitem name="Order stages" id="menu_repair_stage" parent="adealer.menu_maintenance"
-                  action="action_repair_stage" sequence="48"/>
+                  action="action_repair_stage" sequence="48"
+              groups="adealer.group_adealer_manager"/>
 
         <!-- у розділ Products and Services -->
         <menuitem name="Parts analog groups" id="menu_analog_group" parent="adealer.menu_products"
-                  action="action_analog_group" sequence="23"/>
+                  action="action_analog_group" sequence="23"
+              groups="adealer.group_adealer_manager"/>
         <menuitem name="Lost demand" id="menu_lost_demand" parent="adealer.menu_products"
                   action="action_lost_demand" sequence="24"/>
     </data>
