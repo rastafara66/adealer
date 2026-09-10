@@ -10,23 +10,21 @@
                 <div class="oe_title">
                     <h2><field name="origin_ref" readonly="1" nolabel="1"/></h2>
                 </div>
+                <!-- 🔴 Документ відкривається КЛІКОМ ПО НАЗВІ: `doc_ref` —
+                     поле-посилання, і в readonly Odoo малює його як <a>,
+                     що веде на запис. Кнопки «Відкрити» тут навмисно немає:
+                     зайвий крок там, де достатньо натиснути на сам документ. -->
                 <field name="line_ids" nolabel="1" readonly="1">
                     <list create="false" delete="false" edit="false"
                           decoration-bf="is_current == True">
                         <field name="is_current" column_invisible="1"/>
-                        <field name="doc_model" column_invisible="1"/>
-                        <field name="doc_res_id" column_invisible="1"/>
                         <field name="level" column_invisible="1"/>
-                        <field name="name" string="Document"/>
+                        <field name="prefix" string="" width="90px"/>
+                        <field name="doc_ref" string="Document" widget="reference"/>
                         <field name="model_label" string="Type"/>
                         <field name="kind" string="Link"/>
-                        <button name="action_open" type="object" icon="fa-external-link"
-                                string="Open" title="Open the document"/>
                     </list>
                 </field>
-                <footer>
-                    <button string="Close" class="btn-primary" special="cancel"/>
-                </footer>
             </form>
         </field>
     </record>

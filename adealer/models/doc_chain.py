@@ -25,7 +25,12 @@ class DocChain(models.TransientModel):
 
     @api.model
     def open_for(self, record):
-        """Зібрати ланцюг навколо запису і відкрити вікно."""
+        """Зібрати ланцюг навколо запису і відкрити вікно.
+
+        ⚠️ `target` — САМЕ `current`, не діалог. Кожен рядок структури
+        відкривається кліком, а перехід з модального вікна лишає документ
+        під сірою заслінкою. Повернутись до структури дають хлібні крихти.
+        """
         chain = self.create({
             "origin_model": record._name,
             "origin_res_id": record.id,
@@ -38,7 +43,7 @@ class DocChain(models.TransientModel):
             "res_model": self._name,
             "res_id": chain.id,
             "view_mode": "form",
-            "target": "new",
+            "target": "current",
         }
 
     # ------------------------------------------------------------------
@@ -72,10 +77,11 @@ class DocChain(models.TransientModel):
             seen.add(key)
             rows.append((0, 0, {
                 "level": level,
-                "name": (" " * 4 * level) + ("└ " if level else "")
-                        + node.display_name,
-                "doc_model": node._name,
-                "doc_res_id": node.id,
+                # 🔴 Відступ — НЕРОЗРИВНИМИ пробілами. Звичайні HTML
+                # схлопує в один, і дерево злипається в стовпчик без жодної
+                # помилки: рядки на місці, ієрархії немає.
+                "prefix": (" " * 4 * level) + ("└ " if level else ""),
+                "doc_ref": "%s,%s" % (node._name, node.id),
                 "model_label": self.env["ir.model"]._get(node._name).name or node._name,
                 "kind": kind,
                 "is_current": key == (record._name, record.id),
@@ -94,23 +100,33 @@ class DocChainLine(models.TransientModel):
     _order = "id"
 
     chain_id = fields.Many2one("adealer.doc.chain", required=True, ondelete="cascade")
-    name = fields.Char(string="Document", readonly=True)
+
+    #: Відступ і гілка дерева — ОКРЕМОЮ колонкою від назви. Якщо домалювати
+    #: пробіли в саму назву, посилання поведе туди ж, але виглядатиме зламаним.
+    prefix = fields.Char(readonly=True)
     level = fields.Integer(readonly=True)
+
+    #: 🔴 Саме `Reference`, а не пара Char+Integer із кнопкою «Відкрити» поруч.
+    #: У readonly Odoo малює його компонентом `Many2One`, а той віддає
+    #: `<a class="o_form_uri">` і відкриває запис ПО КЛІКУ (звірено в
+    #: `web/static/src/views/fields/many2one/many2one.xml`). Тобто клікається
+    #: сама назва документа, а не кнопка збоку.
+    doc_ref = fields.Reference(
+        selection="_selection_doc_model", string="Document", readonly=True)
+
     model_label = fields.Char(string="Type", readonly=True)
     kind = fields.Selection(
         [("basis", "Entered on the basis of"),
          ("settlement", "Settles this document"),
          ("deal", "Belongs to the deal")], readonly=True)
-    doc_model = fields.Char(readonly=True)
-    doc_res_id = fields.Integer(readonly=True)
     is_current = fields.Boolean(readonly=True)
 
-    def action_open(self):
-        """Відкрити документ рядка — інакше дерево лише показує, а не веде."""
-        self.ensure_one()
-        return {
-            "type": "ir.actions.act_window",
-            "res_model": self.doc_model,
-            "res_id": self.doc_res_id,
-            "view_mode": "form",
-        }
+    @api.model
+    def _selection_doc_model(self):
+        """Будь-яка модель: ланцюг перетинає межі модулів.
+
+        Жорсткий перелік означав би, що податкова накладна з «Актива» чи
+        платіжка з Bank Sync у структурі просто не відкриється — і мовчки.
+        """
+        return [(model.model, model.name)
+                for model in self.env["ir.model"].sudo().search([])]
