@@ -30,6 +30,25 @@ from odoo import _, api, fields, models
 #: Пари «модель → поле, що вказує на документ-підставу», які існували до цієї
 #: моделі. Дерево має показувати й старі дані, інакше воно збреше порожнечею
 #: там, де зв'язок насправді є.
+#: 🔴 РІДНІ ЗВ'ЯЗКИ ODOO — щоб структура працювала БЕЗ 1С.
+#:
+#: Власник, 10.09.2026: «коли зв'язку з 1С не буде і всі документи будуть
+#: заводитися в Odoo, треба щоб зв'язок будувався правильно».
+#:
+#: Тому таблиця `adealer.doc.link` — не єдине джерело, а лише те, куди
+#: складають ПРИВЕЗЕНЕ з 1С. Те, що Odoo знає сам, читаємо з нього напряму:
+#: оплата зчеплена з рахунком звіркою проводок, рахунок із замовленням —
+#: штатним полем. Дублювати це в свою таблицю означало б завести другий
+#: примірник правди, який мовчки розійдеться з першим.
+#:
+#: (модель-батько, поле з дочірніми записами, вид зв'язку)
+NATIVE_CHILDREN = [
+    ("sale.order", "invoice_ids", "basis"),
+    ("sale.order", "picking_ids", "basis"),
+    # Оплату з рахунком зв'язує сама звірка проводок — це і є «оплачено».
+    ("account.move", "matched_payment_ids", "settlement"),
+]
+
 LEGACY_PARENTS = [
     ("account.move", "source_repair_order_id", "repair.order"),
     ("stock.picking", "source_repair_order_id", "repair.order"),
@@ -60,6 +79,15 @@ class DocLink(models.Model):
          ("settlement", "Settles this document"),
          ("deal", "Belongs to the deal")],
         default="basis", required=True, index=True)
+
+    #: 🔴 Момент документа-нащадка ЗА 1С — разом із часом.
+    #:
+    #: Власник: «треба на дату і час дивитися, що іде першим». В Odoo часу
+    #: немає: `invoice_date` і `account.payment.date` — це Date, без години.
+    #: Тобто два документи одного дня в нас нічим не впорядкувати, а в 1С
+    #: різниця видна (наряд 13:03, оплата 23:50). Тому час переносимо сюди
+    #: під час імпорту зв'язків; де його немає — падаємо назад на дату Odoo.
+    child_time = fields.Datetime(string="Moment (1C)")
 
     parent_ref = fields.Char(compute="_compute_refs", string="Basis")
     child_ref = fields.Char(compute="_compute_refs", string="Derived")
@@ -92,7 +120,7 @@ class DocLink(models.Model):
 
     # ------------------------------------------------------------------
     @api.model
-    def link(self, parent, child, kind="basis"):
+    def link(self, parent, child, kind="basis", when=None):
         """Зчепити два записи. Повторний виклик нічого не дублює.
 
         Повертає ребро — і те, що вже було, і щойно створене, щоб виклик
@@ -108,7 +136,13 @@ class DocLink(models.Model):
             "kind": kind,
         }
         found = self.search([(key, "=", value) for key, value in values.items()], limit=1)
-        return found or self.create(values)
+        if found:
+            # Момент міг приїхати пізніше за саме ребро — дописуємо, але вже
+            # відомий не перетираємо порожнім.
+            if when and not found.child_time:
+                found.child_time = when
+            return found
+        return self.create(dict(values, child_time=when))
 
     @api.model
     def parents_of(self, record):
@@ -118,27 +152,51 @@ class DocLink(models.Model):
                                  ("child_res_id", "=", record.id)]):
             target = self.env[link.parent_model].browse(link.parent_res_id).exists()
             if target:
-                out.append((target, link.kind))
+                out.append((target, link.kind, link.child_time))
         for model, field, _target_model in LEGACY_PARENTS:
             if record._name != model or field not in record._fields:
                 continue
             parent = record[field]
             if parent:
-                out.append((parent, "basis"))
+                out.append((parent, "basis", False))
+        for model, field, kind in NATIVE_CHILDREN:
+            if model not in self.env or field not in self.env[model]._fields:
+                continue
+            comodel = self.env[model]._fields[field].comodel_name
+            if comodel != record._name:
+                continue
+            for parent in self.env[model].search([(field, "in", record.id)]):
+                out.append((parent, kind, False))
         return out
 
     @api.model
     def children_of(self, record):
-        """Що породжено цим документом — теж з обох джерел."""
+        """Що породжено цим документом — теж з обох джерел.
+
+        🔴 Платіж, що належить угоді (`deal`) і водночас закриває конкретний
+        документ (`settlement`), показується ПІД тим, що він закрив, а не
+        поряд із ним. Інакше в структурі оплата стоїть врівень із нарядом,
+        якого вона стосується, і ланцюг читається задом наперед.
+        """
         out = []
         for link in self.search([("parent_model", "=", record._name),
                                  ("parent_res_id", "=", record.id)]):
             target = self.env[link.child_model].browse(link.child_res_id).exists()
-            if target:
-                out.append((target, link.kind))
+            if not target:
+                continue
+            if link.kind == "deal" and self.search_count([
+                    ("child_model", "=", link.child_model),
+                    ("child_res_id", "=", link.child_res_id),
+                    ("kind", "in", ("settlement", "basis"))]):
+                continue
+            out.append((target, link.kind, link.child_time))
         for model, field, target_model in LEGACY_PARENTS:
             if record._name != target_model or model not in self.env:
                 continue
             found = self.env[model].search([(field, "=", record.id)])
-            out += [(rec, "basis") for rec in found]
+            out += [(rec, "basis", False) for rec in found]
+        for model, field, kind in NATIVE_CHILDREN:
+            if record._name != model or field not in record._fields:
+                continue
+            out += [(rec, kind, False) for rec in record[field]]
         return out

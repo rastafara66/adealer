@@ -14,6 +14,26 @@
 from odoo import _, api, fields, models
 
 
+#: Поля дати в порядку спадання довіри. Різні документи звуть її по-різному,
+#: а ланцюг мусить шикуватися за часом незалежно від моделі.
+_DATE_FIELDS = ("invoice_date", "date", "date_order", "schedule_date", "create_date")
+
+
+def _doc_date(record):
+    """Дата документа з Odoo — запасний варіант, коли моменту 1С немає.
+
+    ⚠️ Тут лише ДАТА: `invoice_date` і `account.payment.date` — поля типу
+    Date. Два документи одного дня цим не впорядкуються, і це не недогляд
+    сортування, а брак даних. Справжній порядок дає `child_time` зі зв'язку.
+    """
+    for name in _DATE_FIELDS:
+        if name in record._fields:
+            value = record[name]
+            if value:
+                return str(value)[:10]
+    return "0000-00-00"
+
+
 class DocChain(models.TransientModel):
     _name = "adealer.doc.chain"
     _description = "Document subordination structure"
@@ -57,7 +77,7 @@ class DocChain(models.TransientModel):
             if not parents:
                 roots.append(current)
                 continue
-            for parent, _kind in parents:
+            for parent, _kind, _when in parents:
                 key = (parent._name, parent.id)
                 if key in seen:      # цикл: далі не йдемо, але й не губимо гілку
                     roots.append(current)
@@ -86,7 +106,13 @@ class DocChain(models.TransientModel):
                 "kind": kind,
                 "is_current": key == (record._name, record.id),
             }))
-            for child, child_kind in links.children_of(node):
+            # 🔴 ПОРЯДОК — ЗА ДАТОЮ ДОКУМЕНТА, а не за порядком запису в базі.
+            # Власник: «зазвичай спочатку наряд іде, а потім оплата». Ланцюг
+            # читають як історію, і рядки не в тому порядку читаються як
+            # помилка даних, хоч дані правильні.
+            for child, child_kind, when in sorted(
+                    links.children_of(node),
+                    key=lambda row: str(row[2] or "") or _doc_date(row[0])):
                 walk(child, level + 1, child_kind)
 
         for root in self._roots(record):
