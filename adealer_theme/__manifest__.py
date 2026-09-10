@@ -15,7 +15,7 @@
 
         Встановлюється/видаляється окремо від модуля adealer.
     """,
-    'author': "chukhin",
+    'author': "3A Studio",
     "support": "adealer@aktiv.in.ua",
     'website': "https://aktiv.in.ua/dodatky/",
     'license': "LGPL-3",

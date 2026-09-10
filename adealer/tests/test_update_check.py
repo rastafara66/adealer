@@ -5,6 +5,8 @@ Odoo для сторонніх модулів оновлень не переві
 помилкою, доки випадково не зайде на сторінку додатка. Для платного це прямо
 втрачені гроші: людина не просить повернення, вона просто не оновлюється.
 """
+import ast
+import io
 import json
 import os
 from unittest.mock import patch
@@ -234,16 +236,25 @@ class TestPaidAddonsAreCovered(TransactionCase):
                 handle.write(repr(spec))
 
         with tempfile.TemporaryDirectory() as root:
-            write(root, 'adealer', {'author': 'chukhin', 'depends': []})
-            write(root, 'adealer_new', {'author': 'chukhin',
+            write(root, 'adealer', {'author': OURS, 'depends': []})
+            write(root, 'adealer_new', {'author': OURS,
                                         'depends': ['adealer']})
             write(root, 'adealer_theirs', {'author': 'someone',
                                            'depends': ['adealer']})
-            write(root, 'bank_sync_base', {'author': 'chukhin',
+            write(root, 'bank_sync_base', {'author': OURS,
                                            'depends': ['account']})
             os.makedirs(os.path.join(root, 'not_a_module'))
 
             self.assertEqual(ours_beside(root), {'adealer_new'})
+
+
+#: Рядок `author` усієї лінійки. 🔴 Береться з нашого ж маніфесту, а не
+#: вписується сюди: із заплутаним значенням сканер нижче не знаходить нічого,
+#: «пропущених» теж виходить нуль — і тест зеленіє вхолосту. Так мало не сталось
+#: 10.09.2026 при перейменуванні автора на «3A Studio».
+OURS = ast.literal_eval(
+    io.open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                         '__manifest__.py'), encoding='utf-8').read())['author']
 
 
 def ours_beside(addons_dir):
@@ -262,7 +273,7 @@ def ours_beside(addons_dir):
                 spec = eval(handle.read(), {'__builtins__': {}})  # noqa: S307
         except Exception:  # noqa: BLE001 — не маніфест, який ми вміємо читати
             continue
-        if (isinstance(spec, dict) and spec.get('author') == 'chukhin'
+        if (isinstance(spec, dict) and spec.get('author') == OURS
                 and 'adealer' in (spec.get('depends') or [])):
             found.add(name)
     return found
