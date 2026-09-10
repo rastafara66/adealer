@@ -8,6 +8,12 @@
     'name': "3A-dealer — Car Dealership, Vehicle Dealer & Service Workshop",
 
     'summary': "Car showroom · Auto parts · Service workshop — vehicle dealer management with a document-centric workflow for Odoo",
+    # Для НАШОЇ сторінки: у `summary` англійські слова стоять
+    # заради пошуку в магазині, читачеві aktiv.in.ua вони ні до
+    # чого. Odoo невідомі ключі маніфеста ігнорує.
+    'summary_uk': 'Автосалон, запчастини й сервіс: продаж і купівля авто, '
+                  'замовлення-наряди, склад запчастин і друковані форми — робота йде '
+                  'документами, як в 1С.',
 
     'description': """
 3A-dealer — a vertical solution for car dealers and service workshops
