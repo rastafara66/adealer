@@ -79,9 +79,15 @@
                                                 string="Check now" class="btn-primary"/>
                                         <button name="action_adealer_update_from_git" type="object"
                                                 string="Update from GitHub" class="btn-secondary ms-2"
-                                                invisible="not adealer_update_available"
+                                                invisible="not adealer_update_available or not adealer_git_ready"
                                                 confirm="Pull the latest code from GitHub and upgrade the module?"/>
                                         <field name="adealer_update_available" invisible="1"/>
+                                        <field name="adealer_git_ready" invisible="1"/>
+                                    </div>
+                                    <!-- Чому кнопки немає — сказано словом, а не мовчанням. -->
+                                    <div class="mt8 text-muted"
+                                         invisible="adealer_git_ready">
+                                        <field name="adealer_git_reason" nolabel="1" readonly="1"/>
                                     </div>
                                 </div>
                             </setting>

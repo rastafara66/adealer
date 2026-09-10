@@ -194,3 +194,32 @@ class TestWhatCanBeCreatedFromWhat(TransactionCase):
             ("parent_model", "=", "sale.order"), ("parent_res_id", "=", order.id),
             ("child_model", "=", created._name), ("child_res_id", "=", created.id)])
         self.assertTrue(link, "документ, заведений на підставі, не потрапив у структуру")
+
+
+@tagged("post_install", "-at_install")
+class TestGitPanelTellsTheTruthUpfront(TransactionCase):
+    """Кнопка «Update from GitHub» не має існувати там, де git немає.
+
+    10.09.2026 на ford.aktiv.in.ua натискання давало «git недоступний на
+    сервері: No such file or directory». Це не поломка модуля — офіційний
+    образ Odoo просто не містить git. Але для користувача воно виглядає
+    поломкою, бо кнопка стоїть і обіцяє дію.
+    """
+
+    def test_missing_git_is_explained_before_the_click(self):
+        from unittest.mock import patch as mock_patch
+
+        with mock_patch("subprocess.run", side_effect=OSError("No such file: 'git'")):
+            ready, reason = self.env["adealer.app.update"].git_status()
+
+        self.assertFalse(ready)
+        self.assertTrue(reason, "мовчазне «не можна» читається як поломка")
+        self.assertIn(
+            "App Store", reason,
+            "сказати «не можна» мало — треба сказати, ЯК тоді оновитись")
+
+    def test_a_working_checkout_offers_the_button(self):
+        ready, reason = self.env["adealer.app.update"].git_status()
+        if not ready:
+            self.skipTest("на цій машині немає git або тека не є git-клоном: %s" % reason)
+        self.assertFalse(reason, "коли можна — пояснювати нічого не треба")

@@ -93,6 +93,35 @@ class AdealerAppUpdate(models.TransientModel):
                             latest, self.installed_version())
 
     @api.model
+    @api.model
+    def git_status(self):
+        """Чи можливе оновлення з git — і якщо ні, то ЧОМУ.
+
+        🔴 Раніше це з'ясовувалось лише натисканням: кнопка стояла завжди, а
+        відповідь «git is not available on the server» прилітала помилкою.
+        Для покупця це виглядає як поломка нашого модуля, хоча насправді це
+        властивість його сервера: офіційний образ Odoo git не містить, і в
+        контейнері його немає (спіймано 10.09.2026 на ford.aktiv.in.ua).
+
+        Повертає (можна, причина). Причина порожня, коли можна.
+        """
+        path = os.path.realpath(get_module_path('adealer'))
+        try:
+            probe = subprocess.run(
+                ['git', '-C', path, 'rev-parse', '--is-inside-work-tree'],
+                capture_output=True, text=True, timeout=30)
+        except (OSError, subprocess.SubprocessError) as e:
+            return False, _(
+                "Update from GitHub is unavailable: git is not installed on "
+                "this server (%s). Update the module from the Odoo App Store, "
+                "or ask your administrator to install git.") % e
+        if probe.returncode != 0 or probe.stdout.strip() != 'true':
+            return False, _(
+                "Update from GitHub is unavailable: the module directory is "
+                "not a git checkout (%s). Update from the Odoo App Store "
+                "instead.") % path
+        return True, ''
+
     @report_errors('update_from_git')
     def update_from_git(self):
         """git pull --ff-only in the module checkout, then upgrade the module."""
@@ -122,6 +151,16 @@ class ResConfigSettingsUpdate(models.TransientModel):
     _inherit = 'res.config.settings'
 
     adealer_version_installed = fields.Char("3A-dealer installed version", readonly=True)
+    #: Чи є на цьому сервері git — рахується ДО показу кнопки, а не після
+    #: натискання. Кнопка, яка завжди помиляється, гірша за її відсутність.
+    adealer_git_ready = fields.Boolean(compute="_compute_adealer_git")
+    adealer_git_reason = fields.Char(compute="_compute_adealer_git")
+
+    def _compute_adealer_git(self):
+        ready, reason = self.env['adealer.app.update'].git_status()
+        for record in self:
+            record.adealer_git_ready = ready
+            record.adealer_git_reason = reason
     adealer_version_latest = fields.Char("Latest published version", readonly=True)
     adealer_version_checked = fields.Char("Last checked", readonly=True)
     adealer_update_available = fields.Boolean("Update available", readonly=True)
