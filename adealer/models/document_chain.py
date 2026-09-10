@@ -88,6 +88,10 @@ class RepairOrderChain(models.Model):
             'source_repair_order_id': self.id,
             'invoice_line_ids': lines,
         })
+        # 🔴 Зв'язок пишемо ТУТ, а не лише типованим полем. Інакше структура
+        # підпорядкованості наповнюється лише імпортом з 1С, а документ,
+        # заведений у нас руками, у неї не потрапляє.
+        self.env['adealer.doc.link'].link(self, move, 'basis')
         if post:
             move.action_post()
         return move
@@ -184,6 +188,7 @@ class RepairOrderChain(models.Model):
             'move_ids': moves,
         })
         picking.action_confirm()
+        self.env['adealer.doc.link'].link(self, picking, 'basis')
         return picking
 
     @report_errors('chain_issue_parts')

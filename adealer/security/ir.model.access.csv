@@ -36,3 +36,4 @@ access_adealer_doc_link_usr,adealer.doc_link,model_adealer_doc_link,adealer.grou
 access_adealer_doc_link_mgr,adealer.doc_link,model_adealer_doc_link,adealer.group_adealer_manager,1,1,1,1
 access_adealer_doc_chain_usr,adealer.doc_chain,model_adealer_doc_chain,adealer.group_adealer_user,1,1,1,1
 access_adealer_doc_chain_line_usr,adealer.doc_chain_line,model_adealer_doc_chain_line,adealer.group_adealer_user,1,1,1,1
+access_adealer_doc_basis_usr,adealer.doc_basis,model_adealer_doc_basis,adealer.group_adealer_user,1,1,1,1

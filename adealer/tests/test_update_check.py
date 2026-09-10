@@ -273,7 +273,10 @@ def ours_beside(addons_dir):
                 spec = eval(handle.read(), {'__builtins__': {}})  # noqa: S307
         except Exception:  # noqa: BLE001 — не маніфест, який ми вміємо читати
             continue
+        # Приватні модулі замовників сюди не входять: вони не публікуються,
+        # тож і оновлення для них магазин не роздає.
         if (isinstance(spec, dict) and spec.get('author') == OURS
+                and not spec.get('adealer_private')
                 and 'adealer' in (spec.get('depends') or [])):
             found.add(name)
     return found

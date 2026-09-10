@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_adealer_doc_basis_form" model="ir.ui.view">
+        <field name="name">adealer.doc.basis.form</field>
+        <field name="model">adealer.doc.basis</field>
+        <field name="arch" type="xml">
+            <form string="Create on the basis of">
+                <group>
+                    <field name="source_model" invisible="1"/>
+                    <field name="source_res_id" invisible="1"/>
+                    <field name="source_ref"/>
+                    <field name="target"/>
+                </group>
+                <footer>
+                    <button string="Create" name="action_create" type="object"
+                            class="btn btn-primary"/>
+                    <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- 🔴 Пункт у шестерні «Дії» — там само, де в 1С «Ввести на основании».
+         Прив'язка окремим записом на кожну модель: спільного запису Odoo не
+         має, і модель, яку забули, просто не покаже пункт — мовчки. Перелік
+         моделей звірено тестом. -->
+    <record id="action_doc_basis_sale" model="ir.actions.server">
+        <field name="name">Create on the basis of</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">action = env['adealer.doc.basis'].open_for(record)</field>
+    </record>
+
+    <record id="action_doc_basis_repair" model="ir.actions.server">
+        <field name="name">Create on the basis of</field>
+        <field name="model_id" ref="repair.model_repair_order"/>
+        <field name="binding_model_id" ref="repair.model_repair_order"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">action = env['adealer.doc.basis'].open_for(record)</field>
+    </record>
+
+    <record id="action_doc_basis_move" model="ir.actions.server">
+        <field name="name">Create on the basis of</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">action = env['adealer.doc.basis'].open_for(record)</field>
+    </record>
+
+</odoo>

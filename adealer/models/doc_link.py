@@ -80,14 +80,19 @@ class DocLink(models.Model):
          ("deal", "Belongs to the deal")],
         default="basis", required=True, index=True)
 
-    #: 🔴 Момент документа-нащадка ЗА 1С — разом із часом.
+    #: 🔴 Момент документа-нащадка — з ГОДИНОЮ, бо порядок читають за часом.
     #:
-    #: Власник: «треба на дату і час дивитися, що іде першим». В Odoo часу
-    #: немає: `invoice_date` і `account.payment.date` — це Date, без години.
-    #: Тобто два документи одного дня в нас нічим не впорядкувати, а в 1С
-    #: різниця видна (наряд 13:03, оплата 23:50). Тому час переносимо сюди
-    #: під час імпорту зв'язків; де його немає — падаємо назад на дату Odoo.
-    child_time = fields.Datetime(string="Moment (1C)")
+    #: Власник: «треба на дату і час дивитися, що іде першим». Штатні поля
+    #: Odoo часу не мають: `invoice_date` і `account.payment.date` — це Date.
+    #: Тому момент тримає сам зв'язок: при перенесенні з 1С його беруть
+    #: звідти, при створенні документа в нас — із моменту створення.
+    #:
+    #: ⚠️ Поле НЕ називається «час 1С» навмисно. Власник, 10.09.2026: «той
+    #: зв'язок, що ми взяли з 1С, повинен повністю вкладатися в нашу логіку
+    #: і працювати незалежно від імпорту». Щойно десь з'явиться «це поле для
+    #: імпортованого», логіка розділиться надвоє — і половина без 1С
+    #: перестане працювати.
+    child_time = fields.Datetime(string="Document moment")
 
     parent_ref = fields.Char(compute="_compute_refs", string="Basis")
     child_ref = fields.Char(compute="_compute_refs", string="Derived")
@@ -142,7 +147,19 @@ class DocLink(models.Model):
             if when and not found.child_time:
                 found.child_time = when
             return found
-        return self.create(dict(values, child_time=when))
+        # Момент не переданий -> документ заводять у нас: беремо його власну
+        # дату, а як і її немає — теперішній момент. Порожнє поле зробило б
+        # рядок непорядкованим, тобто структура мовчки поставила б його
+        # першим.
+        return self.create(dict(values, child_time=when or self._moment_of(child)))
+
+    @api.model
+    def _moment_of(self, record):
+        """Момент документа з його ж полів — коли зв'язок роблять не з 1С."""
+        for name in ("create_date", "date_order", "invoice_date", "date"):
+            if name in record._fields and record[name]:
+                return record[name]
+        return fields.Datetime.now()
 
     @api.model
     def parents_of(self, record):

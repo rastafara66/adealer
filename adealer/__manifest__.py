@@ -94,6 +94,7 @@ Key features:
         # Структура підпорядкованості документів. Після views.xml: прив'язки
         # дій показуються в шестерні «Дії», а не власним меню.
         'views/doc_chain_views.xml',
+        'views/doc_basis_views.xml',
         # 🔴 ОДРАЗУ після views.xml, хоч це й файл налаштувань: тут оголошено меню
         # adealer.configuration, а батьком його називають service_booking.xml,
         # error_report_views.xml і organization.xml нижче. На ЧИСТІЙ базі файли
