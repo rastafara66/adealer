@@ -36,6 +36,10 @@ from . import app_update
 from . import organization
 from . import dashboard
 from . import service_booking
+# Документ-підстава і структура підпорядкованості. Після document_chain:
+# читає його типовані поля як друге джерело зв'язків.
+from . import doc_link
+from . import doc_chain
 # Підказки про платні надбудови. Останнім: домішує міксин у моделі вище.
 from . import addon_hint
 # Після addon_hint: бере звідти канонічний перелік надбудов, щоб не заводити

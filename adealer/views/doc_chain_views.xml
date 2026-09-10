@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Саме вікно структури. Рядок = документ, відступ = рівень підпорядкування. -->
+    <record id="view_adealer_doc_chain_form" model="ir.ui.view">
+        <field name="name">adealer.doc.chain.form</field>
+        <field name="model">adealer.doc.chain</field>
+        <field name="arch" type="xml">
+            <form string="Document structure">
+                <div class="oe_title">
+                    <h2><field name="origin_ref" readonly="1" nolabel="1"/></h2>
+                </div>
+                <field name="line_ids" nolabel="1" readonly="1">
+                    <list create="false" delete="false" edit="false"
+                          decoration-bf="is_current == True">
+                        <field name="is_current" column_invisible="1"/>
+                        <field name="doc_model" column_invisible="1"/>
+                        <field name="doc_res_id" column_invisible="1"/>
+                        <field name="level" column_invisible="1"/>
+                        <field name="name" string="Document"/>
+                        <field name="model_label" string="Type"/>
+                        <field name="kind" string="Link"/>
+                        <button name="action_open" type="object" icon="fa-external-link"
+                                string="Open" title="Open the document"/>
+                    </list>
+                </field>
+                <footer>
+                    <button string="Close" class="btn-primary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- 🔴 Дія живе в шестерні «Дії» — там, де її шукає той, хто прийшов з 1С:
+         у 1С «Структура підпорядкованості» теж під «Действия». Прив'язка
+         робиться окремим записом на КОЖНУ модель: одного спільного запису
+         Odoo не має, і модель, яку забули, просто не покаже пункт — мовчки. -->
+    <record id="action_doc_chain_move" model="ir.actions.server">
+        <field name="name">Document structure</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">action = env['adealer.doc.chain'].open_for(record)</field>
+    </record>
+
+    <record id="action_doc_chain_payment" model="ir.actions.server">
+        <field name="name">Document structure</field>
+        <field name="model_id" ref="account.model_account_payment"/>
+        <field name="binding_model_id" ref="account.model_account_payment"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">action = env['adealer.doc.chain'].open_for(record)</field>
+    </record>
+
+    <record id="action_doc_chain_repair" model="ir.actions.server">
+        <field name="name">Document structure</field>
+        <field name="model_id" ref="repair.model_repair_order"/>
+        <field name="binding_model_id" ref="repair.model_repair_order"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">action = env['adealer.doc.chain'].open_for(record)</field>
+    </record>
+
+    <record id="action_doc_chain_sale" model="ir.actions.server">
+        <field name="name">Document structure</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">action = env['adealer.doc.chain'].open_for(record)</field>
+    </record>
+
+    <record id="action_doc_chain_picking" model="ir.actions.server">
+        <field name="name">Document structure</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">action = env['adealer.doc.chain'].open_for(record)</field>
+    </record>
+
+</odoo>

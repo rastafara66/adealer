@@ -32,3 +32,7 @@ access_adealer_workplace_mgr,adealer.workplace,model_adealer_workplace,adealer.g
 access_adealer_repair_type_mgr,adealer.repair_type,model_adealer_repair_type,adealer.group_adealer_manager,1,1,1,1
 access_adealer_service_booking_usr,adealer.service_booking,model_adealer_service_booking,adealer.group_adealer_user,1,1,1,1
 access_adealer_error_report,adealer.error_report,model_adealer_error_report,base.group_system,1,1,1,1
+access_adealer_doc_link_usr,adealer.doc_link,model_adealer_doc_link,adealer.group_adealer_user,1,1,1,0
+access_adealer_doc_link_mgr,adealer.doc_link,model_adealer_doc_link,adealer.group_adealer_manager,1,1,1,1
+access_adealer_doc_chain_usr,adealer.doc_chain,model_adealer_doc_chain,adealer.group_adealer_user,1,1,1,1
+access_adealer_doc_chain_line_usr,adealer.doc_chain_line,model_adealer_doc_chain_line,adealer.group_adealer_user,1,1,1,1

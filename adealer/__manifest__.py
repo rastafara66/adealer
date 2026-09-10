@@ -91,6 +91,9 @@ Key features:
         'views/partner_import_wizard.xml', # <-- цей файл має бути раніше за views.xml!
         'views/journals.xml',  # <-- журнальні list-view; мають бути раніше за views.xml (actions на них посилаються)
         'views/views.xml',
+        # Структура підпорядкованості документів. Після views.xml: прив'язки
+        # дій показуються в шестерні «Дії», а не власним меню.
+        'views/doc_chain_views.xml',
         # 🔴 ОДРАЗУ після views.xml, хоч це й файл налаштувань: тут оголошено меню
         # adealer.configuration, а батьком його називають service_booking.xml,
         # error_report_views.xml і organization.xml нижче. На ЧИСТІЙ базі файли
