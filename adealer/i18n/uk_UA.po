@@ -3750,3 +3750,59 @@ msgid ""
 "What the paid 3A-dealer add-ons would add here. Hidden once the add-on is "
 "installed; can be switched off in Settings."
 msgstr "Що додали б тут платні надбудови 3A-dealer. Зникає, щойно надбудову встановлено; вимикається в Налаштуваннях."
+
+#. module: adealer
+msgid "Document structure"
+msgstr "Структура підпорядкованості"
+
+#. module: adealer
+msgid "Create on the basis of"
+msgstr "Ввести на підставі"
+
+#. module: adealer
+msgid "Basis document"
+msgstr "Документ-підстава"
+
+#. module: adealer
+msgid "Derived document"
+msgstr "Похідний документ"
+
+#. module: adealer
+msgid "Entered on the basis of"
+msgstr "Введено на підставі"
+
+#. module: adealer
+msgid "Settles this document"
+msgstr "Закриває цей документ"
+
+#. module: adealer
+msgid "Belongs to the deal"
+msgstr "Належить угоді"
+
+#. module: adealer
+msgid "Document moment"
+msgstr "Момент документа"
+
+#. module: adealer
+msgid "Invoice (proforma)"
+msgstr "Рахунок"
+
+#. module: adealer
+msgid "Payment"
+msgstr "Платіж"
+
+#. module: adealer
+msgid "Credit note"
+msgstr "Повернення"
+
+#. module: adealer
+msgid "Document basis link"
+msgstr "Зв'язок документів"
+
+#. module: adealer
+msgid "Document subordination structure"
+msgstr "Структура підпорядкованості документа"
+
+#. module: adealer
+msgid "Document structure line"
+msgstr "Рядок структури"

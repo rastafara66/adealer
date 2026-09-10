@@ -50,7 +50,7 @@ Key features:
     'live_test_url': "https://demo-3adealer.yellow.in.ua",
     'license': "LGPL-3",
     'category': 'Sales',
-    'version': '19.0.1.12.1',
+    'version': '19.0.1.12.2',
     'images': [
         # The first image is the card picture in the App Store listing. A
         # screenshot shrunk to a thumbnail reads as a grey smudge; the banner
@@ -84,6 +84,9 @@ Key features:
     # always loaded
     'data': [
         'security/adealer_groups.xml',
+        # 🔴 Одразу після груп і БЕЗ noupdate: під'єднання до штатних
+        # груп мусить переприкладатись при КОЖНОМУ оновленні.
+        'security/adealer_groups_wiring.xml',
         'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
         'views/partner_child_cleanup_wizard_view.xml',  # <-- цей файл має бути раніше за views.xml!

@@ -66,8 +66,12 @@ class DocBasisWizard(models.TransientModel):
     source_model = fields.Char(required=True, readonly=True)
     source_res_id = fields.Integer(required=True, readonly=True)
     source_ref = fields.Char(string="Basis document", readonly=True)
-    target = fields.Selection(selection="_selection_target", string="Create",
-                              required=True)
+    #: ⚠️ НЕ `required=True` на полі: запис створюється ДО того, як людина
+    #: щось обрала, і обов'язковість на рівні бази валила створення вікна
+    #: («null value in column "target" violates not-null constraint»).
+    #: Обов'язковість — у формі, там вона й потрібна: не дати натиснути
+    #: «Створити», нічого не обравши.
+    target = fields.Selection(selection="_selection_target", string="Create")
 
     @api.model
     def _selection_target(self):

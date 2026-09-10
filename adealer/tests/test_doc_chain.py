@@ -223,3 +223,48 @@ class TestGitPanelTellsTheTruthUpfront(TransactionCase):
         if not ready:
             self.skipTest("на цій машині немає git або тека не є git-клоном: %s" % reason)
         self.assertFalse(reason, "коли можна — пояснювати нічого не треба")
+
+
+@tagged("post_install", "-at_install")
+class TestInstalledMeansWorking(TransactionCase):
+    """«Встановив — і ВСЕ працює» (власник, 10.09.2026).
+
+    🔴 Найдорожча помилка цього класу: `base.group_user` має в `ir_model_data`
+    прапорець `noupdate=True`. Odoo застосовує такі записи при ПЕРШОМУ
+    встановленні й мовчки пропускає при ОНОВЛЕННІ. Тому інсталл у чисту базу
+    (§4) був зелений, а кожна вже наявна база лишалась без доступу — і
+    користувач бачив «Помилка доступу» на кожному документі.
+
+    Цей тест іде саме тією базою, у якій його запустили, тож ловить обидва
+    випадки: і install, і upgrade.
+    """
+
+    def test_every_employee_gets_the_daily_level(self):
+        ours = self.env.ref("adealer.group_adealer_user")
+        employee = self.env.ref("base.group_user")
+        self.assertIn(
+            ours, employee.implied_ids,
+            "внутрішній користувач не отримує рівень «Користувач»: меню є, "
+            "а жоден документ не відкривається")
+
+    def test_an_administrator_gets_the_manager_level(self):
+        """Ставить додаток адміністратор, а не бухгалтер."""
+        ours = self.env.ref("adealer.group_adealer_manager")
+        admins = self.env.ref("base.group_system")
+        self.assertIn(
+            ours, admins.implied_ids,
+            "адміністратор не отримує рівень «Керівник» — нікому налаштувати "
+            "додаток одразу після встановлення")
+
+    def test_a_plain_employee_can_actually_read_a_document(self):
+        """Груп мало — перевіряємо саме читання, під НЕ-адміністратором."""
+        user = self.env["res.users"].create({
+            "name": "Access probe", "login": "adealer_access_probe",
+            "group_ids": [(6, 0, [self.env.ref("base.group_user").id])],
+        })
+        try:
+            self.env["repair.order"].with_user(user).search([], limit=1)
+            self.env["dealer.car"].with_user(user).search([], limit=1)
+        except Exception as exc:                            # noqa: BLE001
+            self.fail("звичайний співробітник не може читати документи "
+                      "одразу після встановлення: %s" % exc)
