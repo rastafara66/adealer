@@ -8,6 +8,12 @@ class PartnerBalanceWizard(models.TransientModel):
     _name = 'partner.balance.wizard'
     _description = 'Receivables with counterparties (statement)'
 
+    # 🔴 Odoo прибирає транзитні записи через ГОДИНУ (`transient_age_limit`), і сторінка
+    # звіту за власною ж адресою починає відповідати «records with IDs ... cannot be
+    # found». Виглядає як знищена база, хоча дані цілі: відкрив звіт
+    # вранці, повернувся після обіду — червоне вікно. Даємо робочу добу.
+    _transient_max_hours = 24
+
     date_from = fields.Date(
         'Period from', required=True,
         default=lambda self: fields.Date.context_today(self).replace(month=1, day=1))
@@ -100,6 +106,10 @@ class PartnerBalanceWizardLine(models.TransientModel):
     _description = 'Receivables statement line'
     _order = 'sequence, id'
 
+    # Рядки живуть стільки ж, скільки звіт: інакше він відкриється порожнім
+    # і без жодної помилки — тиха порожнеча гірша за червоне вікно.
+    _transient_max_hours = 24
+
     wizard_id = fields.Many2one('partner.balance.wizard', required=True, ondelete='cascade')
     sequence = fields.Integer()
     line_type = fields.Selection([
@@ -161,6 +171,12 @@ class AdealerReportWizard(models.TransientModel):
     """Універсальний «готовий» звіт у класичному стилі: шапка параметрів + відомість.
     Один тип звіту = одна form-в'юха зі своїми колонками."""
     _name = 'adealer.report.wizard'
+
+    # 🔴 Odoo прибирає транзитні записи через ГОДИНУ (`transient_age_limit`), і сторінка
+    # звіту за власною ж адресою починає відповідати «records with IDs ... cannot be
+    # found». Виглядає як знищена база, хоча дані цілі: відкрив звіт
+    # вранці, повернувся після обіду — червоне вікно. Даємо робочу добу.
+    _transient_max_hours = 24
     _description = 'Ready report'
 
     report_type = fields.Selection([
@@ -470,6 +486,10 @@ class AdealerReportWizardLine(models.TransientModel):
     _name = 'adealer.report.wizard.line'
     _description = 'Ready report line'
     _order = 'sequence, id'
+
+    # Рядки живуть стільки ж, скільки звіт: інакше він відкриється порожнім
+    # і без жодної помилки — тиха порожнеча гірша за червоне вікно.
+    _transient_max_hours = 24
 
     wizard_id = fields.Many2one('adealer.report.wizard', required=True, ondelete='cascade')
     sequence = fields.Integer()

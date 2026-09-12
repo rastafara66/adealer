@@ -38,6 +38,12 @@ class DocChain(models.TransientModel):
     _name = "adealer.doc.chain"
     _description = "Document subordination structure"
 
+    # 🔴 Odoo прибирає транзитні записи через ГОДИНУ (`transient_age_limit`), і сторінка
+    # звіту за власною ж адресою починає відповідати «records with IDs ... cannot be
+    # found». Виглядає як знищена база, хоча дані цілі: відкрив звіт
+    # вранці, повернувся після обіду — червоне вікно. Даємо робочу добу.
+    _transient_max_hours = 24
+
     origin_model = fields.Char(required=True)
     origin_res_id = fields.Integer(required=True)
     origin_ref = fields.Char(string="Document", readonly=True)
@@ -124,6 +130,10 @@ class DocChainLine(models.TransientModel):
     _name = "adealer.doc.chain.line"
     _description = "Document structure line"
     _order = "id"
+
+    # Рядки живуть стільки ж, скільки звіт: інакше він відкриється порожнім
+    # і без жодної помилки — тиха порожнеча гірша за червоне вікно.
+    _transient_max_hours = 24
 
     chain_id = fields.Many2one("adealer.doc.chain", required=True, ondelete="cascade")
 
