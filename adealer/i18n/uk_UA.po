@@ -801,8 +801,8 @@ msgstr "Дебет (нараховано)"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__res_config_settings__adealer_home__none
-msgid "Default (last app)"
-msgstr "Стандартно (останній додаток)"
+msgid "Automatic by role"
+msgstr "Автоматично за роллю"
 
 #. module: adealer
 #: model:ir.actions.act_window,name:adealer.action_partner_child_cleanup_wizard
@@ -2824,8 +2824,14 @@ msgstr "Гарантійна"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_home
-msgid "What to open after login for the CURRENT user"
-msgstr "Що відкривати після входу для ПОТОЧНОГО користувача"
+msgid ""
+"What to open after login for the CURRENT user. Automatic: a manager gets the "
+"3A-dealer Home dashboard, an accountant gets the accounting app's home page "
+"if one is installed."
+msgstr ""
+"Що відкривати після входу для ПОТОЧНОГО користувача. Автоматично: менеджер "
+"потрапляє на Головну 3A-dealer, бухгалтер — на головну бухгалтерського "
+"додатка, якщо його встановлено."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form

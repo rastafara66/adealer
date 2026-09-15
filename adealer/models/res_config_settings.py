@@ -75,7 +75,7 @@ class ResConfigSettings(models.TransientModel):
         help="Which dashboard tab opens first. A workshop wants Service, "
              "a showroom wants Showroom — the tab used to be fixed in the code.")
     adealer_home = fields.Selection([
-        ('none', 'Default (last app)'),
+        ('none', 'Automatic by role'),
         ('dashboard', 'Dashboard (Home)'),
         ('calendar', 'Service calendar (workshop)'),
         ('vehicles', 'Vehicles (showroom)'),
@@ -84,7 +84,9 @@ class ResConfigSettings(models.TransientModel):
         ('products', 'Product list'),
         ('reports', 'Reports — Sales (manager)'),
     ], string="Home page", default='none',
-        help="What to open after login for the CURRENT user")
+        help="What to open after login for the CURRENT user. Automatic: a "
+             "manager gets the 3A-dealer Home dashboard, an accountant gets the "
+             "accounting app's home page if one is installed.")
     adealer_autopost_docs = fields.Boolean(
         string="Auto-invoice when the repair order is done",
         help="When a repair order moves to \"Repaired\", automatically create and post "
