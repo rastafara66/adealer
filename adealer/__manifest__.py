@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    # 🔴 «vehicle dealer» тут не синонім заради краси, а замір. У магазині
+    # «vehicle dealer» тут не синонім заради краси, а замір. У магазині
     # 06.09.2026: за запитом `car dealership` цей модуль знаходиться, а за
     # `vehicle dealer` видача — ТРИ додатки на весь каталог, і нашого серед них
     # немає. Усі троє мають слово `Vehicle` у назві. Ніша порожня, тож питання
@@ -84,7 +84,7 @@ Key features:
     # always loaded
     'data': [
         'security/adealer_groups.xml',
-        # 🔴 Одразу після груп і БЕЗ noupdate: під'єднання до штатних
+        # Одразу після груп і БЕЗ noupdate: під'єднання до штатних
         # груп мусить переприкладатись при КОЖНОМУ оновленні.
         'security/adealer_groups_wiring.xml',
         'security/ir.model.access.csv',
@@ -98,7 +98,7 @@ Key features:
         # дій показуються в шестерні «Дії», а не власним меню.
         'views/doc_chain_views.xml',
         'views/doc_basis_views.xml',
-        # 🔴 ОДРАЗУ після views.xml, хоч це й файл налаштувань: тут оголошено меню
+        # ОДРАЗУ після views.xml, хоч це й файл налаштувань: тут оголошено меню
         # adealer.configuration, а батьком його називають service_booking.xml,
         # error_report_views.xml і organization.xml нижче. На ЧИСТІЙ базі файли
         # читаються по порядку, тож із попереднім місцем (22-м) встановлення падало
