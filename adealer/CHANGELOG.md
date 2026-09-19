@@ -72,11 +72,6 @@ All notable changes. Newest on top.
 - Повідомлення про непридатний файл стали українською й пояснюють причину
   (не той формат, пошкоджений, під паролем) і що зробити.
 
-### Notes
-
-- Це частина загального правила: **експорт та імпорт мусять звітувати, а не
-  просто зупинятися** (конвенції §9, рішення власника 09.09.2026).
-
 ## 19.0.1.11.3 - 2026-09-07
 
 ### Changed
@@ -165,7 +160,6 @@ All notable changes. Newest on top.
 - **Store description rebuilt on the shared layout of the line** — Odoo's own
   classes (`oe_container` / `oe_row` / `oe_span6`) instead of hand-rolled inline
   styles: in the catalogue the modules looked like products by different authors.
-  Generated from `3A/tools/store/specs/adealer.py`, so the layout cannot drift again.
 - **"What's new" grouped** by the size of the change instead of one entry per build.
   The version comes from `__manifest__.py`, so page and manifest cannot disagree.
 
@@ -300,8 +294,7 @@ All notable changes. Newest on top.
   з назвою й трьома напрямками двома мовами. Скріншот у мініатюрі читався
   як сіра пляма; самі скріншоти лишились — в галереї.
 - The App Store card is a drawn banner (bilingual) instead of a screenshot; the
-  screenshots remain as the gallery. Drawn from code by `tools/make_banner.py`,
-  taking its colours from the module icon.
+  screenshots remain as the gallery.
 
 ## [19.0.1.6.2] — 2026-08-08
 ### Changed / Змінено
