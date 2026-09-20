@@ -3758,10 +3758,18 @@ msgid ""
 msgstr "Що додали б тут платні надбудови 3A-dealer. Зникає, щойно надбудову встановлено; вимикається в Налаштуваннях."
 
 #. module: adealer
+#: model:ir.actions.server,name:adealer.action_doc_chain_move
+#: model:ir.actions.server,name:adealer.action_doc_chain_payment
+#: model:ir.actions.server,name:adealer.action_doc_chain_repair
+#: model:ir.actions.server,name:adealer.action_doc_chain_sale
+#: model:ir.actions.server,name:adealer.action_doc_chain_picking
 msgid "Document structure"
 msgstr "Структура підпорядкованості"
 
 #. module: adealer
+#: model:ir.actions.server,name:adealer.action_doc_basis_sale
+#: model:ir.actions.server,name:adealer.action_doc_basis_repair
+#: model:ir.actions.server,name:adealer.action_doc_basis_move
 msgid "Create on the basis of"
 msgstr "Ввести на підставі"
 
