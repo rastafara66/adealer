@@ -3,6 +3,12 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## 19.0.1.14.0 — 2026-09-28
+
+### Added
+
+- Інтерфейс французькою, німецькою, іспанською й нідерландською; український переклад повний. Interface in French, German, Spanish and Dutch; Ukrainian translation completed.
+
 ## 19.0.1.13.2 — 2026-09-28
 
 ### Changed

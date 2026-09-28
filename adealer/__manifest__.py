@@ -32,7 +32,7 @@ Key features:
 * Reports in two styles: "Ready reports" (parameter header, Generate, statement) and the interactive Odoo pivot.
 * Printable forms (UA): invoice for payment, delivery note, return note, goods-receipt note, power of attorney, reconciliation act.
 * Document journals: Date, Number, Customer, Vehicle, Amount, Status.
-* Interface in English and Ukrainian.
+* Interface in English, Ukrainian, French, German, Spanish and Dutch.
     """,
 
     'application': True,
@@ -50,7 +50,7 @@ Key features:
     'live_test_url': "https://demo-3adealer.yellow.in.ua",
     'license': "LGPL-3",
     'category': 'Sales',
-    'version': '19.0.1.13.2',
+    'version': '19.0.1.14.0',
     'images': [
         # The first image is the card picture in the App Store listing. A
         # screenshot shrunk to a thumbnail reads as a grey smudge; the banner
