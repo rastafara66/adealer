@@ -3,6 +3,14 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## [19.0.1.13.1] — 2026-09-28
+
+### Changed / Змінено
+
+- The description opens with links to its English and Ukrainian versions,
+  each complete on its own. Опис: угорі посилання «English · Українською»,
+  англійська й українська версії — окремі й повні.
+
 ## [19.0.1.13.0] — 2026-09-15
 
 ### Added / Додано

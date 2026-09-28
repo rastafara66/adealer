@@ -3,6 +3,14 @@
 Navy & gold backend theme for Odoo. Newest on top.
 Тема оформлення бекенду. Найновіше — зверху.
 
+## 19.0.1.2.3 - 2026-09-28
+
+### Changed
+
+- The description opens with links to its English and Ukrainian versions,
+  each complete on its own. Опис: угорі посилання «English · Українською»,
+  англійська й українська версії — окремі й повні.
+
 ## 19.0.1.2.2 - 2026-09-10
 
 ### Changed
