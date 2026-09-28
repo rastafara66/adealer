@@ -3,6 +3,14 @@
 Navy & gold backend theme for Odoo. Newest on top.
 Тема оформлення бекенду. Найновіше — зверху.
 
+## 19.0.1.2.2 - 2026-09-10
+
+### Changed
+
+- Author name: **3A Studio** — the theme is listed in the store together with
+  the rest of the line. Автор — **3A Studio**: у каталозі магазину тема поруч
+  із рештою лінійки.
+
 ## 19.0.1.2.1 - 2026-09-07
 
 ### Changed
