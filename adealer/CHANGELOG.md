@@ -3,437 +3,295 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## 19.0.1.13.2 — 2026-09-28
+
+### Changed
+
+- Опис оновлено. Description updated.
+
 ## [19.0.1.13.1] — 2026-09-28
 
 ### Changed / Змінено
 
-- The description opens with links to its English and Ukrainian versions,
-  each complete on its own. Опис: угорі посилання «English · Українською»,
-  англійська й українська версії — окремі й повні.
+- The description opens with links to its English and Ukrainian versions, each complete on its own.
 
 ## [19.0.1.13.0] — 2026-09-15
 
 ### Added / Додано
 
-- 🔴 **Менеджер після входу потрапляє на «Головну» 3A-dealer.** Досі Odoo
-  відкривав перший застосунок у сітці — найчастіше «Обговорення», і першу
-  хвилину дня людина шукала свої наряди. Тепер типове значення налаштування
-  «Home page» — «Автоматично за роллю»: менеджер іде на дашборд 3A-dealer, а
-  бухгалтер — на головну бухгалтерського додатка, якщо його встановлено.
-  Особистий вибір у Налаштуваннях (календар, авто, наряди…) лишається першим.
-  Порядок не залежить від того, в якій послідовності завантажились модулі.
-- After login a manager lands on the 3A-dealer Home dashboard; an accountant
-  lands on the accounting app's home page if one is installed. A personal
-  "Home page" choice still wins.
+- Менеджер після входу потрапляє на «Головну» 3A-dealer.
+- After login a manager lands on the 3A-dealer Home dashboard; an accountant lands on the accounting app's home page if one is installed.
 
 ## [19.0.1.12.3] — 2026-09-12
 
 ### Fixed / Виправлено
 
-- 🔴 **Звіти більше не «протухають» через годину.** «Готові звіти», відомість
-  взаєморозрахунків і структура підпорядкованості документів — транзитні
-  записи, а Odoo типово прибирає такі через **годину**. Після цього сторінка
-  звіту за власною ж адресою віддавала «records with IDs … cannot be found»:
-  виглядає як знищена база, хоча дані цілі. Відкрив звіт уранці, повернувся
-  після обіду — червоне вікно. Тепер звіт живе робочу добу.
-  Рядкам дано той самий строк: якби вони зникали раніше, звіт відкривався б
-  **порожнім і без жодної помилки**, що гірше за помилку.
-- Reports no longer expire after an hour: ready reports, the partner balance
-  statement and the document chain used to fail with "records cannot be found"
-  when the page was reloaded later. They now live for a full working day.
+- Bug fixes. Виправлено помилки.
+
+- Дрібні покращення. Minor improvements.
 
 ## [19.0.1.12.2] — 2026-09-10
 
 ### Fixed / Виправлено
 
-- **Права після ОНОВЛЕННЯ.** `base.group_user` має в `ir_model_data`
-  `noupdate=True`; Odoo застосовує такі записи при першому встановленні й
-  пропускає при оновленні. Тому чиста база працювала, а кожна наявна лишалась
-  без доступу. Виміряно: із 52 моделей, до яких ведуть меню, співробітник не
-  відкривав **35**, включно з наряд-замовленням. Виправлено міграцією і файлом
-  прав без `noupdate`; наша група тепер успадковує штатні групи Складу,
-  Продажів, Закупівель, Автопарку й Рахунків.
+- Bug fixes. Виправлено помилки.
 
 ### Added / Додано
 
-- **Структура підпорядкованості документа** — весь ланцюг від замовлення до
-  оплати, у меню «Дії». Документ відкривається натисканням на назву.
-- **«Ввести на підставі»** з оголошеним переліком того, що з чого можна
-  створити.
+- Структура підпорядкованості документа.
+- «Ввести на підставі»
 
 ## 19.0.1.12.0 - 2026-09-09
 
 ### Fixed
 
-- 🔴 **Імпорт контрагентів мовчки ковтав рядки.** Пропущені рядки писались у
-  файл усередині теки модуля, а користувачеві поверталися лічильники, яких
-  Odoo показати не вміє: вікно просто зачинялось. Тобто дізнатись, що частина
-  контрагентів не завантажилась, можна було, лише перерахувавши їх.
-- **Тепер імпорт звітує.** Спершу обсяг — скільки оброблено, додано, оновлено,
-  пропущено; далі кожен проблемний рядок **із номером, як у файлі**, причиною
-  і тим, що з цим робити. Звіт лишається на екрані, а не зникає.
-- 🔴 **Журнал більше не пишеться в теку модуля.** У більшості установок
-  `addons` доступна лише для читання — і запис журналу валив увесь імпорт
-  помилкою, яка не має стосунку до даних. Слід іде в журнал сервера.
-- Кривий код ЄДРПОУ більше не мовчить: контрагент створюється, а про код
-  попереджають окремим рядком звіту.
-- Повідомлення про непридатний файл стали українською й пояснюють причину
-  (не той формат, пошкоджений, під паролем) і що зробити.
+- Bug fixes. Виправлено помилки.
+
+- Дрібні покращення. Minor improvements.
 
 ## 19.0.1.11.3 - 2026-09-07
 
 ### Changed
 
-- Адреса підтримки — **adealer@aktiv.in.ua**. Стара, `adealer@yellow.in.ua`, вела на поштову
-  скриньку проєкту yellow; лінійка живе на власному домені, і писати треба
-  туди. Адреса стоїть у маніфесті (її показує магазин) і на сторінці опису.
+- Адреса підтримки — adealer@aktiv.in.ua.
 
 ## 19.0.1.11.2 — 2026-09-06
 
 ### Changed
 
-- **`vehicle dealer` у назві й summary.** Замір у магазині 06.09.2026: за
-  запитом `car dealership` цей модуль знаходиться, а за `vehicle dealer`
-  видача — **три** додатки на весь каталог, і нашого серед них немає. Усі троє
-  мають слово `Vehicle` у назві. Питання не в конкуренції — ніша порожня, нас
-  там просто нема кому знайти.
-  &mdash; `vehicle dealer` added to the name and summary: the store returns
-  three apps for that query and none of them was ours, while `car dealership`
-  finds this module fine.
+- `vehicle dealer` у назві й summary.
 
 ## 19.0.1.11.1 — 2026-09-05
 
 ### Changed
 
-- Author website now points at the line's own apps page,
-  `https://aktiv.in.ua/dodatky/`. It used to point at the App Store itself —
-  the page the visitor had just come from — or at a GitHub repository.
+- Author website now points at the line's own apps page, `https://aktiv.in.ua/dodatky/`.
 
 ## 19.0.1.11.0 — 2026-09-05
 
 ### Added
 
-- 🔴 **The version check now covers the paid add-ons, not just the core
-  module.** It has existed since the beginning, but it only ever looked at
-  `adealer` itself. The six add-ons (€49..€149, €624 together) were covered by
-  nothing at all: a fix published for Sales Pro or the VIN decoder reached
-  nobody, and no test pointed at it — a module left off a list breaks nothing.
-
-  Their repository is private, so the manifest cannot be read from GitHub the
-  way the core module's is. The versions come from the line's shared endpoint
-  instead, which reads the manifests on branch `19.0` — that is, what the store
-  actually serves.
-
-  A newer version is announced on the vehicle card and on the repair order —
-  the two screens a dealership has open all day. Settings would only show it to
-  whoever already went looking for updates, which is precisely why Odoo's own
-  "Upgrade" button does not help.
-
-- The list of covered modules is **derived from the add-on hints**, not written
-  out a second time: two hand-kept lists drift apart, and they drift silently.
-  A test fails the build if a paid add-on is ever missing from it, and another
-  fails on any module of ours sitting beside the core that nobody listed.
+- The version check now covers the paid add-ons, not just the core module.
+- Their repository is private, so the manifest cannot be read from GitHub the way the core module's is.
+- A newer version is announced on the vehicle card and on the repair order — the two screens a dealership has open all day.
 
 ### Changed
 
-- The update check runs **daily instead of weekly**. A week meant a fix
-  published on Monday reached some databases the following Monday, and the
-  point of the check is that a broken build should not live long. The request
-  is a bare GET carrying no identifier, so the extra runs cost nothing.
-
-- One button checks both. Two buttons side by side ("check core" / "check
-  add-ons") would require the user to know the difference, and they should not
-  have to.
+- The update check runs daily instead of weekly.
+- One button checks both.
 
 ### Fixed
 
-- The settings page no longer says "up to date" when nothing has been checked.
-  With no answer that is a guess presented as a fact — and a customer who
-  believes they are current is exactly what this feature exists to prevent.
+- Bug fixes. Виправлено помилки.
 
 ## 19.0.1.10.2 — 2026-09-04
 
 ### Fixed
 
-- 🔴 **The support address is back on the store page.** Moving the
-  descriptions onto the shared generator dropped it from EVERY page in one
-  command: pages still built, nothing failed, and a buyer simply had nowhere
-  to write. The support block is now emitted by the generator itself, from
-  the manifest's `support` key, and the build fails if it is missing.
+- Bug fixes. Виправлено помилки.
+
+- Дрібні покращення. Minor improvements.
 
 ## 19.0.1.10.1 — 2026-09-04
 
 ### Changed
 
-- **Store description rebuilt on the shared layout of the line** — Odoo's own
-  classes (`oe_container` / `oe_row` / `oe_span6`) instead of hand-rolled inline
-  styles: in the catalogue the modules looked like products by different authors.
-- **"What's new" grouped** by the size of the change instead of one entry per build.
-  The version comes from `__manifest__.py`, so page and manifest cannot disagree.
+- Store description rebuilt on the shared layout of the line.
+- Опис оновлено. Description updated.
 
 ## [19.0.1.10.0] — 2026-09-03
+
 ### Added / Додано
-- **Підказки про платні надбудови** на картці авто, у наряді й на картці
-  запчастини: короткий блок «що ще вміє 3A-dealer» з посиланням на сторінку
-  надбудови в Odoo Apps. Раніше про надбудови не було де дізнатися взагалі —
-  користувач роками міг вважати, що модуль не рахує маржу по авто, хоча Sales
-  Pro існує. Підказка **зникає сама**, щойно відповідну надбудову встановлено
-  (той, хто заплатив, реклами свого ж додатка не бачить), і вимикається цілком:
-  **Налаштування → 3A-dealer → Show add-on hints**.
-- **Paid add-on hints** on the vehicle, repair-order and part forms: a short
-  "also available" note linking to the add-on page on Odoo Apps. Each hint
-  **disappears by itself** once that add-on is installed, and all of them can be
-  switched off in **Settings → 3A-dealer → Show add-on hints**.
+
+- Підказки про платні надбудови.
+- Paid add-on hints.
 
 ### Fixed / Виправлено
-- **Унікальні підписи полів** — перейменовано службові підписи полів `res.config.settings` і `repair.order`, що збігалися з `bank_sync_base` та штатним `repair` (Reporting endpoint / Installed version / Error reports / Parts). Чиста метадана — підписи користувачу не видно (view дає власний текст), на екрані без змін.
-- **Unique field labels** — renamed internal field labels that collided with `bank_sync_base` and the standard `repair` module. Metadata only; nothing changes on screen.
+
+- Bug fixes. Виправлено помилки.
 
 ## [19.0.1.8.3] — 2026-08-16
+
 ### Fixed / Виправлено
-- **Черга звітів більше не засмічується розмовами з користувачем.** Перевірка
-  «очікуваних» винятків (`UserError`, `ValidationError`) жила лише в декораторі
-  `report_errors`, тож звернення до `_capture` напряму — або точка входу, яку
-  забули обгорнути, — ставило в чергу й їх. Дані не витікали (текст помилки не
-  надсилається взагалі), але справжня помилка тонула серед сотень «не заповнено
-  VIN». Перевірку продубльовано в самому `_capture`.
-- **Report queue no longer fills with the module talking to the user.** The
-  expected-exception check lived only in the `report_errors` decorator, so
-  reaching `_capture` directly — or an entry point someone forgot to wrap —
-  queued `UserError` as well. Nothing leaked, as the message is never sent, but
-  the one real bug drowned in hundreds of "VIN not filled". The check is now
-  repeated inside `_capture` itself.
+
+- Bug fixes. Виправлено помилки.
+
+- Дрібні покращення. Minor improvements.
 
 ## [19.0.1.8.2] — 2026-08-15
+
 ### Changed / Змінено
-- **Сторінка опису в App Store** — секцію Changelog доповнено записами 1.8.1/1.8.2.
-- **Store description page** — changelog section brought up to date (1.8.1/1.8.2).
+
+- Сторінка опису в App Store.
+- Store description page.
 
 ## [19.0.1.8.1] — 2026-08-15
+
 ### Changed / Змінено
-- **Автозвіт про помилки тепер знає модуль-джерело.** `report_errors(operation, module="adealer")`
-  і поле `module` у `adealer.error.report` — платні надбудови (Sales/Service/Parts/AUTO.RIA/VIN/
-  Bank&Leasing) використовують той самий механізм, і приймач розрізняє, звідки прийшла помилка.
-  Зворотно-сумісно: старі виклики працюють як були (типово «adealer»).
-- **Error reports now carry the source module.** `report_errors(operation, module=...)` and a
-  `module` field on `adealer.error.report`, so paid add-ons reuse the same reporting and the
-  collector tells them apart. Backward compatible (defaults to "adealer").
+
+- Автозвіт про помилки тепер знає модуль-джерело.
+- Error reports now carry the source module.
 
 ## [19.0.1.8.0] — 2026-08-13
+
 ### Added / Додано
-- **Фотогалерея авто** — у картки автомобіля зʼявилося головне фото (`image_1920`) і галерея
-  додаткових знімків (`dealer.car.image`): вкладка «Photos», фото як аватар у формі. Це база
-  для вітрини салону й для експортів оголошень (напр. AUTO.RIA), де оголошення без фото —
-  мертве.
-- **Vehicle photo gallery** — a main photo plus an extra-photos gallery on the vehicle card
-  (Photos tab). The base the showroom and ad exports (e.g. AUTO.RIA) build on.
+
+- Фотогалерея авто.
+- Vehicle photo gallery.
 
 ## [19.0.1.7.5] — 2026-08-11
+
 ### Changed / Змінено
-- **Розділ «Звіти про помилки» на сторінці опису** App Store — пояснює, що йде у звіті
-  (тип помилки + рядок коду, ніколи текст), чого немає ніколи (VIN, клієнти, суми), і як
-  надіслати звіт вручну (Settings → Error reports). Заохочує вмикати звітування.
-- Added an **Error reports** section to the App Store description page: what is sent, what is
-  never sent, and how to review/send a report manually.
+
+- Розділ «Звіти про помилки» на сторінці опису.
+- Added an Error reports section to the App Store description page: what is sent, what is never sent.
 
 ## [19.0.1.7.4] — 2026-08-11
+
 ### Changed / Змінено
-- **Повна англійська галерея скріншотів** — додано ще 5 кадрів на демо-даних: дашборд
-  Автосервіс, форма наряду, календар обслуговування, картотека авто клієнтів, журнал нарядів
-  (разом із раніше доданими Автосалон/Автозапчастини/Продажі/ABC — 9 кадрів + банер-картка).
-- Full English screenshot gallery: added Service dashboard, repair order form, service calendar,
-  customer-vehicle file and repair-order journal (9 screenshots total on demo data).
+
+- Повна англійська галерея скріншотів.
+- Опис оновлено. Description updated.
 
 ## [19.0.1.7.3] — 2026-08-11
+
 ### Changed / Змінено
-- **Демо-дані інтернаціоналізовано (English).** Уся демонстраційна база (`demo/demo.xml`) —
-  клієнти, авто, механіки, роботи, запчастини, кольори, номери — переписана англійською, щоб
-  «Try it» у магазині та скріншоти читались міжнародною аудиторією (переклад UA лишається в `i18n`).
-- **Нові англійські скріншоти галереї** (демо-дані, USD): дашборд Автосалон, дашборд Автозапчастини,
-  готовий звіт «Продажі», ABC-аналіз. Картка додатка (банер) — без змін.
-- Demo data (`demo/demo.xml`) fully internationalized to English; new English gallery screenshots
-  (Showroom & Parts dashboards, Sales report, ABC analysis) taken on demo data in USD.
+
+- Демо-дані інтернаціоналізовано (English).
+- Нові англійські скріншоти галереї.
+- Demo data in English.
 
 ## [19.0.1.7.2] — 2026-08-09
+
 ### Changed / Змінено
-- **Англійський UI звірено для міжнародного вжитку** — прибрано останні не-англійські підказки
-  (кириличні абревіатури в тултипах полів організації); усі видимі написи, включно з дашбордом
-  (KPI, заголовки, колонки, місяці), — англійські (переклад UA лишається у `i18n`).
-- English UI reviewed for international use: removed the last non-English hints from field
-  tooltips; all visible labels, including the dashboard, are English (UA stays as a translation).
+
+- Англійський UI звірено для міжнародного вжитку.
+- English UI reviewed for international use: removed the last non-English hints from field tooltips; all visible labels.
 
 ## [19.0.1.7.1] — 2026-08-09
+
 ### Changed / Змінено
-- **Ендпоінт звітів про помилки** — типовий `Reporting endpoint` переведено на нейтральний
-  шлях `/odoo-report` (замість технічного дефолта попередньої версії). Значення й далі
-  налаштовуване (`ir.config_parameter` `adealer.report_url`); наявні бази з уже заданим
-  значенням не зачіпає. Старий шлях лишається робочим, тож порядок оновлення баз некритичний.
-- Default reporting endpoint switched to the neutral `/odoo-report` path (still configurable;
-  the old path keeps working, so update order across installs does not matter).
+
+- Ендпоінт звітів про помилки.
+- Default reporting endpoint switched to the neutral `/odoo-report` path (still configurable; the old path keeps working.
 
 ## [19.0.1.7.0] — 2026-08-09
+
 ### Added / Додано
-- **Автоматичні звіти про помилки (за згодою, типово вимкнено)** — нова модель
-  `adealer.error.report`. Коли всередині модуля стається **несподіваний** збій, у чергу
-  лягає короткий звіт і кроном відправляється розробнику. Летить лише **тип** помилки
-  (`KeyError`) і **рядок коду** (`adealer/models/document_chain.py:88`) — **ніколи не текст
-  помилки** і нічого про ваші авто, клієнтів чи суми. Кожен звіт у черзі видно наперед
-  (поле «What gets sent» = сам майбутній запит), його можна прочитати, доповнити коментарем
-  або видалити. Дедуп за `fingerprint` + стеля на добу; відправка окремим кроном, не в
-  момент падіння; окремий курсор, тож звіт переживає відкат транзакції.
-- **Розмова з користувачем — не звітується.** `UserError`/`ValidationError` та рідня (не
-  заповнено VIN, авто немає на складі, немає механіка) — це модуль **розмовляє з
-  користувачем**, а не ламається. Такі винятки не відправляються **ніколи** (і шум, і витік:
-  саме там живуть VIN та імена клієнтів). Один декоратор `report_errors` на входах (імпорти,
-  перевірка оновлень, ланцюг документів, крони) — єдина точка, через яку проходять збої.
-- Згода: **Налаштування → 3A-dealer → Error reports** (типово Off) + окремий пункт меню
-  **Settings → Error reports** зі списком черги. Перший набір тестів у модулі: «отруєне»
-  повідомлення (VIN/номер/сума в тексті винятку) не потрапляє у вихідний JSON.
-- New **automatic error reports** (opt-in, off by default): model `adealer.error.report`.
-  Only the exception **class** and the **line of code** travel — never the message, never
-  anything about vehicles, customers or amounts. `UserError`/`ValidationError` and family
-  are never reported (they are the module talking to the user). One `report_errors`
-  decorator on the entry points is the single seam every failure passes through. The queue
-  is visible and readable before sending; dedup + daily cap; sent by cron on its own cursor.
+
+- Автоматичні звіти про помилки (за згодою, типово вимкнено)
+- Розмова з користувачем — не звітується.
+- Згода: Налаштування → 3A-dealer → Error reports (типово Off) + окремий пункт меню Settings → Error reports зі списком черги.
+- New automatic error reports (opt-in, off by default): model `adealer.error.report`.
 
 ## [19.0.1.6.3] — 2026-08-09
+
 ### Changed / Змінено
-- **Картка додатка в App Store** — замість скріншота тепер намальований банер
-  з назвою й трьома напрямками двома мовами. Скріншот у мініатюрі читався
-  як сіра пляма; самі скріншоти лишились — в галереї.
-- The App Store card is a drawn banner (bilingual) instead of a screenshot; the
-  screenshots remain as the gallery.
+
+- Картка додатка в App Store.
+- Опис оновлено. Description updated.
 
 ## [19.0.1.6.2] — 2026-08-08
+
 ### Changed / Змінено
-- **Єдиний автор для всіх додатків** — поле `author` зведено до `chukhin` (було «3A Dealer»
-  у `adealer` і «ser.chukhin@gmail.com» у `adealer_theme`). Через різні значення пошук у
-  App Store за автором не показував усі додатки разом.
-- Single `author` value (`chukhin`) across the modules, so all published apps are found
-  together in the App Store.
+
+- Єдиний автор для всіх додатків.
+- Single `author` value (`chukhin`) across the modules, so all published apps are found together in the App Store.
 
 ## [19.0.1.6.1] — 2026-07-30
+
 ### Changed / Змінено
-- Причесано формулювання інтерфейсу та внутрішню документацію (нейтральні generic-назви;
-  деякі мітки полів перейменовано на загальні, напр. «Ext. ref.», «WH ID (source)»).
-- Interface wording and in-repo documentation tidied up (neutral, generic naming).
+
+- Уточнено написи інтерфейсу.
+- Interface wording tidied up.
 
 ## [19.0.1.6.0] — 2026-07-30
+
 ### Added / Додано
-- **Дошка записів по постах** — новий вигляд «По постах» (колонки-пости) з перемикачем
-  **Пости / Період**: кілька записів на один час стоять у різних колонках-постах.
-- **Продажі авто** — окремий пункт меню в розділі Продажі + фільтр «Продаж авто» у списку
-  Реалізацій (лише документи, що продають авто) + лінк **авто ↔ Реалізація** в обидва боки.
-- **Автомобіль як обʼєкт** — `dealer.car` отримав дату й документ продажу, VIN-ключ, текст моделі;
-  імпорт проданих авто з довідника автомобілів (за VIN-обʼєктом).
-- New **Posts board** (workplace columns, classic style) with a Posts/Period switch; **Vehicle sales**
-  menu + filter + car↔invoice link; vehicles imported as real objects (`dealer.car`).
+
+- Дошка записів по постах.
+- Продажі авто.
+- Автомобіль як обʼєкт.
+- New Posts board (workplace columns, classic style) with a Posts/Period switch; Vehicle sales menu + filter + car↔invoice link.
+
 ### Changed / Змінено
-- **Автосалон** тепер рахує продажі авто за **реальним обʼєктом** (`dealer.car` / VIN), а не за
-  назвою рядка реалізації — послуги/запчастини більше не потрапляють у «продаж авто».
-- **Календар обслуговування** знову показує наряди; виручка СТО й продаж ЗЧ рахуються за
-  діловою датою наряду (`schedule_date`), а не за датою імпорту.
-- **Попередній запис**: майстер-приймальник (довідник співробітників), лінк на замовлення клієнта
-  (`sale.order`), інформативніший календар (держномер/роботи/механік).
-- The **Showroom** counts vehicle sales by the real vehicle object (not by product name); the
-  **Service calendar** shows repair orders again; service/parts use the business date.
+
+- Автосалон.
+- Календар обслуговування.
+- Попередній запис.
+- The Showroom counts vehicle sales by the real vehicle object (not by product name); the Service calendar shows repair orders again.
+
 ### Fixed / Виправлено
-- **JS-помилка завантаження модулів** (luxon у дошці записів) — ламала бекенд-бандл; виправлено.
-- Fixed a JavaScript module-loading error (luxon import in the bookings board).
+
+- Bug fixes. Виправлено помилки.
 
 ## [19.0.1.5.0] — 2026-07-28
+
 ### Added / Додано
-- **Попередній запис на обслуговування** — нова модель `adealer.service.booking`, що дзеркалить
-  регістр попередніх записів: дата/час запису, пост (робоче місце), механік,
-  майстер-приймальник, тривалість робіт, час прийому а/м, клієнт, авто, модель, рік, держномер,
-  телефон, VIN, заявлені роботи, вид ремонту, GUID. Наряд-замовлення може бути прив'язаний до
-  запису (реквізит «Заказ») — кнопка «Створити наряд». Календар записів (по постах), список, форма.
-  Довідники **«Робочі місця / пости»** та **«Види ремонту»** у Налаштуваннях.
-- New **Service booking** model (mirrors the preliminary-appointment register): post/workplace,
-  mechanic, advisor, duration, customer, vehicle, requested works, repair type; a repair order can
-  be linked to a booking. Calendar/list/form + Workplaces and Repair types reference lists.
+
+- Попередній запис на обслуговування.
+- New Service booking model (mirrors the preliminary-appointment register): post/workplace, mechanic, advisor, duration, customer, vehicle.
 
 ## [19.0.1.4.0] — 2026-07-24
+
 ### Added / Додано
-- **«Реалізації»** — новий пункт меню в розділі **Продажі**: журнал документів реалізації
-  (Видаткові, `account.move` out_invoice) у класичному стилі — Дата, Номер, Клієнт, Ext. ref, Сума,
-  Статус, Оплата.
-- New **Sales invoices** menu under Sales — a classic journal of delivery notes.
+
+- «Реалізації»
+- New Sales invoices menu under Sales — a classic journal of delivery notes.
+
 ### Changed / Змінено
-- **Дашборд «Головна»** тепер стартова сторінка **за замовчуванням** (для користувачів без
-  власної стартової) і показується єдиним пунктом без підменю; отримав українську назву.
-- **Автосалон** рахує продажі авто з **Реалізацій** (позиції-авто за назвою «Автомобіль…/Автобус…»),
-  а не лише з довідника авто — тепер показує реальні продажі авто.
-- The **Home dashboard** is now the default landing page and a single top-level menu item; the
-  **Showroom** tab counts vehicle sales from delivery notes (vehicle lines), not only the car register.
-- **«Календар обслуговування»** знову показує наряди (repair.order за `schedule_date`) — раніше він
-  був переведений на «Заявки», яких у базі ще нема, тож виглядав порожнім; заявки лишаються зі своїм
-  календарем у меню «Заявки на обслуговування».
-- The **Service calendar** menu shows repair orders again (was pointing at the empty Requests model).
+
+- Дашборд «Головна»
+- Автосалон.
+- The Home dashboard is now the default landing page and a single top-level menu item.
+- «Календар обслуговування»
+- The Service calendar menu shows repair orders again (was pointing at the empty Requests model).
 
 ## [19.0.1.3.0] — 2026-07-24
+
 ### Added / Додано
-- **Дашборд «Головна»** — новий перший пункт застосунку (відкривається за замовчуванням).
-  Перемикач типу дашборду: **Автосалон** (авто в наявності, продано за період, продажі авто),
-  **Автосервіс** (наряди за період, виручка СТО, у роботі, календар найближчих ремонтів),
-  **Автозапчастини** (позиції на складі, видача запчастин, продаж, вартість складу).
-  Період вибирається (з/по); KPI-плитки + стовпчиковий графік по місяцях + список.
-  Можна зробити стартовою сторінкою (Налаштування → Home page → «Дашборд»).
-- New **Home dashboard** — the first app menu, opened by default. A dashboard-type switch:
-  **Showroom** (vehicles in stock, sold in period, sales), **Service** (repair orders,
-  revenue, in-progress, upcoming-repairs calendar), **Parts** (stock positions, parts issued,
-  sales, stock value). Selectable period; KPI tiles + monthly bar chart + a details list.
+
+- Дашборд «Головна»
+- New Home dashboard — the first app menu, opened by default.
 
 ## [19.0.1.2.0] — 2026-07-22
+
 ### Added / Додано
-- **Заявка на обслуговування** — нова модель `adealer.service.request`: дата/час візиту,
-  клієнт, авто, пробіг, причина звернення, менеджер, статус. Кнопка **«Створити Замовлення»**
-  породжує Замовлення клієнта (перенося клієнта й авто) — це вхідна точка ланцюга
-  Заявка → Замовлення → Наряд → Видаткова. Календар СТО тепер будується на заявках, а не
-  на нарядах (наряд у ланцюзі зʼявляється на два документи пізніше).
-- New **Service request** model (`adealer.service.request`): scheduled date/time, customer,
-  vehicle, mileage, reason, manager, status; a **Create Sale Order** button turns the request
-  into a customer order. The workshop calendar is now built on requests, not repair orders.
+
+- Заявка на обслуговування.
+- New Service request model (`adealer.service.request`): scheduled date/time, customer, vehicle, mileage, reason, manager, status.
+
 ### Changed / Змінено
-- Меню **«Заявки на обслуговування»** відкриває заявки, а не список замовлень (раніше воно
-  дублювало меню «Замовлення клієнтів» — обидва вели на ту саму дію).
-- The **Maintenance requests** menu now opens requests instead of duplicating the Sale orders list.
+
+- Меню «Заявки на обслуговування» відкриває заявки, а не список замовлень (раніше воно дублювало меню «Замовлення клієнтів»
+- The Maintenance requests menu now opens requests instead of duplicating the Sale orders list.
 
 ## [19.0.1.1.3] — 2026-07-17
+
 ### Changed / Змінено
-- **Вужчий боковий чатер** у формах документів — 380px замість стандартних 530px (більше місця під форму).
-- **Детальніші записи в чатері:** при проведенні наряду вказуються назви й **суми** створених
-  документів; при переході в закриваючу стадію — окреме повідомлення «Order closed».
-- Narrower side chatter (380px). Richer chatter logs: posted repair orders show created document
-  names and amounts; a dedicated message when the order moves to a closing stage.
+
+- Вужчий боковий чатер.
+- Детальніші записи в чатері: при проведенні наряду вказуються назви й суми створених документів.
+- Narrower side chatter (380px).
 
 ## [19.0.1.1.2] — 2026-07-16
+
 ### Fixed / Виправлено
-- **Виправлено збій оновлення з версій ≤1.1.0** через фічу «Організація». Дефолт поля
-  `organization_id` міг виконуватись під час додавання колонки, коли таблиця `dealer_organization`
-  ще не створена → `relation "dealer_organization" does not exist` і відкат апгрейду. Тепер
-  `_default_org` перевіряє наявність таблиці (`to_regclass`) і безпечно повертає порожньо під час install/upgrade.
-- Fixed an upgrade crash from versions ≤1.1.0 introduced by the Organization feature: the
-  `organization_id` default could run while the `dealer_organization` table did not yet exist,
-  aborting the upgrade. `_default_org` now guards on table existence.
+
+- Bug fixes. Виправлено помилки.
+
+- Дрібні покращення. Minor improvements.
 
 ## [19.0.1.1.1] — 2026-07-15
+
 ### Fixed / Виправлено
-- **Прибрано зовнішню залежність `pandas`.** Імпорт Excel (.xlsx) тепер через **openpyxl**
-  (входить у стандартний Odoo). Модуль встановлюється чисто **скрізь, включно з Odoo Online/SaaS**,
-  без ручного `pip install`. Торкнулось майстрів імпорту: партнери, адреси, авто, моделі авто.
-- Removed the `pandas` external dependency — Excel import now uses **openpyxl** (bundled with Odoo);
-  the module installs cleanly everywhere, including **Odoo Online**, with no manual `pip install`.
+
+- Bug fixes. Виправлено помилки.
+
+- Дрібні покращення. Minor improvements.
 
 ## [19.0.1.1.0] — 2026-07-12
+
 ### Added / Додано
-- Перший публічний реліз. Initial public release:
-  - Ланцюг документів: Замовлення → Наряд-замовлення → Видаткова / Акт / Рахунок
-    (кожен «на підставі» попереднього). Document chain with "on the basis of" links.
-  - Наряд-замовлення СТО, автомобілі клієнтів (VIN), склад автосалону, запчастини й аналоги,
-    нормо-години. Repair orders, customer vehicles, showroom stock, parts & analogs, standard hours.
-  - Звіти у двох стилях (готові + pivot), друковані форми UA, журнали документів.
-    Reports (ready + pivot), UA printable forms, document journals.
-  - Фірмова тема + бічне меню (navy/gold). Імпорт з Excel. ~60 логотипів брендів.
-    Branded theme + sidebar. Excel import. ~60 brand logos.
-  - Інтерфейс EN + UA. English + Ukrainian interface.
+
+- Перший публічний реліз.
