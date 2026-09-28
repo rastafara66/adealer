@@ -97,11 +97,11 @@ class DocLink(models.Model):
     parent_ref = fields.Char(compute="_compute_refs", string="Basis")
     child_ref = fields.Char(compute="_compute_refs", string="Derived")
 
-    _sql_constraints = [
-        ("doc_link_unique",
-         "unique(parent_model, parent_res_id, child_model, child_res_id, kind)",
-         "This link already exists."),
-    ]
+    # Odoo 19: `_sql_constraints` is only warned about and never reaches the
+    # database — the link would silently allow duplicates.
+    _doc_link_unique = models.Constraint(
+        "unique(parent_model, parent_res_id, child_model, child_res_id, kind)",
+        "This link already exists.")
 
     @api.depends("parent_model", "parent_res_id", "child_model", "child_res_id")
     def _compute_refs(self):

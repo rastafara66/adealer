@@ -144,9 +144,10 @@ class DealerCar(models.Model):
     company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company)
     active = fields.Boolean(default=True)
 
-    _sql_constraints = [
-        ('vin_uniq', 'unique(vin)', 'A vehicle with this VIN already exists in stock.'),
-    ]
+    # Odoo 19: `_sql_constraints` is only warned about and never reaches the
+    # database, so the VIN was not unique at all until this was rewritten.
+    _vin_uniq = models.Constraint(
+        'unique(vin)', 'A vehicle with this VIN already exists in stock.')
 
     @api.model
     def _expand_status(self, statuses, domain):
