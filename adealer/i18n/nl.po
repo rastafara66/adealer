@@ -5552,7 +5552,7 @@ msgstr "Oorspronkelijke verkooporder"
 #. odoo-javascript
 #: code:addons/adealer/static/src/js/booking_board/board.js:0
 msgid "tel."
-msgstr "tel."
+msgstr "Tel."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_dovirenist
