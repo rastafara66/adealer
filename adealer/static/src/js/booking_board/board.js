@@ -129,7 +129,8 @@ export class AdealerBookingBoard extends Component {
                     ["phone", r.phone ? _t("tel.") + " " + r.phone : ""],
                     ["advisor", r.advisor_id ? _t("Advisor") + ": " + r.advisor_id[1] : ""],
                     ["mechanic", r.employee_id ? r.employee_id[1] : ""],
-                    ["order", r.sale_order_id ? _t("Order") + " " + r.sale_order_id[1] : ""],
+                    // Назва замовлення вже каже, що це замовлення, — без префікса.
+                    ["order", r.sale_order_id ? r.sale_order_id[1] : ""],
                 ].filter(([, text]) => text);
                 const wpId = r.workplace_id && byPost[r.workplace_id[0]] ? r.workplace_id[0] : 0;
                 byPost[wpId].push({
@@ -193,7 +194,9 @@ export class AdealerBookingBoard extends Component {
         this.goTo(ev.target.value);
     }
     get dateLabel() {
-        return DateTime.fromISO(this.state.date).toFormat("cccc, d LLLL yyyy");
+        // MMMM, а не LLLL: місяць у даті — у відмінку («30 вересня»), а не
+        // окремою назвою («30 Вересень»), як слов'янські мови й вимагають.
+        return DateTime.fromISO(this.state.date).toFormat("cccc, d MMMM yyyy");
     }
 
     openBooking(id) {
