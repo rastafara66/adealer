@@ -170,7 +170,7 @@ msgstr "3A-dealer: надіслати звіти про помилки з чер
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__fleet_vehicle__drive_type__4wd
 msgid "4WD"
-msgstr ""
+msgstr "4WD"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__fleet_vehicle__transmission__5mt
@@ -263,7 +263,7 @@ msgstr "<span class=\"mx-1\">по</span>"
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_request_form
 msgid "<span class=\"o_stat_text\">Sale Order</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Замовлення на продаж</span>"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
@@ -451,7 +451,7 @@ msgstr "Акт виконаних робіт №"
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__message_needaction
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Необхідна дія"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_campaign_form
@@ -486,25 +486,25 @@ msgstr "Активні кампанії по авто"
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__activity_ids
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "Дії"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__activity_exception_decoration
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "Оформлення виключення дії"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__activity_state
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "Стан дії"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__activity_type_icon
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "Іконка типу дії"
 
 #. module: adealer
 #. odoo-python
@@ -710,7 +710,7 @@ msgstr "Версія додатку"
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_form
 msgid "Appointment"
-msgstr ""
+msgstr "Запис"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__appointment_datetime
@@ -728,12 +728,12 @@ msgstr "Прибув"
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__message_attachment_count
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Підрахунок прикріплення"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__attempts
 msgid "Attempts"
-msgstr ""
+msgstr "Спроби"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_dovirenist
@@ -963,7 +963,7 @@ msgstr "Підпорядкована модель"
 msgid ""
 "Choose partner for whom the order will be invoiced and delivered. You can "
 "find a partner by its Name, TIN, Email or Internal Reference."
-msgstr ""
+msgstr "Виберіть партнера, для якого буде виставлено та надіслано замовлення. Ви можете знайти партнера за назвою, TIN, електронною поштою або внутрішнім посиланням."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_customers
@@ -1084,12 +1084,12 @@ msgstr "Дата виконання"
 #. module: adealer
 #: model:ir.model,name:adealer.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Налаштування"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_request_form
 msgid "Confirm"
-msgstr ""
+msgstr "Підтвердити"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_partner_child_cleanup_wizard__confirm
@@ -1178,7 +1178,7 @@ msgstr "Тип контрагента"
 #: model:ir.model.fields,field_description:adealer.field_adealer_doc_basis__target
 #: model_terms:ir.ui.view,arch_db:adealer.view_adealer_doc_basis_form
 msgid "Create"
-msgstr ""
+msgstr "Створити"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_request_form
@@ -1259,7 +1259,7 @@ msgstr "Створити заказ-наряд"
 #: model:ir.model.fields,field_description:adealer.field_res_partner_import__create_uid
 #: model:ir.model.fields,field_description:adealer.field_vehicle_body__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Створив"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_app_update__create_date
@@ -1299,7 +1299,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:adealer.field_res_partner_import__create_date
 #: model:ir.model.fields,field_description:adealer.field_vehicle_body__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Створено"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_car__fleet_vehicle_id
@@ -1548,7 +1548,7 @@ msgstr "Електронний огляд авто (DVI): чек-лист «зе
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.adealer_error_report_view_form
 msgid "Discard"
-msgstr ""
+msgstr "Відмінити"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_repair_line__discount
@@ -1612,7 +1612,7 @@ msgstr "Знижка (%)"
 #: model:ir.model.fields,field_description:adealer.field_stock_picking__display_name
 #: model:ir.model.fields,field_description:adealer.field_vehicle_body__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Назва для відображення"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__res_config_settings__adealer_error_reports__off
@@ -1736,7 +1736,7 @@ msgstr "Увімкнути фірмову тему 3A-dealer (navy/gold) та л
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__stop_datetime
 msgid "End"
-msgstr ""
+msgstr "Кінець"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign__date_end
@@ -1758,7 +1758,7 @@ msgstr "Введено на підставі"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__error_type
 msgid "Error Type"
-msgstr ""
+msgstr "Тип помилки"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.adealer_error_report_view_form
@@ -1837,7 +1837,7 @@ msgstr "Уперше з'явилась"
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__message_follower_ids
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Підписники"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__message_partner_ids
@@ -1845,13 +1845,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__message_partner_ids
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Підписники (Партнери)"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_service_request__activity_type_icon
 #: model:ir.model.fields,help:adealer.field_dealer_car__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Іконка з чудовим шрифтом, напр. fa-tasks"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__frames
@@ -1951,7 +1951,7 @@ msgstr "HTML — форма відкривається у вкладці бра�
 #. module: adealer
 #: model:ir.model,name:adealer.model_ir_http
 msgid "HTTP Routing"
-msgstr ""
+msgstr "Маршрутизація HTTP"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_repair_act
@@ -1974,7 +1974,7 @@ msgstr "Здав(ла): _______________"
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__has_message
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "Є повідомлення"
 
 #. module: adealer
 #: model:ir.actions.client,name:adealer.action_dashboard
@@ -2050,19 +2050,19 @@ msgstr "HTTP-статус"
 #: model:ir.model.fields,field_description:adealer.field_stock_picking__id
 #: model:ir.model.fields,field_description:adealer.field_vehicle_body__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__activity_exception_icon
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "Значок"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_service_request__activity_exception_icon
 #: model:ir.model.fields,help:adealer.field_dealer_car__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "Іконка для визначення виключення дії."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_error_report__fingerprint
@@ -2075,7 +2075,7 @@ msgstr "Розпізнає ту саму ваду в різних випадка
 #: model:ir.model.fields,help:adealer.field_dealer_car__message_needaction
 #: model:ir.model.fields,help:adealer.field_dealer_service_campaign__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Якщо позначено, то нові повідомлення будуть потребувати вашої уваги."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_service_booking__message_has_error
@@ -2087,32 +2087,32 @@ msgstr ""
 #: model:ir.model.fields,help:adealer.field_dealer_service_campaign__message_has_error
 #: model:ir.model.fields,help:adealer.field_dealer_service_campaign__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Якщо позначено, деякі повідомлення мають помилку доставки."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_image__image_1920
 msgid "Image"
-msgstr ""
+msgstr "Зображення"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_image__image_1024
 msgid "Image 1024"
-msgstr ""
+msgstr "Зображення 1024"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_image__image_128
 msgid "Image 128"
-msgstr ""
+msgstr "Зображення 128"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_image__image_256
 msgid "Image 256"
-msgstr ""
+msgstr "Зображення 256"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_image__image_512
 msgid "Image 512"
-msgstr ""
+msgstr "Зображення 512"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__image_count
@@ -2272,7 +2272,7 @@ msgstr "Поточний"
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__message_is_follower
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "Стежить"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_form_inherit
@@ -2293,7 +2293,7 @@ msgstr "Виписав(ла): _______________"
 #. module: adealer
 #: model:ir.model,name:adealer.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Запис у журналі"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_doc_chain_line__kind
@@ -2344,7 +2344,7 @@ msgstr "М.П."
 #: model:ir.model.fields,field_description:adealer.field_res_partner_import__write_uid
 #: model:ir.model.fields,field_description:adealer.field_vehicle_body__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Востаннє оновив"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_app_update__write_date
@@ -2384,7 +2384,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:adealer.field_res_partner_import__write_date
 #: model:ir.model.fields,field_description:adealer.field_vehicle_body__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Останнє оновлення"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_res_config_settings__adealer_version_checked
@@ -2426,7 +2426,7 @@ msgstr "Юридичні особи, від імені яких ви працю�
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_doc_chain_line__level
 msgid "Level"
-msgstr ""
+msgstr "Рівень"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_doc_chain__line_ids
@@ -2450,7 +2450,7 @@ msgstr "Нормо-години рядка. Для послуг = кількіс
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_adealer_doc_chain_form
 msgid "Link"
-msgstr ""
+msgstr "Посилання"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__brand_logo
@@ -2577,7 +2577,7 @@ msgstr "Розділи меню (показувати)"
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__message_has_error
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Помилка доставлення повідомлення"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__message_ids
@@ -2585,7 +2585,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__message_ids
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Повідомлення"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_color__is_metallic
@@ -2631,13 +2631,13 @@ msgstr "Рік випуску"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__module
 msgid "Module"
-msgstr ""
+msgstr "Модуль"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__my_activity_date_deadline
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "Дедлайн моєї дії"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_repair_stage__name
@@ -2658,7 +2658,7 @@ msgstr "Назва"
 #: code:addons/adealer/models/service_request.py:0
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_service_request__state__draft
 msgid "New"
-msgstr ""
+msgstr "Новий"
 
 #. module: adealer
 #. odoo-python
@@ -2676,25 +2676,25 @@ msgstr "Опубліковано новіші версії: %s."
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__activity_calendar_event_id
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__activity_calendar_event_id
 msgid "Next Activity Calendar Event"
-msgstr ""
+msgstr "Наступна подія календаря дій"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__activity_date_deadline
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "Дедлайн наступної дії"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__activity_summary
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "Підсумок наступної дії"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__activity_type_id
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "Тип наступної дії"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_fleet_vehicle__next_service_date
@@ -2842,7 +2842,7 @@ msgstr "Номер"
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__message_needaction_counter
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Кількість дій"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__message_has_error_counter
@@ -2850,7 +2850,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__message_has_error_counter
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "Кількість помилок"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_service_booking__message_needaction_counter
@@ -2858,7 +2858,7 @@ msgstr ""
 #: model:ir.model.fields,help:adealer.field_dealer_car__message_needaction_counter
 #: model:ir.model.fields,help:adealer.field_dealer_service_campaign__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "Кількість повідомлень, які вимагають дії"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_service_booking__message_has_error_counter
@@ -2866,7 +2866,7 @@ msgstr ""
 #: model:ir.model.fields,help:adealer.field_dealer_car__message_has_error_counter
 #: model:ir.model.fields,help:adealer.field_dealer_service_campaign__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Кількість повідомлень з помилковою дставкою"
 
 #. module: adealer
 #. odoo-python
@@ -2985,7 +2985,7 @@ msgstr "Початковий залишок"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__operation
 msgid "Operation"
-msgstr ""
+msgstr "Операція"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_repair_order__operations
@@ -3197,7 +3197,7 @@ msgstr "Параметри"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_doc_link__parent_model
 msgid "Parent Model"
-msgstr ""
+msgstr "Батьківська модель"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_fleet_vehicle__partner_id
@@ -3315,17 +3315,17 @@ msgstr "Продаж запчастин за період"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__payload
 msgid "Payload"
-msgstr ""
+msgstr "Корисне навантаження"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_account_move_realiz_list
 msgid "Payment"
-msgstr ""
+msgstr "Оплата"
 
 #. module: adealer
 #: model:ir.model,name:adealer.model_account_payment
 msgid "Payments"
-msgstr ""
+msgstr "Платежі"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_service_campaign_line__state__pending
@@ -3362,13 +3362,13 @@ msgstr "Період з"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__phone
 msgid "Phone"
-msgstr ""
+msgstr "Телефон"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__image_ids
 #: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
 msgid "Photos"
-msgstr ""
+msgstr "Фотографії"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_repair_order__picking_count
@@ -3379,7 +3379,7 @@ msgstr "К-сть відвантажень"
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_service_booking__state__draft
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_search
 msgid "Planned"
-msgstr ""
+msgstr "Заплановано"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_list
@@ -3395,12 +3395,12 @@ msgstr "Держномер"
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_list
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_search
 msgid "Post"
-msgstr ""
+msgstr "Пост"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_account_move_realiz_search
 msgid "Posted"
-msgstr ""
+msgstr "Проведено"
 
 #. module: adealer
 #: model:ir.actions.report,name:adealer.action_report_dovirenist
@@ -3415,7 +3415,7 @@ msgstr "Довіреність №"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_doc_chain_line__prefix
 msgid "Prefix"
-msgstr ""
+msgstr "Префікс"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_invoice_pay
@@ -3525,7 +3525,7 @@ msgstr "Завантажити останній код з GitHub і оновит
 #. module: adealer
 #: model:ir.model,name:adealer.model_purchase_order
 msgid "Purchase Order"
-msgstr ""
+msgstr "Замовлення на купівлю"
 
 #. module: adealer
 #: model:ir.actions.act_window,name:adealer.action_window_purchase_orders
@@ -3774,7 +3774,7 @@ msgstr "Ремонти в роботі"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_report_wizard__report_type
 msgid "Report Type"
-msgstr ""
+msgstr "Тип звіту"
 
 #. module: adealer
 #: model:ir.ui.menu,name:adealer.menu_reports_custom
@@ -3831,7 +3831,7 @@ msgstr "Запис"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_report_wizard_line__res_model
 msgid "Res Model"
-msgstr ""
+msgstr "Модель ресурсу"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_car__status__reserved
@@ -3852,7 +3852,7 @@ msgstr "Відповідальний"
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__activity_user_id
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "Відповідальний користувач"
 
 #. module: adealer
 #: model:ir.actions.report,name:adealer.action_report_povernennia
@@ -3882,7 +3882,7 @@ msgstr "Виручка"
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__message_has_sms_error
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "Помилка доставки SMS"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
@@ -3892,7 +3892,7 @@ msgstr "Продаж"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__sale_order_id
 msgid "Sale Order"
-msgstr ""
+msgstr "Замовлення"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__sale_date
@@ -3955,7 +3955,7 @@ msgstr "Реалізації"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__scheduled_date
 msgid "Scheduled"
-msgstr ""
+msgstr "Заплановано"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_partner_import_wizard_form
@@ -3980,17 +3980,17 @@ msgstr "Надсилати автоматичні звіти про помилк
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.adealer_error_report_view_form
 msgid "Send now"
-msgstr ""
+msgstr "Надіслати зараз"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_error_report__state__sent
 msgid "Sent"
-msgstr ""
+msgstr "Надіслано"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__sent_date
 msgid "Sent Date"
-msgstr ""
+msgstr "Дата відправлення"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_report_wizard_line__sequence
@@ -4497,7 +4497,7 @@ msgstr "Разів"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_image__name
 msgid "Title"
-msgstr ""
+msgstr "Заголовок"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
@@ -4523,7 +4523,7 @@ msgstr "В дорогу"
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_request_search
 msgid "Today"
-msgstr ""
+msgstr "Сьогодні"
 
 #. module: adealer
 #. odoo-python
@@ -4663,7 +4663,7 @@ msgstr "Тип"
 #: model:ir.model.fields,help:adealer.field_adealer_service_request__activity_exception_decoration
 #: model:ir.model.fields,help:adealer.field_dealer_car__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Тип дії виключення на записі."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
@@ -5079,7 +5079,7 @@ msgstr "Гарантія (безкоштовно)"
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__website_message_ids
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Повідомлення з веб-сайту"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_service_booking__website_message_ids
@@ -5087,7 +5087,7 @@ msgstr ""
 #: model:ir.model.fields,help:adealer.field_dealer_car__website_message_ids
 #: model:ir.model.fields,help:adealer.field_dealer_service_campaign__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Історія бесіди на сайті"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.adealer_error_report_view_form
@@ -5212,7 +5212,7 @@ msgstr "Яка вкладка головної відкривається пер
 #: model:ir.model.fields,field_description:adealer.field_adealer_report_wizard_line__wizard_id
 #: model:ir.model.fields,field_description:adealer.field_partner_balance_wizard_line__wizard_id
 msgid "Wizard"
-msgstr ""
+msgstr "Помічник"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_mechanic_output_search
@@ -5290,7 +5290,7 @@ msgstr "У вас остання версія (%s)."
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__comment
 msgid "Your comment"
-msgstr ""
+msgstr "Ваш коментар"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_car_handover
@@ -5310,7 +5310,7 @@ msgstr "та замовник"
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_invoice_pay
 msgid "at"
-msgstr ""
+msgstr "у"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_akt_zvirky

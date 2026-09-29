@@ -756,12 +756,12 @@ msgstr "Solicitud de préstamo de coche / leasing creada a partir del cliente y 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_car__transmission__robot
 msgid "Automated"
-msgstr "Automatizado"
+msgstr "Automatizada"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_car__transmission__auto
 msgid "Automatic"
-msgstr "Automático"
+msgstr "Automática"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__res_config_settings__adealer_home__none
@@ -787,7 +787,7 @@ msgstr "Ticket medio"
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__fleet_vehicle__drive_type__back
 msgid "Back"
-msgstr "Volver"
+msgstr "Trasero"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_akt_zvirky
@@ -1739,7 +1739,7 @@ msgstr "Fin"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign__date_end
 msgid "End date"
-msgstr "Fecha límite"
+msgstr "Fecha de fin"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__engine_volume
@@ -1854,7 +1854,7 @@ msgstr "Icono de Font Awesome p. ej. fa-tasks"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__frames
 msgid "Frames"
-msgstr "Cuadros"
+msgstr "Marcos de pila"
 
 #. module: adealer
 #. odoo-javascript
@@ -2539,7 +2539,7 @@ msgstr "Código de color del fabricante"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_maintenance_request__master_id
 msgid "Master"
-msgstr "Maestro"
+msgstr "Jefe de taller"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__employee_id
@@ -3158,7 +3158,7 @@ msgstr "Agotado"
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_mechanic_output_search
 msgid "Output"
-msgstr "Salida"
+msgstr "Producción"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign_line__partner_id
@@ -3393,7 +3393,7 @@ msgstr "Número de matrícula"
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_list
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_search
 msgid "Post"
-msgstr "Publicación"
+msgstr "Puesto"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_account_move_realiz_search
@@ -4003,7 +4003,7 @@ msgstr "Secuencia"
 #: code:addons/adealer/static/src/js/dashboard/dashboard.js:0
 #: model:ir.model.fields.selection,name:adealer.selection__res_config_settings__adealer_dashboard_tab__service
 msgid "Service"
-msgstr "Servicio"
+msgstr "Taller"
 
 #. module: adealer
 #: model:ir.model,name:adealer.model_adealer_service_request
@@ -4267,7 +4267,7 @@ msgstr "Fecha de inicio"
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__state
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign__state
 msgid "State"
-msgstr "Provincia"
+msgstr "Estado"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_repair_order__stage_history_ids
@@ -4640,7 +4640,7 @@ msgstr "Acabados / configuraciones"
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__partner_balance_wizard_line__line_type__total
 msgid "Turnover"
-msgstr "Volumen de negocio"
+msgstr "Movimientos"
 
 #. module: adealer
 #. odoo-python
@@ -5039,7 +5039,7 @@ msgstr "Visitas"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_fleet_vehicle__volume
 msgid "Volume"
-msgstr "Volumen"
+msgstr "Cilindrada"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_res_config_settings__wh_id_1c
@@ -5308,7 +5308,7 @@ msgstr "y el cliente"
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_invoice_pay
 msgid "at"
-msgstr "al"
+msgstr "en"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_akt_zvirky

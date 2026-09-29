@@ -756,12 +756,12 @@ msgstr "Autokredit-/Leasingantrag aus Kunde und Fahrzeug, mit einer unverbindlic
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_car__transmission__robot
 msgid "Automated"
-msgstr "Automatisch"
+msgstr "Automatisiert"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_car__transmission__auto
 msgid "Automatic"
-msgstr "Automatisch"
+msgstr "Automatik"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__res_config_settings__adealer_home__none
@@ -787,7 +787,7 @@ msgstr "Durchschnittlicher Umsatz pro Auftrag"
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__fleet_vehicle__drive_type__back
 msgid "Back"
-msgstr "Zurück"
+msgstr "Hinten"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_akt_zvirky
@@ -1854,7 +1854,7 @@ msgstr "FontAwesome-Icon, z. B. fa-tasks"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__frames
 msgid "Frames"
-msgstr "Rahmen"
+msgstr "Stack-Frames"
 
 #. module: adealer
 #. odoo-javascript
@@ -2529,7 +2529,7 @@ msgstr "Geschäftsführer: _______________"
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_car__transmission__manual
 msgid "Manual"
-msgstr "Manuell"
+msgstr "Schaltgetriebe"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_car_color__code
@@ -2539,7 +2539,7 @@ msgstr "Farbcode des Herstellers"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_maintenance_request__master_id
 msgid "Master"
-msgstr "Master"
+msgstr "Meister"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__employee_id
@@ -2594,7 +2594,7 @@ msgstr "Metallic-Lack"
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__mileage
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_to
 msgid "Mileage"
-msgstr "Kilometergeld"
+msgstr "Kilometerstand"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_fleet_vehicle__last_service_mileage
@@ -3158,7 +3158,7 @@ msgstr "Nicht vorrätig"
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_mechanic_output_search
 msgid "Output"
-msgstr "Ausgang"
+msgstr "Leistung"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign_line__partner_id
@@ -3393,7 +3393,7 @@ msgstr "Amtliches Kennzeichen"
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_list
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_search
 msgid "Post"
-msgstr "Buchen"
+msgstr "Arbeitsplatz"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_account_move_realiz_search
@@ -4003,7 +4003,7 @@ msgstr "Sequenz"
 #: code:addons/adealer/static/src/js/dashboard/dashboard.js:0
 #: model:ir.model.fields.selection,name:adealer.selection__res_config_settings__adealer_dashboard_tab__service
 msgid "Service"
-msgstr "Dienstleistung"
+msgstr "Werkstatt"
 
 #. module: adealer
 #: model:ir.model,name:adealer.model_adealer_service_request
@@ -4278,7 +4278,7 @@ msgstr "Zustandshistorie"
 #: model:ir.model.fields,field_description:adealer.field_adealer_report_wizard__line_ids
 #: model:ir.model.fields,field_description:adealer.field_partner_balance_wizard__line_ids
 msgid "Statement"
-msgstr "Kontoauszug"
+msgstr "Aufstellung"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_report_wizard_line__state
@@ -4640,7 +4640,7 @@ msgstr "Ausstattungen / Konfigurationen"
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__partner_balance_wizard_line__line_type__total
 msgid "Turnover"
-msgstr "Umsatz"
+msgstr "Umsätze"
 
 #. module: adealer
 #. odoo-python
@@ -5039,7 +5039,7 @@ msgstr "Besuche"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_fleet_vehicle__volume
 msgid "Volume"
-msgstr "Volumen"
+msgstr "Hubraum"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_res_config_settings__wh_id_1c
@@ -5308,7 +5308,7 @@ msgstr "und der Kunde"
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_invoice_pay
 msgid "at"
-msgstr "zu"
+msgstr "bei"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_akt_zvirky

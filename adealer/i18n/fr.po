@@ -756,7 +756,7 @@ msgstr "Demande de crédit auto / leasing établie à partir du client et du vé
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_car__transmission__robot
 msgid "Automated"
-msgstr "Automatisée"
+msgstr "Robotisée"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_car__transmission__auto
@@ -787,7 +787,7 @@ msgstr "Panier moyen"
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__fleet_vehicle__drive_type__back
 msgid "Back"
-msgstr "Retour"
+msgstr "Arrière"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_akt_zvirky
@@ -1854,7 +1854,7 @@ msgstr "Icône Font Awesome par ex. fa-tasks"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__frames
 msgid "Frames"
-msgstr "Trames"
+msgstr "Cadres de pile"
 
 #. module: adealer
 #. odoo-javascript
@@ -2529,7 +2529,7 @@ msgstr "Directeur : _______________"
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_car__transmission__manual
 msgid "Manual"
-msgstr "Manuel"
+msgstr "Manuelle"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_car_color__code
@@ -2539,7 +2539,7 @@ msgstr "Code couleur constructeur"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_maintenance_request__master_id
 msgid "Master"
-msgstr "Master"
+msgstr "Chef d'atelier"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__employee_id
@@ -3045,7 +3045,7 @@ msgstr "Options de la finition"
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_repairs
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_list
 msgid "Order"
-msgstr "Ordre"
+msgstr "Commande"
 
 #. module: adealer
 #. odoo-python
@@ -3158,7 +3158,7 @@ msgstr "En rupture de stock"
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_mechanic_output_search
 msgid "Output"
-msgstr "Sortie"
+msgstr "Production"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign_line__partner_id
@@ -3393,7 +3393,7 @@ msgstr "Numéro d'immatriculation"
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_list
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_search
 msgid "Post"
-msgstr "Comptabiliser"
+msgstr "Poste"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_account_move_realiz_search
@@ -3885,7 +3885,7 @@ msgstr "Erreur d'envoi SMS"
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
 msgid "Sale"
-msgstr "Ventes"
+msgstr "Vente"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__sale_order_id
@@ -4003,7 +4003,7 @@ msgstr "Séquence"
 #: code:addons/adealer/static/src/js/dashboard/dashboard.js:0
 #: model:ir.model.fields.selection,name:adealer.selection__res_config_settings__adealer_dashboard_tab__service
 msgid "Service"
-msgstr "Service"
+msgstr "Atelier"
 
 #. module: adealer
 #: model:ir.model,name:adealer.model_adealer_service_request
@@ -4640,7 +4640,7 @@ msgstr "Finitions / configurations"
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__partner_balance_wizard_line__line_type__total
 msgid "Turnover"
-msgstr "Chiffre d'affaires"
+msgstr "Mouvements"
 
 #. module: adealer
 #. odoo-python
@@ -5039,7 +5039,7 @@ msgstr "Visites"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_fleet_vehicle__volume
 msgid "Volume"
-msgstr "Volume"
+msgstr "Cylindrée"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_res_config_settings__wh_id_1c
@@ -5308,7 +5308,7 @@ msgstr "et le client"
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_invoice_pay
 msgid "at"
-msgstr "à"
+msgstr "auprès de"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_akt_zvirky

@@ -761,7 +761,7 @@ msgstr "Geautomatiseerd"
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_car__transmission__auto
 msgid "Automatic"
-msgstr "Automatisch"
+msgstr "Automaat"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__res_config_settings__adealer_home__none
@@ -787,7 +787,7 @@ msgstr "Gemiddelde orderwaarde"
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__fleet_vehicle__drive_type__back
 msgid "Back"
-msgstr "Terug"
+msgstr "Achter"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_akt_zvirky
@@ -878,7 +878,7 @@ msgstr "Huisstijlthema + zijmenu (sidebar)"
 #: code:addons/adealer/models/dashboard.py:0
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__partner_id
 msgid "Buyer"
-msgstr "Inkoper"
+msgstr "Koper"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_car__transmission__cvt
@@ -967,7 +967,7 @@ msgstr "Kies de partner voor wie de order wordt gefactureerd en geleverd. Je kun
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_customers
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_sales
 msgid "Class"
-msgstr "Class"
+msgstr "Klasse"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_campaign_form
@@ -1854,7 +1854,7 @@ msgstr "Font awesome icoon bijv. fa-tasks"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__frames
 msgid "Frames"
-msgstr "Frames"
+msgstr "Stackframes"
 
 #. module: adealer
 #. odoo-javascript
@@ -2529,7 +2529,7 @@ msgstr "Directeur: _______________"
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_car__transmission__manual
 msgid "Manual"
-msgstr "Handmatig"
+msgstr "Handgeschakeld"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_car_color__code
@@ -2539,7 +2539,7 @@ msgstr "Kleurcode van de fabrikant"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_maintenance_request__master_id
 msgid "Master"
-msgstr "Master"
+msgstr "Chef werkplaats"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__employee_id
@@ -2934,7 +2934,7 @@ msgstr "Alleen een voertuig met status 'Op voorraad' kan worden gereserveerd."
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_purchases
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_request_search
 msgid "Open"
-msgstr "Openen"
+msgstr "Openstaand"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_customers
@@ -3158,7 +3158,7 @@ msgstr "Niet op voorraad"
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_mechanic_output_search
 msgid "Output"
-msgstr "Uitgaand"
+msgstr "Productie"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign_line__partner_id
@@ -3393,7 +3393,7 @@ msgstr "Kentekennummer"
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_list
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_search
 msgid "Post"
-msgstr "Boeken"
+msgstr "Werkplek"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_account_move_realiz_search
@@ -4003,7 +4003,7 @@ msgstr "Reeks"
 #: code:addons/adealer/static/src/js/dashboard/dashboard.js:0
 #: model:ir.model.fields.selection,name:adealer.selection__res_config_settings__adealer_dashboard_tab__service
 msgid "Service"
-msgstr "Dienst"
+msgstr "Werkplaats"
 
 #. module: adealer
 #: model:ir.model,name:adealer.model_adealer_service_request
@@ -4640,7 +4640,7 @@ msgstr "Uitvoeringen / configuraties"
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__partner_balance_wizard_line__line_type__total
 msgid "Turnover"
-msgstr "Omzet"
+msgstr "Mutaties"
 
 #. module: adealer
 #. odoo-python
@@ -5039,7 +5039,7 @@ msgstr "Bezoeken"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_fleet_vehicle__volume
 msgid "Volume"
-msgstr "Volume"
+msgstr "Cilinderinhoud"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_res_config_settings__wh_id_1c
@@ -5308,7 +5308,7 @@ msgstr "en de klant"
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_invoice_pay
 msgid "at"
-msgstr "om"
+msgstr "bij"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_akt_zvirky
