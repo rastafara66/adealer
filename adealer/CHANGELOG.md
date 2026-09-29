@@ -3,6 +3,16 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## 19.0.1.15.0 — 2026-09-29
+
+### Added
+
+- Попередній запис: клієнт без контакту, колір виду ремонту, повні дані й запис кліком на дошці по постах. Service bookings: customer name without a contact, repair type color, full details and click-to-book on the bay board.
+
+### Fixed
+
+- Виправлено помилки. Bug fixes.
+
 ## 19.0.1.14.3 – 19.0.1.14.4 — 2026-09-29
 
 ### Fixed

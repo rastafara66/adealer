@@ -29,6 +29,13 @@ class AdealerRepairType(models.Model):
     code = fields.Char('Code')
     is_warranty = fields.Boolean('Warranty (unpaid)',
                                  help='Guarantee work — not charged to the customer')
+    # Колір картки на дошці по постах. У 1С вид ремонту має свій колір, і
+    # клітинка розкладу фарбується ним — майстер розпізнає «гарантію» чи
+    # «ТО» кольором, не читаючи. Рядок #RRGGBB, а не індекс палітри Odoo:
+    # кольори переносяться з 1С як є.
+    html_color = fields.Char('Color',
+                             help='Color of the booking cards of this repair type on the '
+                                  'bay board, as #RRGGBB. Empty: the standard color.')
     active = fields.Boolean(default=True)
 
 
@@ -55,6 +62,15 @@ class AdealerServiceBooking(models.Model):
                                       help='The repair order created from this booking (optional)')
 
     partner_id = fields.Many2one('res.partner', 'Customer', tracking=True)
+    # Клієнт «зі слів»: записують по телефону ім'я й номер, картки контакту
+    # ще немає (і часто не буде). В обліковій системі, з якої переходять, це
+    # звичайний рядок у записі — губити його не можна, а заводити контакт на
+    # кожне «Олександр» — засмічувати довідник.
+    customer_name = fields.Char(
+        'Customer name',
+        help='The customer as given (for example, on the phone) when there is no contact '
+             'for them yet. Shown on the board and in the calendar when no customer is '
+             'selected.')
     vehicle_id = fields.Many2one('fleet.vehicle', 'Vehicle')
     model_id = fields.Many2one('fleet.vehicle.model', 'Model')
     year = fields.Char('Model year')
@@ -63,6 +79,7 @@ class AdealerServiceBooking(models.Model):
     vin = fields.Char('VIN')
     requested_works = fields.Text('Requested works')
     repair_type_id = fields.Many2one('adealer.repair.type', 'Repair type')
+    repair_type_color = fields.Char(related='repair_type_id.html_color')
     guid_1c = fields.Char('External identifier', copy=False, index=True,
                           help='External identifier for sync idempotency')
 
@@ -104,19 +121,24 @@ class AdealerServiceBooking(models.Model):
                 vals['name'] = self.env['ir.sequence'].next_by_code('adealer.service.booking') or '/'
         return super().create(vals_list)
 
-    @api.depends('name', 'plate', 'vehicle_id', 'requested_works', 'partner_id')
+    @api.depends('name', 'plate', 'model_id', 'vehicle_id', 'requested_works',
+                 'partner_id', 'customer_name')
     def _compute_display_name(self):
+        """«Держномер модель · клієнт · роботи» — те, що майстер шукає очима.
+
+        Так підписана клітинка розкладу в 1С, і саме це видно на події
+        календаря. Службовий номер запису (ПЗ000123) людині нічого не каже —
+        він лише запасний підпис, коли більше нічого немає.
+        """
         for b in self:
-            who = b.plate or (b.vehicle_id.name if b.vehicle_id else '') or (b.partner_id.name if b.partner_id else '')
+            car = ' '.join(x for x in (b.plate, b.model_id.name) if x) \
+                or (b.vehicle_id.name or '')
+            who = b.partner_id.name or b.customer_name or ''
             works = (b.requested_works or '').strip().replace('\n', ' ')
             if len(works) > 30:
                 works = works[:30] + '…'
-            parts = [b.name or '/']
-            if who:
-                parts.append(who)
-            if works:
-                parts.append(works)
-            b.display_name = ' · '.join(parts)
+            parts = [p for p in (car, who, works) if p]
+            b.display_name = ' · '.join(parts) if parts else (b.name or '/')
 
     def action_create_repair_order(self):
         """Створити наряд-замовлення з запису й привʼязати до нього."""

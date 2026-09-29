@@ -6,16 +6,24 @@
             <div class="adealer-board__toolbar">
                 <div class="adealer-board__nav">
                     <button class="btn btn-secondary" t-on-click="prevDay">‹</button>
-                    <button class="btn btn-secondary" t-on-click="today">Сьогодні</button>
+                    <button class="btn btn-secondary" t-on-click="today">Today</button>
                     <button class="btn btn-secondary" t-on-click="nextDay">›</button>
                     <input type="date" class="o_input adealer-board__date"
                            t-att-value="state.date" t-on-change="onDate"/>
                     <span class="adealer-board__daylabel" t-esc="dateLabel"/>
                 </div>
                 <div class="adealer-board__views">
-                    <button class="btn adealer-board__view adealer-board__view--active">По постах</button>
-                    <button class="btn adealer-board__view" t-on-click="toPeriods">По періодах</button>
+                    <button class="btn adealer-board__view adealer-board__view--active">By post</button>
+                    <button class="btn adealer-board__view" t-on-click="toPeriods">By period</button>
                 </div>
+            </div>
+            <!-- Швидкий перехід на два тижні вперед — як кнопки дат у розкладі 1С -->
+            <div class="adealer-board__days">
+                <button t-foreach="quickDays" t-as="d" t-key="d.iso"
+                        class="btn btn-sm adealer-board__day"
+                        t-att-class="{ 'adealer-board__day--active': d.iso === state.date,
+                                       'adealer-board__day--weekend': d.weekend }"
+                        t-on-click="() => this.goTo(d.iso)" t-esc="d.label"/>
             </div>
 
             <t t-if="state.loading">
@@ -26,7 +34,7 @@
                     <!-- Вісь часу -->
                     <div class="adealer-board__timecol">
                         <div class="adealer-board__poststub"/>
-                        <div class="adealer-board__timeaxis">
+                        <div class="adealer-board__timeaxis" t-attf-style="height:{{laneHeight}}px">
                             <div t-foreach="hours" t-as="h" t-key="h" class="adealer-board__hour"
                                  t-esc="hourLabel(h)"/>
                         </div>
@@ -39,41 +47,47 @@
                                 <span t-esc="post.name"/>
                                 <span class="adealer-board__count" t-esc="postBookings(post.id).length"/>
                             </div>
-                            <div class="adealer-board__lane">
+                            <div class="adealer-board__lane" t-attf-style="height:{{laneHeight}}px"
+                                 title="Click a free place to book this bay at this time"
+                                 t-on-click="(ev) => this.newBooking(ev, post.id)">
                                 <div t-foreach="hours" t-as="h" t-key="h" class="adealer-board__gridline"/>
-                                <div t-foreach="postBookings(post.id)" t-as="b" t-key="b.id"
-                                     class="adealer-board__event"
-                                     t-att-class="{ 'adealer-board__event--done': b.done }"
-                                     t-attf-style="top:{{b.top}}%; height:{{b.height}}%; border-left-color:{{postColor(post_index)}}"
-                                     t-on-click="() => this.openBooking(b.id)">
-                                    <div class="adealer-board__ev-time"><t t-esc="b.time"/></div>
-                                    <div class="adealer-board__ev-main" t-esc="b.plate || b.partner"/>
-                                    <div class="adealer-board__ev-works" t-esc="b.works"/>
-                                    <div class="adealer-board__ev-mech" t-if="b.mechanic" t-esc="b.mechanic"/>
-                                </div>
+                                <t t-foreach="postBookings(post.id)" t-as="b" t-key="b.id">
+                                    <t t-call="adealer.BookingBoard.event">
+                                        <t t-set="style" t-value="eventStyle(b, post_index)"/>
+                                    </t>
+                                </t>
                             </div>
                         </div>
                         <!-- Без поста -->
                         <div t-if="noPostBookings.length" class="adealer-board__col adealer-board__col--nopost">
                             <div class="adealer-board__posthead adealer-board__posthead--muted">
-                                <span>Без поста</span>
+                                <span>No bay</span>
                                 <span class="adealer-board__count" t-esc="noPostBookings.length"/>
                             </div>
-                            <div class="adealer-board__lane">
+                            <div class="adealer-board__lane" t-attf-style="height:{{laneHeight}}px">
                                 <div t-foreach="hours" t-as="h" t-key="h" class="adealer-board__gridline"/>
-                                <div t-foreach="noPostBookings" t-as="b" t-key="b.id"
-                                     class="adealer-board__event"
-                                     t-attf-style="top:{{b.top}}%; height:{{b.height}}%"
-                                     t-on-click="() => this.openBooking(b.id)">
-                                    <div class="adealer-board__ev-time"><t t-esc="b.time"/></div>
-                                    <div class="adealer-board__ev-main" t-esc="b.plate || b.partner"/>
-                                    <div class="adealer-board__ev-works" t-esc="b.works"/>
-                                </div>
+                                <t t-foreach="noPostBookings" t-as="b" t-key="b.id">
+                                    <t t-call="adealer.BookingBoard.event">
+                                        <t t-set="style" t-value="eventStyle(b, 0)"/>
+                                    </t>
+                                </t>
                             </div>
                         </div>
                     </div>
                 </div>
             </t>
+        </div>
+    </t>
+
+    <!-- Картка запису: ті самі рядки, що в клітинці розкладу 1С -->
+    <t t-name="adealer.BookingBoard.event">
+        <div class="adealer-board__event"
+             t-att-class="{ 'adealer-board__event--done': b.done and !b.color,
+                            'adealer-board__event--cancel': b.cancelled }"
+             t-att-style="style" t-att-title="b.tooltip"
+             t-on-click.stop="() => this.openBooking(b.id)">
+            <div t-foreach="b.lines" t-as="line" t-key="line_index"
+                 t-attf-class="adealer-board__ev adealer-board__ev--{{line[0]}}" t-esc="line[1]"/>
         </div>
     </t>
 </templates>

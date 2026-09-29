@@ -558,6 +558,8 @@ msgid "Adealer Git Reason"
 msgstr "Raison Git (Adealer)"
 
 #. module: adealer
+#. odoo-javascript
+#: code:addons/adealer/static/src/js/booking_board/board.js:0
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_advisors
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_list
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_search
@@ -896,6 +898,18 @@ msgid "Buyer"
 msgstr "Acheteur"
 
 #. module: adealer
+#. odoo-javascript
+#: code:addons/adealer/static/src/xml/booking_board.xml:0
+msgid "By period"
+msgstr "Par période"
+
+#. module: adealer
+#. odoo-javascript
+#: code:addons/adealer/static/src/xml/booking_board.xml:0
+msgid "By post"
+msgstr "Par poste"
+
+#. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_car__transmission__cvt
 msgid "CVT"
 msgstr "CVT"
@@ -985,6 +999,12 @@ msgid "Class"
 msgstr "Classe"
 
 #. module: adealer
+#. odoo-javascript
+#: code:addons/adealer/static/src/xml/booking_board.xml:0
+msgid "Click a free place to book this bay at this time"
+msgstr "Cliquez sur une place libre pour réserver ce poste à cette heure"
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_campaign_form
 msgid "Close"
 msgstr "Fermer"
@@ -1039,6 +1059,8 @@ msgid "Collapsed in kanban"
 msgstr "Replié dans le kanban"
 
 #. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_adealer_repair_type__html_color
+#: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__repair_type_color
 #: model:ir.model.fields,field_description:adealer.field_adealer_workplace__color
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__color_id
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_color__name
@@ -1050,6 +1072,14 @@ msgstr "Couleur"
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_color__code
 msgid "Color code"
 msgstr "Code couleur"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_repair_type__html_color
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__repair_type_color
+msgid ""
+"Color of the booking cards of this repair type on the bay board, as #RRGGBB."
+" Empty: the standard color."
+msgstr "Couleur des cartes de rendez-vous de ce type de réparation sur le planning par poste, au format #RRGGBB. Vide : la couleur standard."
 
 #. module: adealer
 #: model:ir.actions.act_window,name:adealer.action_car_color
@@ -1371,6 +1401,11 @@ msgstr "Client"
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_form
 msgid "Customer & vehicle"
 msgstr "Client et véhicule"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__customer_name
+msgid "Customer name"
+msgstr "Nom du client"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__sale_order_id
@@ -2751,6 +2786,12 @@ msgid "No bank or cash journal is configured."
 msgstr "Aucun journal de banque ou de caisse n'est configuré."
 
 #. module: adealer
+#. odoo-javascript
+#: code:addons/adealer/static/src/xml/booking_board.xml:0
+msgid "No bay"
+msgstr "Sans poste"
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/report_wizards.py:0
 msgid "No counterparty"
@@ -3067,9 +3108,11 @@ msgid "Options in the trim"
 msgstr "Options de la finition"
 
 #. module: adealer
+#. odoo-javascript
 #. odoo-python
 #: code:addons/adealer/models/dashboard.py:0
 #: code:addons/adealer/models/sale.py:0
+#: code:addons/adealer/static/src/js/booking_board/board.js:0
 #: model:ir.model.fields,field_description:adealer.field_adealer_mechanic_output_report__repair_id
 #: model:ir.model.fields,field_description:adealer.field_adealer_repair_stage__sequence
 #: model:ir.model.fields,field_description:adealer.field_adealer_repair_stage_history__repair_id
@@ -4427,6 +4470,14 @@ msgid "Taxes"
 msgstr "Taxes"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__customer_name
+msgid ""
+"The customer as given (for example, on the phone) when there is no contact "
+"for them yet. Shown on the board and in the calendar when no customer is "
+"selected."
+msgstr "Le client tel qu'il s'est présenté (par exemple au téléphone) lorsqu'il n'a pas encore de contact. Affiché sur le planning et dans le calendrier si aucun client n'est sélectionné."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_service_booking__sale_order_id
 msgid "The customer order linked to this booking"
 msgstr "La commande client liée à ce rendez-vous"
@@ -4558,6 +4609,8 @@ msgid "To transit"
 msgstr "En transit"
 
 #. module: adealer
+#. odoo-javascript
+#: code:addons/adealer/static/src/xml/booking_board.xml:0
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_request_search
 msgid "Today"
 msgstr "Aujourd'hui"
@@ -5496,6 +5549,12 @@ msgid "source_sale_order_id"
 msgstr "Commande client source"
 
 #. module: adealer
+#. odoo-javascript
+#: code:addons/adealer/static/src/js/booking_board/board.js:0
+msgid "tel."
+msgstr "tél."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_dovirenist
 msgid "the following inventory items:"
 msgstr "les biens suivants :"
@@ -5534,12 +5593,6 @@ msgstr "« %s » — nom uniquement"
 #: model:ir.module.category,description:adealer.module_category_adealer
 msgid "Автосалон, СТО, запчастини"
 msgstr "Concession, atelier, pièces"
-
-#. module: adealer
-#. odoo-javascript
-#: code:addons/adealer/static/src/xml/booking_board.xml:0
-msgid "Без поста"
-msgstr "Sans poste"
 
 #. module: adealer
 #. odoo-python
@@ -5588,18 +5641,6 @@ msgid "Оновлено: %s"
 msgstr "Mis à jour : %s"
 
 #. module: adealer
-#. odoo-javascript
-#: code:addons/adealer/static/src/xml/booking_board.xml:0
-msgid "По періодах"
-msgstr "Par période"
-
-#. module: adealer
-#. odoo-javascript
-#: code:addons/adealer/static/src/xml/booking_board.xml:0
-msgid "По постах"
-msgstr "Par poste"
-
-#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/partner_import.py:0
 msgid "Потребують уваги — %s:"
@@ -5644,12 +5685,6 @@ msgstr ""
 "Ligne %(row)s : %(what)s\n"
 "    Pourquoi : %(why)s\n"
 "    Que faire : %(howto)s"
-
-#. module: adealer
-#. odoo-javascript
-#: code:addons/adealer/static/src/xml/booking_board.xml:0
-msgid "Сьогодні"
-msgstr "Aujourd'hui"
 
 #. module: adealer
 #: model:res.groups,comment:adealer.group_adealer_manager

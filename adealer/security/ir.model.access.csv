@@ -37,3 +37,9 @@ access_adealer_doc_link_mgr,adealer.doc_link,model_adealer_doc_link,adealer.grou
 access_adealer_doc_chain_usr,adealer.doc_chain,model_adealer_doc_chain,adealer.group_adealer_user,1,1,1,1
 access_adealer_doc_chain_line_usr,adealer.doc_chain_line,model_adealer_doc_chain_line,adealer.group_adealer_user,1,1,1,1
 access_adealer_doc_basis_usr,adealer.doc_basis,model_adealer_doc_basis,adealer.group_adealer_user,1,1,1,1
+access_adealer_vehicle_body_usr,adealer.vehicle_body.user,model_vehicle_body,adealer.group_adealer_user,1,0,0,0
+access_adealer_repair_stage_usr,adealer.repair.stage.user,model_adealer_repair_stage,adealer.group_adealer_user,1,0,0,0
+access_dealer_car_color_usr,dealer.car.color.user,model_dealer_car_color,adealer.group_adealer_user,1,0,0,0
+access_dealer_car_complectation_usr,dealer.car.complectation.user,model_dealer_car_complectation,adealer.group_adealer_user,1,0,0,0
+access_adealer_workplace_usr,adealer.workplace.user,model_adealer_workplace,adealer.group_adealer_user,1,0,0,0
+access_adealer_repair_type_usr,adealer.repair_type.user,model_adealer_repair_type,adealer.group_adealer_user,1,0,0,0
