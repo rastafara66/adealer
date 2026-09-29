@@ -196,7 +196,8 @@ export class AdealerBookingBoard extends Component {
     get dateLabel() {
         // MMMM, а не LLLL: місяць у даті — у відмінку («30 вересня»), а не
         // окремою назвою («30 Вересень»), як слов'янські мови й вимагають.
-        return DateTime.fromISO(this.state.date).toFormat("cccc, d MMMM yyyy");
+        const text = DateTime.fromISO(this.state.date).toFormat("cccc, d MMMM yyyy");
+        return text.charAt(0).toUpperCase() + text.slice(1);
     }
 
     openBooking(id) {
