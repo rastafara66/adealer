@@ -390,6 +390,11 @@ msgid ""
 msgstr "Una breve nota en las fichas de vehículo, orden de reparación y pieza sobre lo que añadirían allí los módulos de pago de 3A-dealer. Cada indicación desaparece sola una vez instalado el módulo."
 
 #. module: adealer
+#: model:ir.model.constraint,message:adealer.constraint_dealer_car_vin_uniq
+msgid "A vehicle with this VIN already exists in stock."
+msgstr "Ya existe en stock un vehículo con este VIN."
+
+#. module: adealer
 #: model:ir.actions.act_window,name:adealer.action_report_ready_abc_customers
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_report_wizard__report_type__abc_customers
 #: model:ir.ui.menu,name:adealer.menu_ready_abc_customers
@@ -409,6 +414,11 @@ msgstr "Análisis ABC de ventas"
 #: model:ir.model.fields.selection,name:adealer.selection__fleet_vehicle__drive_type__awd
 msgid "AWD"
 msgstr "Tracción total"
+
+#. module: adealer
+#: model:adealer.repair.stage,name:adealer.repair_stage_accepted
+msgid "Accepted"
+msgstr "Recibido"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_car_handover
@@ -783,6 +793,11 @@ msgstr "Disponible para la venta"
 #: code:addons/adealer/models/dashboard.py:0
 msgid "Average ticket"
 msgstr "Ticket medio"
+
+#. module: adealer
+#: model:adealer.repair.stage,name:adealer.repair_stage_wait_parts
+msgid "Awaiting parts"
+msgstr "Esperando piezas"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__fleet_vehicle__drive_type__back
@@ -1489,6 +1504,7 @@ msgid "Deliver to customer"
 msgstr "Entregar al cliente"
 
 #. module: adealer
+#: model:adealer.repair.stage,name:adealer.repair_stage_delivered
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_car__status__delivered
 msgid "Delivered to customer"
 msgstr "Entregado al cliente"
@@ -1533,6 +1549,11 @@ msgstr "Descripción / instrucciones"
 #: model_terms:ir.ui.view,arch_db:adealer.view_partner_balance_wizard_form
 msgid "Details by counterparty"
 msgstr "Detalle por contraparte"
+
+#. module: adealer
+#: model:adealer.repair.stage,name:adealer.repair_stage_diagnostics
+msgid "Diagnostics"
+msgstr "Diagnóstico"
 
 #. module: adealer
 #. odoo-python
@@ -1672,6 +1693,7 @@ msgid "Document subordination structure"
 msgstr "Estructura de subordinación de documentos"
 
 #. module: adealer
+#: model:adealer.repair.stage,name:adealer.repair_stage_ready
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign__done_count
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_service_campaign_line__state__done
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_campaign_form
@@ -2161,6 +2183,11 @@ msgid "Import vehicles from Excel"
 msgstr "Importar vehículos desde Excel"
 
 #. module: adealer
+#: model:adealer.repair.stage,name:adealer.repair_stage_in_work
+msgid "In progress"
+msgstr "En curso"
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/dashboard.py:0
 msgid "In progress now"
@@ -2517,9 +2544,15 @@ msgstr "Solicitudes de mantenimiento"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_lost_demand__user_id
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__service_advisor_id
+#: model:ir.model.fields,field_description:adealer.field_repair_order__service_advisor_id
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_request_search
 msgid "Manager"
 msgstr "Gerente"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__service_advisor_id
+msgid "Manager responsible for the order."
+msgstr "Responsable de la orden de reparación."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_dovirenist
@@ -2592,6 +2625,7 @@ msgstr "Metalizado"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__mileage
+#: model:ir.model.fields,field_description:adealer.field_repair_order__mileage
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_to
 msgid "Mileage"
 msgstr "Kilometraje"
@@ -4488,6 +4522,11 @@ msgid "This document cannot be created from that one."
 msgstr "Este documento no puede crearse a partir de ese."
 
 #. module: adealer
+#: model:ir.model.constraint,message:adealer.constraint_adealer_doc_link_doc_link_unique
+msgid "This link already exists."
+msgstr "Este vínculo ya existe."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.adealer_error_report_view_list
 msgid "Times"
 msgstr "Veces"
@@ -4920,6 +4959,11 @@ msgstr "Hora de recepción del vehículo"
 #: model:ir.model.fields,help:adealer.field_adealer_service_request__mileage
 msgid "Vehicle mileage stated by the customer"
 msgstr "Kilometraje del vehículo declarado por el cliente"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__mileage
+msgid "Vehicle mileage when the car was received for repair."
+msgstr "Kilometraje del vehículo al recibirlo en el taller."
 
 #. module: adealer
 #: model:ir.ui.menu,name:adealer.menu_list_vehicles_models
@@ -5498,30 +5542,10 @@ msgid "Без поста"
 msgstr "Sin puesto"
 
 #. module: adealer
-#: model:adealer.repair.stage,name:adealer.repair_stage_in_work
-msgid "В роботі"
-msgstr "En curso"
-
-#. module: adealer
-#: model:adealer.repair.stage,name:adealer.repair_stage_delivered
-msgid "Видано клієнту"
-msgstr "Entregado al cliente"
-
-#. module: adealer
-#: model:adealer.repair.stage,name:adealer.repair_stage_ready
-msgid "Готово"
-msgstr "Listo"
-
-#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/partner_import.py:0
 msgid "Додано контрагентів: %s"
 msgstr "Contrapartes añadidas: %s"
-
-#. module: adealer
-#: model:adealer.repair.stage,name:adealer.repair_stage_diagnostics
-msgid "Діагностика"
-msgstr "Diagnóstico"
 
 #. module: adealer
 #: model:res.groups,name:adealer.group_adealer_manager
@@ -5532,18 +5556,6 @@ msgstr "Dirección"
 #: model:res.groups,name:adealer.group_adealer_user
 msgid "Користувач"
 msgstr "Usuario"
-
-#. module: adealer
-#: model:ir.model.fields,field_description:adealer.field_repair_order__service_advisor_id
-msgid "Менеджер"
-msgstr "Responsable"
-
-#. module: adealer
-#: model:ir.model.fields,help:adealer.field_repair_order__service_advisor_id
-msgid ""
-"Менеджер/відповідальний наряду (1С: Ответственный; поле ServiceAdvisor для "
-"Winner)"
-msgstr "Responsable de la orden de reparación (1C: Ответственный; campo ServiceAdvisor para Winner)"
 
 #. module: adealer
 #. odoo-python
@@ -5576,11 +5588,6 @@ msgid "Оновлено: %s"
 msgstr "Actualizados: %s"
 
 #. module: adealer
-#: model:adealer.repair.stage,name:adealer.repair_stage_wait_parts
-msgid "Очікування запчастин"
-msgstr "Esperando piezas"
-
-#. module: adealer
 #. odoo-javascript
 #: code:addons/adealer/static/src/xml/booking_board.xml:0
 msgid "По періодах"
@@ -5597,21 +5604,6 @@ msgstr "Por puestos"
 #: code:addons/adealer/models/partner_import.py:0
 msgid "Потребують уваги — %s:"
 msgstr "Requieren atención — %s:"
-
-#. module: adealer
-#: model:adealer.repair.stage,name:adealer.repair_stage_accepted
-msgid "Прийнято"
-msgstr "Recibido"
-
-#. module: adealer
-#: model:ir.model.fields,field_description:adealer.field_repair_order__mileage
-msgid "Пробіг"
-msgstr "Kilometraje"
-
-#. module: adealer
-#: model:ir.model.fields,help:adealer.field_repair_order__mileage
-msgid "Пробіг авто на момент приймання (аналог поля 1С ЗаказНаряд.Пробег)"
-msgstr "Kilometraje del vehículo a la recepción (equivale al campo de 1C ЗаказНаряд.Пробег)"
 
 #. module: adealer
 #. odoo-python

@@ -25,10 +25,10 @@ class RepairOrder(models.Model):
     mechanic_ids = fields.Many2many('hr.employee', string='Mechanics',
         help='Work performers on the order (executors)')
     mileage = fields.Float(
-        'Mileage', help='Vehicle mileage at intake (vehicle mileage at intake)')
+        'Mileage', help='Vehicle mileage when the car was received for repair.')
     service_advisor_id = fields.Many2one(
         'res.users', string='Manager',
-        help='Order manager / responsible')
+        help='Manager responsible for the order.')
     source_sale_order_id = fields.Many2one(
         'sale.order', string='Source Sale Order', copy=False, index=True,
         help='The sale order this repair order was created from')
