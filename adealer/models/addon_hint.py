@@ -34,7 +34,7 @@ PARAM_HIDE = 'adealer.hide_addon_hints'
 
 # Сторінка додатка в магазині. Формат канонічний для apps.odoo.com; усі шість
 # сторінок перевірено — віддають 200.
-STORE_URL = 'https://apps.odoo.com/apps/modules/19.0/%s/'
+STORE_URL = 'https://apps.odoo.com/apps/modules/17.0/%s/'
 
 # Технічна назва → як подати надбудову. Ціна тут довідкова: у магазині вона та
 # сама, що в маніфесті надбудови, і змінюється разом із ним.
@@ -51,6 +51,12 @@ ADDONS = {
         'pitch': _lt("Digital vehicle inspection (DVI) with a green / yellow / red checklist that "
                      "turns findings into a priced quotation, plus loaner cars, prepaid service "
                      "plans and warranty claims."),
+    },
+    'adealer_pro_planner': {
+        'title': "3A-dealer Workshop Planner",
+        'price': "€199",
+        'pitch': _lt("Bay and lift scheduling with no double booking, working hours per bay, "
+                     "free-slot search and online booking for customers."),
     },
     'adealer_pro_parts': {
         'title': "3A-dealer Parts Pro",
@@ -145,7 +151,7 @@ class RepairOrderAddonHint(models.Model):
     _inherit = ['repair.order', 'adealer.addon.hint.mixin']
 
     def _addon_hint_names(self):
-        return ('adealer_pro_service',)
+        return ('adealer_pro_service', 'adealer_pro_planner')
 
 
 class ProductTemplateAddonHint(models.Model):
