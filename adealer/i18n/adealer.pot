@@ -1497,6 +1497,14 @@ msgstr ""
 #. odoo-python
 #: code:addons/adealer/models/addon_hint.py:0
 msgid ""
+"Bay and lift scheduling with no double booking, working hours per bay, "
+"free-slot search and online booking for customers."
+msgstr ""
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/addon_hint.py:0
+msgid ""
 "Decode the VIN into model year, region and manufacturer, and catch typos by "
 "the check digit — offline, no key needed."
 msgstr ""

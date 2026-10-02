@@ -1508,6 +1508,14 @@ msgstr "Debe (devengado)"
 #. odoo-python
 #: code:addons/adealer/models/addon_hint.py:0
 msgid ""
+"Bay and lift scheduling with no double booking, working hours per bay, "
+"free-slot search and online booking for customers."
+msgstr "Planificación de puestos y elevadores sin reservas dobles, horario por puesto, búsqueda de huecos libres y reserva en línea para los clientes."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/addon_hint.py:0
+msgid ""
 "Decode the VIN into model year, region and manufacturer, and catch typos by "
 "the check digit — offline, no key needed."
 msgstr "Descodifica el VIN en año del modelo, región y fabricante, y detecta erratas mediante el dígito de control, sin conexión y sin clave."

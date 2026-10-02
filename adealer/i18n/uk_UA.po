@@ -1510,6 +1510,14 @@ msgstr "Дебет (нараховано)"
 #. odoo-python
 #: code:addons/adealer/models/addon_hint.py:0
 msgid ""
+"Bay and lift scheduling with no double booking, working hours per bay, "
+"free-slot search and online booking for customers."
+msgstr "Планування постів і підйомників без подвійного запису, робочі години кожного поста, пошук вільного вікна й онлайн-запис для клієнтів."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/addon_hint.py:0
+msgid ""
 "Decode the VIN into model year, region and manufacturer, and catch typos by "
 "the check digit — offline, no key needed."
 msgstr "Розшифровка VIN: модельний рік, регіон і виробник, а контрольна цифра ловить одруківки, — офлайн, без жодного ключа."
