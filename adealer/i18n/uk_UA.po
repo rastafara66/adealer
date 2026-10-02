@@ -3757,3 +3757,18 @@ msgid ""
 "What the paid 3A-dealer add-ons would add here. Hidden once the add-on is "
 "installed; can be switched off in Settings."
 msgstr "Що додали б тут платні надбудови 3A-dealer. Зникає, щойно надбудову встановлено; вимикається в Налаштуваннях."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
+msgid "Odoo 18 edition"
+msgstr "Версія для Odoo 18"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
+msgid "Not all features of newer versions"
+msgstr "Доступні не всі функції новіших версій"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
+msgid "This is the Odoo 18 edition of 3A-dealer and its paid add-ons. Some features of newer versions are not available here; the full feature set is in the version for Odoo 19."
+msgstr "Це версія 3A-dealer і його платних модулів для Odoo 18. Частини функцій новіших версій тут немає; повний набір — у версії для Odoo 19."

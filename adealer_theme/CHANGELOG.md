@@ -3,6 +3,12 @@
 Navy & gold backend theme for Odoo. Newest on top.
 Тема оформлення бекенду. Найновіше — зверху.
 
+## 18.0.1.2.2 — 2026-10-02
+
+### Changed
+
+- Примітка: у версії для Odoo 18 доступні не всі функції новіших версій. Note: not all features of newer versions are available in the Odoo 18 edition.
+
 ## 18.0.1.2.1 - 2026-09-07
 
 ### Changed

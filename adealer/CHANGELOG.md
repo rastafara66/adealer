@@ -3,6 +3,12 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## 18.0.1.11.5 — 2026-10-02
+
+### Changed
+
+- Примітка: у версії для Odoo 18 доступні не всі функції новіших версій. Note: not all features of newer versions are available in the Odoo 18 edition.
+
 ## 18.0.1.11.4 — 2026-10-02
 
 ### Fixed

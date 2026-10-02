@@ -9,6 +9,10 @@
             <field name="arch" type="xml">
                 <xpath expr="//form" position="inside">
                     <app data-string="3A-dealer" string="3A-dealer" name="adealer">
+                        <block title="Odoo 18 edition" name="adealer_series_note">
+                            <setting id="adealer_series_note_setting" string="Not all features of newer versions"
+                                     help="This is the Odoo 18 edition of 3A-dealer and its paid add-ons. Some features of newer versions are not available here; the full feature set is in the version for Odoo 19."/>
+                        </block>
                         <block title="Interface" name="adealer_ui">
                             <setting string="Branded theme + side menu (sidebar)" help="3A-dealer branded theme (navy/gold) and the classic left side menu. On by default.">
                                 <field name="adealer_sidebar_enabled"/>
