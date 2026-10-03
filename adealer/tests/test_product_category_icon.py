@@ -6,9 +6,12 @@ name ("oil filter" is a filter and an oil). Each pair below pins one such
 dispute, so reordering ICON_RULES shows up here instead of silently changing
 the icons of dozens of groups.
 """
+import importlib.util
+
 from lxml import etree
 
 from odoo.tests import TransactionCase, tagged
+from odoo.tools.misc import file_path
 
 from odoo.addons.adealer.models.product_category import icon_for_name
 
@@ -96,6 +99,32 @@ class TestProductListByGroup(TransactionCase):
         search = self.env['product.product'].get_views([(False, 'search')])['views']['search']['arch']
         self.assertTrue(etree.fromstring(search).xpath("//filter[@name='group_by_categ_id']"),
                         "the search view must keep the filter the action turns on")
+
+    def test_upgrade_frees_a_slot_taken_by_hand(self):
+        # A database where someone had bound the products action to another
+        # list view could not be upgraded to 19.0.1.16.0 at all: one view per
+        # type per action, and the slot was taken. The pre-migration frees it.
+        action = self.env.ref('adealer.action_window_products')
+        ours = self.env.ref('adealer.action_window_products_list')
+        other = self.env.ref('product.product_product_tree_view')
+        ours.unlink()
+        self.env.cr.execute(
+            "INSERT INTO ir_act_window_view (act_window_id, view_mode, view_id, sequence) "
+            "VALUES (%s, 'list', %s, 0) RETURNING id", (action.id, other.id))
+        stray = self.env.cr.fetchone()[0]
+        path = file_path('adealer/migrations/19.0.1.16.0/pre-migrate.py')
+        spec = importlib.util.spec_from_file_location('adealer_pre_migrate_19_0_1_16_0', path)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        module.migrate(self.env.cr, '19.0.1.15.5')
+        self.env.cr.execute("SELECT id FROM ir_act_window_view WHERE id = %s", (stray,))
+        self.assertFalse(self.env.cr.fetchall(), "the hand-made list binding must be gone")
+        kanban = self.env.ref('adealer.action_window_products_kanban')
+        self.assertTrue(kanban.exists(), "the module's own bindings stay")
+        # the slot is free again: the module's list binding fits back in
+        self.env['ir.actions.act_window.view'].create({
+            'act_window_id': action.id, 'view_mode': 'list', 'sequence': 1,
+            'view_id': self.env.ref('adealer.view_product_list_groups').id})
 
     def test_tree_list_gets_every_group(self):
         # Without groups_limit Odoo sends the first 80 groups and the tree
