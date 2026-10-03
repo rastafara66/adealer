@@ -3,6 +3,13 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## 19.0.1.16.0 — 2026-10-03
+
+### Added
+
+- Products open as a list. Products by group: a collapsible tree of nested groups, each group with its own icon.
+- Товари відкриваються списком. Товари за групами: згорнуте дерево вкладених груп, у кожної групи своя іконка.
+
 ## 19.0.1.15.5 — 2026-10-03
 
 ### Changed

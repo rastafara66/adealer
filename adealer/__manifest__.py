@@ -50,7 +50,7 @@ Key features:
     'live_test_url': "https://demo-3adealer.yellow.in.ua",
     'license': "LGPL-3",
     'category': 'Sales',
-    'version': '19.0.1.15.5',
+    'version': '19.0.1.16.0',
     'images': [
         # The first image is the card picture in the App Store listing. A
         # screenshot shrunk to a thumbnail reads as a grey smudge; the banner
@@ -93,6 +93,7 @@ Key features:
         'views/addresses_import_wizard.xml',  # <-- цей файл має бути раніше за views.xml!
         'views/partner_import_wizard.xml', # <-- цей файл має бути раніше за views.xml!
         'views/journals.xml',  # <-- журнальні list-view; мають бути раніше за views.xml (actions на них посилаються)
+        'views/product_category.xml',  # <-- список товарів із деревом груп; раніше за views.xml (дія товарів на нього посилається)
         'views/views.xml',
         # Структура підпорядкованості документів. Після views.xml: прив'язки
         # дій показуються в шестерні «Дії», а не власним меню.
@@ -146,6 +147,10 @@ Key features:
             'adealer/static/src/css/booking_board.css',
             'adealer/static/src/js/booking_board/board.js',
             'adealer/static/src/xml/booking_board.xml',
+            # Список товарів «За групами»: групи деревом, як теки довідника.
+            'adealer/static/src/css/category_tree_list.css',
+            'adealer/static/src/js/category_tree_list/category_tree_list.js',
+            'adealer/static/src/js/category_tree_list/category_tree_list.xml',
         ],
     },
     # Без зовнішніх Python-залежностей: .xlsx читаємо через openpyxl,

@@ -1476,6 +1476,12 @@ msgid ""
 msgstr "Створити чернетку рахунку на всі рядки наряду: запчастини й роботи."
 
 #. module: adealer
+#: model_terms:ir.actions.act_window,help:adealer.action_window_products
+#: model_terms:ir.actions.act_window,help:adealer.action_window_products_by_group
+msgid "Create a product"
+msgstr "Створіть товар"
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_form
 msgid "Create a repair order from this booking and mark the booking done."
 msgstr "Створити наряд із цього запису й позначити запис виконаним."
@@ -2020,6 +2026,7 @@ msgstr "Знижка на рядок, у відсотках."
 #: model:ir.model.fields,field_description:adealer.field_partner_balance_wizard_line__display_name
 #: model:ir.model.fields,field_description:adealer.field_partner_child_cleanup_wizard__display_name
 #: model:ir.model.fields,field_description:adealer.field_partner_import_wizard__display_name
+#: model:ir.model.fields,field_description:adealer.field_product_category__display_name
 #: model:ir.model.fields,field_description:adealer.field_product_template__display_name
 #: model:ir.model.fields,field_description:adealer.field_purchase_order__display_name
 #: model:ir.model.fields,field_description:adealer.field_repair_line__display_name
@@ -2340,6 +2347,14 @@ msgid "Followers (Partners)"
 msgstr "Підписники (Партнери)"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_product_category__adealer_icon
+msgid ""
+"Font Awesome icon shown next to the group in the product list grouped by "
+"group, e.g. fa-tint. It is picked from the name when the group is created; "
+"clear it and save to pick it again."
+msgstr "Значок Font Awesome біля групи в списку товарів за групами, напр. fa-tint. Підбирається за назвою, коли групу створюють; очистьте поле й збережіть, щоб підібрати знову."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_service_request__activity_type_icon
 #: model:ir.model.fields,help:adealer.field_dealer_car__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
@@ -2432,6 +2447,13 @@ msgstr "Група"
 #: model:ir.model.fields,field_description:adealer.field_adealer_part_analog_group__name
 msgid "Group name"
 msgstr "Назва групи"
+
+#. module: adealer
+#: model_terms:ir.actions.act_window,help:adealer.action_window_products
+msgid ""
+"Group the list by product group (Group By → Product Category) to see the "
+"groups as a tree of folders."
+msgstr "Згрупуйте список за групою товару (Групувати за → Категорія товару), щоб побачити групи деревом тек."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_repair_type__is_warranty
@@ -2662,6 +2684,7 @@ msgstr "HTTP-статус"
 #: model:ir.model.fields,field_description:adealer.field_partner_balance_wizard_line__id
 #: model:ir.model.fields,field_description:adealer.field_partner_child_cleanup_wizard__id
 #: model:ir.model.fields,field_description:adealer.field_partner_import_wizard__id
+#: model:ir.model.fields,field_description:adealer.field_product_category__id
 #: model:ir.model.fields,field_description:adealer.field_product_template__id
 #: model:ir.model.fields,field_description:adealer.field_purchase_order__id
 #: model:ir.model.fields,field_description:adealer.field_repair_line__id
@@ -2680,6 +2703,7 @@ msgstr "ID"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__activity_exception_icon
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__activity_exception_icon
+#: model:ir.model.fields,field_description:adealer.field_product_category__adealer_icon
 msgid "Icon"
 msgstr "Значок"
 
@@ -3536,6 +3560,12 @@ msgid "No data for the period"
 msgstr "Немає даних за період"
 
 #. module: adealer
+#. odoo-javascript
+#: code:addons/adealer/static/src/js/category_tree_list/category_tree_list.js:0
+msgid "No group"
+msgstr "Без групи"
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/app_update.py:0
 msgid "No paid add-ons are installed."
@@ -3724,6 +3754,11 @@ msgid ""
 "type and the line of code, never the text and nothing about your vehicles, "
 "customers or amounts. Read every queued report before it leaves."
 msgstr "Типово вимкнено. Коли ввімкнено, неочікуваний збій надсилає звіт — тип помилки й рядок коду, ніколи не текст і нічого про ваші авто, клієнтів чи суми. Кожен звіт із черги можна прочитати до відправки."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_product_list_groups
+msgid "On Hand"
+msgstr "В наявності"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_partner_balance_wizard_line__balance
@@ -4345,6 +4380,11 @@ msgid "Photos"
 msgstr "Фотографії"
 
 #. module: adealer
+#: model:ir.actions.server,name:adealer.action_product_category_pick_icons
+msgid "Pick icons by name"
+msgstr "Підібрати значки за назвою"
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_repair_order__picking_count
 msgid "Picking Count"
 msgstr "К-сть відвантажень"
@@ -4478,6 +4518,11 @@ msgid "Product / service"
 msgstr "Товар / послуга"
 
 #. module: adealer
+#: model:ir.model,name:adealer.model_product_category
+msgid "Product Category"
+msgstr "Категорія товару"
+
+#. module: adealer
 #: model:ir.actions.act_window,name:adealer.action_window_product_category
 msgid "Product category"
 msgstr "Категорія товару"
@@ -4490,6 +4535,7 @@ msgstr "Список товарів"
 
 #. module: adealer
 #: model:ir.actions.act_window,name:adealer.action_window_products
+#: model_terms:ir.ui.view,arch_db:adealer.view_product_list_groups
 msgid "Products"
 msgstr "Товари"
 
@@ -4499,6 +4545,19 @@ msgstr "Товари"
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
 msgid "Products and services"
 msgstr "Товари та послуги"
+
+#. module: adealer
+#: model_terms:ir.actions.act_window,help:adealer.action_window_products_by_group
+msgid ""
+"Products appear here under their groups; click a group to open it. Groups "
+"and their icons are edited under Categories."
+msgstr "Товари показано тут за групами; натисніть на групу, щоб розгорнути її. Групи та їхні значки редагують у розділі «Категорії»."
+
+#. module: adealer
+#: model:ir.actions.act_window,name:adealer.action_window_products_by_group
+#: model:ir.ui.menu,name:adealer.menu_products_by_group
+msgid "Products by group"
+msgstr "Товари за групами"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_gross
@@ -5032,6 +5091,11 @@ msgstr "Продажі"
 #: model:ir.model,name:adealer.model_sale_order
 msgid "Sales Order"
 msgstr "Замовлення покупця"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_product_list_groups
+msgid "Sales Price"
+msgstr "Продажна ціна"
 
 #. module: adealer
 #: model:ir.actions.act_window,name:adealer.action_window_realizatsii

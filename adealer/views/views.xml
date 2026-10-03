@@ -6,13 +6,55 @@
         <record model="ir.actions.act_window" id="adealer.action_window_product_category">
             <field name="name">Product category</field>
             <field name="res_model">product.category</field>
-            <field name="view_mode">kanban,list,form</field>
+            <field name="view_mode">list,form</field>
         </record>
+        <!-- Товари відкриваються СПИСКОМ, як довідник в 1С; картки — другим
+             видом. Групування за групою товару показує дерево груп
+             (adealer_category_tree_list), згорнуте. -->
         <record model="ir.actions.act_window" id="adealer.action_window_products">
             <field name="name">Products</field>
             <field name="res_model">product.product</field>
-            <field name="view_mode">kanban,list,form</field>
+            <field name="view_mode">list,kanban,form</field>
+            <field name="view_id" ref="adealer.view_product_list_groups"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create a product</p>
+                <p>Group the list by product group (Group By → Product Category) to see the groups as a tree of folders.</p>
+            </field>
+        </record>
+        <record model="ir.actions.act_window.view" id="adealer.action_window_products_list">
+            <field name="sequence">1</field>
+            <field name="view_mode">list</field>
+            <field name="view_id" ref="adealer.view_product_list_groups"/>
+            <field name="act_window_id" ref="adealer.action_window_products"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="adealer.action_window_products_kanban">
+            <field name="sequence">2</field>
+            <field name="view_mode">kanban</field>
             <field name="view_id" ref="adealer.view_product_card_kanban"/>
+            <field name="act_window_id" ref="adealer.action_window_products"/>
+        </record>
+        <record model="ir.actions.act_window" id="adealer.action_window_products_by_group">
+            <field name="name">Products by group</field>
+            <field name="res_model">product.product</field>
+            <field name="view_mode">list,kanban,form</field>
+            <field name="view_id" ref="adealer.view_product_list_groups"/>
+            <field name="context">{'search_default_group_by_categ_id': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create a product</p>
+                <p>Products appear here under their groups; click a group to open it. Groups and their icons are edited under Categories.</p>
+            </field>
+        </record>
+        <record model="ir.actions.act_window.view" id="adealer.action_window_products_by_group_list">
+            <field name="sequence">1</field>
+            <field name="view_mode">list</field>
+            <field name="view_id" ref="adealer.view_product_list_groups"/>
+            <field name="act_window_id" ref="adealer.action_window_products_by_group"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="adealer.action_window_products_by_group_kanban">
+            <field name="sequence">2</field>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="adealer.view_product_card_kanban"/>
+            <field name="act_window_id" ref="adealer.action_window_products_by_group"/>
         </record>
 
         <record model="ir.actions.act_window" id="adealer.action_window_partners">
@@ -121,6 +163,8 @@
                 action="adealer.action_window_product_category"  sequence="21"/>
         <menuitem name="Product list" id="adealer.menu_list_products" parent="adealer.menu_products"
                 action="adealer.action_window_products" sequence="22"/>
+        <menuitem name="Products by group" id="adealer.menu_products_by_group" parent="adealer.menu_products"
+                action="adealer.action_window_products_by_group" sequence="23"/>
 
         <!-- menu Contacts -->
         <menuitem name="Partners and users" id="adealer.menu_contacts" parent="adealer.menu_root" sequence="4"/>

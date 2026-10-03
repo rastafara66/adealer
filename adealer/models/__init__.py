@@ -9,6 +9,7 @@ from . import partner_import
 from . import partner
 from . import partner_import_wizard
 from . import product
+from . import product_category
 from . import res_config_settings
 from . import res_users
 from . import sale

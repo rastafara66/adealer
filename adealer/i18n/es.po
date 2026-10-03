@@ -1474,6 +1474,12 @@ msgid ""
 msgstr "Crear una factura en borrador para todas las líneas de la orden de reparación, piezas y mano de obra."
 
 #. module: adealer
+#: model_terms:ir.actions.act_window,help:adealer.action_window_products
+#: model_terms:ir.actions.act_window,help:adealer.action_window_products_by_group
+msgid "Create a product"
+msgstr "Cree un producto"
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_form
 msgid "Create a repair order from this booking and mark the booking done."
 msgstr "Crear una orden de reparación a partir de esta cita y marcarla como hecha."
@@ -2018,6 +2024,7 @@ msgstr "Descuento de la línea, en porcentaje."
 #: model:ir.model.fields,field_description:adealer.field_partner_balance_wizard_line__display_name
 #: model:ir.model.fields,field_description:adealer.field_partner_child_cleanup_wizard__display_name
 #: model:ir.model.fields,field_description:adealer.field_partner_import_wizard__display_name
+#: model:ir.model.fields,field_description:adealer.field_product_category__display_name
 #: model:ir.model.fields,field_description:adealer.field_product_template__display_name
 #: model:ir.model.fields,field_description:adealer.field_purchase_order__display_name
 #: model:ir.model.fields,field_description:adealer.field_repair_line__display_name
@@ -2338,6 +2345,14 @@ msgid "Followers (Partners)"
 msgstr "Seguidores (Contactos)"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_product_category__adealer_icon
+msgid ""
+"Font Awesome icon shown next to the group in the product list grouped by "
+"group, e.g. fa-tint. It is picked from the name when the group is created; "
+"clear it and save to pick it again."
+msgstr "Icono de Font Awesome junto al grupo en la lista de productos por grupo, p. ej. fa-tint. Se elige según el nombre al crear el grupo; vacíe el campo y guarde para elegirlo de nuevo."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_service_request__activity_type_icon
 #: model:ir.model.fields,help:adealer.field_dealer_car__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
@@ -2430,6 +2445,13 @@ msgstr "Grupo"
 #: model:ir.model.fields,field_description:adealer.field_adealer_part_analog_group__name
 msgid "Group name"
 msgstr "Nombre del grupo"
+
+#. module: adealer
+#: model_terms:ir.actions.act_window,help:adealer.action_window_products
+msgid ""
+"Group the list by product group (Group By → Product Category) to see the "
+"groups as a tree of folders."
+msgstr "Agrupe la lista por grupo de productos (Agrupar por → Categoría de producto) para ver los grupos como un árbol de carpetas."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_repair_type__is_warranty
@@ -2660,6 +2682,7 @@ msgstr "Estado HTTP"
 #: model:ir.model.fields,field_description:adealer.field_partner_balance_wizard_line__id
 #: model:ir.model.fields,field_description:adealer.field_partner_child_cleanup_wizard__id
 #: model:ir.model.fields,field_description:adealer.field_partner_import_wizard__id
+#: model:ir.model.fields,field_description:adealer.field_product_category__id
 #: model:ir.model.fields,field_description:adealer.field_product_template__id
 #: model:ir.model.fields,field_description:adealer.field_purchase_order__id
 #: model:ir.model.fields,field_description:adealer.field_repair_line__id
@@ -2678,6 +2701,7 @@ msgstr "ID"
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__activity_exception_icon
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__activity_exception_icon
+#: model:ir.model.fields,field_description:adealer.field_product_category__adealer_icon
 msgid "Icon"
 msgstr "Icono"
 
@@ -3534,6 +3558,12 @@ msgid "No data for the period"
 msgstr "Sin datos para el periodo"
 
 #. module: adealer
+#. odoo-javascript
+#: code:addons/adealer/static/src/js/category_tree_list/category_tree_list.js:0
+msgid "No group"
+msgstr "Sin grupo"
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/app_update.py:0
 msgid "No paid add-ons are installed."
@@ -3722,6 +3752,11 @@ msgid ""
 "type and the line of code, never the text and nothing about your vehicles, "
 "customers or amounts. Read every queued report before it leaves."
 msgstr "Desactivado por defecto. Si se activa, un fallo inesperado envía un informe: el tipo de error y la línea de código, nunca el texto ni nada sobre sus vehículos, clientes o importes. Lea cada informe pendiente antes de que se envíe."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_product_list_groups
+msgid "On Hand"
+msgstr "Stock real"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_partner_balance_wizard_line__balance
@@ -4343,6 +4378,11 @@ msgid "Photos"
 msgstr "Fotos"
 
 #. module: adealer
+#: model:ir.actions.server,name:adealer.action_product_category_pick_icons
+msgid "Pick icons by name"
+msgstr "Elegir iconos según el nombre"
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_repair_order__picking_count
 msgid "Picking Count"
 msgstr "Número de recogidas"
@@ -4476,6 +4516,11 @@ msgid "Product / service"
 msgstr "Producto / servicio"
 
 #. module: adealer
+#: model:ir.model,name:adealer.model_product_category
+msgid "Product Category"
+msgstr "Categoría de producto"
+
+#. module: adealer
 #: model:ir.actions.act_window,name:adealer.action_window_product_category
 msgid "Product category"
 msgstr "Categoría de producto"
@@ -4488,6 +4533,7 @@ msgstr "Lista de productos"
 
 #. module: adealer
 #: model:ir.actions.act_window,name:adealer.action_window_products
+#: model_terms:ir.ui.view,arch_db:adealer.view_product_list_groups
 msgid "Products"
 msgstr "Productos"
 
@@ -4497,6 +4543,19 @@ msgstr "Productos"
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
 msgid "Products and services"
 msgstr "Productos y servicios"
+
+#. module: adealer
+#: model_terms:ir.actions.act_window,help:adealer.action_window_products_by_group
+msgid ""
+"Products appear here under their groups; click a group to open it. Groups "
+"and their icons are edited under Categories."
+msgstr "Los productos aparecen aquí bajo sus grupos; haga clic en un grupo para abrirlo. Los grupos y sus iconos se editan en Categorías."
+
+#. module: adealer
+#: model:ir.actions.act_window,name:adealer.action_window_products_by_group
+#: model:ir.ui.menu,name:adealer.menu_products_by_group
+msgid "Products by group"
+msgstr "Productos por grupo"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_gross
@@ -5030,6 +5089,11 @@ msgstr "Ventas"
 #: model:ir.model,name:adealer.model_sale_order
 msgid "Sales Order"
 msgstr "Pedido de venta"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_product_list_groups
+msgid "Sales Price"
+msgstr "Precio de venta"
 
 #. module: adealer
 #: model:ir.actions.act_window,name:adealer.action_window_realizatsii
