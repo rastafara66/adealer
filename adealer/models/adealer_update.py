@@ -268,8 +268,10 @@ class DealerCarUpdateBanner(models.Model):
     """
     _inherit = 'dealer.car'
 
-    update_message = fields.Char(compute='_compute_update_message')
-    update_url = fields.Char(compute='_compute_update_message')
+    update_message = fields.Char(compute='_compute_update_message',
+                                 help='Shown when a newer version of 3A-dealer is published.')
+    update_url = fields.Char(compute='_compute_update_message',
+                             help='The store page of the newer version: download it there, then upgrade the module in Apps.')
 
     def _compute_update_message(self):
         # Питаємо один раз на весь набір: відповідь не залежить від запису.
@@ -283,8 +285,10 @@ class RepairOrderUpdateBanner(models.Model):
     """Те саме в наряді — другий екран, за яким сидять цілий день."""
     _inherit = 'repair.order'
 
-    update_message = fields.Char(compute='_compute_update_message')
-    update_url = fields.Char(compute='_compute_update_message')
+    update_message = fields.Char(compute='_compute_update_message',
+                                 help='Shown when a newer version of 3A-dealer is published.')
+    update_url = fields.Char(compute='_compute_update_message',
+                             help='The store page of the newer version: download it there, then upgrade the module in Apps.')
 
     def _compute_update_message(self):
         message, url = self.env['adealer.update'].update_banner()

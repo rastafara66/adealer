@@ -16,15 +16,24 @@ class MechanicOutputReport(models.Model):
     _auto = False
     _order = 'date desc'
 
-    mechanic_id = fields.Many2one('hr.employee', 'Performer', readonly=True)
-    repair_id = fields.Many2one('repair.order', 'Order', readonly=True)
-    vehicle_id = fields.Many2one('fleet.vehicle', 'Vehicle', readonly=True)
-    partner_id = fields.Many2one('res.partner', 'Customer', readonly=True)
-    product_id = fields.Many2one('product.product', 'Work/service', readonly=True)
-    date = fields.Date('Date', readonly=True)
-    normo_hours = fields.Float('Standard hours', readonly=True)
-    amount = fields.Float('Amount', readonly=True)
-    line_count = fields.Integer('Works count', readonly=True)
+    mechanic_id = fields.Many2one('hr.employee', 'Performer', readonly=True,
+                                  help='Who did the work.')
+    repair_id = fields.Many2one('repair.order', 'Order', readonly=True,
+                                help='The repair order of the work.')
+    vehicle_id = fields.Many2one('fleet.vehicle', 'Vehicle', readonly=True,
+                                 help='The vehicle worked on.')
+    partner_id = fields.Many2one('res.partner', 'Customer', readonly=True,
+                                 help='The customer of the repair order.')
+    product_id = fields.Many2one('product.product', 'Work/service', readonly=True,
+                                 help='The labour item done.')
+    date = fields.Date('Date', readonly=True,
+                       help='Date of the repair order.')
+    normo_hours = fields.Float('Standard hours', readonly=True,
+                               help="Standard hours of the work: the basis for the mechanic's pay.")
+    amount = fields.Float('Amount', readonly=True,
+                          help='Amount of the work.')
+    line_count = fields.Integer('Works count', readonly=True,
+                                help='How many labour lines are counted.')
 
     def init(self):
         tools.drop_view_if_exists(self.env.cr, self._table)

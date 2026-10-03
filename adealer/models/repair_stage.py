@@ -15,14 +15,18 @@ class RepairStage(models.Model):
     _description = 'Order stage'
     _order = 'sequence, id'
 
-    name = fields.Char('Name', required=True, translate=True)
-    sequence = fields.Integer('Order', default=10)
+    name = fields.Char('Name', required=True, translate=True,
+                       help='Name of the stage, as shown on the repair order board.')
+    sequence = fields.Integer('Order', default=10,
+                              help='Order of the stage on the board.')
     fold = fields.Boolean('Collapsed in kanban',
                           help='Collapse the board column (for final stages)')
     is_closing = fields.Boolean('Final',
                                 help='An order in this stage is considered closed')
-    description = fields.Text('Description')
-    active = fields.Boolean(default=True)
+    description = fields.Text('Description',
+                              help='What the stage means, for the workshop.')
+    active = fields.Boolean(default=True,
+                            help='Clear to hide the stage without deleting it.')
 
 
 class RepairStageHistory(models.Model):
@@ -31,10 +35,14 @@ class RepairStageHistory(models.Model):
     _order = 'change_date desc, id desc'
 
     repair_id = fields.Many2one('repair.order', 'Order', required=True,
-                                ondelete='cascade', index=True)
-    stage_id = fields.Many2one('adealer.repair.stage', 'Stage')
-    change_date = fields.Datetime('Change date', default=fields.Datetime.now)
-    user_id = fields.Many2one('res.users', 'Changed by', default=lambda self: self.env.user)
+                                ondelete='cascade', index=True,
+                                help='The repair order whose stage changed.')
+    stage_id = fields.Many2one('adealer.repair.stage', 'Stage',
+                               help='The stage the order was moved to.')
+    change_date = fields.Datetime('Change date', default=fields.Datetime.now,
+                                  help='When the stage changed.')
+    user_id = fields.Many2one('res.users', 'Changed by', default=lambda self: self.env.user,
+                              help='Who moved the order.')
 
 
 class RepairOrderStage(models.Model):
@@ -45,9 +53,11 @@ class RepairOrderStage(models.Model):
     # Стадію за замовчуванням ставимо у create() (виконується під час роботи).
     stage_id = fields.Many2one('adealer.repair.stage', 'Stage',
                                group_expand='_read_group_stage_ids',
-                               tracking=True, copy=False, index=True)
+                               tracking=True, copy=False, index=True,
+                               help='Where the repair order is in the workshop: drag the card on the board to change it.')
     stage_history_ids = fields.One2many('adealer.repair.stage.history', 'repair_id',
-                                        'State history')
+                                        'State history',
+                                        help='Every stage change: when and by whom.')
 
     @api.model
     def _read_group_stage_ids(self, stages, domain):

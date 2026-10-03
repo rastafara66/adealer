@@ -58,11 +58,13 @@ class AdealerAppUpdate(models.TransientModel):
             resp = requests.get(url, timeout=10)
             resp.raise_for_status()
         except requests.RequestException as e:
-            raise UserError(_("Could not check for updates:\n%s") % e)
+            raise UserError(_("Could not check for updates:\n%s\n\nFirst make sure the "
+                              "server can reach the Internet, then press Check now again.") % e)
         m = VERSION_RE.search(resp.text)
         latest = m.group(1) if m else ''
         if not latest:
-            raise UserError(_("Could not find a version number at the update URL."))
+            raise UserError(_("Could not find a version number at the update URL. Try "
+                              "again later; if it repeats, report it to the author."))
         ICP = self.env['ir.config_parameter'].sudo()
         ICP.set_param('adealer.latest_version', latest)
         ICP.set_param('adealer.latest_checked', fields.Datetime.to_string(fields.Datetime.now()))
@@ -132,15 +134,20 @@ class AdealerAppUpdate(models.TransientModel):
                 ['git', '-C', real, 'rev-parse', '--is-inside-work-tree'],
                 capture_output=True, text=True, timeout=30)
         except (OSError, subprocess.SubprocessError) as e:
-            raise UserError(_("git is not available on the server:\n%s") % e)
+            raise UserError(_("git is not available on the server:\n%s\n\nOpen the Odoo App "
+                              "Store and download the new version instead, or install git "
+                              "on the server.") % e)
         if probe.returncode != 0 or probe.stdout.strip() != 'true':
             raise UserError(_(
                 "The module directory is not a git checkout (%s).\n"
-                "Download the new version from the Odoo App Store instead.") % real)
+                "Open the Odoo App Store and download the new version instead.") % real)
         pull = subprocess.run(['git', '-C', real, 'pull', '--ff-only'],
                               capture_output=True, text=True, timeout=120)
         if pull.returncode != 0:
-            raise UserError(_("git pull failed:\n%s") % (pull.stderr or pull.stdout))
+            raise UserError(_("git pull failed:\n%s\n\nCheck the message above: local changes "
+                              "on the server or no access to GitHub are the usual causes. "
+                              "Or open the Odoo App Store and download the new version.")
+                            % (pull.stderr or pull.stdout))
         result = (pull.stdout or '').strip()
         self.env['ir.module.module'].sudo().search(
             [('name', '=', 'adealer')], limit=1).button_immediate_upgrade()
@@ -150,20 +157,26 @@ class AdealerAppUpdate(models.TransientModel):
 class ResConfigSettingsUpdate(models.TransientModel):
     _inherit = 'res.config.settings'
 
-    adealer_version_installed = fields.Char("3A-dealer installed version", readonly=True)
+    adealer_version_installed = fields.Char("3A-dealer installed version", readonly=True,
+                                            help='The version of 3A-dealer installed in this database.')
     #: Чи є на цьому сервері git — рахується ДО показу кнопки, а не після
     #: натискання. Кнопка, яка завжди помиляється, гірша за її відсутність.
-    adealer_git_ready = fields.Boolean(compute="_compute_adealer_git")
-    adealer_git_reason = fields.Char(compute="_compute_adealer_git")
+    adealer_git_ready = fields.Boolean(compute="_compute_adealer_git",
+                                       help='Set when the module is a git checkout on the server, so it can be updated from GitHub.')
+    adealer_git_reason = fields.Char(compute="_compute_adealer_git",
+                                     help='Why updating from GitHub is not possible here.')
 
     def _compute_adealer_git(self):
         ready, reason = self.env['adealer.app.update'].git_status()
         for record in self:
             record.adealer_git_ready = ready
             record.adealer_git_reason = reason
-    adealer_version_latest = fields.Char("Latest published version", readonly=True)
-    adealer_version_checked = fields.Char("Last checked", readonly=True)
-    adealer_update_available = fields.Boolean("Update available", readonly=True)
+    adealer_version_latest = fields.Char("Latest published version", readonly=True,
+                                         help='The newest published version, as of the last check.')
+    adealer_version_checked = fields.Char("Last checked", readonly=True,
+                                          help='When the published version was last read.')
+    adealer_update_available = fields.Boolean("Update available", readonly=True,
+                                              help='Set when the published version is newer than the installed one.')
     adealer_update_channel_url = fields.Char(
         "Update check URL",
         help="URL used to read the latest published version "
@@ -171,7 +184,8 @@ class ResConfigSettingsUpdate(models.TransientModel):
     # Одним рядком, зібраним у Python. Текст упереміш із полями у вигляді
     # виглядає так само, але до перекладача доходить обрізками, з яких
     # української фрази не скласти.
-    adealer_addons_status = fields.Char("Add-ons", readonly=True)
+    adealer_addons_status = fields.Char("Add-ons", readonly=True,
+                                        help='Versions of the installed paid add-ons and whether they are current.')
 
     def get_values(self):
         res = super().get_values()

@@ -16,17 +16,21 @@ class PartnerBalanceWizard(models.TransientModel):
 
     date_from = fields.Date(
         'Period from', required=True,
-        default=lambda self: fields.Date.context_today(self).replace(month=1, day=1))
+        default=lambda self: fields.Date.context_today(self).replace(month=1, day=1),
+                            help='First day of the period. Everything before it is the opening balance.')
     date_to = fields.Date(
         'to', required=True,
-        default=lambda self: fields.Date.context_today(self))
+        default=lambda self: fields.Date.context_today(self),
+                          help='Last day of the period, inclusive.')
     partner_id = fields.Many2one(
         'res.partner', string='Counterparty',
         help='Empty — summary across all counterparties')
     currency_id = fields.Many2one(
-        'res.currency', default=lambda self: self.env.company.currency_id.id)
+        'res.currency', default=lambda self: self.env.company.currency_id.id,
+                                  help='Currency of the amounts: the company currency.')
     line_ids = fields.One2many(
-        'partner.balance.wizard.line', 'wizard_id', string='Statement', readonly=True)
+        'partner.balance.wizard.line', 'wizard_id', string='Statement', readonly=True,
+                               help='Opening balance, documents of the period and closing balance; click a line to open its document.')
 
     def _aml_domain(self):
         return [('account_id.account_type', 'in', ('asset_receivable', 'liability_payable')),
@@ -110,23 +114,34 @@ class PartnerBalanceWizardLine(models.TransientModel):
     # і без жодної помилки — тиха порожнеча гірша за червоне вікно.
     _transient_max_hours = 24
 
-    wizard_id = fields.Many2one('partner.balance.wizard', required=True, ondelete='cascade')
-    sequence = fields.Integer()
+    wizard_id = fields.Many2one('partner.balance.wizard', required=True, ondelete='cascade',
+                                help='The statement this line belongs to.')
+    sequence = fields.Integer(help='Order of the line in the statement.')
     line_type = fields.Selection([
         ('opening', 'Opening balance'),
         ('move', 'Document'),
         ('partner', 'Counterparty'),
         ('total', 'Turnover'),
-        ('closing', 'Closing balance')])
-    date = fields.Date('Date')
-    doc_name = fields.Char('Document / Counterparty')
-    move_id = fields.Many2one('account.move', string='Document')
-    partner_line_id = fields.Many2one('res.partner', string='Counterparty')
-    currency_id = fields.Many2one('res.currency')
-    opening = fields.Monetary('Opening balance', currency_field='currency_id')
-    debit = fields.Monetary('Debit (accrued)', currency_field='currency_id')
-    credit = fields.Monetary('Credit (paid)', currency_field='currency_id')
-    balance = fields.Monetary('On hand', currency_field='currency_id')
+        ('closing', 'Closing balance')],
+                                 help='What the line is: opening balance, a document, a counterparty in the summary, turnover or closing balance.')
+    date = fields.Date('Date',
+                       help='Date of the document.')
+    doc_name = fields.Char('Document / Counterparty',
+                           help='The document, or the counterparty in the summary.')
+    move_id = fields.Many2one('account.move', string='Document',
+                              help='The journal entry behind the line.')
+    partner_line_id = fields.Many2one('res.partner', string='Counterparty',
+                                      help='The counterparty of the summary line; click to see its statement.')
+    currency_id = fields.Many2one('res.currency',
+                                  help='Currency of the amounts.')
+    opening = fields.Monetary('Opening balance', currency_field='currency_id',
+                              help='What was owed at the start of the period.')
+    debit = fields.Monetary('Debit (accrued)', currency_field='currency_id',
+                            help='Debit turnover: invoices to customers, payments to suppliers.')
+    credit = fields.Monetary('Credit (paid)', currency_field='currency_id',
+                             help='Credit turnover: payments from customers, bills from suppliers.')
+    balance = fields.Monetary('On hand', currency_field='currency_id',
+                              help='What is owed after this line: positive, the counterparty owes; negative, we owe.')
 
     def action_open_move(self):
         self.ensure_one()
@@ -192,20 +207,28 @@ class AdealerReportWizard(models.TransientModel):
         ('abc_sales', 'ABC analysis of sales'),
         ('abc_customers', 'ABC analysis of customers'),
         ('turnover', 'Stock turnover'),
-    ], required=True, default='sales')
+    ], required=True, default='sales',
+                                   help='Which report to build.')
     date_from = fields.Date(
         'Period from', required=True,
-        default=lambda self: fields.Date.context_today(self).replace(month=1, day=1))
+        default=lambda self: fields.Date.context_today(self).replace(month=1, day=1),
+                            help='First day of the period.')
     date_to = fields.Date(
         'to', required=True,
-        default=lambda self: fields.Date.context_today(self))
-    partner_id = fields.Many2one('res.partner', string='Counterparty')
-    product_id = fields.Many2one('product.product', string='Product')
-    vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle')
+        default=lambda self: fields.Date.context_today(self),
+                          help='Last day of the period, inclusive.')
+    partner_id = fields.Many2one('res.partner', string='Counterparty',
+                                 help='Only this counterparty. Empty: all of them.')
+    product_id = fields.Many2one('product.product', string='Product',
+                                 help='Only this product. Empty: all of them.')
+    vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle',
+                                 help='Only this vehicle. Empty: all of them.')
     currency_id = fields.Many2one(
-        'res.currency', default=lambda self: self.env.company.currency_id.id)
+        'res.currency', default=lambda self: self.env.company.currency_id.id,
+                                  help='Currency of the amounts: the company currency.')
     line_ids = fields.One2many(
-        'adealer.report.wizard.line', 'wizard_id', string='Statement', readonly=True)
+        'adealer.report.wizard.line', 'wizard_id', string='Statement', readonly=True,
+                               help='The report lines; click a line to open its document.')
 
     def action_generate(self):
         self.ensure_one()
@@ -491,21 +514,31 @@ class AdealerReportWizardLine(models.TransientModel):
     # і без жодної помилки — тиха порожнеча гірша за червоне вікно.
     _transient_max_hours = 24
 
-    wizard_id = fields.Many2one('adealer.report.wizard', required=True, ondelete='cascade')
-    sequence = fields.Integer()
-    line_type = fields.Selection([('row', 'Line'), ('total', 'Total')])
-    date = fields.Date('Date')
-    name = fields.Char('Name')
-    ref2 = fields.Char()
-    ref3 = fields.Char()
-    state = fields.Char('Status')
-    qty = fields.Float('Qty', digits=(16, 2))
-    currency_id = fields.Many2one('res.currency')
-    amount = fields.Monetary('Amount', currency_field='currency_id')
-    amount2 = fields.Monetary('Amount 2', currency_field='currency_id')
-    amount3 = fields.Monetary('Amount 3', currency_field='currency_id')
-    res_model = fields.Char()
-    res_id = fields.Integer()
+    wizard_id = fields.Many2one('adealer.report.wizard', required=True, ondelete='cascade',
+                                help='The report this line belongs to.')
+    sequence = fields.Integer(help='Order of the line in the report.')
+    line_type = fields.Selection([('row', 'Line'), ('total', 'Total')],
+                                 help='A data line or the total.')
+    date = fields.Date('Date',
+                       help='Date of the document or event.')
+    name = fields.Char('Name',
+                       help='What the line is about: document, product, customer or vehicle.')
+    ref2 = fields.Char(help='Second column of the report; its meaning depends on the report.')
+    ref3 = fields.Char(help='Third column of the report; its meaning depends on the report.')
+    state = fields.Char('Status',
+                        help='Status of the document.')
+    qty = fields.Float('Qty', digits=(16, 2),
+                       help='Quantity.')
+    currency_id = fields.Many2one('res.currency',
+                                  help='Currency of the amounts.')
+    amount = fields.Monetary('Amount', currency_field='currency_id',
+                             help='Main amount of the line.')
+    amount2 = fields.Monetary('Amount 2', currency_field='currency_id',
+                              help='Second amount; its meaning depends on the report (cost, margin, share).')
+    amount3 = fields.Monetary('Amount 3', currency_field='currency_id',
+                              help='Third amount; its meaning depends on the report.')
+    res_model = fields.Char(help='Technical: model of the document the line opens.')
+    res_id = fields.Integer(help='Technical: id of the document the line opens.')
 
     def action_open(self):
         self.ensure_one()

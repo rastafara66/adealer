@@ -32,7 +32,8 @@ class RepairOrderNormo(models.Model):
     _inherit = 'repair.order'
 
     total_normo_hours = fields.Float('Total standard hours', compute='_compute_total_normo_hours',
-                                     store=True, digits=(12, 2))
+                                     store=True, digits=(12, 2),
+                                     help='Sum of the standard hours of all labour lines of the order.')
 
     @api.depends('operations.normo_hours')
     def _compute_total_normo_hours(self):

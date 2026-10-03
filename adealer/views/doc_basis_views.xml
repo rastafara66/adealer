@@ -13,7 +13,7 @@
                     <field name="target" required="1"/>
                 </group>
                 <footer>
-                    <button string="Create" name="action_create" type="object"
+                    <button help="Create the chosen document from this one and link the two." string="Create" name="action_create" type="object"
                             class="btn btn-primary"/>
                     <button string="Cancel" class="btn btn-secondary" special="cancel"/>
                 </footer>

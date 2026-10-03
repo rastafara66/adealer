@@ -5,7 +5,8 @@ from odoo.exceptions import UserError
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle', index=True)
+    vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle', index=True,
+                                 help="The customer's vehicle the order is for. Needed to create a repair order.")
     vehicle_logo = fields.Image(related='vehicle_id.display_logo', string='Vehicle Logo', readonly=True)
     # ? domain="[('partner_id', '=', 'partner_id')]",
 
@@ -18,16 +19,19 @@ class SaleOrder(models.Model):
         ('sent', "Agreed with customer"),
         ('sale', "Confirmed"),
         ('cancel', "Cancelled"),
-    ])
+    ],
+                             help='Being drawn up, Agreed with customer, Confirmed or Cancelled.')
 
     # Must NOT be named repair_order_ids: the core `repair` module already
     # defines that field on sale.order (inverse sale_order_id). Overriding it
     # broke the core "Repairs" stat button, which then counted our own records
     # and appeared as a duplicate of the button below.
     own_repair_order_ids = fields.One2many(
-        'repair.order', 'source_sale_order_id', string='Repair Orders')
+        'repair.order', 'source_sale_order_id', string='Repair Orders',
+                                           help='Repair orders created from this sales order.')
     own_repair_order_count = fields.Integer(
-        string='Repair Order Count', compute='_compute_own_repair_order_count')
+        string='Repair Order Count', compute='_compute_own_repair_order_count',
+                                            help='How many repair orders were created from this sales order.')
 
     @api.depends('own_repair_order_ids')
     def _compute_own_repair_order_count(self):
@@ -47,7 +51,8 @@ class SaleOrder(models.Model):
         Аналог 1С ОбработкаЗаполнения: копіює партнера, авто and рядки."""
         self.ensure_one()
         if not self.vehicle_id:
-            raise UserError(_("No vehicle is specified on the order."))
+            raise UserError(_("No vehicle is specified on the order. Fill in the vehicle "
+                              "first: the repair order is made for it."))
 
         operations = []
         for line in self.order_line:

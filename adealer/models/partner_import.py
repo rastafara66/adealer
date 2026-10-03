@@ -110,27 +110,27 @@ class PartnerImport(models.TransientModel):
 
             if not name:
                 write_log(f"Пропущено рядок без імені: {log_row}")
-                note(idx, _("немає назви"),
-                     _("контрагента без назви створити не можна"),
-                     _("заповніть колонку «Наименование» або приберіть рядок"))
+                note(idx, _("no name"),
+                     _("a contact cannot be created without a name"),
+                     _('fill in the "Наименование" column or delete the row'))
                 skipped_no_data += 1
                 continue
 
             if not any([phone, email, inn, address, edrpou]):
                 write_log(f"Пропущено рядок без даних: {log_row}")
-                note(idx, _("«%s» — лише назва") % name,
-                     _("немає жодного реквізиту: ні телефону, ні пошти, "
-                       "ні коду, ні адреси"),
-                     _("додайте хоч один реквізит — інакше контрагента "
-                       "не буде з чим зіставити"))
+                note(idx, _('"%s" — name only') % name,
+                     _("there are no details at all: no phone, no e-mail, "
+                       "no code, no address"),
+                     _("add at least one detail, otherwise the contact cannot "
+                       "be matched with anything"))
                 skipped_no_data += 1
                 continue
 
             if edrpou_note:
-                note(idx, _("«%s» — код ЄДРПОУ не взято") % name,
-                     _("у файлі «%s»: має бути 8 або 10 цифр") % raw_edrpou,
-                     _("контрагента створено без коду; виправте код у файлі "
-                       "й повторіть імпорт, або допишіть код у картці"))
+                note(idx, _('"%s" — the EDRPOU code was not taken') % name,
+                     _('the file has "%s": it must be 8 or 10 digits') % raw_edrpou,
+                     _("the contact was created without the code; correct the code "
+                       "in the file and import again, or enter it on the contact card"))
 
             # Динамічний пошук по edrpou, vat, name
             search_domain = []
@@ -205,24 +205,24 @@ class PartnerImport(models.TransientModel):
         зрозуміти, що їх двадцять.
         """
         lines = [
-            _("Оброблено рядків: %s") % result.get('rows', 0),
-            _("Додано контрагентів: %s") % result.get('added', 0),
-            _("Оновлено: %s") % result.get('updated', 0),
-            _("Пропущено як дублікати: %s") % result.get('skipped_duplicate', 0),
-            _("Пропущено без даних: %s") % result.get('skipped_no_data', 0),
+            _("Rows processed: %s") % result.get('rows', 0),
+            _("Contacts added: %s") % result.get('added', 0),
+            _("Updated: %s") % result.get('updated', 0),
+            _("Skipped as duplicates: %s") % result.get('skipped_duplicate', 0),
+            _("Skipped for lack of data: %s") % result.get('skipped_no_data', 0),
         ]
         problems = result.get('problems') or []
         if problems:
             lines.append("")
-            lines.append(_("Потребують уваги — %s:") % len(problems))
+            lines.append(_("Need attention — %s:") % len(problems))
             for p in problems:
-                lines.append(_("Рядок %(row)s: %(what)s\n    Чому: %(why)s\n"
-                               "    Що зробити: %(howto)s",
+                lines.append(_("Row %(row)s: %(what)s\n    Why: %(why)s\n"
+                               "    What to do: %(howto)s",
                                row=p['row'], what=p['what'],
                                why=p['why'], howto=p['howto']))
         else:
             # 🔴 Успіх теж пояснює себе: «нічого не сказали» і «все чисто»
             # мусять виглядати по-різному.
             lines.append("")
-            lines.append(_("Рядків із проблемами немає."))
+            lines.append(_("No problem rows."))
         return "\n".join(lines)

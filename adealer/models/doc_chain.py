@@ -44,10 +44,14 @@ class DocChain(models.TransientModel):
     # вранці, повернувся після обіду — червоне вікно. Даємо робочу добу.
     _transient_max_hours = 24
 
-    origin_model = fields.Char(required=True)
-    origin_res_id = fields.Integer(required=True)
-    origin_ref = fields.Char(string="Document", readonly=True)
-    line_ids = fields.One2many("adealer.doc.chain.line", "chain_id", readonly=True)
+    origin_model = fields.Char(required=True,
+                               help='Technical: model of the document the structure is built for.')
+    origin_res_id = fields.Integer(required=True,
+                                   help='Technical: id of that document.')
+    origin_ref = fields.Char(string="Document", readonly=True,
+                             help='The document the structure is shown for.')
+    line_ids = fields.One2many("adealer.doc.chain.line", "chain_id", readonly=True,
+                               help='Every document linked to this one, with how they are linked; click to open.')
 
     @api.model
     def open_for(self, record):
@@ -135,12 +139,15 @@ class DocChainLine(models.TransientModel):
     # і без жодної помилки — тиха порожнеча гірша за червоне вікно.
     _transient_max_hours = 24
 
-    chain_id = fields.Many2one("adealer.doc.chain", required=True, ondelete="cascade")
+    chain_id = fields.Many2one("adealer.doc.chain", required=True, ondelete="cascade",
+                               help='The structure this line belongs to.')
 
     #: Відступ і гілка дерева — ОКРЕМОЮ колонкою від назви. Якщо домалювати
     #: пробіли в саму назву, посилання поведе туди ж, але виглядатиме зламаним.
-    prefix = fields.Char(readonly=True)
-    level = fields.Integer(readonly=True)
+    prefix = fields.Char(readonly=True,
+                         help='Tree drawing that shows the nesting.')
+    level = fields.Integer(readonly=True,
+                           help='Depth of the document in the tree.')
 
     #: 🔴 Саме `Reference`, а не пара Char+Integer із кнопкою «Відкрити» поруч.
     #: У readonly Odoo малює його компонентом `Many2One`, а той віддає
@@ -148,14 +155,18 @@ class DocChainLine(models.TransientModel):
     #: `web/static/src/views/fields/many2one/many2one.xml`). Тобто клікається
     #: сама назва документа, а не кнопка збоку.
     doc_ref = fields.Reference(
-        selection="_selection_doc_model", string="Document", readonly=True)
+        selection="_selection_doc_model", string="Document", readonly=True,
+                               help='The linked document; click to open it.')
 
-    model_label = fields.Char(string="Type", readonly=True)
+    model_label = fields.Char(string="Type", readonly=True,
+                              help='Kind of the document.')
     kind = fields.Selection(
         [("basis", "Entered on the basis of"),
          ("settlement", "Settles this document"),
-         ("deal", "Belongs to the deal")], readonly=True)
-    is_current = fields.Boolean(readonly=True)
+         ("deal", "Belongs to the deal")], readonly=True,
+                            help='How it is linked: entered on the basis of the document above, settles it, or belongs to the same deal.')
+    is_current = fields.Boolean(readonly=True,
+                                help='Marks the document the structure was opened from.')
 
     @api.model
     def _selection_doc_model(self):

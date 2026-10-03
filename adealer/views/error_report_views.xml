@@ -26,9 +26,9 @@
         <field name="arch" type="xml">
             <form string="Error report">
                 <header>
-                    <button name="action_send_now" type="object" string="Send now"
+                    <button help="Send this report now, without waiting for the scheduled job. Exactly the payload shown leaves the database." name="action_send_now" type="object" string="Send now"
                             class="btn-primary" invisible="state == 'sent'"/>
-                    <button name="action_discard" type="object" string="Discard"
+                    <button help="Delete this report without sending it." name="action_discard" type="object" string="Discard"
                             confirm="Delete this report? It will not be sent."/>
                     <field name="state" widget="statusbar" statusbar_visible="pending,sent"/>
                 </header>

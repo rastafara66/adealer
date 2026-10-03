@@ -27,16 +27,19 @@ class ServiceRequest(models.Model):
 
     name = fields.Char(
         string='Number', required=True, copy=False, readonly=True,
-        default=lambda self: _('New'), index=True)
+        default=lambda self: _('New'), index=True,
+                       help='Request number, given when it is saved.')
     scheduled_date = fields.Datetime(
         string='Scheduled', required=True, index=True,
         default=fields.Datetime.now,
         help='When the customer is expected at the workshop')
     partner_id = fields.Many2one(
         'res.partner', string='Customer', required=True, index=True,
-        tracking=True)
+        tracking=True,
+                                 help='The customer who asks for the work.')
     vehicle_id = fields.Many2one(
-        'fleet.vehicle', string='Vehicle', index=True, tracking=True)
+        'fleet.vehicle', string='Vehicle', index=True, tracking=True,
+                                 help="The customer's vehicle.")
     vehicle_logo = fields.Image(
         related='vehicle_id.display_logo', string='Vehicle Logo', readonly=True)
     mileage = fields.Float(
@@ -45,20 +48,24 @@ class ServiceRequest(models.Model):
         string='Reason', help='What the customer complains about, in their own words')
     service_advisor_id = fields.Many2one(
         'res.users', string='Manager', default=lambda self: self.env.user,
-        tracking=True)
+        tracking=True,
+                                         help='Who handles the request.')
     state = fields.Selection([
         ('draft', 'New'),
         ('confirmed', 'Confirmed'),
         ('done', 'Order created'),
         ('cancel', 'Cancelled'),
-    ], string='Status', default='draft', required=True, tracking=True)
+    ], string='Status', default='draft', required=True, tracking=True,
+                             help='New, Confirmed, Order created (a sales order was made from it) or Cancelled.')
     sale_order_id = fields.Many2one(
         'sale.order', string='Sale Order', copy=False, readonly=True,
         help='The order created from this request')
     company_id = fields.Many2one(
         'res.company', string='Company', required=True,
-        default=lambda self: self.env.company)
-    note = fields.Text(string='Internal note')
+        default=lambda self: self.env.company,
+                                 help='The company the request belongs to.')
+    note = fields.Text(string='Internal note',
+                       help='Notes for the staff; the customer does not see them.')
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -80,7 +87,8 @@ class ServiceRequest(models.Model):
     def action_confirm(self):
         for req in self:
             if req.state != 'draft':
-                raise UserError(_('Only a new request can be confirmed.'))
+                raise UserError(_('Only a new request can be confirmed. Press Set to New '
+                                  'first if you need to confirm it again.'))
             req.state = 'confirmed'
         return True
 
@@ -104,10 +112,11 @@ class ServiceRequest(models.Model):
         the workload for the workshop, so it is refused rather than allowed."""
         self.ensure_one()
         if self.sale_order_id:
-            raise UserError(_('Order %s has already been created from this request.')
+            raise UserError(_('Order %s has already been created from this request. '
+                              'Open it from the button at the top.')
                             % self.sale_order_id.name)
         if self.state == 'cancel':
-            raise UserError(_('The request is cancelled.'))
+            raise UserError(_('The request is cancelled. Press Set to New first.'))
         order = self.env['sale.order'].create({
             'partner_id': self.partner_id.id,
             'vehicle_id': self.vehicle_id.id,

@@ -17,10 +17,10 @@
             <field name="arch" type="xml">
                 <form string="Service booking">
                     <header>
-                        <button name="action_create_repair_order" type="object"
+                        <button help="Create a repair order from this booking and mark the booking done." name="action_create_repair_order" type="object"
                                 string="Create repair order" class="btn-primary"
                                 invisible="repair_order_id"/>
-                        <button name="action_create_repair_order" type="object"
+                        <button help="Open the repair order created from this booking." name="action_create_repair_order" type="object"
                                 string="Open repair order" class="btn-secondary"
                                 invisible="not repair_order_id"/>
                         <field name="state" widget="statusbar"

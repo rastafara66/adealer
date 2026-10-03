@@ -3,6 +3,13 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## 19.0.1.15.5 — 2026-10-03
+
+### Changed
+
+- Hints on fields and buttons. Error messages say what to do. Bug fixes.
+- Підказки на полях і кнопках. Повідомлення про помилки кажуть, що робити. Виправлено помилки.
+
 ## 19.0.1.15.0 – 19.0.1.15.4 — 2026-09-29
 
 ### Added

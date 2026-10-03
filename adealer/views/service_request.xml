@@ -29,21 +29,21 @@
             <field name="arch" type="xml">
                 <form string="Service request">
                     <header>
-                        <button name="action_confirm" string="Confirm" type="object"
+                        <button help="Confirm the request." name="action_confirm" string="Confirm" type="object"
                                 class="btn-primary" invisible="state != 'draft'"/>
-                        <button name="action_create_sale_order" string="Create Sale Order"
+                        <button help="Create the sales order this request turns into. One request gives one order." name="action_create_sale_order" string="Create Sale Order"
                                 type="object" class="btn-primary"
                                 invisible="state not in ('draft', 'confirmed') or sale_order_id"/>
-                        <button name="action_cancel" string="Cancel" type="object"
+                        <button help="Cancel the request. If an order was already created from it, cancel the order first." name="action_cancel" string="Cancel" type="object"
                                 invisible="state in ('done', 'cancel')"/>
-                        <button name="action_draft" string="Set to New" type="object"
+                        <button help="Back to New, to change and confirm the request again." name="action_draft" string="Set to New" type="object"
                                 invisible="state != 'cancel'"/>
                         <field name="state" widget="statusbar"
                                statusbar_visible="draft,confirmed,done"/>
                     </header>
                     <sheet>
                         <div class="oe_button_box" name="button_box">
-                            <button name="action_open_sale_order" type="object"
+                            <button help="Open the sales order created from this request." name="action_open_sale_order" type="object"
                                     class="oe_stat_button" icon="fa-shopping-cart"
                                     invisible="not sale_order_id">
                                 <span class="o_stat_text">Sale Order</span>

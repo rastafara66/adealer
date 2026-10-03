@@ -63,15 +63,19 @@ class DocBasisWizard(models.TransientModel):
     _name = "adealer.doc.basis"
     _description = "Create on the basis of"
 
-    source_model = fields.Char(required=True, readonly=True)
-    source_res_id = fields.Integer(required=True, readonly=True)
-    source_ref = fields.Char(string="Basis document", readonly=True)
+    source_model = fields.Char(required=True, readonly=True,
+                               help='Technical: model of the basis document.')
+    source_res_id = fields.Integer(required=True, readonly=True,
+                                   help='Technical: id of the basis document.')
+    source_ref = fields.Char(string="Basis document", readonly=True,
+                             help='The document the new one is created from.')
     #: ⚠️ НЕ `required=True` на полі: запис створюється ДО того, як людина
     #: щось обрала, і обов'язковість на рівні бази валила створення вікна
     #: («null value in column "target" violates not-null constraint»).
     #: Обов'язковість — у формі, там вона й потрібна: не дати натиснути
     #: «Створити», нічого не обравши.
-    target = fields.Selection(selection="_selection_target", string="Create")
+    target = fields.Selection(selection="_selection_target", string="Create",
+                              help='Which document to create. Only the documents allowed for this basis are offered.')
 
     @api.model
     def _selection_target(self):
@@ -92,7 +96,8 @@ class DocBasisWizard(models.TransientModel):
             raise UserError(_(
                 "Nothing is created on the basis of %(name)s.\n\n"
                 "This is deliberate: the chain runs one way — order, then "
-                "repair order, then delivery note, then payment.",
+                "repair order, then delivery note, then payment. Open the next "
+                "document in the chain and create from there.",
                 name=self.env["ir.model"]._get(record._name).name or record._name))
         wizard = self.with_context(basis_model=record._name).create({
             "source_model": record._name,
@@ -118,11 +123,13 @@ class DocBasisWizard(models.TransientModel):
                 handler = method
                 break
         if not handler or not hasattr(source, handler):
-            raise UserError(_("This document cannot be created from that one."))
+            raise UserError(_("This document cannot be created from that one. Choose "
+                              "one of the documents offered in the list."))
 
         created = getattr(source, handler)()
         if not created:
-            raise UserError(_("Nothing was created — the basis document is empty."))
+            raise UserError(_("Nothing was created — the basis document is empty. Fill "
+                              "in its lines first."))
 
         # 🔴 Зв'язок пише ОДНЕ місце, а не кожен обробник. Забутий виклик у
         # новому обробнику означав би документ, якого немає в структурі, —
@@ -161,12 +168,14 @@ class AccountMoveBasis(models.Model):
         self.ensure_one()
         if self.move_type not in ("out_invoice", "out_refund",
                                   "in_invoice", "in_refund"):
-            raise UserError(_("A payment is created from an invoice or a bill."))
+            raise UserError(_("A payment is created from an invoice or a bill. Open the "
+                              "invoice or bill and create the payment from it."))
         journal = self.env["account.journal"].search(
             [("type", "in", ("bank", "cash")),
              ("company_id", "=", self.company_id.id)], limit=1)
         if not journal:
-            raise UserError(_("No bank or cash journal is configured."))
+            raise UserError(_("No bank or cash journal is configured. Create one in "
+                              "Accounting > Configuration > Journals first."))
         inbound = self.move_type in ("out_invoice", "in_refund")
         return self.env["account.payment"].create({
             "payment_type": "inbound" if inbound else "outbound",
@@ -180,7 +189,8 @@ class AccountMoveBasis(models.Model):
     def _basis_refund(self):
         self.ensure_one()
         if self.move_type not in ("out_invoice", "in_invoice"):
-            raise UserError(_("A credit note is created from an invoice or a bill."))
+            raise UserError(_("A credit note is created from an invoice or a bill. Open "
+                              "the invoice or bill and create the credit note from it."))
         return self.env["account.move.reversal"].create({
             "move_ids": [(6, 0, self.ids)],
             "journal_id": self.journal_id.id,
@@ -202,5 +212,6 @@ class RepairOrderBasis(models.Model):
     def _basis_issue_parts(self):
         picking = self._issue_parts_picking()
         if not picking:
-            raise UserError(_("Order %s has no stock parts to issue.") % self.name)
+            raise UserError(_("Order %s has no stock parts to issue. Fill in the parts "
+                              "lines with stocked products first.") % self.name)
         return picking

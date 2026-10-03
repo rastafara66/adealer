@@ -63,11 +63,13 @@ class DocLink(models.Model):
     _description = "Document basis link"
     _rec_name = "child_ref"
 
-    parent_model = fields.Char(required=True, index=True)
+    parent_model = fields.Char(required=True, index=True,
+                               help='Technical: model of the basis document.')
     parent_res_id = fields.Many2oneReference(
         model_field="parent_model", required=True, index=True,
         string="Basis document")
-    child_model = fields.Char(required=True, index=True)
+    child_model = fields.Char(required=True, index=True,
+                              help='Technical: model of the derived document.')
     child_res_id = fields.Many2oneReference(
         model_field="child_model", required=True, index=True,
         string="Derived document")
@@ -78,7 +80,8 @@ class DocLink(models.Model):
         [("basis", "Entered on the basis of"),
          ("settlement", "Settles this document"),
          ("deal", "Belongs to the deal")],
-        default="basis", required=True, index=True)
+        default="basis", required=True, index=True,
+                            help='How the two documents are linked: on the basis of, settlement, or the same deal.')
 
     #: 🔴 Момент документа-нащадка — з ГОДИНОЮ, бо порядок читають за часом.
     #:
@@ -92,16 +95,19 @@ class DocLink(models.Model):
     #: і працювати незалежно від імпорту». Щойно десь з'явиться «це поле для
     #: імпортованого», логіка розділиться надвоє — і половина без 1С
     #: перестане працювати.
-    child_time = fields.Datetime(string="Document moment")
+    child_time = fields.Datetime(string="Document moment",
+                                 help='When the derived document took effect; orders the structure.')
 
-    parent_ref = fields.Char(compute="_compute_refs", string="Basis")
-    child_ref = fields.Char(compute="_compute_refs", string="Derived")
+    parent_ref = fields.Char(compute="_compute_refs", string="Basis",
+                             help='The basis document.')
+    child_ref = fields.Char(compute="_compute_refs", string="Derived",
+                            help='The document entered from it.')
 
     # Odoo 19: `_sql_constraints` is only warned about and never reaches the
     # database — the link would silently allow duplicates.
     _doc_link_unique = models.Constraint(
         "unique(parent_model, parent_res_id, child_model, child_res_id, kind)",
-        "This link already exists.")
+        "This link already exists. Open the existing link instead of adding it again.")
 
     @api.depends("parent_model", "parent_res_id", "child_model", "child_res_id")
     def _compute_refs(self):

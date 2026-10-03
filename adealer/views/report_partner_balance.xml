@@ -18,7 +18,7 @@
                                    placeholder="All counterparties"/>
                             <field name="currency_id" invisible="1"/>
                         </group>
-                        <button name="action_generate" type="object" string="Generate"
+                        <button help="Build the report with the options above. The previous result is replaced." name="action_generate" type="object" string="Generate"
                                 class="btn-primary mb-2"/>
                     </div>
                     <field name="line_ids" nolabel="1">
@@ -34,9 +34,9 @@
                             <field name="debit" sum="Total"/>
                             <field name="credit" sum="Total"/>
                             <field name="balance"/>
-                            <button name="action_open_move" type="object" icon="fa-external-link"
+                            <button help="Open the journal entry of this line." name="action_open_move" type="object" icon="fa-external-link"
                                     title="Open document" column_invisible="not parent.partner_id"/>
-                            <button name="action_open_partner" type="object" icon="fa-search-plus"
+                            <button help="Open this counterparty's detailed statement for the same period." name="action_open_partner" type="object" icon="fa-search-plus"
                                     title="Details by counterparty" column_invisible="parent.partner_id"/>
                         </list>
                     </field>

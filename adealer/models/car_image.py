@@ -12,6 +12,9 @@ class DealerCarImage(models.Model):
     _order = 'sequence, id'
 
     car_id = fields.Many2one('dealer.car', 'Vehicle', required=True,
-                             ondelete='cascade', index=True)
-    name = fields.Char('Title')
-    sequence = fields.Integer(default=10)
+                             ondelete='cascade', index=True,
+                             help='The vehicle this photo belongs to.')
+    name = fields.Char('Title',
+                       help='Caption of the photo, e.g. Interior or Rear view.')
+    sequence = fields.Integer(default=10,
+                              help='Order of the photo in the gallery.')

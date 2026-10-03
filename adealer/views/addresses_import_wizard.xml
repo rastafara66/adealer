@@ -8,7 +8,7 @@
                     <field name="partner_type"/>
                 </group>
                 <footer>
-                    <button string="Import" type="object" name="action_import_addresses" class="btn-primary"/>
+                    <button help="Read the addresses from the Excel file and write them to the chosen counterparties." string="Import" type="object" name="action_import_addresses" class="btn-primary"/>
                     <button string="Cancel" class="btn-secondary" special="cancel"/>
                 </footer>
             </form>

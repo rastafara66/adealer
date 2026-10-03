@@ -18,6 +18,8 @@ class TestPartnerImportReport(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        # Мова явно: текст звіту перекладається, а тест читає англійські джерела.
+        cls.env = cls.env(context=dict(cls.env.context, lang="en_US"))
         cls.model = cls.env["res.partner.import"]
 
     @staticmethod
@@ -55,10 +57,10 @@ class TestPartnerImportReport(TransactionCase):
     def test_report_names_the_volume_first(self):
         result = self.model.import_partners_from_dataframe(self._rows())
         text = self.model.format_import_report(result)
-        self.assertIn("Оброблено рядків: 4", text)
-        self.assertIn("Потребують уваги — 3", text)
-        self.assertIn("Чому:", text)
-        self.assertIn("Що зробити:", text)
+        self.assertIn("Rows processed: 4", text)
+        self.assertIn("Need attention — 3", text)
+        self.assertIn("Why:", text)
+        self.assertIn("What to do:", text)
 
     def test_clean_import_says_so_out_loud(self):
         """🔴 «Нічого не сказали» і «все чисто» мусять виглядати по-різному."""
@@ -66,7 +68,7 @@ class TestPartnerImportReport(TransactionCase):
             {"Наименование": "ТОВ «Чисте»", "Телефон": "0501112233"},
         ])
         text = self.model.format_import_report(result)
-        self.assertIn("Рядків із проблемами немає", text)
+        self.assertIn("No problem rows", text)
 
     def test_bad_code_does_not_lose_the_partner(self):
         """Кривий код ЄДРПОУ — привід попередити, а не викинути контрагента."""
@@ -104,4 +106,4 @@ class TestPartnerImportReport(TransactionCase):
         action = wizard.action_import_partners()
         self.assertEqual(action.get("res_model"), "partner.import.wizard")
         self.assertTrue(wizard.result_summary, "звіт порожній")
-        self.assertIn("Оброблено рядків", wizard.result_summary)
+        self.assertIn("Rows processed", wizard.result_summary)

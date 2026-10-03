@@ -10,6 +10,18 @@ msgstr ""
 
 #. module: adealer
 #. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "\"%s\" — name only"
+msgstr "«%s» — лише назва"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "\"%s\" — the EDRPOU code was not taken"
+msgstr "«%s» — код ЄДРПОУ не взято"
+
+#. module: adealer
+#. odoo-python
 #: code:addons/adealer/models/app_update.py:0
 msgid "%(count)s installed, all up to date."
 msgstr "Встановлено %(count)s, усі найновіші."
@@ -40,6 +52,12 @@ msgstr "%s відповів не переліком версій."
 
 #. module: adealer
 #. odoo-python
+#: code:addons/adealer/models/partner_child_cleanup_wizard.py:0
+msgid "%s child contacts deleted."
+msgstr "Видалено дочірніх контактів: %s."
+
+#. module: adealer
+#. odoo-python
 #: code:addons/adealer/models/adealer_update.py:0
 msgid "%s more of your 3A-dealer modules can be updated too."
 msgstr "Ще %s ваших модулів 3A-dealer теж можна оновити."
@@ -47,8 +65,10 @@ msgstr "Ще %s ваших модулів 3A-dealer теж можна онови
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/document_chain.py:0
-msgid "'Internal transfer' type is not configured on the warehouse."
-msgstr "Не налаштовано тип «Внутрішнє переміщення» на складі."
+msgid ""
+"'Internal transfer' type is not configured on the warehouse. Open the "
+"warehouse and set its internal transfer type."
+msgstr "Для складу не налаштовано тип «Внутрішнє переміщення». Відкрийте склад і вкажіть тип внутрішнього переміщення."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_akt_zvirky
@@ -60,7 +80,7 @@ msgstr "(ЄДРПОУ"
 #: model_terms:ir.ui.view,arch_db:adealer.report_invoice_pay
 #: model_terms:ir.ui.view,arch_db:adealer.report_repair_act
 msgid "(VIN"
-msgstr ""
+msgstr "(VIN"
 
 #. module: adealer
 #. odoo-python
@@ -108,7 +128,7 @@ msgstr ", ІПН"
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__fleet_vehicle__transmission__10at
 msgid "10AT"
-msgstr ""
+msgstr "10AT"
 
 #. module: adealer
 #. odoo-javascript
@@ -175,22 +195,22 @@ msgstr "4WD"
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__fleet_vehicle__transmission__5mt
 msgid "5MT"
-msgstr ""
+msgstr "5MT"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__fleet_vehicle__transmission__6mt
 msgid "6MT"
-msgstr ""
+msgstr "6MT"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__fleet_vehicle__transmission__7at
 msgid "7AT"
-msgstr ""
+msgstr "7AT"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__fleet_vehicle__transmission__8at
 msgid "8AT"
-msgstr ""
+msgstr "8AT"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_repair_order
@@ -350,10 +370,23 @@ msgid "<strong>Vehicle:</strong>"
 msgstr "<strong>Автомобіль:</strong>"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_product_product__base_service
+#: model:ir.model.fields,help:adealer.field_product_template__base_service
+msgid "A base service: made a service, neither sold nor bought on its own."
+msgstr "Базова послуга: стає послугою, яку не продають і не купують окремо."
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/doc_basis.py:0
-msgid "A credit note is created from an invoice or a bill."
-msgstr "Коригування створюється з рахунку покупцю або постачальника."
+msgid ""
+"A credit note is created from an invoice or a bill. Open the invoice or bill"
+" and create the credit note from it."
+msgstr "Кредит-нота створюється з рахунку клієнту чи постачальника. Відкрийте рахунок і створіть кредит-ноту з нього."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__line_type
+msgid "A data line or the total."
+msgstr "Рядок даних або підсумок."
 
 #. module: adealer
 #. odoo-python
@@ -372,8 +405,10 @@ msgstr "Вийшла новіша версія %(module)s: %(latest)s (у вас
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/doc_basis.py:0
-msgid "A payment is created from an invoice or a bill."
-msgstr "Оплата створюється з рахунку покупцю або постачальника."
+msgid ""
+"A payment is created from an invoice or a bill. Open the invoice or bill and"
+" create the payment from it."
+msgstr "Оплата створюється з рахунку клієнту чи постачальника. Відкрийте рахунок і створіть оплату з нього."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_addon_hints
@@ -393,8 +428,10 @@ msgstr "Короткий рядок на картці авто, в наряді 
 
 #. module: adealer
 #: model:ir.model.constraint,message:adealer.constraint_dealer_car_vin_uniq
-msgid "A vehicle with this VIN already exists in stock."
-msgstr "Авто з таким VIN уже є на складі."
+msgid ""
+"A vehicle with this VIN already exists in stock. Open that vehicle instead, "
+"or check the VIN for a typo."
+msgstr "Автомобіль із таким VIN уже є на складі. Відкрийте той автомобіль або перевірте VIN на описку."
 
 #. module: adealer
 #: model:ir.actions.act_window,name:adealer.action_report_ready_abc_customers
@@ -415,7 +452,7 @@ msgstr "ABC-аналіз продажів"
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__fleet_vehicle__drive_type__awd
 msgid "AWD"
-msgstr ""
+msgstr "AWD"
 
 #. module: adealer
 #: model:adealer.repair.stage,name:adealer.repair_stage_accepted
@@ -491,6 +528,13 @@ msgstr "К-сть активних кампаній"
 #: model:ir.model.fields,field_description:adealer.field_repair_order__active_campaign_ids
 msgid "Active campaigns for the vehicle"
 msgstr "Активні кампанії по авто"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__active_campaign_ids
+msgid ""
+"Active campaigns that cover this vehicle: do the campaign work while the car"
+" is in."
+msgstr "Активні кампанії, під які підпадає цей автомобіль: виконайте роботи кампанії, поки авто тут."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__activity_ids
@@ -607,6 +651,11 @@ msgid "All counterparties"
 msgstr "Всі контрагенти"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__operations
+msgid "All lines of the repair order, labour and parts."
+msgstr "Усі рядки наряду: роботи й запчастини."
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/dashboard.py:0
 msgid "All vehicles in base"
@@ -659,6 +708,11 @@ msgid "Amount 3"
 msgstr "Сума 3"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_mechanic_output_report__amount
+msgid "Amount of the work."
+msgstr "Сума робіт."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_repair_stage__is_closing
 msgid "An order in this stage is considered closed"
 msgstr "Наряд у цій стадії вважається закритим"
@@ -699,6 +753,16 @@ msgid "Analogs count"
 msgstr "К-сть аналогів"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__note
+msgid "Anything about the vehicle worth knowing."
+msgstr "Усе, що варто знати про автомобіль."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_lost_demand__note
+msgid "Anything else about the request."
+msgstr "Усе інше про звернення."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.adealer_error_report_view_form
 msgid "Anything you want to add?"
 msgstr "Що ще додати?"
@@ -730,9 +794,19 @@ msgid "Appointment date/time"
 msgstr "Дата/час запису"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__stop_datetime
+msgid "Appointment time plus the work duration."
+msgstr "Час запису плюс тривалість робіт."
+
+#. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_service_booking__state__arrived
 msgid "Arrived"
 msgstr "Прибув"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
+msgid "Ask now which version is the latest."
+msgstr "Спитати зараз, яка версія найновіша."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__message_attachment_count
@@ -809,6 +883,11 @@ msgid "Back"
 msgstr "Задній"
 
 #. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_service_request_form
+msgid "Back to New, to change and confirm the request again."
+msgstr "Повернути в «Нова», щоб змінити й підтвердити звернення знову."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_akt_zvirky
 msgid "Balance"
 msgstr "Сальдо"
@@ -836,9 +915,22 @@ msgid "Basis document"
 msgstr "Документ-підстава"
 
 #. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/addon_hint.py:0
+msgid ""
+"Bay and lift scheduling with no double booking, working hours per bay, free-"
+"slot search and online booking for customers."
+msgstr "Планування постів і підйомників без подвійного запису, робочі години кожного поста, пошук вільного вікна й онлайн-запис для клієнтів."
+
+#. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__sale_order__state__draft
 msgid "Being drawn up"
 msgstr "Оформлюється"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_sale_order__state
+msgid "Being drawn up, Agreed with customer, Confirmed or Cancelled."
+msgstr "Оформлюється, Узгоджено з клієнтом, Підтверджено або Скасовано."
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_doc_chain_line__kind__deal
@@ -858,6 +950,21 @@ msgstr ""
 "У ньому тип помилки й рядок коду, де вона сталася,\n"
 "і ніколи — текст помилки чи щось про ваші авто,\n"
 "клієнтів або суми."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__color_id
+msgid "Body colour."
+msgstr "Колір кузова."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_fleet_vehicle__body_type
+msgid "Body type, e.g. sedan or estate."
+msgstr "Тип кузова, наприклад седан чи універсал."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__name
+msgid "Booking number, given when it is saved."
+msgstr "Номер запису, присвоюється під час збереження."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__brand_id
@@ -891,6 +998,24 @@ msgstr "Марка/Модель"
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
 msgid "Branded theme + side menu (sidebar)"
 msgstr "Фірмова тема + бічне меню (сайдбар)"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_partner_balance_wizard_form
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_customers
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_sales
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_advisors
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_gross
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_inactive
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_orders
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_purchases
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_repairs
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_sales
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_stock
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_to
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_turnover
+msgid ""
+"Build the report with the options above. The previous result is replaced."
+msgstr "Сформувати звіт з умовами вище. Попередній результат замінюється."
 
 #. module: adealer
 #. odoo-python
@@ -941,11 +1066,33 @@ msgid "Cancel"
 msgstr "Скасувати"
 
 #. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_service_request_form
+msgid ""
+"Cancel the request. If an order was already created from it, cancel the "
+"order first."
+msgstr "Скасувати звернення. Якщо з нього вже створено замовлення, спершу скасуйте замовлення."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid "Cancel the reservation: the vehicle is in stock again."
+msgstr "Зняти резерв: автомобіль знову на складі."
+
+#. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_service_booking__state__cancel
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_service_request__state__cancel
 #: model:ir.model.fields.selection,name:adealer.selection__sale_order__state__cancel
 msgid "Cancelled"
 msgstr "Скасовано"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_image__name
+msgid "Caption of the photo, e.g. Interior or Rear view."
+msgstr "Підпис фото, наприклад «Салон» чи «Вигляд ззаду»."
+
+#. module: adealer
+#: model:ir.module.category,description:adealer.module_category_adealer
+msgid "Car dealership, workshop, parts"
+msgstr "Автосалон, СТО, запчастини"
 
 #. module: adealer
 #: model:ir.ui.menu,name:adealer.menu_categories
@@ -988,17 +1135,62 @@ msgid "Child Model"
 msgstr "Підпорядкована модель"
 
 #. module: adealer
-#: model:ir.model.fields,help:adealer.field_repair_order__partner_id
-msgid ""
-"Choose partner for whom the order will be invoiced and delivered. You can "
-"find a partner by its Name, TIN, Email or Internal Reference."
-msgstr "Виберіть партнера, для якого буде виставлено та надіслано замовлення. Ви можете знайти партнера за назвою, TIN, електронною поштою або внутрішнім посиланням."
+#. odoo-python
+#: code:addons/adealer/models/partner_import_wizard.py:0
+msgid "Choose the file to import."
+msgstr "Оберіть файл для імпорту."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_customers
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_sales
 msgid "Class"
 msgstr "Клас"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__active
+msgid ""
+"Clear to archive the vehicle: it disappears from lists but is not deleted."
+msgstr "Зніміть позначку, щоб заархівувати автомобіль: він зникне зі списків, але не видалиться."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_color__active
+msgid "Clear to hide the colour from new vehicles without deleting it."
+msgstr "Зніміть позначку, щоб приховати колір для нових авто, не видаляючи його."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_part_analog_group__active
+msgid "Clear to hide the group without deleting it."
+msgstr "Зніміть позначку, щоб приховати групу, не видаляючи її."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_option__active
+msgid "Clear to hide the option from new vehicles without deleting it."
+msgstr "Зніміть позначку, щоб приховати опцію для нових авто, не видаляючи її."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_organization__active
+msgid "Clear to hide the organisation without deleting it."
+msgstr "Зніміть позначку, щоб приховати організацію, не видаляючи її."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_workplace__active
+msgid "Clear to hide the post from the board without deleting it."
+msgstr "Зніміть позначку, щоб прибрати пост із дошки, не видаляючи його."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_repair_type__active
+msgid "Clear to hide the repair type without deleting it."
+msgstr "Зніміть позначку, щоб приховати вид ремонту, не видаляючи його."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_repair_stage__active
+msgid "Clear to hide the stage without deleting it."
+msgstr "Зніміть позначку, щоб приховати стадію, не видаляючи її."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_complectation__active
+msgid "Clear to hide the trim from new vehicles without deleting it."
+msgstr "Зніміть позначку, щоб приховати комплектацію для нових авто, не видаляючи її."
 
 #. module: adealer
 #. odoo-javascript
@@ -1010,6 +1202,11 @@ msgstr "Клацніть вільне місце, щоб записати на �
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_campaign_form
 msgid "Close"
 msgstr "Закрити"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_service_campaign_form
+msgid "Close the campaign. Its list stays for reference."
+msgstr "Закрити кампанію. Її список лишається для довідки."
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_service_campaign__state__closed
@@ -1036,6 +1233,11 @@ msgstr "Кінцеве сальдо:"
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_turnover
 msgid "Code"
 msgstr "Код"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_repair_type__code
+msgid "Code of the repair type in the source system."
+msgstr "Код виду ремонту в системі-джерелі."
 
 #. module: adealer
 #. odoo-python
@@ -1090,14 +1292,19 @@ msgid "Colors"
 msgstr "Кольори"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_color__name
+msgid "Colour name, as shown on the vehicle card and in documents."
+msgstr "Назва кольору, як на картці авто й у документах."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_workplace__color
+msgid "Colour of the post on the board."
+msgstr "Колір поста на дошці."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_lost_demand__note
 msgid "Comment"
 msgstr "Коментар"
-
-#. module: adealer
-#: model:ir.model.fields.selection,name:adealer.selection__partner_address_import_wizard__partner_type__person
-msgid "Companies"
-msgstr "Фізичні особи"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__company_id
@@ -1142,6 +1349,11 @@ msgid "Confirm deletion"
 msgstr "Підтвердити видалення"
 
 #. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_service_request_form
+msgid "Confirm the request."
+msgstr "Підтвердити звернення."
+
+#. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_service_booking__state__confirmed
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_service_request__state__confirmed
 #: model:ir.model.fields.selection,name:adealer.selection__sale_order__state__sale
@@ -1152,6 +1364,12 @@ msgstr "Підтверджено"
 #: model:ir.model,name:adealer.model_res_partner
 msgid "Contact"
 msgstr "Контакт"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "Contacts added: %s"
+msgstr "Додано контрагентів: %s"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_res_partner__partners_contacts
@@ -1175,16 +1393,18 @@ msgstr "Собівартість:"
 #: code:addons/adealer/models/app_update.py:0
 msgid ""
 "Could not check for updates:\n"
-"%s"
-msgstr ""
-"Не вдалося перевірити оновлення:\n"
-"%s"
+"%s\n"
+"\n"
+"First make sure the server can reach the Internet, then press Check now again."
+msgstr "Не вдалося перевірити оновлення:\n%s\n\nСпершу переконайтесь, що сервер має доступ до інтернету, потім натисніть «Перевірити зараз» ще раз."
 
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/app_update.py:0
-msgid "Could not find a version number at the update URL."
-msgstr "Не вдалося знайти номер версії за URL оновлень."
+msgid ""
+"Could not find a version number at the update URL. Try again later; if it "
+"repeats, report it to the author."
+msgstr "За адресою оновлень не знайдено номера версії. Спробуйте пізніше; якщо повториться — повідомте авторові."
 
 #. module: adealer
 #. odoo-python
@@ -1200,6 +1420,15 @@ msgstr "Не вдалося відкрити файл: %s"
 #: code:addons/adealer/models/adealer_update.py:0
 msgid "Could not reach %(url)s: %(error)s"
 msgstr "Не вдалося звернутись до %(url)s: %(error)s"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import_wizard.py:0
+msgid ""
+"Could not read the file: %s\n"
+"\n"
+"The usual causes: the file is damaged, password-protected or saved in an old format. Open it in Excel and save it as .xlsx."
+msgstr "Не вдалося прочитати файл: %s\n\nНайчастіші причини: файл пошкоджений, захищений паролем або збережений у старому форматі. Відкрийте його в Excel і збережіть як .xlsx."
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_error_report__state__failed
@@ -1229,6 +1458,34 @@ msgstr "Створити"
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_request_form
 msgid "Create Sale Order"
 msgstr "Створити замовлення на продаж"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_form_inherit
+msgid "Create a draft act of completed works for the labour lines."
+msgstr "Створити чернетку акта виконаних робіт на рядки робіт."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_form_inherit
+msgid "Create a draft delivery note for the parts lines."
+msgstr "Створити чернетку видаткової накладної на рядки запчастин."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_form_inherit
+msgid ""
+"Create a draft invoice for all lines of the repair order, parts and labour."
+msgstr "Створити чернетку рахунку на всі рядки наряду: запчастини й роботи."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_form
+msgid "Create a repair order from this booking and mark the booking done."
+msgstr "Створити наряд із цього запису й позначити запис виконаним."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.sale_view_order_form_inherit
+msgid ""
+"Create a repair order from this sales order: customer, vehicle and lines are"
+" copied."
+msgstr "Створити наряд із цього замовлення покупця: клієнт, автомобіль і рядки копіюються."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_form_inherit
@@ -1265,6 +1522,17 @@ msgstr "Створити наряд"
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_form
 msgid "Create repair order"
 msgstr "Створити заказ-наряд"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_adealer_doc_basis_form
+msgid "Create the chosen document from this one and link the two."
+msgstr "Створити обраний документ на підставі цього й пов'язати їх."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_service_request_form
+msgid ""
+"Create the sales order this request turns into. One request gives one order."
+msgstr "Створити замовлення покупця з цього звернення. Одне звернення — одне замовлення."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_app_update__create_uid
@@ -1362,6 +1630,11 @@ msgid "Credit (paid)"
 msgstr "Кредит (оплачено)"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__credit
+msgid "Credit turnover: payments from customers, bills from suppliers."
+msgstr "Кредитовий оборот: оплати від клієнтів, рахунки постачальників."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_report_wizard__currency_id
 #: model:ir.model.fields,field_description:adealer.field_adealer_report_wizard_line__currency_id
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__currency_id
@@ -1373,6 +1646,38 @@ msgstr "Кредит (оплачено)"
 #: model:ir.model.fields,field_description:adealer.field_repair_order__currency_id
 msgid "Currency"
 msgstr "Валюта"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__currency_id
+msgid "Currency of all prices of the vehicle."
+msgstr "Валюта всіх цін автомобіля."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__currency_id
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__currency_id
+msgid "Currency of the amounts."
+msgstr "Валюта сум."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard__currency_id
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard__currency_id
+msgid "Currency of the amounts: the company currency."
+msgstr "Валюта сум — валюта компанії."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_complectation__currency_id
+msgid "Currency of the base price."
+msgstr "Валюта базової ціни."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_option__currency_id
+msgid "Currency of the option price."
+msgstr "Валюта ціни опції."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_line__currency_id
+msgid "Currency of the prices."
+msgstr "Валюта цін."
 
 #. module: adealer
 #. odoo-python
@@ -1451,14 +1756,21 @@ msgid "Customer: _______________"
 msgstr "Замовник: _______________"
 
 #. module: adealer
+#: model:res.groups,comment:adealer.group_adealer_user
+msgid ""
+"Daily work: repair orders, service bookings, customer vehicles, vehicle "
+"stock, campaigns. No reference data and no settings."
+msgstr "Щоденна робота: наряди, записи на сервіс, авто клієнтів, склад авто, кампанії. Без довідників і налаштувань."
+
+#. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__res_config_settings__adealer_home__dashboard
 msgid "Dashboard (Home)"
 msgstr "Дашборд (Головна)"
 
 #. module: adealer
 #: model:ir.model,name:adealer.model_adealer_dashboard
-msgid "Dashboard data provider (Головна)"
-msgstr ""
+msgid "Dashboard data provider (Home)"
+msgstr "Постачальник даних головної сторінки"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_res_config_settings__adealer_dashboard_tab
@@ -1484,6 +1796,26 @@ msgid "Date"
 msgstr "Дата"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__date
+msgid "Date of the document or event."
+msgstr "Дата документа чи події."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__date
+msgid "Date of the document."
+msgstr "Дата документа."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_fleet_vehicle__last_service_date
+msgid "Date of the latest repair order of this vehicle."
+msgstr "Дата останнього наряду цього автомобіля."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_mechanic_output_report__date
+msgid "Date of the repair order."
+msgstr "Дата наряду."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_car__sale_date
 msgid "Date the vehicle was sold (from the sale document)"
 msgstr "Дата продажу авто (з документа продажу)"
@@ -1507,12 +1839,9 @@ msgid "Debit (accrued)"
 msgstr "Дебет (нараховано)"
 
 #. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/addon_hint.py:0
-msgid ""
-"Bay and lift scheduling with no double booking, working hours per bay, "
-"free-slot search and online booking for customers."
-msgstr "Планування постів і підйомників без подвійного запису, робочі години кожного поста, пошук вільного вікна й онлайн-запис для клієнтів."
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__debit
+msgid "Debit turnover: invoices to customers, payments to suppliers."
+msgstr "Дебетовий оборот: рахунки клієнтам, оплати постачальникам."
 
 #. module: adealer
 #. odoo-python
@@ -1528,6 +1857,13 @@ msgid "Default organization"
 msgstr "Основна організація"
 
 #. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_partner_child_cleanup_wizard_form
+msgid ""
+"Delete EVERY child contact in the database: contact persons and addresses "
+"under companies. This cannot be undone."
+msgstr "Видалити ВСІ дочірні контакти в базі: контактних осіб і адреси під компаніями. Скасувати це неможливо."
+
+#. module: adealer
 #: model:ir.actions.act_window,name:adealer.action_partner_child_cleanup_wizard
 #: model_terms:ir.ui.view,arch_db:adealer.view_partner_child_cleanup_wizard_form
 msgid "Delete child contacts"
@@ -1540,8 +1876,19 @@ msgstr "Видалення дочірніх контактів партнері�
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.adealer_error_report_view_form
+msgid "Delete this report without sending it."
+msgstr "Видалити цей звіт, не надсилаючи його."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.adealer_error_report_view_form
 msgid "Delete this report? It will not be sent."
 msgstr "Видалити цей звіт? Його не буде надіслано."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_child_cleanup_wizard.py:0
+msgid "Deletion completed"
+msgstr "Видалення завершено"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
@@ -1566,6 +1913,11 @@ msgstr "Видаткова накладна"
 #: model_terms:ir.ui.view,arch_db:adealer.report_vydatkova
 msgid "Delivery note No."
 msgstr "Видаткова накладна №"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_chain_line__level
+msgid "Depth of the document in the tree."
+msgstr "Глибина документа в дереві."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_doc_link__child_ref
@@ -1618,6 +1970,11 @@ msgstr "Відмінити"
 #: model:ir.model.fields,field_description:adealer.field_repair_line__discount
 msgid "Discount (%)"
 msgstr "Знижка (%)"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_line__discount
+msgid "Discount on the line, in percent."
+msgstr "Знижка на рядок, у відсотках."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_account_move__display_name
@@ -1746,9 +2103,21 @@ msgid "Done"
 msgstr "Виконано"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__progress
+msgid "Done vehicles as a share of all vehicles."
+msgstr "Частка виконаних автомобілів серед усіх."
+
+#. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_service_campaign__state__draft
 msgid "Draft"
 msgstr "Чернетка"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__state
+msgid ""
+"Draft: being prepared. Active: repair orders show it for the vehicles in it."
+" Closed: finished."
+msgstr "Чернетка: готується. Активна: наряди показують її для авто, що в неї входять. Закрита: завершена."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_fleet_vehicle__drive_type
@@ -1809,6 +2178,12 @@ msgid "End date"
 msgstr "Дата завершення"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__engine_volume
+#: model:ir.model.fields,help:adealer.field_fleet_vehicle__volume
+msgid "Engine displacement in cubic centimetres."
+msgstr "Об'єм двигуна в кубічних сантиметрах."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__engine_volume
 #: model_terms:ir.ui.view,arch_db:adealer.report_car_handover
 msgid "Engine displacement, cc"
@@ -1844,6 +2219,35 @@ msgid "Estimated next service date ≤ today"
 msgstr "Розрахункова дата наступного ТО ≤ сьогодні"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_chain__line_ids
+msgid ""
+"Every document linked to this one, with how they are linked; click to open."
+msgstr "Усі документи, пов'язані з цим, і як саме; натисніть, щоб відкрити."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_fleet_vehicle__repair_order_ids
+#: model_terms:ir.ui.view,arch_db:adealer.view_fleet_vehicle_form_service
+msgid "Every repair order of this vehicle."
+msgstr "Усі наряди цього автомобіля."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__stage_history_ids
+msgid "Every stage change: when and by whom."
+msgstr "Кожна зміна стадії: коли й хто."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__status_history_ids
+msgid "Every status change: when and by whom."
+msgstr "Кожна зміна стану: коли й хто."
+
+#. module: adealer
+#: model:res.groups,comment:adealer.group_adealer_manager
+msgid ""
+"Everything a user can do, plus reference data, settings, imports and "
+"settlement reports."
+msgstr "Усе, що вміє користувач, плюс довідники, налаштування, імпорти й звіти по взаєморозрахунках."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_error_report__payload
 msgid "Exactly what leaves this database. Nothing else is transmitted."
 msgstr "Рівно те, що залишає цю базу. Нічого іншого не передається."
@@ -1872,9 +2276,22 @@ msgid "External identifier for sync idempotency"
 msgstr "Зовнішній ідентифікатор для повторної синхронізації без дублів"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__option_ids
+msgid ""
+"Extra options of this vehicle. Their prices add up to the options amount."
+msgstr "Додаткові опції цього авто. Їхні ціни складають суму опцій."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_partner_import_wizard__file_name
 msgid "File name"
 msgstr "Назва файлу"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dealer_car.py:0
+msgid ""
+"Fill in the buyer before selling the vehicle: the sale is made to them."
+msgstr "Заповніть покупця перед продажем автомобіля: продаж оформлюється на нього."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_repair_stage__is_closing
@@ -1890,6 +2307,16 @@ msgstr "Пошук авто"
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__fingerprint
 msgid "Fingerprint"
 msgstr "Відбиток"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard__date_from
+msgid "First day of the period."
+msgstr "Перший день періоду."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard__date_from
+msgid "First day of the period. Everything before it is the opening balance."
+msgstr "Перший день періоду. Усе, що раніше, — вхідне сальдо."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.adealer_error_report_view_list
@@ -1936,9 +2363,19 @@ msgid "Front"
 msgstr "Передній"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_organization__full_name
+msgid "Full legal name, as printed in documents."
+msgstr "Повна юридична назва, як друкується в документах."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_organization__full_name
 msgid "Full name"
 msgstr "Повна назва"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__transmission
+msgid "Gearbox type."
+msgstr "Тип коробки передач."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_partner_balance_wizard_form
@@ -2019,6 +2456,13 @@ msgid "HTTP Routing"
 msgstr "Маршрутизація HTTP"
 
 #. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid ""
+"Hand the sold vehicle over and register it as the customer's vehicle for "
+"service."
+msgstr "Видати проданий автомобіль і зареєструвати його як авто клієнта для сервісу."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_repair_act
 msgid "Handed over (performer): _______________"
 msgstr "Здав (виконавець): _______________"
@@ -2052,6 +2496,122 @@ msgstr "Головна"
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
 msgid "Home page"
 msgstr "Стартова сторінка"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_chain_line__kind
+msgid ""
+"How it is linked: entered on the basis of the document above, settles it, or"
+" belongs to the same deal."
+msgstr "Як пов'язано: введено на підставі документа вище, закриває його або належить до тієї самої угоди."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__work_duration
+msgid "How long the work takes, in hours. Sets the end time."
+msgstr "Скільки триває робота, у годинах. Визначає час завершення."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__active_campaign_count
+msgid "How many active campaigns cover this vehicle."
+msgstr "Скільки активних кампаній охоплює цей автомобіль."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_import_wizard__result_summary
+msgid ""
+"How many counterparties were added or updated, and every row that needs "
+"attention, with the reason."
+msgstr "Скільки контрагентів додано чи оновлено, і кожен рядок, що потребує уваги, з причиною."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__image_count
+msgid "How many extra photos the vehicle has."
+msgstr "Скільки додаткових фото має автомобіль."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__invoice_count
+msgid "How many invoices, delivery notes and acts this repair order has."
+msgstr "Скільки рахунків, видаткових і актів має цей наряд."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_mechanic_output_report__line_count
+msgid "How many labour lines are counted."
+msgstr "Скільки рядків робіт враховано."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_product_product__analog_count
+#: model:ir.model.fields,help:adealer.field_product_template__analog_count
+msgid "How many other parts can replace this one."
+msgstr "Скільки інших запчастин можуть замінити цю."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_part_analog_group__product_count
+msgid "How many parts are in the group."
+msgstr "Скільки запчастин у групі."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_fleet_vehicle__repair_order_count
+msgid "How many repair orders this vehicle has."
+msgstr "Скільки нарядів має цей автомобіль."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_sale_order__own_repair_order_count
+msgid "How many repair orders were created from this sales order."
+msgstr "Скільки нарядів створено з цього замовлення покупця."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__picking_count
+msgid "How many stock transfers this repair order has."
+msgstr "Скільки складських переміщень має цей наряд."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_lost_demand__product_qty
+msgid "How many the customer wanted."
+msgstr "Скільки хотів клієнт."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_error_report__attempts
+msgid "How many times sending was tried."
+msgstr "Скільки разів пробували надіслати."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_error_report__occurrences
+msgid ""
+"How many times this same failure has happened. The report is sent once."
+msgstr "Скільки разів траплялася ця сама помилка. Звіт надсилається один раз."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__done_count
+msgid "How many vehicles are done."
+msgstr "Скільки автомобілів виконано."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__vehicle_count
+msgid "How many vehicles the campaign covers."
+msgstr "Скільки автомобілів охоплює кампанія."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_account_bank_statement_line__dealer_car_count
+#: model:ir.model.fields,help:adealer.field_account_move__dealer_car_count
+msgid "How many vehicles this document sells."
+msgstr "Скільки автомобілів продає цей документ."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_fleet_vehicle__service_interval_km
+msgid "How often the vehicle should come for service, in kilometres."
+msgstr "Як часто автомобіль має приїжджати на сервіс, у кілометрах."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_fleet_vehicle__service_interval_months
+msgid ""
+"How often the vehicle should come for service, in months. Sets the next "
+"service date."
+msgstr "Як часто автомобіль має приїжджати на сервіс, у місяцях. Визначає дату наступного ТО."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_link__kind
+msgid ""
+"How the two documents are linked: on the basis of, settlement, or the same "
+"deal."
+msgstr "Як пов'язані два документи: на підставі, закриття розрахунків чи одна угода."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__http_status
@@ -2218,6 +2778,11 @@ msgid "Import partners from Excel"
 msgstr "Імпорт контрагентів з Excel"
 
 #. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_partner_import_wizard__result_summary
+msgid "Import result"
+msgstr "Результат імпорту"
+
+#. module: adealer
 #: model:ir.actions.server,name:adealer.ir_cron_import_vehicle_models_ir_actions_server
 msgid "Import vehicle models from Excel"
 msgstr "Імпорт моделей авто з Excel"
@@ -2261,6 +2826,11 @@ msgstr "Не заїжджавші клієнти"
 #: model:ir.model.fields,help:adealer.field_dealer_organization__vat_code
 msgid "Individual taxpayer number"
 msgstr "Реєстраційний номер облікової картки платника податків (РНОКПП)"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__partner_address_import_wizard__partner_type__person
+msgid "Individuals"
+msgstr "Фізичні особи"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
@@ -2324,6 +2894,12 @@ msgid "Invoice for payment No."
 msgstr "Рахунок на оплату №"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__invoice_ids
+#: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_form_inherit
+msgid "Invoices, delivery notes and acts created from this repair order."
+msgstr "Рахунки, видаткові й акти, створені з цього наряду."
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/document_chain.py:0
 #: model:ir.model.fields,field_description:adealer.field_repair_order__invoice_ids
@@ -2372,9 +2948,24 @@ msgid "Kind"
 msgstr "Вид"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__repair_type_id
+msgid "Kind of repair; its colour marks the card on the board."
+msgstr "Вид ремонту; його колір позначає картку на дошці."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_chain_line__model_label
+msgid "Kind of the document."
+msgstr "Вид документа."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_invoice_pay
 msgid "L.S."
 msgstr "М.П."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__service_line_ids
+msgid "Labour lines of the repair order."
+msgstr "Рядки робіт наряду."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_app_update__write_uid
@@ -2462,9 +3053,21 @@ msgid "Last checked"
 msgstr "Остання перевірка"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard__date_to
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard__date_to
+msgid "Last day of the period, inclusive."
+msgstr "Останній день періоду, включно."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_fleet_vehicle__last_service_date
 msgid "Last service"
 msgstr "Останнє обслуговування"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_fleet_vehicle__next_service_date
+msgid ""
+"Last service plus the interval in months. Feeds the maintenance reminders."
+msgstr "Останнє ТО плюс інтервал у місяцях. Потрапляє в нагадування про ТО."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_inactive
@@ -2523,6 +3126,11 @@ msgid "Link"
 msgstr "Посилання"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_complectation__base_price
+msgid "List price of the trim without extra options."
+msgstr "Прайсова ціна комплектації без додаткових опцій."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__brand_logo
 #: model:ir.model.fields,field_description:adealer.field_fleet_vehicle__display_logo
 msgid "Logo"
@@ -2541,6 +3149,21 @@ msgstr "Упущений попит"
 #: code:addons/adealer/static/src/xml/sidebar.xml:0
 msgid "MENU"
 msgstr "МЕНЮ"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_fleet_vehicle__name
+msgid "Made from the brand, the model and the VIN."
+msgstr "Складається з марки, моделі й VIN."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__name
+msgid "Made from the brand, the model, the colour and the VIN."
+msgstr "Складається з марки, моделі, кольору й VIN."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__amount
+msgid "Main amount of the line."
+msgstr "Основна сума рядка."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__image_1920
@@ -2590,6 +3213,7 @@ msgstr "Заявки на обслуговування"
 #: model:ir.model.fields,field_description:adealer.field_adealer_lost_demand__user_id
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__service_advisor_id
 #: model:ir.model.fields,field_description:adealer.field_repair_order__service_advisor_id
+#: model:res.groups,name:adealer.group_adealer_manager
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_request_search
 msgid "Manager"
 msgstr "Менеджер"
@@ -2613,6 +3237,21 @@ msgstr "Механічна"
 #: model:ir.model.fields,help:adealer.field_dealer_car_color__code
 msgid "Manufacturer color code"
 msgstr "Код кольору виробника"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_service_campaign_form
+msgid "Mark the campaign work as done on this vehicle."
+msgstr "Позначити роботи кампанії на цьому авто виконаними."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid "Mark the vehicle as sold to the buyer."
+msgstr "Позначити автомобіль проданим покупцеві."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_chain_line__is_current
+msgid "Marks the document the structure was opened from."
+msgstr "Позначає документ, з якого відкрито структуру."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_maintenance_request__master_id
@@ -2669,6 +3308,11 @@ msgid "Metallic"
 msgstr "Металік"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_color__is_metallic
+msgid "Metallic paint: it is often priced separately."
+msgstr "Фарба «металік»: її часто рахують окремо."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__mileage
 #: model:ir.model.fields,field_description:adealer.field_repair_order__mileage
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_to
@@ -2699,6 +3343,11 @@ msgid "Model description as text (when no fleet model matched)"
 msgstr "Опис моделі текстом (коли жодна модель автопарку не підійшла)"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__model_id
+msgid "Model of the vehicle, when the vehicle itself is not in the database."
+msgstr "Модель автомобіля, коли самого авто ще немає в базі."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__year
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__model_year
 #: model_terms:ir.ui.view,arch_db:adealer.report_car_handover
@@ -2706,9 +3355,30 @@ msgid "Model year"
 msgstr "Рік випуску"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__model_year
+msgid "Model year of the vehicle."
+msgstr "Модельний рік автомобіля."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__year
+msgid "Model year, as the customer gave it."
+msgstr "Модельний рік зі слів клієнта."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__module
 msgid "Module"
 msgstr "Модуль"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__image_ids
+msgid "More photos of the vehicle for the card and for adverts."
+msgstr "Більше фото автомобіля — для картки й оголошень."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_form_inherit
+msgid ""
+"Move the stocked parts of this order from the warehouse to the workshop."
+msgstr "Перемістити складські запчастини цього наряду зі складу в цех."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__my_activity_date_deadline
@@ -2731,6 +3401,37 @@ msgid "Name"
 msgstr "Назва"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_vehicle_body__name
+msgid "Name of the body type."
+msgstr "Назва типу кузова."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__name
+msgid "Name of the campaign, e.g. the manufacturer's recall title."
+msgstr "Назва кампанії, наприклад назва відкликання від виробника."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_workplace__name
+msgid "Name of the post or bay, as shown on the board."
+msgstr "Назва поста, як на дошці."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_repair_type__name
+msgid "Name of the repair type, e.g. Maintenance or Warranty."
+msgstr "Назва виду ремонту, наприклад ТО чи Гарантія."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_repair_stage__name
+msgid "Name of the stage, as shown on the repair order board."
+msgstr "Назва стадії, як на дошці нарядів."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "Need attention — %s:"
+msgstr "Потребують уваги — %s:"
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/service_request.py:0
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_service_request__state__draft
@@ -2738,10 +3439,21 @@ msgid "New"
 msgstr "Новий"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_organization__is_default
+msgid "New documents get this organisation. Only one can be the default."
+msgstr "Нові документи отримують цю організацію. Типовою може бути лише одна."
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/dealer_car.py:0
 msgid "New vehicle"
 msgstr "Новий автомобіль"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_request__state
+msgid ""
+"New, Confirmed, Order created (a sales order was made from it) or Cancelled."
+msgstr "Нова, Підтверджено, Замовлення створено (з нього зроблено замовлення покупця) або Скасовано."
 
 #. module: adealer
 #. odoo-python
@@ -2792,8 +3504,10 @@ msgstr "Немає аналога"
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/doc_basis.py:0
-msgid "No bank or cash journal is configured."
-msgstr "Не налаштовано жодного журналу банку чи каси."
+msgid ""
+"No bank or cash journal is configured. Create one in Accounting > "
+"Configuration > Journals first."
+msgstr "Не налаштовано банківського чи касового журналу. Спершу створіть його в меню Бухоблік > Налаштування > Журнали."
 
 #. module: adealer
 #. odoo-javascript
@@ -2810,8 +3524,10 @@ msgstr "Без контрагента"
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/document_chain.py:0
-msgid "No customer is specified on order %s."
-msgstr "У наряді %s не вказано клієнта."
+msgid ""
+"No customer is specified on order %s. Fill in the customer first: the "
+"document is issued to them."
+msgstr "У наряді %s не вказано клієнта. Спершу заповніть клієнта: документ виписується на нього."
 
 #. module: adealer
 #. odoo-javascript
@@ -2831,6 +3547,12 @@ msgid "No posted receivables."
 msgstr "Немає проведених взаєморозрахунків."
 
 #. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "No problem rows."
+msgstr "Рядків із проблемами немає."
+
+#. module: adealer
 #. odoo-javascript
 #: code:addons/adealer/static/src/xml/dashboard.xml:0
 msgid "No records"
@@ -2844,8 +3566,10 @@ msgstr "Не було ТО з"
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/sale.py:0
-msgid "No vehicle is specified on the order."
-msgstr "У замовленні не вказано автомобіль."
+msgid ""
+"No vehicle is specified on the order. Fill in the vehicle first: the repair "
+"order is made for it."
+msgstr "У замовленні не вказано автомобіль. Спершу заповніть його: наряд оформлюється на нього."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_inactive
@@ -2855,18 +3579,20 @@ msgstr "Не заїжджали з"
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/document_chain.py:0
-msgid "No warehouse found for the company."
-msgstr "Не знайдено склад для компанії."
+msgid ""
+"No warehouse found for the company. Create one in Inventory > Configuration "
+"> Warehouses first."
+msgstr "Для компанії не знайдено складу. Спершу створіть його в меню Склад > Налаштування > Склади."
 
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/service.py:0
 msgid ""
 "Not enough parts in warehouse \"%(wh)s\":\n"
-"%(list)s"
-msgstr ""
-"Недостатньо запчастин на складі «%(wh)s»:\n"
-"%(list)s"
+"%(list)s\n"
+"\n"
+"Receive the missing parts into stock first, or change the quantities."
+msgstr "На складі «%(wh)s» не вистачає запчастин:\n%(list)s\n\nСпершу оприбуткуйте відсутні запчастини або змініть кількості."
 
 #. module: adealer
 #. odoo-python
@@ -2881,6 +3607,11 @@ msgid "Notes"
 msgstr "Примітки"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_request__note
+msgid "Notes for the staff; the customer does not see them."
+msgstr "Нотатки для працівників; клієнт їх не бачить."
+
+#. module: adealer
 #: model_terms:ir.actions.act_window,help:adealer.adealer_error_report_action
 msgid "Nothing has gone wrong"
 msgstr "Нічого не зламалось"
@@ -2891,17 +3622,15 @@ msgstr "Нічого не зламалось"
 msgid ""
 "Nothing is created on the basis of %(name)s.\n"
 "\n"
-"This is deliberate: the chain runs one way — order, then repair order, then delivery note, then payment."
-msgstr ""
-"На підставі %(name)s нічого не створюється.\n"
-"\n"
-"Це навмисно: ланцюжок іде в один бік — замовлення, потім заказ-наряд, потім видаткова накладна, потім оплата."
+"This is deliberate: the chain runs one way — order, then repair order, then delivery note, then payment. Open the next document in the chain and create from there."
+msgstr "На підставі «%(name)s» нічого не створюється.\n\nЦе навмисно: ланцюжок іде в один бік — замовлення, потім наряд, потім видаткова, потім оплата. Відкрийте наступний документ ланцюжка й створюйте з нього."
 
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/doc_basis.py:0
-msgid "Nothing was created — the basis document is empty."
-msgstr "Нічого не створено — документ-підстава порожній."
+msgid ""
+"Nothing was created — the basis document is empty. Fill in its lines first."
+msgstr "Нічого не створено — документ-підстава порожній. Спершу заповніть його рядки."
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_service_campaign_line__state__notified
@@ -2952,6 +3681,16 @@ msgid "Number of messages with delivery error"
 msgstr "Кількість повідомлень з помилковою дставкою"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_organization__vat_certificate
+msgid "Number of the VAT registration certificate."
+msgstr "Номер свідоцтва платника ПДВ."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__code
+msgid "Number of the campaign given by the manufacturer."
+msgstr "Номер кампанії від виробника."
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/addon_hint.py:0
 msgid ""
@@ -2963,6 +3702,11 @@ msgstr "Крос-довідник OEM: запчастина знаходитьс
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__occurrences
 msgid "Occurrences"
 msgstr "Випадки"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_fleet_vehicle__last_service_mileage
+msgid "Odometer reading at the latest repair order."
+msgstr "Показник одометра в останньому наряді."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
@@ -3000,20 +3744,39 @@ msgstr "Залишок:"
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/service_request.py:0
-msgid "Only a new request can be confirmed."
-msgstr "Підтвердити можна лише нову заявку."
+msgid ""
+"Only a new request can be confirmed. Press Set to New first if you need to "
+"confirm it again."
+msgstr "Підтвердити можна лише нове звернення. Щоб підтвердити ще раз, спершу натисніть «Повернути в «Нова»»."
 
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/dealer_car.py:0
-msgid "Only a sold vehicle can be delivered."
-msgstr "Видати можна лише продане авто."
+msgid "Only a sold vehicle can be delivered. Press Sell first."
+msgstr "Видати можна лише проданий автомобіль. Спершу натисніть «Продати»."
 
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/dealer_car.py:0
-msgid "Only a vehicle with status \"In stock\" can be reserved."
-msgstr "Резервувати можна лише авто зі статусом «На складі»."
+msgid ""
+"Only a vehicle with status \"In stock\" can be reserved. Receive the vehicle"
+" into stock first."
+msgstr "Зарезервувати можна лише автомобіль у стані «На складі». Спершу прийміть його на склад."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard__partner_id
+msgid "Only this counterparty. Empty: all of them."
+msgstr "Лише цей контрагент. Порожньо — усі."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard__product_id
+msgid "Only this product. Empty: all of them."
+msgstr "Лише цей товар. Порожньо — усі."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard__vehicle_id
+msgid "Only this vehicle. Empty: all of them."
+msgstr "Лише цей автомобіль. Порожньо — усі."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_purchases
@@ -3053,6 +3816,56 @@ msgid "Open repair order"
 msgstr "Відкрити заказ-наряд"
 
 #. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid "Open the customer's vehicle registered on delivery."
+msgstr "Відкрити авто клієнта, зареєстроване під час видачі."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_customers
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_sales
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_gross
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_inactive
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_orders
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_purchases
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_repairs
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_sales
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_stock
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_to
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_turnover
+msgid "Open the document of this line."
+msgstr "Відкрити документ цього рядка."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_partner_balance_wizard_form
+msgid "Open the journal entry of this line."
+msgstr "Відкрити бухгалтерський запис цього рядка."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_form
+msgid "Open the repair order created from this booking."
+msgstr "Відкрити наряд, створений із цього запису."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid "Open the sale invoice of this vehicle."
+msgstr "Відкрити документ продажу цього автомобіля."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_service_request_form
+msgid "Open the sales order created from this request."
+msgstr "Відкрити замовлення покупця, створене з цього звернення."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_form_alfa
+msgid "Open the sales order this repair order was created from."
+msgstr "Відкрити замовлення покупця, з якого створено цей наряд."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_partner_balance_wizard_form
+msgid "Open this counterparty's detailed statement for the same period."
+msgstr "Відкрити детальну виписку цього контрагента за той самий період."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_to
 msgid "Open vehicle"
 msgstr "Відкрити авто"
@@ -3064,6 +3877,13 @@ msgstr "Відкрити авто"
 #: model:ir.model.fields.selection,name:adealer.selection__partner_balance_wizard_line__line_type__opening
 msgid "Opening balance"
 msgstr "Початковий залишок"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard__line_ids
+msgid ""
+"Opening balance, documents of the period and closing balance; click a line "
+"to open its document."
+msgstr "Вхідне сальдо, документи періоду й вихідне сальдо; натисніть рядок, щоб відкрити документ."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__operation
@@ -3079,6 +3899,16 @@ msgstr "Операції"
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_option__name
 msgid "Option"
 msgstr "Опція"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_option__code
+msgid "Option code of the manufacturer or of the source system."
+msgstr "Код опції виробника чи системи-джерела."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_option__name
+msgid "Option name, as shown to the customer."
+msgstr "Назва опції, як її бачить клієнт."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_option__price
@@ -3108,6 +3938,11 @@ msgid "Options"
 msgstr "Опції"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_complectation__option_ids
+msgid "Options already included in this trim."
+msgstr "Опції, що вже входять у цю комплектацію."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__options_price
 msgid "Options amount"
 msgstr "Сума опцій"
@@ -3118,11 +3953,9 @@ msgid "Options in the trim"
 msgstr "Опції у комплектації"
 
 #. module: adealer
-#. odoo-javascript
 #. odoo-python
 #: code:addons/adealer/models/dashboard.py:0
 #: code:addons/adealer/models/sale.py:0
-#: code:addons/adealer/static/src/js/booking_board/board.js:0
 #: model:ir.model.fields,field_description:adealer.field_adealer_mechanic_output_report__repair_id
 #: model:ir.model.fields,field_description:adealer.field_adealer_repair_stage__sequence
 #: model:ir.model.fields,field_description:adealer.field_adealer_repair_stage_history__repair_id
@@ -3137,21 +3970,27 @@ msgstr "Замовлення"
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/document_chain.py:0
-msgid "Order %(name)s has no lines for the '%(label)s' document."
-msgstr "У наряді %(name)s немає рядків для документа «%(label)s»."
+msgid ""
+"Order %(name)s has no lines for the '%(label)s' document. Fill in the "
+"matching lines (parts for a delivery note, labour for an act) first."
+msgstr "Наряд %(name)s не має рядків для документа «%(label)s». Спершу заповніть відповідні рядки (запчастини — для видаткової, роботи — для акта)."
 
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/service_request.py:0
-msgid "Order %s has already been created from this request."
-msgstr "Замовлення %s уже створено з цієї заявки."
+msgid ""
+"Order %s has already been created from this request. Open it from the button"
+" at the top."
+msgstr "З цього звернення вже створено замовлення %s. Відкрийте його кнопкою вгорі."
 
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/doc_basis.py:0
 #: code:addons/adealer/models/document_chain.py:0
-msgid "Order %s has no stock parts to issue."
-msgstr "У наряді %s немає складських запчастин для видачі."
+msgid ""
+"Order %s has no stock parts to issue. Fill in the parts lines with stocked "
+"products first."
+msgstr "У наряді %s немає складських запчастин для видачі. Спершу заповніть рядки запчастин складськими товарами."
 
 #. module: adealer
 #. odoo-python
@@ -3166,6 +4005,31 @@ msgstr "Замовлення закрито — стадія: %s."
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_request_search
 msgid "Order created"
 msgstr "Замовлення створено"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__sequence
+msgid "Order of the line in the report."
+msgstr "Порядок рядка у звіті."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__sequence
+msgid "Order of the line in the statement."
+msgstr "Порядок рядка у виписці."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_image__sequence
+msgid "Order of the photo in the gallery."
+msgstr "Порядок фото в галереї."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_workplace__sequence
+msgid "Order of the post on the board."
+msgstr "Порядок поста на дошці."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_repair_stage__sequence
+msgid "Order of the stage on the board."
+msgstr "Порядок стадії на дошці."
 
 #. module: adealer
 #: model:ir.model,name:adealer.model_adealer_repair_stage
@@ -3251,6 +4115,11 @@ msgstr "Виробіток"
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign_line__partner_id
 msgid "Owner"
 msgstr "Власник"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign_line__partner_id
+msgid "Owner of the vehicle, to notify."
+msgstr "Власник автомобіля — щоб повідомити."
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__res_config_settings__adealer_print_format__qweb-pdf
@@ -3386,6 +4255,11 @@ msgid "Parts issued in period"
 msgstr "Видано запчастин за період"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__part_line_ids
+msgid "Parts lines of the repair order."
+msgstr "Рядки запчастин наряду."
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/dashboard.py:0
 msgid "Parts sales by month"
@@ -3396,6 +4270,11 @@ msgstr "Продаж запчастин по місяцях"
 #: code:addons/adealer/models/dashboard.py:0
 msgid "Parts sales in period"
 msgstr "Продаж запчастин за період"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_part_analog_group__product_ids
+msgid "Parts that can replace each other."
+msgstr "Запчастини, що можуть замінювати одна одну."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__payload
@@ -3416,6 +4295,11 @@ msgstr "Платежі"
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_service_campaign_line__state__pending
 msgid "Pending"
 msgstr "Очікує"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign_line__state
+msgid "Pending, Notified (the owner was told), Done or Customer refusal."
+msgstr "Очікує, Повідомлено (власник знає), Виконано або Відмова клієнта."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_mechanic_output_report__mechanic_id
@@ -3450,6 +4334,11 @@ msgid "Phone"
 msgstr "Телефон"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__phone
+msgid "Phone to reach the customer."
+msgstr "Телефон для зв'язку з клієнтом."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__image_ids
 #: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
 msgid "Photos"
@@ -3465,6 +4354,13 @@ msgstr "К-сть відвантажень"
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_search
 msgid "Planned"
 msgstr "Заплановано"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__state
+msgid ""
+"Planned, Confirmed, Arrived, Order created (a repair order was made from it)"
+" or Cancelled."
+msgstr "Заплановано, Підтверджено, Прибув, Замовлення створено (з нього зроблено наряд) або Скасовано."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_list
@@ -3503,6 +4399,11 @@ msgid "Prefix"
 msgstr "Префікс"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_organization__prefix
+msgid "Prefix of document numbers of this organisation."
+msgstr "Префікс номерів документів цієї організації."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_invoice_pay
 #: model_terms:ir.ui.view,arch_db:adealer.report_nadhodzhennia
 #: model_terms:ir.ui.view,arch_db:adealer.report_povernennia
@@ -3516,6 +4417,21 @@ msgstr "Ціна"
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_lost_demand__reason__price
 msgid "Price not acceptable"
 msgstr "Не влаштувала ціна"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_line__price_unit
+msgid "Price of one unit."
+msgstr "Ціна однієї одиниці."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_option__price
+msgid "Price of the option when it is added to a vehicle."
+msgstr "Ціна опції, коли її додають до автомобіля."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__sale_price
+msgid "Price of the vehicle without options."
+msgstr "Ціна автомобіля без опцій."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_repair_order
@@ -3608,6 +4524,13 @@ msgid "Pull the latest code from GitHub and upgrade the module?"
 msgstr "Завантажити останній код з GitHub і оновити модуль?"
 
 #. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
+msgid ""
+"Pull the new code from GitHub and upgrade the module. Only for a server "
+"where the module is a git checkout; restart Odoo afterwards."
+msgstr "Отримати новий код із GitHub і оновити модуль. Лише для сервера, де модуль — git-копія; потім перезапустіть Odoo."
+
+#. module: adealer
 #: model:ir.model,name:adealer.model_purchase_order
 msgid "Purchase Order"
 msgstr "Замовлення на купівлю"
@@ -3664,9 +4587,38 @@ msgid "Quantity"
 msgstr "Кількість"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_line__price_subtotal
+msgid "Quantity times price, less the discount."
+msgstr "Кількість на ціну мінус знижка."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__qty
+msgid "Quantity."
+msgstr "Кількість."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_line__product_uom_qty
+msgid "Quantity: hours of labour or pieces of the part."
+msgstr "Кількість: години роботи чи штуки запчастини."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
 msgid "Queued reports: Settings menu -&gt; Error reports."
 msgstr "Звіти в черзі: меню Налаштування -&gt; Звіти про помилки."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_partner_address_import_wizard_form
+msgid ""
+"Read the addresses from the Excel file and write them to the chosen "
+"counterparties."
+msgstr "Прочитати адреси з файла Excel і записати їх обраним контрагентам."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_partner_import_wizard_form
+msgid ""
+"Read the counterparties from the Excel file: add new ones, update the ones "
+"found, and show the report."
+msgstr "Прочитати контрагентів із файла Excel: додати нових, оновити знайдених і показати звіт."
 
 #. module: adealer
 #: model:ir.model,name:adealer.model_adealer_report_wizard
@@ -3694,6 +4646,11 @@ msgstr "Причина"
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_service_campaign__campaign_type__recall
 msgid "Recall"
 msgstr "Відкликання"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__campaign_type
+msgid "Recall, warranty campaign or service action."
+msgstr "Відкликання, гарантійна кампанія чи сервісна акція."
 
 #. module: adealer
 #: model:ir.model,name:adealer.model_partner_balance_wizard_line
@@ -3751,6 +4708,11 @@ msgstr "Посилання 2"
 #: model:ir.model.fields,field_description:adealer.field_adealer_report_wizard_line__ref3
 msgid "Ref3"
 msgstr "Посилання 3"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__plate
+msgid "Registration plate."
+msgstr "Державний номер."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_vydatkova
@@ -3832,6 +4794,12 @@ msgid "Repair orders"
 msgstr "Наряди"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_sale_order__own_repair_order_ids
+#: model_terms:ir.ui.view,arch_db:adealer.sale_view_order_form_inherit
+msgid "Repair orders created from this sales order."
+msgstr "Наряди, створені з цього замовлення покупця."
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/dashboard.py:0
 msgid "Repair orders in period"
@@ -3892,6 +4860,11 @@ msgid "Reports — Sales (manager)"
 msgstr "Звіти — Продажі (менеджер)"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_request__name
+msgid "Request number, given when it is saved."
+msgstr "Номер звернення, присвоюється під час збереження."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__requested_works
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_form
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_list
@@ -3926,6 +4899,12 @@ msgid "Reserve"
 msgstr "Резерв"
 
 #. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid ""
+"Reserve the vehicle for a customer. Only a vehicle in stock can be reserved."
+msgstr "Зарезервувати автомобіль за клієнтом. Резервувати можна лише авто на складі."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_account_move_realiz_list
 #: model_terms:ir.ui.view,arch_db:adealer.view_purchase_order_journal_list
 #: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_journal_list
@@ -3938,6 +4917,11 @@ msgstr "Відповідальний"
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__activity_user_id
 msgid "Responsible User"
 msgstr "Відповідальний користувач"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_partner_import_wizard_form
+msgid "Result"
+msgstr "Результат"
 
 #. module: adealer
 #: model:ir.actions.report,name:adealer.action_report_povernennia
@@ -3960,6 +4944,21 @@ msgstr "Повернув(ла): _______________"
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_gross
 msgid "Revenue"
 msgstr "Виручка"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid ""
+"Row %(row)s: %(what)s\n"
+"    Why: %(why)s\n"
+"    What to do: %(howto)s"
+msgstr "Рядок %(row)s: %(what)s\n    Чому: %(why)s\n    Що зробити: %(howto)s"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "Rows processed: %s"
+msgstr "Оброблено рядків: %s"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__message_has_sms_error
@@ -4012,6 +5011,11 @@ msgid "Sale price"
 msgstr "Ціна продажу"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__total_price
+msgid "Sale price plus options: what the buyer pays."
+msgstr "Ціна продажу плюс опції: що платить покупець."
+
+#. module: adealer
 #: model:ir.actions.act_window,name:adealer.action_report_ready_sales
 #: model:ir.actions.act_window,name:adealer.report_sales
 #: model:ir.model.fields,field_description:adealer.field_res_config_settings__show_menu_sales
@@ -4043,6 +5047,17 @@ msgid "Scheduled"
 msgstr "Заплановано"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__amount2
+msgid ""
+"Second amount; its meaning depends on the report (cost, margin, share)."
+msgstr "Друга сума; що вона означає, залежить від звіту (собівартість, маржа, частка)."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__ref2
+msgid "Second column of the report; its meaning depends on the report."
+msgstr "Друга колонка звіту; що вона означає, залежить від звіту."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_partner_import_wizard_form
 msgid "Select an Excel file to import"
 msgstr "Оберіть Excel-файл для імпорту"
@@ -4066,6 +5081,13 @@ msgstr "Надсилати автоматичні звіти про помилк
 #: model_terms:ir.ui.view,arch_db:adealer.adealer_error_report_view_form
 msgid "Send now"
 msgstr "Надіслати зараз"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.adealer_error_report_view_form
+msgid ""
+"Send this report now, without waiting for the scheduled job. Exactly the "
+"payload shown leaves the database."
+msgstr "Надіслати цей звіт зараз, не чекаючи запланованої дії. З бази виходить рівно показаний вміст."
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_error_report__state__sent
@@ -4231,9 +5253,27 @@ msgid "Service revenue in period"
 msgstr "Виручка СТО за період"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_stock_picking__parts_arrival_notified
+msgid ""
+"Set once the salesperson was told that the parts for this delivery arrived."
+msgstr "Позначається, щойно продавцеві повідомили, що запчастини для цієї видачі надійшли."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_request_form
 msgid "Set to New"
 msgstr "Повернути в «Нова»"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_git_ready
+msgid ""
+"Set when the module is a git checkout on the server, so it can be updated "
+"from GitHub."
+msgstr "Позначається, коли модуль на сервері — git-копія, тож його можна оновити з GitHub."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_update_available
+msgid "Set when the published version is newer than the installed one."
+msgstr "Позначається, коли опублікована версія новіша за встановлену."
 
 #. module: adealer
 #: model:ir.ui.menu,name:adealer.configuration
@@ -4261,6 +5301,11 @@ msgid "Shipping"
 msgstr "Відвантаження"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_organization__name
+msgid "Short name of the organisation, as shown in lists."
+msgstr "Коротка назва організації, як у списках."
+
+#. module: adealer
 #. odoo-javascript
 #: code:addons/adealer/static/src/xml/dashboard.xml:0
 msgid "Show"
@@ -4273,10 +5318,56 @@ msgid "Show add-on hints"
 msgstr "Показувати підказки про надбудови"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__show_menu_maintenance
+msgid "Show the Maintenance and repair menu."
+msgstr "Показувати меню «Обслуговування й ремонт»."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__show_menu_contacts
+msgid "Show the Partners and users menu."
+msgstr "Показувати меню «Партнери й користувачі»."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__show_menu_products
+msgid "Show the Products and services menu."
+msgstr "Показувати меню «Товари й послуги»."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__show_menu_purchases
+msgid "Show the Purchases menu."
+msgstr "Показувати меню «Закупівлі»."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__show_menu_reports
+msgid "Show the Reports menu."
+msgstr "Показувати меню «Звіти»."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__show_menu_sales
+msgid "Show the Sales menu."
+msgstr "Показувати меню «Продажі»."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__show_menu_showroom
+msgid "Show the Showroom menu."
+msgstr "Показувати меню «Автосалон»."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__show_menu_vehicles
+msgid "Show the Vehicles and models menu."
+msgstr "Показувати меню «Автомобілі й моделі»."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_brand_logo_default
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
 msgid "Show the brand logo as the vehicle image by default"
 msgstr "Показувати лого бренда як зображення авто за замовчуванням"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__update_message
+#: model:ir.model.fields,help:adealer.field_repair_order__update_message
+msgid "Shown when a newer version of 3A-dealer is published."
+msgstr "З'являється, коли опубліковано новішу версію 3A-dealer."
 
 #. module: adealer
 #. odoo-javascript
@@ -4292,6 +5383,18 @@ msgstr "Автосалон"
 #: model_terms:ir.ui.view,arch_db:adealer.report_dovirenist
 msgid "Signature of the authorized person: _______________ we certify."
 msgstr "Підпис довіреної особи: _______________ засвідчуємо."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "Skipped as duplicates: %s"
+msgstr "Пропущено як дублікати: %s"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "Skipped for lack of data: %s"
+msgstr "Пропущено без даних: %s"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_car__status__sold
@@ -4326,12 +5429,6 @@ msgid "Source order"
 msgstr "Наряд-джерело"
 
 #. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/dealer_car.py:0
-msgid "Specify the buyer before selling the vehicle."
-msgstr "Вкажіть покупця перед продажем авто."
-
-#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_repair_stage_history__stage_id
 #: model:ir.model.fields,field_description:adealer.field_repair_order__stage_id
 msgid "Stage"
@@ -4345,9 +5442,19 @@ msgid "Standard hours"
 msgstr "Нормо-години"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_mechanic_output_report__normo_hours
+msgid "Standard hours of the work: the basis for the mechanic's pay."
+msgstr "Нормо-години роботи: основа оплати механіка."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign__date_start
 msgid "Start date"
 msgstr "Дата початку"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_service_campaign_form
+msgid "Start the campaign: its vehicles can be marked as done."
+msgstr "Запустити кампанію: її автомобілі можна позначати виконаними."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__state
@@ -4408,6 +5515,11 @@ msgid "Status history"
 msgstr "Історія статусів"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__state
+msgid "Status of the document."
+msgstr "Стан документа."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_repair_order
 msgid "Std hr"
 msgstr "Нормо-год"
@@ -4439,6 +5551,12 @@ msgid "Stock positions"
 msgstr "Позицій на складі"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__picking_ids
+#: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_form_inherit
+msgid "Stock transfers made for this repair order."
+msgstr "Складські переміщення для цього наряду."
+
+#. module: adealer
 #: model:ir.actions.act_window,name:adealer.action_report_ready_turnover
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_report_wizard__report_type__turnover
 #: model:ir.ui.menu,name:adealer.menu_ready_turnover
@@ -4463,6 +5581,16 @@ msgid "Subtotal"
 msgstr "Проміжний підсумок"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__options_price
+msgid "Sum of the prices of the chosen options."
+msgstr "Сума цін обраних опцій."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__total_normo_hours
+msgid "Sum of the standard hours of all labour lines of the order."
+msgstr "Сума нормо-годин усіх рядків робіт наряду."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__supplier_id
 #: model_terms:ir.ui.view,arch_db:adealer.view_purchase_order_journal_list
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_purchases
@@ -4480,6 +5608,133 @@ msgid "Taxes"
 msgstr "Податки"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_line__tax_id
+msgid "Taxes applied to the line."
+msgstr "Податки рядка."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__wh_id_1c
+msgid ""
+"Technical, for data migration: warehouse identifier in the source system."
+msgstr "Службове, для перенесення даних: ідентифікатор складу в системі-джерелі."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__wh_id_3a
+msgid "Technical, for data migration: warehouse identifier in this database."
+msgstr "Службове, для перенесення даних: ідентифікатор складу в цій базі."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__wh_name_1c
+msgid "Technical, for data migration: warehouse name in the source system."
+msgstr "Службове, для перенесення даних: назва складу в системі-джерелі."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__wh_name_3a
+msgid "Technical, for data migration: warehouse name in this database."
+msgstr "Службове, для перенесення даних: назва складу в цій базі."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_chain__origin_res_id
+msgid "Technical: id of that document."
+msgstr "Службове: ідентифікатор цього документа."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_basis__source_res_id
+msgid "Technical: id of the basis document."
+msgstr "Службове: ідентифікатор документа-підстави."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__res_id
+msgid "Technical: id of the document the line opens."
+msgstr "Службове: ідентифікатор документа, який відкриває рядок."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_basis__source_model
+#: model:ir.model.fields,help:adealer.field_adealer_doc_link__parent_model
+msgid "Technical: model of the basis document."
+msgstr "Службове: модель документа-підстави."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_link__child_model
+msgid "Technical: model of the derived document."
+msgstr "Службове: модель похідного документа."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__res_model
+msgid "Technical: model of the document the line opens."
+msgstr "Службове: модель документа, який відкриває рядок."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_chain__origin_model
+msgid "Technical: model of the document the structure is built for."
+msgstr "Службове: модель документа, для якого будується структура."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_import_wizard__file_name
+msgid "Tells .xls and .xlsx apart."
+msgstr "За ним розрізняються .xls і .xlsx."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner.py:0
+msgid ""
+"The EDRPOU code \"%s\" has %s characters, but it must have 8 (a company) or "
+"10 (an individual). Check the code against the registration documents."
+msgstr "Код ЄДРПОУ «%s» має %s символів, а має бути 8 (юрособа) або 10 (фізособа). Перевірте код за реєстраційними документами."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_error_report__http_status
+msgid "The HTTP status code, if the failure came from a server; 0 otherwise."
+msgstr "Код стану HTTP, якщо помилку повернув сервер; інакше 0."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_link__parent_ref
+msgid "The basis document."
+msgstr "Документ-підстава."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign_line__campaign_id
+msgid "The campaign this vehicle belongs to."
+msgstr "Кампанія, до якої належить цей автомобіль."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__company_id
+msgid "The company running the campaign."
+msgstr "Компанія, що проводить кампанію."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__company_id
+msgid "The company that owns the vehicle."
+msgstr "Компанія, якій належить автомобіль."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__company_id
+msgid "The company the booking belongs to."
+msgstr "Компанія, якій належить запис."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_lost_demand__company_id
+#: model:ir.model.fields,help:adealer.field_adealer_service_request__company_id
+msgid "The company the request belongs to."
+msgstr "Компанія, якій належить звернення."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_error_report__company_id
+msgid ""
+"The company where the failure happened. Each company keeps its own queue."
+msgstr "Компанія, де стався збій. Кожна компанія має власну чергу."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_import_wizard__file
+msgid "The counterparties as an Excel file (.xls or .xlsx)."
+msgstr "Контрагенти у файлі Excel (.xls або .xlsx)."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__partner_line_id
+msgid "The counterparty of the summary line; click to see its statement."
+msgstr "Контрагент підсумкового рядка; натисніть, щоб побачити його виписку."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_service_booking__customer_name
 msgid ""
 "The customer as given (for example, on the phone) when there is no contact "
@@ -4488,14 +5743,87 @@ msgid ""
 msgstr "Клієнт зі слів (наприклад, по телефону), коли картки контакту для нього ще немає. Показується на дошці й у календарі, якщо клієнта не обрано."
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_mechanic_output_report__partner_id
+msgid "The customer of the repair order."
+msgstr "Клієнт наряду."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_service_booking__sale_order_id
 msgid "The customer order linked to this booking"
 msgstr "Замовлення покупця, пов'язане з цим записом"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_maintenance_request__partner_id
+msgid "The customer the request is for."
+msgstr "Клієнт, для якого звернення."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__partner_id
+msgid "The customer the work is done for and invoiced to."
+msgstr "Клієнт, для якого виконуються й кому рахуються роботи."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_request__partner_id
+msgid "The customer who asks for the work."
+msgstr "Клієнт, який просить виконати роботи."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_sale_order__vehicle_id
+msgid ""
+"The customer's vehicle the order is for. Needed to create a repair order."
+msgstr "Автомобіль клієнта, для якого замовлення. Потрібен, щоб створити наряд."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__vehicle_id
+msgid "The customer's vehicle under repair."
+msgstr "Автомобіль клієнта в ремонті."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__vehicle_id
+msgid "The customer's vehicle, if it is already in the database."
+msgstr "Автомобіль клієнта, якщо він уже є в базі."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_lost_demand__vehicle_id
+msgid "The customer's vehicle, if known."
+msgstr "Автомобіль клієнта, якщо відомий."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_request__vehicle_id
+msgid "The customer's vehicle."
+msgstr "Автомобіль клієнта."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__partner_id
+msgid ""
+"The customer. If there is no contact yet, write the name in Customer name "
+"instead."
+msgstr "Клієнт. Якщо контакту ще немає, запишіть ім'я в полі «Ім'я клієнта»."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_car__sale_move_id
 msgid "The delivery note / invoice this vehicle was sold on"
 msgstr "Видаткова накладна / рахунок, яким продано це авто"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_link__child_ref
+msgid "The document entered from it."
+msgstr "Документ, введений на його підставі."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_basis__source_ref
+msgid "The document the new one is created from."
+msgstr "Документ, на підставі якого створюється новий."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_chain__origin_ref
+msgid "The document the structure is shown for."
+msgstr "Документ, для якого показано структуру."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__doc_name
+msgid "The document, or the counterparty in the summary."
+msgstr "Документ або контрагент у зведенні."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_error_report__error_type
@@ -4504,13 +5832,57 @@ msgstr "Клас винятку, ніколи не його текст."
 
 #. module: adealer
 #. odoo-python
+#: code:addons/adealer/models/partner_import_wizard.py:0
+msgid ""
+"The file format does not fit: \"%s\".\n"
+"\n"
+"An Excel file is needed, .xls or .xlsx. If the file is a CSV, open it in Excel and save it as a workbook."
+msgstr "Формат файлу не підходить: «%s».\n\nПотрібен Excel — .xls або .xlsx. Якщо файл у CSV, збережіть його як книгу Excel."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__move_id
+msgid "The journal entry behind the line."
+msgstr "Бухгалтерський запис за цим рядком."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_mechanic_output_report__product_id
+msgid "The labour item done."
+msgstr "Виконана робота."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_line__product_id
+msgid "The labour or the part."
+msgstr "Робота чи запчастина."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_chain_line__doc_ref
+msgid "The linked document; click to open it."
+msgstr "Пов'язаний документ; натисніть, щоб відкрити."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__employee_id
+msgid "The mechanic planned for the work."
+msgstr "Механік, запланований на роботу."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_complectation__model_id
+msgid ""
+"The model this trim belongs to. Vehicles of that model can be given this "
+"trim."
+msgstr "Модель, якій належить комплектація. Автомобілям цієї моделі можна задати цю комплектацію."
+
+#. module: adealer
+#. odoo-python
 #: code:addons/adealer/models/app_update.py:0
 msgid ""
 "The module directory is not a git checkout (%s).\n"
-"Download the new version from the Odoo App Store instead."
-msgstr ""
-"Тека модуля не є git-репозиторієм (%s).\n"
-"Завантажте нову версію з Odoo App Store."
+"Open the Odoo App Store and download the new version instead."
+msgstr "Тека модуля не є git-копією (%s).\nВідкрийте Odoo App Store і завантажте нову версію звідти."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_version_latest
+msgid "The newest published version, as of the last check."
+msgstr "Найновіша опублікована версія на момент останньої перевірки."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_service_request__sale_order_id
@@ -4523,6 +5895,21 @@ msgid "The order that closed the vehicle campaign"
 msgstr "Наряд, яким закрито кампанію по авто"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_fleet_vehicle__partner_id
+msgid "The owner of the vehicle."
+msgstr "Власник автомобіля."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_lost_demand__product_id
+msgid "The part the customer asked for."
+msgstr "Запчастина, яку просив клієнт."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__workplace_id
+msgid "The post or bay the work is planned on."
+msgstr "Пост, на якому заплановано роботу."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_repair_order__booking_id
 msgid "The preliminary appointment this order was created from"
 msgstr "Попередній запис, з якого створено це замовлення"
@@ -4533,10 +5920,45 @@ msgid "The repair order created from this booking (optional)"
 msgstr "Заказ-наряд, створений із цього запису (необов'язково)"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_maintenance_request__repair_order
+msgid "The repair order linked to this maintenance request."
+msgstr "Наряд, пов'язаний із цим запитом на обслуговування."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_mechanic_output_report__repair_id
+msgid "The repair order of the work."
+msgstr "Наряд, у якому виконано роботу."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_account_bank_statement_line__source_repair_order_id
 #: model:ir.model.fields,help:adealer.field_account_move__source_repair_order_id
 msgid "The repair order this document was created from"
 msgstr "Наряд-Заказ, на підставі якого створено цей документ"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_line__repair_id
+msgid "The repair order this line belongs to."
+msgstr "Наряд, до якого належить цей рядок."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_stock_picking__source_repair_order_id
+msgid "The repair order this transfer was made for."
+msgstr "Наряд, для якого зроблено це переміщення."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_repair_stage_history__repair_id
+msgid "The repair order whose stage changed."
+msgstr "Наряд, у якого змінилась стадія."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard__line_ids
+msgid "The report lines; click a line to open its document."
+msgstr "Рядки звіту; натисніть рядок, щоб відкрити документ."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__wizard_id
+msgid "The report this line belongs to."
+msgstr "Звіт, до якого належить цей рядок."
 
 #. module: adealer
 #. odoo-python
@@ -4547,8 +5969,8 @@ msgstr "Заявка вже має замовлення %s. Спершу ска�
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/service_request.py:0
-msgid "The request is cancelled."
-msgstr "Заявку скасовано."
+msgid "The request is cancelled. Press Set to New first."
+msgstr "Звернення скасовано. Спершу натисніть «Повернути в «Нова»»."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_repair_order__source_sale_order_id
@@ -4556,9 +5978,81 @@ msgid "The sale order this repair order was created from"
 msgstr "Замовлення покупця, з якого створено цей наряд"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__sale_order_id
+msgid "The sales order of this vehicle."
+msgstr "Замовлення покупця на цей автомобіль."
+
+#. module: adealer
 #: model:ir.model.constraint,message:adealer.constraint_adealer_error_report_fingerprint_company_uniq
-msgid "The same failure is only queued once per company."
-msgstr "Той самий збій стає в чергу лише раз на організацію."
+msgid ""
+"The same failure is only queued once per company. Open the report already in"
+" the queue instead: its Occurrences count goes up."
+msgstr "Та сама помилка стає в чергу лише раз на компанію. Відкрийте звіт, що вже є в черзі: у ньому зростає лічильник повторень."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_repair_stage_history__stage_id
+msgid "The stage the order was moved to."
+msgstr "Стадія, на яку переведено наряд."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__wizard_id
+msgid "The statement this line belongs to."
+msgstr "Виписка, до якої належить цей рядок."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_status_history__status
+msgid "The status the vehicle was moved to."
+msgstr "Стан, у який переведено автомобіль."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__update_url
+#: model:ir.model.fields,help:adealer.field_repair_order__update_url
+msgid ""
+"The store page of the newer version: download it there, then upgrade the "
+"module in Apps."
+msgstr "Сторінка новішої версії в магазині: завантажте її там, потім оновіть модуль у «Застосунках»."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_chain_line__chain_id
+msgid "The structure this line belongs to."
+msgstr "Структура, до якої належить цей рядок."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid "The vehicle has arrived: put it into stock."
+msgstr "Автомобіль прибув: прийняти його на склад."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid "The vehicle is on its way to the showroom."
+msgstr "Автомобіль у дорозі до автосалону."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_maintenance_request__vehicle_id
+msgid "The vehicle the request is about."
+msgstr "Автомобіль, якого стосується запит."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_image__car_id
+msgid "The vehicle this photo belongs to."
+msgstr "Автомобіль, якому належить це фото."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_product_product__vehicle_id
+#: model:ir.model.fields,help:adealer.field_product_template__vehicle_id
+msgid ""
+"The vehicle this product stands for; its name is copied to the product."
+msgstr "Автомобіль, який представляє цей товар; його назва копіюється в товар."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_status_history__car_id
+msgid "The vehicle whose status changed."
+msgstr "Автомобіль, у якого змінився стан."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_mechanic_output_report__vehicle_id
+msgid "The vehicle worked on."
+msgstr "Автомобіль, з яким працювали."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_fleet_vehicle__photo
@@ -4566,9 +6060,29 @@ msgid "The vehicle's own photo (optional). If empty, the brand logo is shown."
 msgstr "Власне фото авто (необов’язково). Якщо порожнє — показується лого бренда."
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign_line__vehicle_id
+msgid "The vehicle, if it is in the database; otherwise fill in the VIN."
+msgstr "Автомобіль, якщо він є в базі; інакше заповніть VIN."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_version_installed
+msgid "The version of 3A-dealer installed in this database."
+msgstr "Версія 3A-dealer, встановлена в цій базі."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_repair_act
 msgid "The works were carried out in full. The customer has no claims."
 msgstr "Роботи виконано в повному обсязі. Замовник претензій не має."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__amount3
+msgid "Third amount; its meaning depends on the report."
+msgstr "Третя сума; що вона означає, залежить від звіту."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__ref3
+msgid "Third column of the report; its meaning depends on the report."
+msgstr "Третя колонка звіту; що вона означає, залежить від звіту."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_account_bank_statement_line__is_vehicle_sale
@@ -4579,13 +6093,26 @@ msgstr "Ця накладна продає щонайменше одне авт�
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/doc_basis.py:0
-msgid "This document cannot be created from that one."
-msgstr "Цей документ не можна створити з того."
+msgid ""
+"This document cannot be created from that one. Choose one of the documents "
+"offered in the list."
+msgstr "Цей документ не можна створити з того. Оберіть один із документів у переліку."
 
 #. module: adealer
 #: model:ir.model.constraint,message:adealer.constraint_adealer_doc_link_doc_link_unique
-msgid "This link already exists."
-msgstr "Такий зв'язок уже існує."
+msgid ""
+"This link already exists. Open the existing link instead of adding it again."
+msgstr "Такий зв'язок уже є. Відкрийте наявний зв'язок замість додавати його ще раз."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_organization__is_vat_payer
+msgid "Tick if the organisation is registered for VAT."
+msgstr "Позначте, якщо організація — платник ПДВ."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_child_cleanup_wizard__confirm
+msgid "Tick to confirm: every child contact in the database will be deleted."
+msgstr "Позначте для підтвердження: усі дочірні контакти в базі буде видалено."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.adealer_error_report_view_list
@@ -4612,6 +6139,11 @@ msgstr "По"
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_error_report__state__pending
 msgid "To send"
 msgstr "До відправки"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_error_report__state
+msgid "To send: queued. Sent: delivered. Could not send: the attempts failed."
+msgstr "До надсилання: у черзі. Надіслано: доставлено. Не вдалося надіслати: спроби не вдалися."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
@@ -4726,12 +6258,27 @@ msgid "Transmission Used by the vehicle"
 msgstr "Коробка передач автомобіля"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_chain_line__prefix
+msgid "Tree drawing that shows the nesting."
+msgstr "Схема дерева, що показує вкладеність."
+
+#. module: adealer
 #: model:ir.model,name:adealer.model_dealer_car_complectation
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__complectation_id
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_complectation__name
 #: model_terms:ir.ui.view,arch_db:adealer.report_car_handover
 msgid "Trim / configuration"
 msgstr "Комплектація"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_complectation__code
+msgid "Trim code of the manufacturer or of the source system."
+msgstr "Код комплектації виробника чи системи-джерела."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__complectation_id
+msgid "Trim of the vehicle. Only trims of the chosen model are offered."
+msgstr "Комплектація автомобіля. Пропонуються лише комплектації обраної моделі."
 
 #. module: adealer
 #: model:ir.actions.act_window,name:adealer.action_car_complectation
@@ -4797,6 +6344,11 @@ msgid "Unit of Measure"
 msgstr "Одиниця виміру"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_line__product_uom
+msgid "Unit of the quantity."
+msgstr "Одиниця кількості."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
 msgid "Unreserve"
 msgstr "Зняти резерв"
@@ -4858,6 +6410,12 @@ msgid ""
 msgstr "Оновлення з GitHub недоступне: тека модуля не є копією git (%s). Оновіть модуль з Odoo App Store."
 
 #. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "Updated: %s"
+msgstr "Оновлено: %s"
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
 msgid "Updates"
 msgstr "Оновлення"
@@ -4865,6 +6423,7 @@ msgstr "Оновлення"
 #. module: adealer
 #: model:ir.model,name:adealer.model_res_users
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_status_history__user_id
+#: model:res.groups,name:adealer.group_adealer_user
 msgid "User"
 msgstr "Користувач"
 
@@ -4896,12 +6455,17 @@ msgstr "ПДВ:"
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign_line__vin
 #: model_terms:ir.ui.view,arch_db:adealer.report_car_handover
 msgid "VIN"
-msgstr ""
+msgstr "VIN"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_car__vin_1c
 msgid "VIN as imported from the source vehicle catalog (dedup key)"
 msgstr "VIN так, як його імпортовано з каталогу авто-джерела (ключ проти дублів)"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__vin
+msgid "VIN of the vehicle, if known."
+msgstr "VIN автомобіля, якщо відомий."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_service_campaign_line__vin
@@ -4911,7 +6475,7 @@ msgstr "VIN, якщо авто ще немає в базі"
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
 msgid "VIN..."
-msgstr ""
+msgstr "VIN..."
 
 #. module: adealer
 #. odoo-python
@@ -5102,6 +6666,11 @@ msgid "Vehicles and models"
 msgstr "Автомобілі та моделі"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__line_ids
+msgid "Vehicles covered by the campaign and the state of each."
+msgstr "Автомобілі, що підпадають під кампанію, і стан кожного."
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/dashboard.py:0
 msgid "Vehicles in stock"
@@ -5133,10 +6702,21 @@ msgid "Vehicles sold in period"
 msgstr "Продано авто за період"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_account_bank_statement_line__dealer_car_ids
+#: model:ir.model.fields,help:adealer.field_account_move__dealer_car_ids
+msgid "Vehicles sold with this document."
+msgstr "Автомобілі, продані цим документом."
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/adealer_update.py:0
 msgid "Version checking is switched off."
 msgstr "Перевірку версій вимкнено."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_addons_status
+msgid "Versions of the installed paid add-ons and whether they are current."
+msgstr "Версії встановлених платних надбудов і чи вони актуальні."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_inactive
@@ -5200,6 +6780,23 @@ msgid "What gets sent"
 msgstr "Що надсилається"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__balance
+msgid ""
+"What is owed after this line: positive, the counterparty owes; negative, we "
+"owe."
+msgstr "Заборгованість після цього рядка: додатна — винен контрагент; від'ємна — винні ми."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_part_analog_group__note
+msgid "What makes these parts interchangeable."
+msgstr "Чим ці запчастини взаємозамінні."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__requested_works
+msgid "What the customer asks to do, in their words."
+msgstr "Що просить зробити клієнт, його словами."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_service_request__reason
 msgid "What the customer complains about, in their own words"
 msgstr "На що скаржиться клієнт — його словами"
@@ -5208,6 +6805,23 @@ msgstr "На що скаржиться клієнт — його словами"
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_request_form
 msgid "What the customer complains about..."
 msgstr "На що скаржиться клієнт..."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__name
+msgid "What the line is about: document, product, customer or vehicle."
+msgstr "Про що рядок: документ, товар, клієнт чи автомобіль."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__line_type
+msgid ""
+"What the line is: opening balance, a document, a counterparty in the "
+"summary, turnover or closing balance."
+msgstr "Що це за рядок: вхідне сальдо, документ, контрагент у зведенні, оборот чи вихідне сальдо."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_error_report__operation
+msgid "What the module was doing when it failed."
+msgstr "Що робив модуль, коли стався збій."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_addon_hint_mixin__addon_hint_html
@@ -5219,6 +6833,26 @@ msgid ""
 "What the paid 3A-dealer add-ons would add here. Hidden once the add-on is "
 "installed; can be switched off in Settings."
 msgstr "Що додали б тут платні надбудови 3A-dealer. Зникає, щойно надбудову встановлено; вимикається в Налаштуваннях."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_repair_stage__description
+msgid "What the stage means, for the workshop."
+msgstr "Що означає стадія — для цеху."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_complectation__note
+msgid "What the trim includes, for the sales staff."
+msgstr "Що входить у комплектацію — для продавців."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__purchase_price
+msgid "What the vehicle cost to buy."
+msgstr "Скільки коштувала закупівля автомобіля."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__description
+msgid "What to do and how, for the workshop."
+msgstr "Що й як робити — для цеху."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_home
@@ -5234,6 +6868,11 @@ msgid ""
 "What to open after login for the current user: workshop — calendar, showroom"
 " — vehicles, manager — reports"
 msgstr "Що відкривати після входу для поточного користувача: СТО — календар, автосалон — автомобілі, менеджер — звіти"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__opening
+msgid "What was owed at the start of the period."
+msgstr "Заборгованість на початок періоду."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.adealer_error_report_view_form
@@ -5276,9 +6915,64 @@ msgstr ""
 "відправки, а звіти взагалі вимкнути в Налаштуваннях."
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__date_end
+msgid "When the campaign ends. Empty: open-ended."
+msgstr "Коли кампанія закінчується. Порожньо — безстроково."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__date_start
+msgid "When the campaign starts."
+msgstr "Коли кампанія починається."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign_line__done_date
+msgid "When the campaign work was done on this vehicle."
+msgstr "Коли на цьому авто виконано роботи кампанії."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_lost_demand__date
+msgid "When the customer asked."
+msgstr "Коли клієнт звернувся."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_service_request__scheduled_date
 msgid "When the customer is expected at the workshop"
 msgstr "Коли клієнта чекають у сервісі"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__appointment_datetime
+msgid "When the customer is expected."
+msgstr "Коли чекають клієнта."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_link__child_time
+msgid "When the derived document took effect; orders the structure."
+msgstr "Коли похідний документ набрав чинності; визначає порядок у структурі."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_version_checked
+msgid "When the published version was last read."
+msgstr "Коли опубліковану версію читали востаннє."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_error_report__sent_date
+msgid "When the report was delivered."
+msgstr "Коли звіт доставлено."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_repair_stage_history__change_date
+msgid "When the stage changed."
+msgstr "Коли змінилась стадія."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_status_history__change_date
+msgid "When the status changed."
+msgstr "Коли змінився стан."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__intake_time
+msgid "When the vehicle is taken in, if it differs from the appointment."
+msgstr "Коли приймають автомобіль, якщо це не час запису."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_error_report__frames
@@ -5294,6 +6988,25 @@ msgid ""
 msgstr "Куди надсилаються звіти. Вкажіть власний приймач, якщо ваші правила забороняють вихідні з'єднання до третіх сторін."
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__stage_id
+msgid ""
+"Where the repair order is in the workshop: drag the card on the board to "
+"change it."
+msgstr "Де наряд у цеху: перетягніть картку на дошці, щоб змінити."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__status
+msgid ""
+"Where the vehicle is in its life: ordered, in transit, in stock, reserved, "
+"sold, delivered. The buttons at the top move it along."
+msgstr "На якому етапі автомобіль: замовлено, у дорозі, на складі, резерв, продано, видано. Кнопки вгорі переводять його далі."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__location_note
+msgid "Where the vehicle stands: lot, row, place."
+msgstr "Де стоїть автомобіль: майданчик, ряд, місце."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_error_report__module
 msgid ""
 "Which 3A-dealer module raised it, so the collector tells reports apart."
@@ -5307,11 +7020,98 @@ msgid ""
 msgstr "Яка вкладка дашборда відкривається першою. СТО потрібен Автосервіс, салону — Автосалон; раніше вкладка була зашита в коді."
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_basis__target
+msgid ""
+"Which document to create. Only the documents allowed for this basis are "
+"offered."
+msgstr "Який документ створити. Пропонуються лише дозволені для цієї підстави."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_account_bank_statement_line__organization_id
+#: model:ir.model.fields,help:adealer.field_account_move__organization_id
+#: model:ir.model.fields,help:adealer.field_account_payment__organization_id
+#: model:ir.model.fields,help:adealer.field_dealer_organization_mixin__organization_id
+#: model:ir.model.fields,help:adealer.field_purchase_order__organization_id
+#: model:ir.model.fields,help:adealer.field_repair_order__organization_id
+#: model:ir.model.fields,help:adealer.field_sale_order__organization_id
+#: model:ir.model.fields,help:adealer.field_stock_picking__organization_id
+msgid "Which of your organisations the document belongs to."
+msgstr "Якій із ваших організацій належить документ."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard__report_type
+msgid "Which report to build."
+msgstr "Який звіт сформувати."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
 msgid ""
 "Which tab of the Home dashboard opens first: a workshop wants Service, a "
 "showroom wants Showroom."
 msgstr "Яка вкладка головної відкривається першою: сервісу потрібен «Сервіс», автосалону — «Автосалон»."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_lost_demand__partner_id
+msgid "Who asked, if known."
+msgstr "Хто звертався, якщо відомо."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__partner_id
+msgid "Who buys the vehicle. Needed before Sell."
+msgstr "Хто купує автомобіль. Потрібно перед «Продати»."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_status_history__user_id
+msgid "Who changed the status."
+msgstr "Хто змінив стан."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_mechanic_output_report__mechanic_id
+msgid "Who did the work."
+msgstr "Хто виконав роботу."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_request__service_advisor_id
+msgid "Who handles the request."
+msgstr "Хто опрацьовує звернення."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_maintenance_request__master_id
+msgid "Who is in charge of the request."
+msgstr "Хто відповідає за запит."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_repair_stage_history__user_id
+msgid "Who moved the order."
+msgstr "Хто перевів наряд."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_lost_demand__user_id
+msgid "Who recorded the request."
+msgstr "Хто зафіксував звернення."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__supplier_id
+msgid "Who the vehicle was bought from."
+msgstr "У кого куплено автомобіль."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_address_import_wizard__partner_type
+msgid ""
+"Whose addresses to load: legal entities, individuals or all counterparties."
+msgstr "Чиї адреси завантажити: юросіб, фізосіб чи всіх контрагентів."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_lost_demand__reason
+msgid ""
+"Why the sale did not happen. Out-of-stock requests show what to keep in "
+"stock."
+msgstr "Чому продаж не відбувся. Запити «немає на складі» показують, що варто тримати в наявності."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_git_reason
+msgid "Why updating from GitHub is not possible here."
+msgstr "Чому оновлення з GitHub тут неможливе."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_report_wizard_line__wizard_id
@@ -5398,9 +7198,23 @@ msgid "Your comment"
 msgstr "Ваш коментар"
 
 #. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "a contact cannot be created without a name"
+msgstr "контрагента без назви створити не можна"
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_car_handover
 msgid "accepted the vehicle:"
 msgstr "прийняв автомобіль:"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid ""
+"add at least one detail, otherwise the contact cannot be matched with "
+"anything"
+msgstr "додайте хоч один реквізит — інакше контрагента не буде з чим зіставити"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_akt_zvirky
@@ -5444,6 +7258,12 @@ msgid "e.g. Trend, Titanium, ST-Line"
 msgstr "Напр. Trend, Titanium, ST-Line"
 
 #. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "fill in the \"Наименование\" column or delete the row"
+msgstr "заповніть колонку «Наименование» або приберіть рядок"
+
+#. module: adealer
 #: model:ir.model,name:adealer.model_fleet_vehicle_import
 msgid "fleet.vehicle.import"
 msgstr "Імпорт авто"
@@ -5472,20 +7292,20 @@ msgstr "Git"
 #: code:addons/adealer/models/app_update.py:0
 msgid ""
 "git is not available on the server:\n"
-"%s"
-msgstr ""
-"git недоступний на сервері:\n"
-"%s"
+"%s\n"
+"\n"
+"Open the Odoo App Store and download the new version instead, or install git on the server."
+msgstr "На сервері немає git:\n%s\n\nВідкрийте Odoo App Store і завантажте нову версію звідти або встановіть git на сервер."
 
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/app_update.py:0
 msgid ""
 "git pull failed:\n"
-"%s"
-msgstr ""
-"git pull завершився з помилкою:\n"
-"%s"
+"%s\n"
+"\n"
+"Check the message above: local changes on the server or no access to GitHub are the usual causes. Or open the Odoo App Store and download the new version."
+msgstr "git pull не вдався:\n%s\n\nПерегляньте повідомлення вище: зазвичай причина — локальні зміни на сервері або немає доступу до GitHub. Або відкрийте Odoo App Store і завантажте нову версію."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_car_handover
@@ -5506,6 +7326,12 @@ msgstr "доручає отримати у постачальника"
 #: model_terms:ir.ui.view,arch_db:adealer.report_repair_order
 msgid "km"
 msgstr "км"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "no name"
+msgstr "немає назви"
 
 #. module: adealer
 #. odoo-python
@@ -5565,9 +7391,29 @@ msgid "tel."
 msgstr "тел."
 
 #. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid ""
+"the contact was created without the code; correct the code in the file and "
+"import again, or enter it on the contact card"
+msgstr "контрагента створено без коду; виправте код у файлі й повторіть імпорт, або допишіть код у картці"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "the file has \"%s\": it must be 8 or 10 digits"
+msgstr "у файлі «%s»: має бути 8 або 10 цифр"
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_dovirenist
 msgid "the following inventory items:"
 msgstr "такі товарно-матеріальні цінності:"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "there are no details at all: no phone, no e-mail, no code, no address"
+msgstr "немає жодного реквізиту: ні телефону, ні пошти, ні коду, ні адреси"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_report_wizard__date_to
@@ -5586,176 +7432,6 @@ msgstr "Авто"
 #: code:addons/adealer/models/report_wizards.py:0
 msgid "vehicles: %d"
 msgstr "авто: %d"
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "«%s» — код ЄДРПОУ не взято"
-msgstr ""
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "«%s» — лише назва"
-msgstr ""
-
-#. module: adealer
-#: model:ir.module.category,description:adealer.module_category_adealer
-msgid "Автосалон, СТО, запчастини"
-msgstr ""
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "Додано контрагентів: %s"
-msgstr ""
-
-#. module: adealer
-#: model:res.groups,name:adealer.group_adealer_manager
-msgid "Керівник"
-msgstr ""
-
-#. module: adealer
-#: model:res.groups,name:adealer.group_adealer_user
-msgid "Користувач"
-msgstr ""
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import_wizard.py:0
-msgid ""
-"Не вдалося прочитати файл: %s\n"
-"\n"
-"Найчастіші причини: файл пошкоджений, захищений паролем або збережений у старому форматі. Відкрийте його в Excel і збережіть як .xlsx."
-msgstr ""
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import_wizard.py:0
-msgid "Оберіть файл для імпорту."
-msgstr ""
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "Оброблено рядків: %s"
-msgstr ""
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "Оновлено: %s"
-msgstr ""
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "Потребують уваги — %s:"
-msgstr ""
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "Пропущено без даних: %s"
-msgstr ""
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "Пропущено як дублікати: %s"
-msgstr ""
-
-#. module: adealer
-#: model_terms:ir.ui.view,arch_db:adealer.view_partner_import_wizard_form
-msgid "Результат"
-msgstr ""
-
-#. module: adealer
-#: model:ir.model.fields,field_description:adealer.field_partner_import_wizard__result_summary
-msgid "Результат імпорту"
-msgstr ""
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "Рядків із проблемами немає."
-msgstr ""
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid ""
-"Рядок %(row)s: %(what)s\n"
-"    Чому: %(why)s\n"
-"    Що зробити: %(howto)s"
-msgstr ""
-
-#. module: adealer
-#: model:res.groups,comment:adealer.group_adealer_manager
-msgid ""
-"Усе, що вміє користувач, плюс довідники,\n"
-"            налаштування, імпорти й звіти по взаєморозрахунках."
-msgstr ""
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import_wizard.py:0
-msgid ""
-"Формат файлу не підходить: «%s».\n"
-"\n"
-"Потрібен Excel — .xls або .xlsx. Якщо файл у CSV, збережіть його як книгу Excel."
-msgstr ""
-
-#. module: adealer
-#: model:res.groups,comment:adealer.group_adealer_user
-msgid ""
-"Щоденна робота: наряди, записи на сервіс, авто\n"
-"            клієнтів, склад авто, кампанії. Без довідників і налаштувань."
-msgstr ""
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "додайте хоч один реквізит — інакше контрагента не буде з чим зіставити"
-msgstr ""
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "заповніть колонку «Наименование» або приберіть рядок"
-msgstr ""
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "контрагента без назви створити не можна"
-msgstr ""
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid ""
-"контрагента створено без коду; виправте код у файлі й повторіть імпорт, або "
-"допишіть код у картці"
-msgstr ""
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "немає жодного реквізиту: ні телефону, ні пошти, ні коду, ні адреси"
-msgstr ""
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "немає назви"
-msgstr ""
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "у файлі «%s»: має бути 8 або 10 цифр"
-msgstr ""
 
 #. module: adealer
 #. odoo-python

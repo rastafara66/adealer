@@ -10,6 +10,18 @@ msgstr ""
 
 #. module: adealer
 #. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "\"%s\" — name only"
+msgstr "'%s' — alleen naam"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "\"%s\" — the EDRPOU code was not taken"
+msgstr "'%s' — EDRPOU-code niet overgenomen"
+
+#. module: adealer
+#. odoo-python
 #: code:addons/adealer/models/app_update.py:0
 msgid "%(count)s installed, all up to date."
 msgstr "%(count)s geïnstalleerd, alle up-to-date."
@@ -40,6 +52,12 @@ msgstr "%s antwoordde met iets dat geen versielijst is."
 
 #. module: adealer
 #. odoo-python
+#: code:addons/adealer/models/partner_child_cleanup_wizard.py:0
+msgid "%s child contacts deleted."
+msgstr "%s onderliggende contacten verwijderd."
+
+#. module: adealer
+#. odoo-python
 #: code:addons/adealer/models/adealer_update.py:0
 msgid "%s more of your 3A-dealer modules can be updated too."
 msgstr "Nog %s van uw 3A-dealer-modules kunnen ook worden bijgewerkt."
@@ -47,8 +65,10 @@ msgstr "Nog %s van uw 3A-dealer-modules kunnen ook worden bijgewerkt."
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/document_chain.py:0
-msgid "'Internal transfer' type is not configured on the warehouse."
-msgstr "Het type 'Interne verplaatsing' is niet ingesteld in het magazijn."
+msgid ""
+"'Internal transfer' type is not configured on the warehouse. Open the "
+"warehouse and set its internal transfer type."
+msgstr "Het type 'Interne overboeking' is niet ingesteld op het magazijn. Open het magazijn en stel het type interne overboeking in."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_akt_zvirky
@@ -348,10 +368,23 @@ msgid "<strong>Vehicle:</strong>"
 msgstr "<strong>Voertuig:</strong>"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_product_product__base_service
+#: model:ir.model.fields,help:adealer.field_product_template__base_service
+msgid "A base service: made a service, neither sold nor bought on its own."
+msgstr "Basisdienst: wordt een dienst die niet los wordt verkocht of ingekocht."
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/doc_basis.py:0
-msgid "A credit note is created from an invoice or a bill."
-msgstr "Een creditnota wordt aangemaakt vanuit een verkoop- of inkoopfactuur."
+msgid ""
+"A credit note is created from an invoice or a bill. Open the invoice or bill"
+" and create the credit note from it."
+msgstr "Een creditnota wordt gemaakt uit een verkoop- of inkoopfactuur. Open de factuur en maak de creditnota daaruit."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__line_type
+msgid "A data line or the total."
+msgstr "Een gegevensregel of het totaal."
 
 #. module: adealer
 #. odoo-python
@@ -370,8 +403,10 @@ msgstr "Een nieuwere versie van %(module)s is beschikbaar: %(latest)s (u heeft %
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/doc_basis.py:0
-msgid "A payment is created from an invoice or a bill."
-msgstr "Een betaling wordt aangemaakt vanuit een verkoop- of inkoopfactuur."
+msgid ""
+"A payment is created from an invoice or a bill. Open the invoice or bill and"
+" create the payment from it."
+msgstr "Een betaling wordt gemaakt uit een verkoop- of inkoopfactuur. Open de factuur en maak de betaling daaruit."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_addon_hints
@@ -391,8 +426,10 @@ msgstr "Een korte notitie op de formulieren voor voertuig, werkorder en onderdee
 
 #. module: adealer
 #: model:ir.model.constraint,message:adealer.constraint_dealer_car_vin_uniq
-msgid "A vehicle with this VIN already exists in stock."
-msgstr "Er staat al een voertuig met dit VIN op voorraad."
+msgid ""
+"A vehicle with this VIN already exists in stock. Open that vehicle instead, "
+"or check the VIN for a typo."
+msgstr "Er staat al een voertuig met dit VIN op voorraad. Open dat voertuig of controleer het VIN op een tikfout."
 
 #. module: adealer
 #: model:ir.actions.act_window,name:adealer.action_report_ready_abc_customers
@@ -489,6 +526,13 @@ msgstr "Aantal actieve campagnes"
 #: model:ir.model.fields,field_description:adealer.field_repair_order__active_campaign_ids
 msgid "Active campaigns for the vehicle"
 msgstr "Actieve campagnes voor het voertuig"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__active_campaign_ids
+msgid ""
+"Active campaigns that cover this vehicle: do the campaign work while the car"
+" is in."
+msgstr "Actieve campagnes voor dit voertuig: voer het campagnewerk uit zolang de auto er is."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__activity_ids
@@ -605,6 +649,11 @@ msgid "All counterparties"
 msgstr "Alle tegenpartijen"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__operations
+msgid "All lines of the repair order, labour and parts."
+msgstr "Alle regels van de werkorder, arbeid en onderdelen."
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/dashboard.py:0
 msgid "All vehicles in base"
@@ -657,6 +706,11 @@ msgid "Amount 3"
 msgstr "Bedrag 3"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_mechanic_output_report__amount
+msgid "Amount of the work."
+msgstr "Bedrag van het werk."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_repair_stage__is_closing
 msgid "An order in this stage is considered closed"
 msgstr "Een order in deze fase wordt als afgesloten beschouwd"
@@ -697,6 +751,16 @@ msgid "Analogs count"
 msgstr "Aantal alternatieven"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__note
+msgid "Anything about the vehicle worth knowing."
+msgstr "Alles wat het weten waard is over het voertuig."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_lost_demand__note
+msgid "Anything else about the request."
+msgstr "Overige informatie over het verzoek."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.adealer_error_report_view_form
 msgid "Anything you want to add?"
 msgstr "Nog iets toe te voegen?"
@@ -728,9 +792,19 @@ msgid "Appointment date/time"
 msgstr "Datum/tijd van de afspraak"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__stop_datetime
+msgid "Appointment time plus the work duration."
+msgstr "Afspraaktijd plus de duur van het werk."
+
+#. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_service_booking__state__arrived
 msgid "Arrived"
 msgstr "Aangekomen"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
+msgid "Ask now which version is the latest."
+msgstr "Nu nagaan welke versie de nieuwste is."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__message_attachment_count
@@ -807,6 +881,11 @@ msgid "Back"
 msgstr "Achter"
 
 #. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_service_request_form
+msgid "Back to New, to change and confirm the request again."
+msgstr "Terug naar Nieuw om het verzoek te wijzigen en opnieuw te bevestigen."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_akt_zvirky
 msgid "Balance"
 msgstr "Saldo"
@@ -834,9 +913,22 @@ msgid "Basis document"
 msgstr "Basisdocument"
 
 #. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/addon_hint.py:0
+msgid ""
+"Bay and lift scheduling with no double booking, working hours per bay, free-"
+"slot search and online booking for customers."
+msgstr "Planning van werkplekken en hefbruggen zonder dubbele boekingen, werktijden per werkplek, zoeken naar vrije tijdsloten en online boeken voor klanten."
+
+#. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__sale_order__state__draft
 msgid "Being drawn up"
 msgstr "Wordt opgesteld"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_sale_order__state
+msgid "Being drawn up, Agreed with customer, Confirmed or Cancelled."
+msgstr "Wordt opgesteld, Afgesproken met de klant, Bevestigd of Geannuleerd."
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_doc_chain_line__kind__deal
@@ -856,6 +948,21 @@ msgstr ""
 "Deze bevat het fouttype en de coderegel die faalde,\n"
 "nooit de fouttekst en niets over uw voertuigen,\n"
 "klanten of bedragen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__color_id
+msgid "Body colour."
+msgstr "Carrosseriekleur."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_fleet_vehicle__body_type
+msgid "Body type, e.g. sedan or estate."
+msgstr "Carrosserievorm, bijv. sedan of stationwagen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__name
+msgid "Booking number, given when it is saved."
+msgstr "Afspraaknummer, toegekend bij het opslaan."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__brand_id
@@ -889,6 +996,24 @@ msgstr "Merk/Model"
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
 msgid "Branded theme + side menu (sidebar)"
 msgstr "Huisstijlthema + zijmenu (sidebar)"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_partner_balance_wizard_form
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_customers
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_sales
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_advisors
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_gross
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_inactive
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_orders
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_purchases
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_repairs
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_sales
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_stock
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_to
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_turnover
+msgid ""
+"Build the report with the options above. The previous result is replaced."
+msgstr "Het rapport opbouwen met de opties hierboven. Het vorige resultaat wordt vervangen."
 
 #. module: adealer
 #. odoo-python
@@ -939,11 +1064,33 @@ msgid "Cancel"
 msgstr "Annuleren"
 
 #. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_service_request_form
+msgid ""
+"Cancel the request. If an order was already created from it, cancel the "
+"order first."
+msgstr "Het verzoek annuleren. Is er al een order uit gemaakt, annuleer dan eerst de order."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid "Cancel the reservation: the vehicle is in stock again."
+msgstr "De reservering opheffen: het voertuig is weer op voorraad."
+
+#. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_service_booking__state__cancel
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_service_request__state__cancel
 #: model:ir.model.fields.selection,name:adealer.selection__sale_order__state__cancel
 msgid "Cancelled"
 msgstr "Geannuleerd"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_image__name
+msgid "Caption of the photo, e.g. Interior or Rear view."
+msgstr "Bijschrift van de foto, bijv. Interieur of Achteraanzicht."
+
+#. module: adealer
+#: model:ir.module.category,description:adealer.module_category_adealer
+msgid "Car dealership, workshop, parts"
+msgstr "Autodealer, werkplaats, onderdelen"
 
 #. module: adealer
 #: model:ir.ui.menu,name:adealer.menu_categories
@@ -986,17 +1133,62 @@ msgid "Child Model"
 msgstr "Onderliggend model"
 
 #. module: adealer
-#: model:ir.model.fields,help:adealer.field_repair_order__partner_id
-msgid ""
-"Choose partner for whom the order will be invoiced and delivered. You can "
-"find a partner by its Name, TIN, Email or Internal Reference."
-msgstr "Kies de partner voor wie de order wordt gefactureerd en geleverd. Je kunt een partner vinden op naam, btw-nummer of interne referentie."
+#. odoo-python
+#: code:addons/adealer/models/partner_import_wizard.py:0
+msgid "Choose the file to import."
+msgstr "Selecteer een bestand om te importeren."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_customers
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_sales
 msgid "Class"
 msgstr "Klasse"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__active
+msgid ""
+"Clear to archive the vehicle: it disappears from lists but is not deleted."
+msgstr "Uitvinken om het voertuig te archiveren: het verdwijnt uit de lijsten maar wordt niet verwijderd."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_color__active
+msgid "Clear to hide the colour from new vehicles without deleting it."
+msgstr "Uitvinken om de kleur voor nieuwe voertuigen te verbergen zonder hem te verwijderen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_part_analog_group__active
+msgid "Clear to hide the group without deleting it."
+msgstr "Uitvinken om de groep te verbergen zonder hem te verwijderen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_option__active
+msgid "Clear to hide the option from new vehicles without deleting it."
+msgstr "Uitvinken om de optie voor nieuwe voertuigen te verbergen zonder haar te verwijderen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_organization__active
+msgid "Clear to hide the organisation without deleting it."
+msgstr "Uitvinken om de organisatie te verbergen zonder haar te verwijderen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_workplace__active
+msgid "Clear to hide the post from the board without deleting it."
+msgstr "Uitvinken om de werkplek van het bord te halen zonder hem te verwijderen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_repair_type__active
+msgid "Clear to hide the repair type without deleting it."
+msgstr "Uitvinken om het reparatietype te verbergen zonder het te verwijderen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_repair_stage__active
+msgid "Clear to hide the stage without deleting it."
+msgstr "Uitvinken om de fase te verbergen zonder haar te verwijderen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_complectation__active
+msgid "Clear to hide the trim from new vehicles without deleting it."
+msgstr "Uitvinken om de uitvoering voor nieuwe voertuigen te verbergen zonder haar te verwijderen."
 
 #. module: adealer
 #. odoo-javascript
@@ -1008,6 +1200,11 @@ msgstr "Klik op een vrije plek om deze werkplek op dit tijdstip te boeken"
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_campaign_form
 msgid "Close"
 msgstr "Sluiten"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_service_campaign_form
+msgid "Close the campaign. Its list stays for reference."
+msgstr "De campagne afsluiten. De lijst blijft ter naslag."
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_service_campaign__state__closed
@@ -1034,6 +1231,11 @@ msgstr "Eindsaldo:"
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_turnover
 msgid "Code"
 msgstr "Code"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_repair_type__code
+msgid "Code of the repair type in the source system."
+msgstr "Code van het reparatietype in het bronsysteem."
 
 #. module: adealer
 #. odoo-python
@@ -1088,14 +1290,19 @@ msgid "Colors"
 msgstr "Kleuren"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_color__name
+msgid "Colour name, as shown on the vehicle card and in documents."
+msgstr "Kleurnaam, zoals op de voertuigkaart en in documenten."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_workplace__color
+msgid "Colour of the post on the board."
+msgstr "Kleur van de werkplek op het bord."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_lost_demand__note
 msgid "Comment"
 msgstr "Opmerking"
-
-#. module: adealer
-#: model:ir.model.fields.selection,name:adealer.selection__partner_address_import_wizard__partner_type__person
-msgid "Companies"
-msgstr "Bedrijven"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__company_id
@@ -1140,6 +1347,11 @@ msgid "Confirm deletion"
 msgstr "Verwijderen bevestigen"
 
 #. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_service_request_form
+msgid "Confirm the request."
+msgstr "Het verzoek bevestigen."
+
+#. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_service_booking__state__confirmed
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_service_request__state__confirmed
 #: model:ir.model.fields.selection,name:adealer.selection__sale_order__state__sale
@@ -1150,6 +1362,12 @@ msgstr "Bevestigd"
 #: model:ir.model,name:adealer.model_res_partner
 msgid "Contact"
 msgstr "Contact"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "Contacts added: %s"
+msgstr "Tegenpartijen toegevoegd: %s"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_res_partner__partners_contacts
@@ -1173,16 +1391,18 @@ msgstr "Kostprijs:"
 #: code:addons/adealer/models/app_update.py:0
 msgid ""
 "Could not check for updates:\n"
-"%s"
-msgstr ""
-"Kon niet controleren op updates:\n"
-"%s"
+"%s\n"
+"\n"
+"First make sure the server can reach the Internet, then press Check now again."
+msgstr "Kon niet op updates controleren:\n%s\n\nZorg eerst dat de server het internet bereikt en klik daarna opnieuw op Nu controleren."
 
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/app_update.py:0
-msgid "Could not find a version number at the update URL."
-msgstr "Geen versienummer gevonden op de update-URL."
+msgid ""
+"Could not find a version number at the update URL. Try again later; if it "
+"repeats, report it to the author."
+msgstr "Geen versienummer gevonden op het update-adres. Probeer het later opnieuw; als het zich herhaalt, meld het dan aan de auteur."
 
 #. module: adealer
 #. odoo-python
@@ -1198,6 +1418,15 @@ msgstr "Kon het bestand niet openen: %s"
 #: code:addons/adealer/models/adealer_update.py:0
 msgid "Could not reach %(url)s: %(error)s"
 msgstr "Kon %(url)s niet bereiken: %(error)s"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import_wizard.py:0
+msgid ""
+"Could not read the file: %s\n"
+"\n"
+"The usual causes: the file is damaged, password-protected or saved in an old format. Open it in Excel and save it as .xlsx."
+msgstr "Kon het bestand niet lezen: %s\n\nMeest voorkomende oorzaken: het bestand is beschadigd, met een wachtwoord beveiligd of in een oud formaat opgeslagen. Open het in Excel en sla het op als .xlsx."
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_error_report__state__failed
@@ -1227,6 +1456,34 @@ msgstr "Aanmaken"
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_request_form
 msgid "Create Sale Order"
 msgstr "Verkooporder aanmaken"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_form_inherit
+msgid "Create a draft act of completed works for the labour lines."
+msgstr "Een concept-proces-verbaal van uitgevoerd werk maken voor de arbeidsregels."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_form_inherit
+msgid "Create a draft delivery note for the parts lines."
+msgstr "Een concept-afleverbon maken voor de onderdelenregels."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_form_inherit
+msgid ""
+"Create a draft invoice for all lines of the repair order, parts and labour."
+msgstr "Een conceptfactuur maken voor alle regels van de werkorder, onderdelen en arbeid."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_form
+msgid "Create a repair order from this booking and mark the booking done."
+msgstr "Een werkorder maken uit deze afspraak en de afspraak als afgehandeld markeren."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.sale_view_order_form_inherit
+msgid ""
+"Create a repair order from this sales order: customer, vehicle and lines are"
+" copied."
+msgstr "Een werkorder maken uit deze verkooporder: klant, voertuig en regels worden overgenomen."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_form_inherit
@@ -1263,6 +1520,17 @@ msgstr "Order aanmaken"
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_form
 msgid "Create repair order"
 msgstr "Werkorder aanmaken"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_adealer_doc_basis_form
+msgid "Create the chosen document from this one and link the two."
+msgstr "Het gekozen document uit dit document maken en beide koppelen."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_service_request_form
+msgid ""
+"Create the sales order this request turns into. One request gives one order."
+msgstr "De verkooporder maken waarin dit verzoek overgaat. Eén verzoek geeft één order."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_app_update__create_uid
@@ -1360,6 +1628,11 @@ msgid "Credit (paid)"
 msgstr "Credit (betaald)"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__credit
+msgid "Credit turnover: payments from customers, bills from suppliers."
+msgstr "Creditomzet: betalingen van klanten, facturen van leveranciers."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_report_wizard__currency_id
 #: model:ir.model.fields,field_description:adealer.field_adealer_report_wizard_line__currency_id
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__currency_id
@@ -1371,6 +1644,38 @@ msgstr "Credit (betaald)"
 #: model:ir.model.fields,field_description:adealer.field_repair_order__currency_id
 msgid "Currency"
 msgstr "Valuta"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__currency_id
+msgid "Currency of all prices of the vehicle."
+msgstr "Valuta van alle prijzen van het voertuig."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__currency_id
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__currency_id
+msgid "Currency of the amounts."
+msgstr "Valuta van de bedragen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard__currency_id
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard__currency_id
+msgid "Currency of the amounts: the company currency."
+msgstr "Valuta van de bedragen: de bedrijfsvaluta."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_complectation__currency_id
+msgid "Currency of the base price."
+msgstr "Valuta van de basisprijs."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_option__currency_id
+msgid "Currency of the option price."
+msgstr "Valuta van de optieprijs."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_line__currency_id
+msgid "Currency of the prices."
+msgstr "Valuta van de prijzen."
 
 #. module: adealer
 #. odoo-python
@@ -1449,13 +1754,20 @@ msgid "Customer: _______________"
 msgstr "Klant: _______________"
 
 #. module: adealer
+#: model:res.groups,comment:adealer.group_adealer_user
+msgid ""
+"Daily work: repair orders, service bookings, customer vehicles, vehicle "
+"stock, campaigns. No reference data and no settings."
+msgstr "Dagelijks werk: werkorders, afspraken, voertuigen van\nklanten, voertuigvoorraad, campagnes. Zonder stamgegevens en instellingen."
+
+#. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__res_config_settings__adealer_home__dashboard
 msgid "Dashboard (Home)"
 msgstr "Dashboard (Start)"
 
 #. module: adealer
 #: model:ir.model,name:adealer.model_adealer_dashboard
-msgid "Dashboard data provider (Головна)"
+msgid "Dashboard data provider (Home)"
 msgstr "Gegevensleverancier van het dashboard (Start)"
 
 #. module: adealer
@@ -1482,6 +1794,26 @@ msgid "Date"
 msgstr "Datum"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__date
+msgid "Date of the document or event."
+msgstr "Datum van het document of de gebeurtenis."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__date
+msgid "Date of the document."
+msgstr "Datum van het document."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_fleet_vehicle__last_service_date
+msgid "Date of the latest repair order of this vehicle."
+msgstr "Datum van de laatste werkorder van dit voertuig."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_mechanic_output_report__date
+msgid "Date of the repair order."
+msgstr "Datum van de werkorder."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_car__sale_date
 msgid "Date the vehicle was sold (from the sale document)"
 msgstr "Verkoopdatum van het voertuig (uit het verkoopdocument)"
@@ -1505,12 +1837,9 @@ msgid "Debit (accrued)"
 msgstr "Debet (opgebouwd)"
 
 #. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/addon_hint.py:0
-msgid ""
-"Bay and lift scheduling with no double booking, working hours per bay, "
-"free-slot search and online booking for customers."
-msgstr "Planning van werkplekken en hefbruggen zonder dubbele boekingen, werktijden per werkplek, zoeken naar vrije tijdsloten en online boeken voor klanten."
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__debit
+msgid "Debit turnover: invoices to customers, payments to suppliers."
+msgstr "Debetomzet: facturen aan klanten, betalingen aan leveranciers."
 
 #. module: adealer
 #. odoo-python
@@ -1526,6 +1855,13 @@ msgid "Default organization"
 msgstr "Standaardorganisatie"
 
 #. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_partner_child_cleanup_wizard_form
+msgid ""
+"Delete EVERY child contact in the database: contact persons and addresses "
+"under companies. This cannot be undone."
+msgstr "ALLE onderliggende contacten in de database verwijderen: contactpersonen en adressen onder bedrijven. Dit kan niet ongedaan worden gemaakt."
+
+#. module: adealer
 #: model:ir.actions.act_window,name:adealer.action_partner_child_cleanup_wizard
 #: model_terms:ir.ui.view,arch_db:adealer.view_partner_child_cleanup_wizard_form
 msgid "Delete child contacts"
@@ -1538,8 +1874,19 @@ msgstr "Onderliggende contacten van de relatie verwijderen"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.adealer_error_report_view_form
+msgid "Delete this report without sending it."
+msgstr "Dit rapport verwijderen zonder het te versturen."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.adealer_error_report_view_form
 msgid "Delete this report? It will not be sent."
 msgstr "Dit rapport verwijderen? Het wordt niet verzonden."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_child_cleanup_wizard.py:0
+msgid "Deletion completed"
+msgstr "Verwijderen voltooid"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
@@ -1564,6 +1911,11 @@ msgstr "Afleverbon"
 #: model_terms:ir.ui.view,arch_db:adealer.report_vydatkova
 msgid "Delivery note No."
 msgstr "Afleverbon nr."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_chain_line__level
+msgid "Depth of the document in the tree."
+msgstr "Diepte van het document in de boom."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_doc_link__child_ref
@@ -1616,6 +1968,11 @@ msgstr "Negeren"
 #: model:ir.model.fields,field_description:adealer.field_repair_line__discount
 msgid "Discount (%)"
 msgstr "Krt. (%)"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_line__discount
+msgid "Discount on the line, in percent."
+msgstr "Korting op de regel, in procenten."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_account_move__display_name
@@ -1744,9 +2101,21 @@ msgid "Done"
 msgstr "Voltooid"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__progress
+msgid "Done vehicles as a share of all vehicles."
+msgstr "Aandeel afgehandelde voertuigen van alle voertuigen."
+
+#. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_service_campaign__state__draft
 msgid "Draft"
 msgstr "Concept"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__state
+msgid ""
+"Draft: being prepared. Active: repair orders show it for the vehicles in it."
+" Closed: finished."
+msgstr "Concept: in voorbereiding. Actief: werkorders tonen haar voor de voertuigen erin. Afgesloten: voltooid."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_fleet_vehicle__drive_type
@@ -1807,6 +2176,12 @@ msgid "End date"
 msgstr "Einddatum"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__engine_volume
+#: model:ir.model.fields,help:adealer.field_fleet_vehicle__volume
+msgid "Engine displacement in cubic centimetres."
+msgstr "Cilinderinhoud in kubieke centimeters."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__engine_volume
 #: model_terms:ir.ui.view,arch_db:adealer.report_car_handover
 msgid "Engine displacement, cc"
@@ -1842,6 +2217,35 @@ msgid "Estimated next service date ≤ today"
 msgstr "Geschatte volgende onderhoudsdatum ≤ vandaag"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_chain__line_ids
+msgid ""
+"Every document linked to this one, with how they are linked; click to open."
+msgstr "Alle documenten die aan dit document zijn gekoppeld en hoe; klik om te openen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_fleet_vehicle__repair_order_ids
+#: model_terms:ir.ui.view,arch_db:adealer.view_fleet_vehicle_form_service
+msgid "Every repair order of this vehicle."
+msgstr "Alle werkorders van dit voertuig."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__stage_history_ids
+msgid "Every stage change: when and by whom."
+msgstr "Elke fasewissel: wanneer en door wie."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__status_history_ids
+msgid "Every status change: when and by whom."
+msgstr "Elke statuswijziging: wanneer en door wie."
+
+#. module: adealer
+#: model:res.groups,comment:adealer.group_adealer_manager
+msgid ""
+"Everything a user can do, plus reference data, settings, imports and "
+"settlement reports."
+msgstr "Alles wat de gebruiker kan, plus stamgegevens,\ninstellingen, imports en rapporten over verrekeningen."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_error_report__payload
 msgid "Exactly what leaves this database. Nothing else is transmitted."
 msgstr "Precies wat deze database verlaat. Niets anders wordt verzonden."
@@ -1870,9 +2274,22 @@ msgid "External identifier for sync idempotency"
 msgstr "Externe identificatie voor idempotente synchronisatie"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__option_ids
+msgid ""
+"Extra options of this vehicle. Their prices add up to the options amount."
+msgstr "Extra opties van dit voertuig. Hun prijzen vormen het optiebedrag."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_partner_import_wizard__file_name
 msgid "File name"
 msgstr "Bestandsnaam"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dealer_car.py:0
+msgid ""
+"Fill in the buyer before selling the vehicle: the sale is made to them."
+msgstr "Vul de koper in voordat u het voertuig verkoopt: de verkoop gebeurt op zijn naam."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_repair_stage__is_closing
@@ -1888,6 +2305,16 @@ msgstr "Voertuig zoeken"
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__fingerprint
 msgid "Fingerprint"
 msgstr "Vingerafdruk"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard__date_from
+msgid "First day of the period."
+msgstr "Eerste dag van de periode."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard__date_from
+msgid "First day of the period. Everything before it is the opening balance."
+msgstr "Eerste dag van de periode. Alles daarvoor is het beginsaldo."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.adealer_error_report_view_list
@@ -1934,9 +2361,19 @@ msgid "Front"
 msgstr "Voor"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_organization__full_name
+msgid "Full legal name, as printed in documents."
+msgstr "Volledige statutaire naam, zoals afgedrukt in documenten."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_organization__full_name
 msgid "Full name"
 msgstr "Volledige naam"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__transmission
+msgid "Gearbox type."
+msgstr "Type versnellingsbak."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_partner_balance_wizard_form
@@ -2017,6 +2454,13 @@ msgid "HTTP Routing"
 msgstr "HTTP routing"
 
 #. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid ""
+"Hand the sold vehicle over and register it as the customer's vehicle for "
+"service."
+msgstr "Het verkochte voertuig overdragen en registreren als klantvoertuig voor de werkplaats."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_repair_act
 msgid "Handed over (performer): _______________"
 msgstr "Overgedragen (uitvoerder): _______________"
@@ -2050,6 +2494,122 @@ msgstr "Startpagina"
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
 msgid "Home page"
 msgstr "Startpagina"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_chain_line__kind
+msgid ""
+"How it is linked: entered on the basis of the document above, settles it, or"
+" belongs to the same deal."
+msgstr "Hoe gekoppeld: ingevoerd op basis van het document erboven, vereffent het, of hoort bij dezelfde deal."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__work_duration
+msgid "How long the work takes, in hours. Sets the end time."
+msgstr "Hoe lang het werk duurt, in uren. Bepaalt de eindtijd."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__active_campaign_count
+msgid "How many active campaigns cover this vehicle."
+msgstr "Hoeveel actieve campagnes dit voertuig betreffen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_import_wizard__result_summary
+msgid ""
+"How many counterparties were added or updated, and every row that needs "
+"attention, with the reason."
+msgstr "Hoeveel tegenpartijen zijn toegevoegd of bijgewerkt, en elke regel die aandacht vraagt, met de reden."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__image_count
+msgid "How many extra photos the vehicle has."
+msgstr "Hoeveel extra foto's het voertuig heeft."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__invoice_count
+msgid "How many invoices, delivery notes and acts this repair order has."
+msgstr "Hoeveel facturen, afleverbonnen en processen-verbaal deze werkorder heeft."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_mechanic_output_report__line_count
+msgid "How many labour lines are counted."
+msgstr "Hoeveel arbeidsregels worden geteld."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_product_product__analog_count
+#: model:ir.model.fields,help:adealer.field_product_template__analog_count
+msgid "How many other parts can replace this one."
+msgstr "Hoeveel andere onderdelen dit kunnen vervangen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_part_analog_group__product_count
+msgid "How many parts are in the group."
+msgstr "Hoeveel onderdelen in de groep zitten."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_fleet_vehicle__repair_order_count
+msgid "How many repair orders this vehicle has."
+msgstr "Hoeveel werkorders dit voertuig heeft."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_sale_order__own_repair_order_count
+msgid "How many repair orders were created from this sales order."
+msgstr "Hoeveel werkorders uit deze verkooporder zijn gemaakt."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__picking_count
+msgid "How many stock transfers this repair order has."
+msgstr "Hoeveel voorraadoverboekingen deze werkorder heeft."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_lost_demand__product_qty
+msgid "How many the customer wanted."
+msgstr "Hoeveel de klant wilde."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_error_report__attempts
+msgid "How many times sending was tried."
+msgstr "Hoe vaak verzenden is geprobeerd."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_error_report__occurrences
+msgid ""
+"How many times this same failure has happened. The report is sent once."
+msgstr "Hoe vaak precies deze fout is opgetreden. Het rapport wordt één keer verstuurd."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__done_count
+msgid "How many vehicles are done."
+msgstr "Hoeveel voertuigen zijn afgehandeld."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__vehicle_count
+msgid "How many vehicles the campaign covers."
+msgstr "Hoeveel voertuigen de campagne omvat."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_account_bank_statement_line__dealer_car_count
+#: model:ir.model.fields,help:adealer.field_account_move__dealer_car_count
+msgid "How many vehicles this document sells."
+msgstr "Hoeveel voertuigen dit document verkoopt."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_fleet_vehicle__service_interval_km
+msgid "How often the vehicle should come for service, in kilometres."
+msgstr "Hoe vaak het voertuig voor onderhoud moet komen, in kilometers."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_fleet_vehicle__service_interval_months
+msgid ""
+"How often the vehicle should come for service, in months. Sets the next "
+"service date."
+msgstr "Hoe vaak het voertuig voor onderhoud moet komen, in maanden. Bepaalt de volgende onderhoudsdatum."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_link__kind
+msgid ""
+"How the two documents are linked: on the basis of, settlement, or the same "
+"deal."
+msgstr "Hoe de twee documenten gekoppeld zijn: op basis van, vereffening of dezelfde deal."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__http_status
@@ -2216,6 +2776,11 @@ msgid "Import partners from Excel"
 msgstr "Relaties importeren uit Excel"
 
 #. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_partner_import_wizard__result_summary
+msgid "Import result"
+msgstr "Importresultaat"
+
+#. module: adealer
 #: model:ir.actions.server,name:adealer.ir_cron_import_vehicle_models_ir_actions_server
 msgid "Import vehicle models from Excel"
 msgstr "Voertuigmodellen importeren uit Excel"
@@ -2259,6 +2824,11 @@ msgstr "Inactieve klanten"
 #: model:ir.model.fields,help:adealer.field_dealer_organization__vat_code
 msgid "Individual taxpayer number"
 msgstr "Persoonlijk fiscaal nummer"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__partner_address_import_wizard__partner_type__person
+msgid "Individuals"
+msgstr "Particulieren"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
@@ -2322,6 +2892,12 @@ msgid "Invoice for payment No."
 msgstr "Factuur voor betaling nr."
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__invoice_ids
+#: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_form_inherit
+msgid "Invoices, delivery notes and acts created from this repair order."
+msgstr "Facturen, afleverbonnen en processen-verbaal gemaakt uit deze werkorder."
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/document_chain.py:0
 #: model:ir.model.fields,field_description:adealer.field_repair_order__invoice_ids
@@ -2370,9 +2946,24 @@ msgid "Kind"
 msgstr "Soort"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__repair_type_id
+msgid "Kind of repair; its colour marks the card on the board."
+msgstr "Soort reparatie; de kleur markeert de kaart op het bord."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_chain_line__model_label
+msgid "Kind of the document."
+msgstr "Soort document."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_invoice_pay
 msgid "L.S."
 msgstr "L.S."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__service_line_ids
+msgid "Labour lines of the repair order."
+msgstr "Arbeidsregels van de werkorder."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_app_update__write_uid
@@ -2460,9 +3051,21 @@ msgid "Last checked"
 msgstr "Laatst gecontroleerd"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard__date_to
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard__date_to
+msgid "Last day of the period, inclusive."
+msgstr "Laatste dag van de periode, inclusief."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_fleet_vehicle__last_service_date
 msgid "Last service"
 msgstr "Laatste onderhoud"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_fleet_vehicle__next_service_date
+msgid ""
+"Last service plus the interval in months. Feeds the maintenance reminders."
+msgstr "Laatste onderhoud plus het interval in maanden. Voedt de onderhoudsherinneringen."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_inactive
@@ -2521,6 +3124,11 @@ msgid "Link"
 msgstr "Link"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_complectation__base_price
+msgid "List price of the trim without extra options."
+msgstr "Catalogusprijs van de uitvoering zonder extra opties."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__brand_logo
 #: model:ir.model.fields,field_description:adealer.field_fleet_vehicle__display_logo
 msgid "Logo"
@@ -2539,6 +3147,21 @@ msgstr "Gemiste vraag"
 #: code:addons/adealer/static/src/xml/sidebar.xml:0
 msgid "MENU"
 msgstr "MENU"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_fleet_vehicle__name
+msgid "Made from the brand, the model and the VIN."
+msgstr "Samengesteld uit merk, model en VIN."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__name
+msgid "Made from the brand, the model, the colour and the VIN."
+msgstr "Samengesteld uit merk, model, kleur en VIN."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__amount
+msgid "Main amount of the line."
+msgstr "Hoofdbedrag van de regel."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__image_1920
@@ -2588,6 +3211,7 @@ msgstr "Onderhoudsaanvragen"
 #: model:ir.model.fields,field_description:adealer.field_adealer_lost_demand__user_id
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__service_advisor_id
 #: model:ir.model.fields,field_description:adealer.field_repair_order__service_advisor_id
+#: model:res.groups,name:adealer.group_adealer_manager
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_request_search
 msgid "Manager"
 msgstr "Manager"
@@ -2611,6 +3235,21 @@ msgstr "Handgeschakeld"
 #: model:ir.model.fields,help:adealer.field_dealer_car_color__code
 msgid "Manufacturer color code"
 msgstr "Kleurcode van de fabrikant"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_service_campaign_form
+msgid "Mark the campaign work as done on this vehicle."
+msgstr "Het campagnewerk aan dit voertuig als afgehandeld markeren."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid "Mark the vehicle as sold to the buyer."
+msgstr "Het voertuig als verkocht aan de koper markeren."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_chain_line__is_current
+msgid "Marks the document the structure was opened from."
+msgstr "Markeert het document van waaruit de structuur is geopend."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_maintenance_request__master_id
@@ -2667,6 +3306,11 @@ msgid "Metallic"
 msgstr "Metallic"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_color__is_metallic
+msgid "Metallic paint: it is often priced separately."
+msgstr "Metaalkleur: vaak apart geprijsd."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__mileage
 #: model:ir.model.fields,field_description:adealer.field_repair_order__mileage
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_to
@@ -2697,6 +3341,11 @@ msgid "Model description as text (when no fleet model matched)"
 msgstr "Modelbeschrijving als tekst (als geen wagenparkmodel overeenkwam)"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__model_id
+msgid "Model of the vehicle, when the vehicle itself is not in the database."
+msgstr "Model van het voertuig, als het voertuig zelf niet in de database staat."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__year
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__model_year
 #: model_terms:ir.ui.view,arch_db:adealer.report_car_handover
@@ -2704,9 +3353,30 @@ msgid "Model year"
 msgstr "Modeljaar"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__model_year
+msgid "Model year of the vehicle."
+msgstr "Modeljaar van het voertuig."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__year
+msgid "Model year, as the customer gave it."
+msgstr "Modeljaar, zoals de klant het opgaf."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__module
 msgid "Module"
 msgstr "Module"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__image_ids
+msgid "More photos of the vehicle for the card and for adverts."
+msgstr "Meer foto's van het voertuig voor de kaart en advertenties."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_form_inherit
+msgid ""
+"Move the stocked parts of this order from the warehouse to the workshop."
+msgstr "De voorraadonderdelen van deze order van het magazijn naar de werkplaats verplaatsen."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__my_activity_date_deadline
@@ -2729,6 +3399,37 @@ msgid "Name"
 msgstr "Naam"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_vehicle_body__name
+msgid "Name of the body type."
+msgstr "Naam van de carrosserievorm."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__name
+msgid "Name of the campaign, e.g. the manufacturer's recall title."
+msgstr "Naam van de campagne, bijv. de titel van de terugroepactie van de fabrikant."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_workplace__name
+msgid "Name of the post or bay, as shown on the board."
+msgstr "Naam van de werkplek, zoals op het bord."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_repair_type__name
+msgid "Name of the repair type, e.g. Maintenance or Warranty."
+msgstr "Naam van het reparatietype, bijv. Onderhoud of Garantie."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_repair_stage__name
+msgid "Name of the stage, as shown on the repair order board."
+msgstr "Naam van de fase, zoals op het werkorderbord."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "Need attention — %s:"
+msgstr "Vragen aandacht — %s:"
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/service_request.py:0
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_service_request__state__draft
@@ -2736,10 +3437,21 @@ msgid "New"
 msgstr "Nieuw"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_organization__is_default
+msgid "New documents get this organisation. Only one can be the default."
+msgstr "Nieuwe documenten krijgen deze organisatie. Er kan er maar één de standaard zijn."
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/dealer_car.py:0
 msgid "New vehicle"
 msgstr "Nieuw voertuig"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_request__state
+msgid ""
+"New, Confirmed, Order created (a sales order was made from it) or Cancelled."
+msgstr "Nieuw, Bevestigd, Order aangemaakt (er is een verkooporder uit gemaakt) of Geannuleerd."
 
 #. module: adealer
 #. odoo-python
@@ -2790,8 +3502,10 @@ msgstr "Geen alternatief"
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/doc_basis.py:0
-msgid "No bank or cash journal is configured."
-msgstr "Er is geen bank- of kasdagboek ingesteld."
+msgid ""
+"No bank or cash journal is configured. Create one in Accounting > "
+"Configuration > Journals first."
+msgstr "Er is geen bank- of kasdagboek ingesteld. Maak er eerst een aan via Boekhouding > Configuratie > Dagboeken."
 
 #. module: adealer
 #. odoo-javascript
@@ -2808,8 +3522,10 @@ msgstr "Geen tegenpartij"
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/document_chain.py:0
-msgid "No customer is specified on order %s."
-msgstr "Op order %s is geen klant opgegeven."
+msgid ""
+"No customer is specified on order %s. Fill in the customer first: the "
+"document is issued to them."
+msgstr "Op order %s staat geen klant. Vul eerst de klant in: het document wordt op zijn naam opgemaakt."
 
 #. module: adealer
 #. odoo-javascript
@@ -2829,6 +3545,12 @@ msgid "No posted receivables."
 msgstr "Geen geboekte vorderingen."
 
 #. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "No problem rows."
+msgstr "Geen regels met problemen."
+
+#. module: adealer
 #. odoo-javascript
 #: code:addons/adealer/static/src/xml/dashboard.xml:0
 msgid "No records"
@@ -2842,8 +3564,10 @@ msgstr "Geen onderhoud sinds"
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/sale.py:0
-msgid "No vehicle is specified on the order."
-msgstr "Op de order is geen voertuig opgegeven."
+msgid ""
+"No vehicle is specified on the order. Fill in the vehicle first: the repair "
+"order is made for it."
+msgstr "Op de order staat geen voertuig. Vul eerst het voertuig in: de werkorder wordt ervoor gemaakt."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_inactive
@@ -2853,18 +3577,20 @@ msgstr "Geen bezoek sinds"
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/document_chain.py:0
-msgid "No warehouse found for the company."
-msgstr "Geen magazijn gevonden voor het bedrijf."
+msgid ""
+"No warehouse found for the company. Create one in Inventory > Configuration "
+"> Warehouses first."
+msgstr "Geen magazijn gevonden voor het bedrijf. Maak er eerst een aan via Voorraad > Configuratie > Magazijnen."
 
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/service.py:0
 msgid ""
 "Not enough parts in warehouse \"%(wh)s\":\n"
-"%(list)s"
-msgstr ""
-"Onvoldoende onderdelen in magazijn '%(wh)s':\n"
-"%(list)s"
+"%(list)s\n"
+"\n"
+"Receive the missing parts into stock first, or change the quantities."
+msgstr "Niet genoeg onderdelen in magazijn \"%(wh)s\":\n%(list)s\n\nOntvang eerst de ontbrekende onderdelen in voorraad, of wijzig de aantallen."
 
 #. module: adealer
 #. odoo-python
@@ -2879,6 +3605,11 @@ msgid "Notes"
 msgstr "Notities"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_request__note
+msgid "Notes for the staff; the customer does not see them."
+msgstr "Notities voor het personeel; de klant ziet ze niet."
+
+#. module: adealer
 #: model_terms:ir.actions.act_window,help:adealer.adealer_error_report_action
 msgid "Nothing has gone wrong"
 msgstr "Er is niets misgegaan"
@@ -2889,17 +3620,15 @@ msgstr "Er is niets misgegaan"
 msgid ""
 "Nothing is created on the basis of %(name)s.\n"
 "\n"
-"This is deliberate: the chain runs one way — order, then repair order, then delivery note, then payment."
-msgstr ""
-"Op basis van %(name)s wordt niets aangemaakt.\n"
-"\n"
-"Dit is bewust: de keten loopt in één richting — order, dan werkorder, dan afleverbon, dan betaling."
+"This is deliberate: the chain runs one way — order, then repair order, then delivery note, then payment. Open the next document in the chain and create from there."
+msgstr "Op basis van %(name)s wordt niets gemaakt.\n\nDat is bewust: de keten loopt in één richting — order, dan werkorder, dan afleverbon, dan betaling. Open het volgende document in de keten en maak het van daaruit."
 
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/doc_basis.py:0
-msgid "Nothing was created — the basis document is empty."
-msgstr "Er is niets aangemaakt — het basisdocument is leeg."
+msgid ""
+"Nothing was created — the basis document is empty. Fill in its lines first."
+msgstr "Er is niets gemaakt — het basisdocument is leeg. Vul eerst de regels in."
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_service_campaign_line__state__notified
@@ -2950,6 +3679,16 @@ msgid "Number of messages with delivery error"
 msgstr "Aantal berichten met leveringsfout"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_organization__vat_certificate
+msgid "Number of the VAT registration certificate."
+msgstr "Nummer van het btw-registratiecertificaat."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__code
+msgid "Number of the campaign given by the manufacturer."
+msgstr "Nummer van de campagne volgens de fabrikant."
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/addon_hint.py:0
 msgid ""
@@ -2961,6 +3700,11 @@ msgstr "OEM-kruisverwijzingen zodat de balie het onderdeel vindt onder elk numme
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__occurrences
 msgid "Occurrences"
 msgstr "Voorkomens"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_fleet_vehicle__last_service_mileage
+msgid "Odometer reading at the latest repair order."
+msgstr "Kilometerstand bij de laatste werkorder."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
@@ -2998,20 +3742,39 @@ msgstr "Aanwezige voorraad:"
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/service_request.py:0
-msgid "Only a new request can be confirmed."
-msgstr "Alleen een nieuwe aanvraag kan worden bevestigd."
+msgid ""
+"Only a new request can be confirmed. Press Set to New first if you need to "
+"confirm it again."
+msgstr "Alleen een nieuw verzoek kan worden bevestigd. Klik eerst op Terugzetten naar Nieuw om het opnieuw te bevestigen."
 
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/dealer_car.py:0
-msgid "Only a sold vehicle can be delivered."
-msgstr "Alleen een verkocht voertuig kan worden afgeleverd."
+msgid "Only a sold vehicle can be delivered. Press Sell first."
+msgstr "Alleen een verkocht voertuig kan worden afgeleverd. Klik eerst op Verkopen."
 
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/dealer_car.py:0
-msgid "Only a vehicle with status \"In stock\" can be reserved."
-msgstr "Alleen een voertuig met status 'Op voorraad' kan worden gereserveerd."
+msgid ""
+"Only a vehicle with status \"In stock\" can be reserved. Receive the vehicle"
+" into stock first."
+msgstr "Alleen een voertuig met status \"Op voorraad\" kan worden gereserveerd. Ontvang het voertuig eerst in voorraad."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard__partner_id
+msgid "Only this counterparty. Empty: all of them."
+msgstr "Alleen deze tegenpartij. Leeg: allemaal."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard__product_id
+msgid "Only this product. Empty: all of them."
+msgstr "Alleen dit product. Leeg: allemaal."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard__vehicle_id
+msgid "Only this vehicle. Empty: all of them."
+msgstr "Alleen dit voertuig. Leeg: allemaal."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_purchases
@@ -3051,6 +3814,56 @@ msgid "Open repair order"
 msgstr "Werkorder openen"
 
 #. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid "Open the customer's vehicle registered on delivery."
+msgstr "Het klantvoertuig openen dat bij aflevering is geregistreerd."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_customers
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_sales
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_gross
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_inactive
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_orders
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_purchases
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_repairs
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_sales
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_stock
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_to
+#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_turnover
+msgid "Open the document of this line."
+msgstr "Het document van deze regel openen."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_partner_balance_wizard_form
+msgid "Open the journal entry of this line."
+msgstr "De boeking van deze regel openen."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_form
+msgid "Open the repair order created from this booking."
+msgstr "De werkorder openen die uit deze afspraak is gemaakt."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid "Open the sale invoice of this vehicle."
+msgstr "De verkoopfactuur van dit voertuig openen."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_service_request_form
+msgid "Open the sales order created from this request."
+msgstr "De verkooporder openen die uit dit verzoek is gemaakt."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_form_alfa
+msgid "Open the sales order this repair order was created from."
+msgstr "De verkooporder openen waaruit deze werkorder is gemaakt."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_partner_balance_wizard_form
+msgid "Open this counterparty's detailed statement for the same period."
+msgstr "Het gedetailleerde overzicht van deze tegenpartij voor dezelfde periode openen."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_to
 msgid "Open vehicle"
 msgstr "Voertuig openen"
@@ -3062,6 +3875,13 @@ msgstr "Voertuig openen"
 #: model:ir.model.fields.selection,name:adealer.selection__partner_balance_wizard_line__line_type__opening
 msgid "Opening balance"
 msgstr "Openingssaldo"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard__line_ids
+msgid ""
+"Opening balance, documents of the period and closing balance; click a line "
+"to open its document."
+msgstr "Beginsaldo, documenten van de periode en eindsaldo; klik op een regel om het document te openen."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__operation
@@ -3077,6 +3897,16 @@ msgstr "Bewerkingen"
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_option__name
 msgid "Option"
 msgstr "Optie"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_option__code
+msgid "Option code of the manufacturer or of the source system."
+msgstr "Optiecode van de fabrikant of het bronsysteem."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_option__name
+msgid "Option name, as shown to the customer."
+msgstr "Naam van de optie, zoals aan de klant getoond."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_option__price
@@ -3106,6 +3936,11 @@ msgid "Options"
 msgstr "Opties"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_complectation__option_ids
+msgid "Options already included in this trim."
+msgstr "Opties die al in deze uitvoering zitten."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__options_price
 msgid "Options amount"
 msgstr "Bedrag van de opties"
@@ -3116,11 +3951,9 @@ msgid "Options in the trim"
 msgstr "Opties in de uitvoering"
 
 #. module: adealer
-#. odoo-javascript
 #. odoo-python
 #: code:addons/adealer/models/dashboard.py:0
 #: code:addons/adealer/models/sale.py:0
-#: code:addons/adealer/static/src/js/booking_board/board.js:0
 #: model:ir.model.fields,field_description:adealer.field_adealer_mechanic_output_report__repair_id
 #: model:ir.model.fields,field_description:adealer.field_adealer_repair_stage__sequence
 #: model:ir.model.fields,field_description:adealer.field_adealer_repair_stage_history__repair_id
@@ -3135,21 +3968,27 @@ msgstr "Order"
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/document_chain.py:0
-msgid "Order %(name)s has no lines for the '%(label)s' document."
-msgstr "Order %(name)s heeft geen regels voor het document '%(label)s'."
+msgid ""
+"Order %(name)s has no lines for the '%(label)s' document. Fill in the "
+"matching lines (parts for a delivery note, labour for an act) first."
+msgstr "Order %(name)s heeft geen regels voor het document '%(label)s'. Vul eerst de passende regels in (onderdelen voor een afleverbon, arbeid voor een proces-verbaal)."
 
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/service_request.py:0
-msgid "Order %s has already been created from this request."
-msgstr "Order %s is al aangemaakt vanuit deze aanvraag."
+msgid ""
+"Order %s has already been created from this request. Open it from the button"
+" at the top."
+msgstr "Uit dit verzoek is al order %s gemaakt. Open die met de knop bovenaan."
 
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/doc_basis.py:0
 #: code:addons/adealer/models/document_chain.py:0
-msgid "Order %s has no stock parts to issue."
-msgstr "Order %s heeft geen voorraadonderdelen om uit te geven."
+msgid ""
+"Order %s has no stock parts to issue. Fill in the parts lines with stocked "
+"products first."
+msgstr "Order %s heeft geen voorraadonderdelen om uit te geven. Vul eerst de onderdelenregels met voorraadproducten in."
 
 #. module: adealer
 #. odoo-python
@@ -3164,6 +4003,31 @@ msgstr "Order afgesloten — fase: %s."
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_request_search
 msgid "Order created"
 msgstr "Order aangemaakt"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__sequence
+msgid "Order of the line in the report."
+msgstr "Volgorde van de regel in het rapport."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__sequence
+msgid "Order of the line in the statement."
+msgstr "Volgorde van de regel in het overzicht."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_image__sequence
+msgid "Order of the photo in the gallery."
+msgstr "Volgorde van de foto in de galerij."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_workplace__sequence
+msgid "Order of the post on the board."
+msgstr "Volgorde van de werkplek op het bord."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_repair_stage__sequence
+msgid "Order of the stage on the board."
+msgstr "Volgorde van de fase op het bord."
 
 #. module: adealer
 #: model:ir.model,name:adealer.model_adealer_repair_stage
@@ -3249,6 +4113,11 @@ msgstr "Productie"
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign_line__partner_id
 msgid "Owner"
 msgstr "Eigenaar"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign_line__partner_id
+msgid "Owner of the vehicle, to notify."
+msgstr "Eigenaar van het voertuig, om te informeren."
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__res_config_settings__adealer_print_format__qweb-pdf
@@ -3384,6 +4253,11 @@ msgid "Parts issued in period"
 msgstr "Onderdelen uitgegeven in periode"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__part_line_ids
+msgid "Parts lines of the repair order."
+msgstr "Onderdelenregels van de werkorder."
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/dashboard.py:0
 msgid "Parts sales by month"
@@ -3394,6 +4268,11 @@ msgstr "Onderdelenverkoop per maand"
 #: code:addons/adealer/models/dashboard.py:0
 msgid "Parts sales in period"
 msgstr "Onderdelenverkoop in periode"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_part_analog_group__product_ids
+msgid "Parts that can replace each other."
+msgstr "Onderdelen die elkaar kunnen vervangen."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__payload
@@ -3414,6 +4293,11 @@ msgstr "Betalingen"
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_service_campaign_line__state__pending
 msgid "Pending"
 msgstr "In behandeling"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign_line__state
+msgid "Pending, Notified (the owner was told), Done or Customer refusal."
+msgstr "In behandeling, Op de hoogte gesteld (de eigenaar weet het), Voltooid of Weigering door klant."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_mechanic_output_report__mechanic_id
@@ -3448,6 +4332,11 @@ msgid "Phone"
 msgstr "Telefoon"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__phone
+msgid "Phone to reach the customer."
+msgstr "Telefoon om de klant te bereiken."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__image_ids
 #: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
 msgid "Photos"
@@ -3463,6 +4352,13 @@ msgstr "Aantallen leveringen"
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_search
 msgid "Planned"
 msgstr "Gepland"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__state
+msgid ""
+"Planned, Confirmed, Arrived, Order created (a repair order was made from it)"
+" or Cancelled."
+msgstr "Gepland, Bevestigd, Aangekomen, Order aangemaakt (er is een werkorder uit gemaakt) of Geannuleerd."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_list
@@ -3501,6 +4397,11 @@ msgid "Prefix"
 msgstr "Voorvoegsel"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_organization__prefix
+msgid "Prefix of document numbers of this organisation."
+msgstr "Voorvoegsel van de documentnummers van deze organisatie."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_invoice_pay
 #: model_terms:ir.ui.view,arch_db:adealer.report_nadhodzhennia
 #: model_terms:ir.ui.view,arch_db:adealer.report_povernennia
@@ -3514,6 +4415,21 @@ msgstr "Prijs"
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_lost_demand__reason__price
 msgid "Price not acceptable"
 msgstr "Prijs niet aanvaardbaar"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_line__price_unit
+msgid "Price of one unit."
+msgstr "Prijs van één eenheid."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_option__price
+msgid "Price of the option when it is added to a vehicle."
+msgstr "Prijs van de optie als die aan een voertuig wordt toegevoegd."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__sale_price
+msgid "Price of the vehicle without options."
+msgstr "Prijs van het voertuig zonder opties."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_repair_order
@@ -3606,6 +4522,13 @@ msgid "Pull the latest code from GitHub and upgrade the module?"
 msgstr "De nieuwste code van GitHub ophalen en de module bijwerken?"
 
 #. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
+msgid ""
+"Pull the new code from GitHub and upgrade the module. Only for a server "
+"where the module is a git checkout; restart Odoo afterwards."
+msgstr "De nieuwe code van GitHub ophalen en de module bijwerken. Alleen als de module op de server een git-checkout is; herstart daarna Odoo."
+
+#. module: adealer
 #: model:ir.model,name:adealer.model_purchase_order
 msgid "Purchase Order"
 msgstr "Inkooporder"
@@ -3662,9 +4585,38 @@ msgid "Quantity"
 msgstr "Hoeveelheid"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_line__price_subtotal
+msgid "Quantity times price, less the discount."
+msgstr "Aantal maal prijs, min de korting."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__qty
+msgid "Quantity."
+msgstr "Aantal."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_line__product_uom_qty
+msgid "Quantity: hours of labour or pieces of the part."
+msgstr "Aantal: arbeidsuren of stuks van het onderdeel."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
 msgid "Queued reports: Settings menu -&gt; Error reports."
 msgstr "Wachtende rapporten: menu Instellingen -&gt; Foutrapporten."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_partner_address_import_wizard_form
+msgid ""
+"Read the addresses from the Excel file and write them to the chosen "
+"counterparties."
+msgstr "De adressen uit het Excel-bestand lezen en bij de gekozen tegenpartijen invullen."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_partner_import_wizard_form
+msgid ""
+"Read the counterparties from the Excel file: add new ones, update the ones "
+"found, and show the report."
+msgstr "De tegenpartijen uit het Excel-bestand lezen: nieuwe toevoegen, gevonden bijwerken en het verslag tonen."
 
 #. module: adealer
 #: model:ir.model,name:adealer.model_adealer_report_wizard
@@ -3692,6 +4644,11 @@ msgstr "Reden"
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_service_campaign__campaign_type__recall
 msgid "Recall"
 msgstr "Terugroepactie"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__campaign_type
+msgid "Recall, warranty campaign or service action."
+msgstr "Terugroepactie, garantiecampagne of serviceactie."
 
 #. module: adealer
 #: model:ir.model,name:adealer.model_partner_balance_wizard_line
@@ -3749,6 +4706,11 @@ msgstr "Ref. 2"
 #: model:ir.model.fields,field_description:adealer.field_adealer_report_wizard_line__ref3
 msgid "Ref3"
 msgstr "Ref. 3"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__plate
+msgid "Registration plate."
+msgstr "Kenteken."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_vydatkova
@@ -3830,6 +4792,12 @@ msgid "Repair orders"
 msgstr "Werkorders"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_sale_order__own_repair_order_ids
+#: model_terms:ir.ui.view,arch_db:adealer.sale_view_order_form_inherit
+msgid "Repair orders created from this sales order."
+msgstr "Werkorders gemaakt uit deze verkooporder."
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/dashboard.py:0
 msgid "Repair orders in period"
@@ -3890,6 +4858,11 @@ msgid "Reports — Sales (manager)"
 msgstr "Rapporten — Verkoop (manager)"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_request__name
+msgid "Request number, given when it is saved."
+msgstr "Verzoeknummer, toegekend bij het opslaan."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__requested_works
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_form
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_booking_list
@@ -3924,6 +4897,12 @@ msgid "Reserve"
 msgstr "Reserveer"
 
 #. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid ""
+"Reserve the vehicle for a customer. Only a vehicle in stock can be reserved."
+msgstr "Het voertuig voor een klant reserveren. Alleen een voertuig op voorraad kan worden gereserveerd."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_account_move_realiz_list
 #: model_terms:ir.ui.view,arch_db:adealer.view_purchase_order_journal_list
 #: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_journal_list
@@ -3936,6 +4915,11 @@ msgstr "Verantwoordelijke"
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__activity_user_id
 msgid "Responsible User"
 msgstr "Verantwoordelijke gebruiker"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_partner_import_wizard_form
+msgid "Result"
+msgstr "Resultaat"
 
 #. module: adealer
 #: model:ir.actions.report,name:adealer.action_report_povernennia
@@ -3958,6 +4942,21 @@ msgstr "Geretourneerd door: _______________"
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_gross
 msgid "Revenue"
 msgstr "Omzet"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid ""
+"Row %(row)s: %(what)s\n"
+"    Why: %(why)s\n"
+"    What to do: %(howto)s"
+msgstr "Regel %(row)s: %(what)s\n    Waarom: %(why)s\n    Wat te doen: %(howto)s"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "Rows processed: %s"
+msgstr "Verwerkte regels: %s"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__message_has_sms_error
@@ -4010,6 +5009,11 @@ msgid "Sale price"
 msgstr "Verkoopprijs"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__total_price
+msgid "Sale price plus options: what the buyer pays."
+msgstr "Verkoopprijs plus opties: wat de koper betaalt."
+
+#. module: adealer
 #: model:ir.actions.act_window,name:adealer.action_report_ready_sales
 #: model:ir.actions.act_window,name:adealer.report_sales
 #: model:ir.model.fields,field_description:adealer.field_res_config_settings__show_menu_sales
@@ -4041,6 +5045,17 @@ msgid "Scheduled"
 msgstr "Gepland"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__amount2
+msgid ""
+"Second amount; its meaning depends on the report (cost, margin, share)."
+msgstr "Tweede bedrag; de betekenis hangt af van het rapport (kosten, marge, aandeel)."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__ref2
+msgid "Second column of the report; its meaning depends on the report."
+msgstr "Tweede kolom van het rapport; de betekenis hangt af van het rapport."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_partner_import_wizard_form
 msgid "Select an Excel file to import"
 msgstr "Selecteer een Excel-bestand om te importeren"
@@ -4064,6 +5079,13 @@ msgstr "Automatische foutrapporten verzenden"
 #: model_terms:ir.ui.view,arch_db:adealer.adealer_error_report_view_form
 msgid "Send now"
 msgstr "Nu verzenden"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.adealer_error_report_view_form
+msgid ""
+"Send this report now, without waiting for the scheduled job. Exactly the "
+"payload shown leaves the database."
+msgstr "Dit rapport nu versturen, zonder op de geplande taak te wachten. Precies de getoonde inhoud verlaat de database."
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_error_report__state__sent
@@ -4229,9 +5251,27 @@ msgid "Service revenue in period"
 msgstr "Werkplaatsomzet in periode"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_stock_picking__parts_arrival_notified
+msgid ""
+"Set once the salesperson was told that the parts for this delivery arrived."
+msgstr "Wordt aangevinkt zodra de verkoper is verteld dat de onderdelen voor deze levering binnen zijn."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_request_form
 msgid "Set to New"
 msgstr "Terugzetten naar Nieuw"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_git_ready
+msgid ""
+"Set when the module is a git checkout on the server, so it can be updated "
+"from GitHub."
+msgstr "Aangevinkt als de module op de server een git-checkout is en dus vanuit GitHub kan worden bijgewerkt."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_update_available
+msgid "Set when the published version is newer than the installed one."
+msgstr "Aangevinkt als de gepubliceerde versie nieuwer is dan de geïnstalleerde."
 
 #. module: adealer
 #: model:ir.ui.menu,name:adealer.configuration
@@ -4259,6 +5299,11 @@ msgid "Shipping"
 msgstr "Verzenden"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_organization__name
+msgid "Short name of the organisation, as shown in lists."
+msgstr "Korte naam van de organisatie, zoals in lijsten."
+
+#. module: adealer
 #. odoo-javascript
 #: code:addons/adealer/static/src/xml/dashboard.xml:0
 msgid "Show"
@@ -4271,10 +5316,56 @@ msgid "Show add-on hints"
 msgstr "Hints voor aanvullende modules tonen"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__show_menu_maintenance
+msgid "Show the Maintenance and repair menu."
+msgstr "Het menu Onderhoud en reparatie tonen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__show_menu_contacts
+msgid "Show the Partners and users menu."
+msgstr "Het menu Partners en gebruikers tonen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__show_menu_products
+msgid "Show the Products and services menu."
+msgstr "Het menu Producten en diensten tonen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__show_menu_purchases
+msgid "Show the Purchases menu."
+msgstr "Het menu Inkoop tonen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__show_menu_reports
+msgid "Show the Reports menu."
+msgstr "Het menu Rapporten tonen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__show_menu_sales
+msgid "Show the Sales menu."
+msgstr "Het menu Verkoop tonen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__show_menu_showroom
+msgid "Show the Showroom menu."
+msgstr "Het menu Showroom tonen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__show_menu_vehicles
+msgid "Show the Vehicles and models menu."
+msgstr "Het menu Voertuigen en modellen tonen."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_brand_logo_default
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
 msgid "Show the brand logo as the vehicle image by default"
 msgstr "Standaard het merklogo als voertuigafbeelding tonen"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__update_message
+#: model:ir.model.fields,help:adealer.field_repair_order__update_message
+msgid "Shown when a newer version of 3A-dealer is published."
+msgstr "Verschijnt als er een nieuwere versie van 3A-dealer is gepubliceerd."
 
 #. module: adealer
 #. odoo-javascript
@@ -4290,6 +5381,18 @@ msgstr "Showroom"
 #: model_terms:ir.ui.view,arch_db:adealer.report_dovirenist
 msgid "Signature of the authorized person: _______________ we certify."
 msgstr "Handtekening van de gemachtigde persoon: _______________ wij verklaren."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "Skipped as duplicates: %s"
+msgstr "Overgeslagen als dubbelen: %s"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "Skipped for lack of data: %s"
+msgstr "Overgeslagen zonder gegevens: %s"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_car__status__sold
@@ -4324,12 +5427,6 @@ msgid "Source order"
 msgstr "Bronorder"
 
 #. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/dealer_car.py:0
-msgid "Specify the buyer before selling the vehicle."
-msgstr "Geef de koper op voordat u het voertuig verkoopt."
-
-#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_repair_stage_history__stage_id
 #: model:ir.model.fields,field_description:adealer.field_repair_order__stage_id
 msgid "Stage"
@@ -4343,9 +5440,19 @@ msgid "Standard hours"
 msgstr "Normuren"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_mechanic_output_report__normo_hours
+msgid "Standard hours of the work: the basis for the mechanic's pay."
+msgstr "Normuren van het werk: de basis voor het loon van de monteur."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign__date_start
 msgid "Start date"
 msgstr "Startdatum"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_service_campaign_form
+msgid "Start the campaign: its vehicles can be marked as done."
+msgstr "De campagne starten: de voertuigen kunnen als afgehandeld worden gemarkeerd."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__state
@@ -4406,6 +5513,11 @@ msgid "Status history"
 msgstr "Statusgeschiedenis"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__state
+msgid "Status of the document."
+msgstr "Status van het document."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_repair_order
 msgid "Std hr"
 msgstr "Nu"
@@ -4437,6 +5549,12 @@ msgid "Stock positions"
 msgstr "Voorraadposities"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__picking_ids
+#: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_form_inherit
+msgid "Stock transfers made for this repair order."
+msgstr "Voorraadoverboekingen gedaan voor deze werkorder."
+
+#. module: adealer
 #: model:ir.actions.act_window,name:adealer.action_report_ready_turnover
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_report_wizard__report_type__turnover
 #: model:ir.ui.menu,name:adealer.menu_ready_turnover
@@ -4461,6 +5579,16 @@ msgid "Subtotal"
 msgstr "Subtotaal"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__options_price
+msgid "Sum of the prices of the chosen options."
+msgstr "Som van de prijzen van de gekozen opties."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__total_normo_hours
+msgid "Sum of the standard hours of all labour lines of the order."
+msgstr "Som van de normuren van alle arbeidsregels van de order."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__supplier_id
 #: model_terms:ir.ui.view,arch_db:adealer.view_purchase_order_journal_list
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_purchases
@@ -4478,6 +5606,133 @@ msgid "Taxes"
 msgstr "Btw"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_line__tax_id
+msgid "Taxes applied to the line."
+msgstr "Belastingen op de regel."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__wh_id_1c
+msgid ""
+"Technical, for data migration: warehouse identifier in the source system."
+msgstr "Technisch, voor de gegevensmigratie: magazijn-ID in het bronsysteem."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__wh_id_3a
+msgid "Technical, for data migration: warehouse identifier in this database."
+msgstr "Technisch, voor de gegevensmigratie: magazijn-ID in deze database."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__wh_name_1c
+msgid "Technical, for data migration: warehouse name in the source system."
+msgstr "Technisch, voor de gegevensmigratie: magazijnnaam in het bronsysteem."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__wh_name_3a
+msgid "Technical, for data migration: warehouse name in this database."
+msgstr "Technisch, voor de gegevensmigratie: magazijnnaam in deze database."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_chain__origin_res_id
+msgid "Technical: id of that document."
+msgstr "Technisch: id van dat document."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_basis__source_res_id
+msgid "Technical: id of the basis document."
+msgstr "Technisch: id van het basisdocument."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__res_id
+msgid "Technical: id of the document the line opens."
+msgstr "Technisch: id van het document dat de regel opent."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_basis__source_model
+#: model:ir.model.fields,help:adealer.field_adealer_doc_link__parent_model
+msgid "Technical: model of the basis document."
+msgstr "Technisch: model van het basisdocument."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_link__child_model
+msgid "Technical: model of the derived document."
+msgstr "Technisch: model van het afgeleide document."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__res_model
+msgid "Technical: model of the document the line opens."
+msgstr "Technisch: model van het document dat de regel opent."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_chain__origin_model
+msgid "Technical: model of the document the structure is built for."
+msgstr "Technisch: model van het document waarvoor de structuur wordt opgebouwd."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_import_wizard__file_name
+msgid "Tells .xls and .xlsx apart."
+msgstr "Onderscheidt .xls van .xlsx."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner.py:0
+msgid ""
+"The EDRPOU code \"%s\" has %s characters, but it must have 8 (a company) or "
+"10 (an individual). Check the code against the registration documents."
+msgstr "De EDRPOU-code \"%s\" heeft %s tekens, maar moet er 8 (bedrijf) of 10 (particulier) hebben. Controleer de code aan de hand van de registratiedocumenten."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_error_report__http_status
+msgid "The HTTP status code, if the failure came from a server; 0 otherwise."
+msgstr "De HTTP-statuscode als de fout van een server kwam; anders 0."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_link__parent_ref
+msgid "The basis document."
+msgstr "Het basisdocument."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign_line__campaign_id
+msgid "The campaign this vehicle belongs to."
+msgstr "De campagne waar dit voertuig bij hoort."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__company_id
+msgid "The company running the campaign."
+msgstr "Het bedrijf dat de campagne uitvoert."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__company_id
+msgid "The company that owns the vehicle."
+msgstr "Het bedrijf dat eigenaar is van het voertuig."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__company_id
+msgid "The company the booking belongs to."
+msgstr "Het bedrijf waar de afspraak bij hoort."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_lost_demand__company_id
+#: model:ir.model.fields,help:adealer.field_adealer_service_request__company_id
+msgid "The company the request belongs to."
+msgstr "Het bedrijf waar het verzoek bij hoort."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_error_report__company_id
+msgid ""
+"The company where the failure happened. Each company keeps its own queue."
+msgstr "Het bedrijf waar de fout optrad. Elk bedrijf heeft een eigen wachtrij."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_import_wizard__file
+msgid "The counterparties as an Excel file (.xls or .xlsx)."
+msgstr "De tegenpartijen als Excel-bestand (.xls of .xlsx)."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__partner_line_id
+msgid "The counterparty of the summary line; click to see its statement."
+msgstr "De tegenpartij van de samenvattingsregel; klik om het overzicht te zien."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_service_booking__customer_name
 msgid ""
 "The customer as given (for example, on the phone) when there is no contact "
@@ -4486,14 +5741,87 @@ msgid ""
 msgstr "De klant zoals opgegeven (bijvoorbeeld telefonisch) wanneer er nog geen contact voor hem is. Wordt op het bord en in de agenda getoond als er geen klant is gekozen."
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_mechanic_output_report__partner_id
+msgid "The customer of the repair order."
+msgstr "De klant van de werkorder."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_service_booking__sale_order_id
 msgid "The customer order linked to this booking"
 msgstr "De klantorder gekoppeld aan deze afspraak"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_maintenance_request__partner_id
+msgid "The customer the request is for."
+msgstr "De klant voor wie het verzoek is."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__partner_id
+msgid "The customer the work is done for and invoiced to."
+msgstr "De klant voor wie het werk wordt gedaan en gefactureerd."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_request__partner_id
+msgid "The customer who asks for the work."
+msgstr "De klant die om het werk vraagt."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_sale_order__vehicle_id
+msgid ""
+"The customer's vehicle the order is for. Needed to create a repair order."
+msgstr "Het klantvoertuig waarvoor de order is. Nodig om een werkorder te maken."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__vehicle_id
+msgid "The customer's vehicle under repair."
+msgstr "Het klantvoertuig in reparatie."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__vehicle_id
+msgid "The customer's vehicle, if it is already in the database."
+msgstr "Het klantvoertuig, als het al in de database staat."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_lost_demand__vehicle_id
+msgid "The customer's vehicle, if known."
+msgstr "Het klantvoertuig, indien bekend."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_request__vehicle_id
+msgid "The customer's vehicle."
+msgstr "Het klantvoertuig."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__partner_id
+msgid ""
+"The customer. If there is no contact yet, write the name in Customer name "
+"instead."
+msgstr "De klant. Is er nog geen contact, schrijf de naam dan in Naam van de klant."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_car__sale_move_id
 msgid "The delivery note / invoice this vehicle was sold on"
 msgstr "De afleverbon / factuur waarmee dit voertuig is verkocht"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_link__child_ref
+msgid "The document entered from it."
+msgstr "Het document dat daaruit is ingevoerd."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_basis__source_ref
+msgid "The document the new one is created from."
+msgstr "Het document waaruit het nieuwe wordt gemaakt."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_chain__origin_ref
+msgid "The document the structure is shown for."
+msgstr "Het document waarvoor de structuur wordt getoond."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__doc_name
+msgid "The document, or the counterparty in the summary."
+msgstr "Het document, of de tegenpartij in de samenvatting."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_error_report__error_type
@@ -4502,13 +5830,57 @@ msgstr "De uitzonderingsklasse, nooit de tekst ervan."
 
 #. module: adealer
 #. odoo-python
+#: code:addons/adealer/models/partner_import_wizard.py:0
+msgid ""
+"The file format does not fit: \"%s\".\n"
+"\n"
+"An Excel file is needed, .xls or .xlsx. If the file is a CSV, open it in Excel and save it as a workbook."
+msgstr "Bestandsformaat niet geschikt: '%s'.\n\nExcel is vereist — .xls of .xlsx. Als het bestand CSV is, sla het dan op als Excel-werkmap."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__move_id
+msgid "The journal entry behind the line."
+msgstr "De boeking achter de regel."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_mechanic_output_report__product_id
+msgid "The labour item done."
+msgstr "Het uitgevoerde werk."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_line__product_id
+msgid "The labour or the part."
+msgstr "De arbeid of het onderdeel."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_chain_line__doc_ref
+msgid "The linked document; click to open it."
+msgstr "Het gekoppelde document; klik om het te openen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__employee_id
+msgid "The mechanic planned for the work."
+msgstr "De monteur die voor het werk is ingepland."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_complectation__model_id
+msgid ""
+"The model this trim belongs to. Vehicles of that model can be given this "
+"trim."
+msgstr "Het model waar deze uitvoering bij hoort. Voertuigen van dat model kunnen deze uitvoering krijgen."
+
+#. module: adealer
+#. odoo-python
 #: code:addons/adealer/models/app_update.py:0
 msgid ""
 "The module directory is not a git checkout (%s).\n"
-"Download the new version from the Odoo App Store instead."
-msgstr ""
-"De moduledirectory is geen git-checkout (%s).\n"
-"Download de nieuwe versie in plaats daarvan uit de Odoo App Store."
+"Open the Odoo App Store and download the new version instead."
+msgstr "De modulemap is geen git-checkout (%s).\nOpen de Odoo App Store en download daar de nieuwe versie."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_version_latest
+msgid "The newest published version, as of the last check."
+msgstr "De nieuwste gepubliceerde versie, volgens de laatste controle."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_service_request__sale_order_id
@@ -4521,6 +5893,21 @@ msgid "The order that closed the vehicle campaign"
 msgstr "De order die de voertuigcampagne heeft afgesloten"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_fleet_vehicle__partner_id
+msgid "The owner of the vehicle."
+msgstr "De eigenaar van het voertuig."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_lost_demand__product_id
+msgid "The part the customer asked for."
+msgstr "Het onderdeel waar de klant om vroeg."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__workplace_id
+msgid "The post or bay the work is planned on."
+msgstr "De werkplek waarop het werk is gepland."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_repair_order__booking_id
 msgid "The preliminary appointment this order was created from"
 msgstr "De voorafspraak waaruit deze order is aangemaakt"
@@ -4531,10 +5918,45 @@ msgid "The repair order created from this booking (optional)"
 msgstr "De werkorder aangemaakt vanuit deze afspraak (optioneel)"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_maintenance_request__repair_order
+msgid "The repair order linked to this maintenance request."
+msgstr "De werkorder die aan dit onderhoudsverzoek is gekoppeld."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_mechanic_output_report__repair_id
+msgid "The repair order of the work."
+msgstr "De werkorder van het werk."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_account_bank_statement_line__source_repair_order_id
 #: model:ir.model.fields,help:adealer.field_account_move__source_repair_order_id
 msgid "The repair order this document was created from"
 msgstr "De werkorder waaruit dit document is aangemaakt"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_line__repair_id
+msgid "The repair order this line belongs to."
+msgstr "De werkorder waar deze regel bij hoort."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_stock_picking__source_repair_order_id
+msgid "The repair order this transfer was made for."
+msgstr "De werkorder waarvoor deze overboeking is gedaan."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_repair_stage_history__repair_id
+msgid "The repair order whose stage changed."
+msgstr "De werkorder waarvan de fase is gewijzigd."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard__line_ids
+msgid "The report lines; click a line to open its document."
+msgstr "De rapportregels; klik op een regel om het document te openen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__wizard_id
+msgid "The report this line belongs to."
+msgstr "Het rapport waar deze regel bij hoort."
 
 #. module: adealer
 #. odoo-python
@@ -4545,8 +5967,8 @@ msgstr "De aanvraag heeft al order %s. Annuleer eerst de order."
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/service_request.py:0
-msgid "The request is cancelled."
-msgstr "De aanvraag is geannuleerd."
+msgid "The request is cancelled. Press Set to New first."
+msgstr "Het verzoek is geannuleerd. Klik eerst op Terugzetten naar Nieuw."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_repair_order__source_sale_order_id
@@ -4554,9 +5976,81 @@ msgid "The sale order this repair order was created from"
 msgstr "De verkooporder waaruit deze werkorder is aangemaakt"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__sale_order_id
+msgid "The sales order of this vehicle."
+msgstr "De verkooporder van dit voertuig."
+
+#. module: adealer
 #: model:ir.model.constraint,message:adealer.constraint_adealer_error_report_fingerprint_company_uniq
-msgid "The same failure is only queued once per company."
-msgstr "Dezelfde fout wordt per bedrijf maar één keer in de wachtrij gezet."
+msgid ""
+"The same failure is only queued once per company. Open the report already in"
+" the queue instead: its Occurrences count goes up."
+msgstr "Dezelfde fout komt per bedrijf maar één keer in de wachtrij. Open in plaats daarvan het rapport dat er al staat: de teller loopt op."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_repair_stage_history__stage_id
+msgid "The stage the order was moved to."
+msgstr "De fase waarnaar de order is verplaatst."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__wizard_id
+msgid "The statement this line belongs to."
+msgstr "Het overzicht waar deze regel bij hoort."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_status_history__status
+msgid "The status the vehicle was moved to."
+msgstr "De status waarnaar het voertuig is gezet."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__update_url
+#: model:ir.model.fields,help:adealer.field_repair_order__update_url
+msgid ""
+"The store page of the newer version: download it there, then upgrade the "
+"module in Apps."
+msgstr "De winkelpagina van de nieuwere versie: download die daar en werk daarna de module bij in Apps."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_chain_line__chain_id
+msgid "The structure this line belongs to."
+msgstr "De structuur waar deze regel bij hoort."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid "The vehicle has arrived: put it into stock."
+msgstr "Het voertuig is aangekomen: in voorraad nemen."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid "The vehicle is on its way to the showroom."
+msgstr "Het voertuig is onderweg naar de showroom."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_maintenance_request__vehicle_id
+msgid "The vehicle the request is about."
+msgstr "Het voertuig waar het verzoek over gaat."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_image__car_id
+msgid "The vehicle this photo belongs to."
+msgstr "Het voertuig waar deze foto bij hoort."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_product_product__vehicle_id
+#: model:ir.model.fields,help:adealer.field_product_template__vehicle_id
+msgid ""
+"The vehicle this product stands for; its name is copied to the product."
+msgstr "Het voertuig waar dit product voor staat; de naam wordt naar het product gekopieerd."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_status_history__car_id
+msgid "The vehicle whose status changed."
+msgstr "Het voertuig waarvan de status is gewijzigd."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_mechanic_output_report__vehicle_id
+msgid "The vehicle worked on."
+msgstr "Het voertuig waaraan is gewerkt."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_fleet_vehicle__photo
@@ -4564,9 +6058,29 @@ msgid "The vehicle's own photo (optional). If empty, the brand logo is shown."
 msgstr "Eigen foto van het voertuig (optioneel). Indien leeg wordt het merklogo getoond."
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign_line__vehicle_id
+msgid "The vehicle, if it is in the database; otherwise fill in the VIN."
+msgstr "Het voertuig, als het in de database staat; vul anders het VIN in."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_version_installed
+msgid "The version of 3A-dealer installed in this database."
+msgstr "De versie van 3A-dealer die in deze database is geïnstalleerd."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_repair_act
 msgid "The works were carried out in full. The customer has no claims."
 msgstr "De werkzaamheden zijn volledig uitgevoerd. De klant heeft geen klachten."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__amount3
+msgid "Third amount; its meaning depends on the report."
+msgstr "Derde bedrag; de betekenis hangt af van het rapport."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__ref3
+msgid "Third column of the report; its meaning depends on the report."
+msgstr "Derde kolom van het rapport; de betekenis hangt af van het rapport."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_account_bank_statement_line__is_vehicle_sale
@@ -4577,13 +6091,26 @@ msgstr "Deze afleverbon verkoopt ten minste één voertuig"
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/doc_basis.py:0
-msgid "This document cannot be created from that one."
-msgstr "Dit document kan niet vanuit dat document worden aangemaakt."
+msgid ""
+"This document cannot be created from that one. Choose one of the documents "
+"offered in the list."
+msgstr "Dit document kan niet uit dat document worden gemaakt. Kies een van de documenten uit de lijst."
 
 #. module: adealer
 #: model:ir.model.constraint,message:adealer.constraint_adealer_doc_link_doc_link_unique
-msgid "This link already exists."
-msgstr "Deze koppeling bestaat al."
+msgid ""
+"This link already exists. Open the existing link instead of adding it again."
+msgstr "Deze koppeling bestaat al. Open de bestaande koppeling in plaats van haar opnieuw toe te voegen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_organization__is_vat_payer
+msgid "Tick if the organisation is registered for VAT."
+msgstr "Aanvinken als de organisatie btw-plichtig is."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_child_cleanup_wizard__confirm
+msgid "Tick to confirm: every child contact in the database will be deleted."
+msgstr "Aanvinken ter bevestiging: alle onderliggende contacten in de database worden verwijderd."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.adealer_error_report_view_list
@@ -4610,6 +6137,11 @@ msgstr "Naar"
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_error_report__state__pending
 msgid "To send"
 msgstr "Te verzenden"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_error_report__state
+msgid "To send: queued. Sent: delivered. Could not send: the attempts failed."
+msgstr "Te versturen: in de wachtrij. Verstuurd: afgeleverd. Kon niet versturen: de pogingen zijn mislukt."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
@@ -4724,12 +6256,27 @@ msgid "Transmission Used by the vehicle"
 msgstr "Transmissie gebruikt door het voertuig"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_chain_line__prefix
+msgid "Tree drawing that shows the nesting."
+msgstr "Boomtekening die de nesting toont."
+
+#. module: adealer
 #: model:ir.model,name:adealer.model_dealer_car_complectation
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__complectation_id
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_complectation__name
 #: model_terms:ir.ui.view,arch_db:adealer.report_car_handover
 msgid "Trim / configuration"
 msgstr "Uitvoering / configuratie"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_complectation__code
+msgid "Trim code of the manufacturer or of the source system."
+msgstr "Uitvoeringscode van de fabrikant of het bronsysteem."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__complectation_id
+msgid "Trim of the vehicle. Only trims of the chosen model are offered."
+msgstr "Uitvoering van het voertuig. Alleen uitvoeringen van het gekozen model worden aangeboden."
 
 #. module: adealer
 #: model:ir.actions.act_window,name:adealer.action_car_complectation
@@ -4795,6 +6342,11 @@ msgid "Unit of Measure"
 msgstr "Maateenheid"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_line__product_uom
+msgid "Unit of the quantity."
+msgstr "Eenheid van het aantal."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
 msgid "Unreserve"
 msgstr "Reservering ongedaan maken"
@@ -4856,6 +6408,12 @@ msgid ""
 msgstr "Bijwerken vanuit GitHub is niet mogelijk: de moduledirectory is geen git-checkout (%s). Werk in plaats daarvan bij vanuit de Odoo App Store."
 
 #. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "Updated: %s"
+msgstr "Bijgewerkt: %s"
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
 msgid "Updates"
 msgstr "Updates"
@@ -4863,6 +6421,7 @@ msgstr "Updates"
 #. module: adealer
 #: model:ir.model,name:adealer.model_res_users
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_status_history__user_id
+#: model:res.groups,name:adealer.group_adealer_user
 msgid "User"
 msgstr "Gebruiker"
 
@@ -4900,6 +6459,11 @@ msgstr "VIN"
 #: model:ir.model.fields,help:adealer.field_dealer_car__vin_1c
 msgid "VIN as imported from the source vehicle catalog (dedup key)"
 msgstr "VIN zoals geïmporteerd uit de bronvoertuigcatalogus (sleutel tegen dubbelen)"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__vin
+msgid "VIN of the vehicle, if known."
+msgstr "VIN van het voertuig, indien bekend."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_service_campaign_line__vin
@@ -5100,6 +6664,11 @@ msgid "Vehicles and models"
 msgstr "Voertuigen en modellen"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__line_ids
+msgid "Vehicles covered by the campaign and the state of each."
+msgstr "Voertuigen in de campagne en de status van elk."
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/dashboard.py:0
 msgid "Vehicles in stock"
@@ -5131,10 +6700,21 @@ msgid "Vehicles sold in period"
 msgstr "Verkochte voertuigen in periode"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_account_bank_statement_line__dealer_car_ids
+#: model:ir.model.fields,help:adealer.field_account_move__dealer_car_ids
+msgid "Vehicles sold with this document."
+msgstr "Voertuigen verkocht met dit document."
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/adealer_update.py:0
 msgid "Version checking is switched off."
 msgstr "Versiecontrole is uitgeschakeld."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_addons_status
+msgid "Versions of the installed paid add-ons and whether they are current."
+msgstr "Versies van de geïnstalleerde betaalde uitbreidingen en of ze actueel zijn."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_inactive
@@ -5198,6 +6778,23 @@ msgid "What gets sent"
 msgstr "Wat wordt verzonden"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__balance
+msgid ""
+"What is owed after this line: positive, the counterparty owes; negative, we "
+"owe."
+msgstr "Wat er na deze regel openstaat: positief, de tegenpartij is schuldig; negatief, wij zijn schuldig."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_part_analog_group__note
+msgid "What makes these parts interchangeable."
+msgstr "Wat deze onderdelen uitwisselbaar maakt."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__requested_works
+msgid "What the customer asks to do, in their words."
+msgstr "Wat de klant wil laten doen, in zijn woorden."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_service_request__reason
 msgid "What the customer complains about, in their own words"
 msgstr "Waarover de klant klaagt, in eigen woorden"
@@ -5206,6 +6803,23 @@ msgstr "Waarover de klant klaagt, in eigen woorden"
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_request_form
 msgid "What the customer complains about..."
 msgstr "Waarover de klant klaagt..."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__name
+msgid "What the line is about: document, product, customer or vehicle."
+msgstr "Waar de regel over gaat: document, product, klant of voertuig."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__line_type
+msgid ""
+"What the line is: opening balance, a document, a counterparty in the "
+"summary, turnover or closing balance."
+msgstr "Wat de regel is: beginsaldo, een document, een tegenpartij in de samenvatting, omzet of eindsaldo."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_error_report__operation
+msgid "What the module was doing when it failed."
+msgstr "Wat de module deed toen de fout optrad."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_addon_hint_mixin__addon_hint_html
@@ -5217,6 +6831,26 @@ msgid ""
 "What the paid 3A-dealer add-ons would add here. Hidden once the add-on is "
 "installed; can be switched off in Settings."
 msgstr "Wat de betaalde 3A-dealer-modules hier zouden toevoegen. Verborgen zodra de module is geïnstalleerd; uit te schakelen in Instellingen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_repair_stage__description
+msgid "What the stage means, for the workshop."
+msgstr "Wat de fase betekent, voor de werkplaats."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_complectation__note
+msgid "What the trim includes, for the sales staff."
+msgstr "Wat de uitvoering omvat, voor de verkopers."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__purchase_price
+msgid "What the vehicle cost to buy."
+msgstr "Wat de inkoop van het voertuig kostte."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__description
+msgid "What to do and how, for the workshop."
+msgstr "Wat en hoe te doen, voor de werkplaats."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_home
@@ -5232,6 +6866,11 @@ msgid ""
 "What to open after login for the current user: workshop — calendar, showroom"
 " — vehicles, manager — reports"
 msgstr "Wat na het inloggen wordt geopend voor de huidige gebruiker: werkplaats — kalender, showroom — voertuigen, manager — rapporten"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_balance_wizard_line__opening
+msgid "What was owed at the start of the period."
+msgstr "Wat er aan het begin van de periode openstond."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.adealer_error_report_view_form
@@ -5274,9 +6913,64 @@ msgstr ""
 "wordt verzonden, en rapportage helemaal uitschakelen in Instellingen."
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__date_end
+msgid "When the campaign ends. Empty: open-ended."
+msgstr "Wanneer de campagne eindigt. Leeg: onbeperkt."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign__date_start
+msgid "When the campaign starts."
+msgstr "Wanneer de campagne begint."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_service_campaign_line__done_date
+msgid "When the campaign work was done on this vehicle."
+msgstr "Wanneer het campagnewerk aan dit voertuig is gedaan."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_lost_demand__date
+msgid "When the customer asked."
+msgstr "Wanneer de klant het vroeg."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_service_request__scheduled_date
 msgid "When the customer is expected at the workshop"
 msgstr "Wanneer de klant in de werkplaats wordt verwacht"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__appointment_datetime
+msgid "When the customer is expected."
+msgstr "Wanneer de klant wordt verwacht."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_link__child_time
+msgid "When the derived document took effect; orders the structure."
+msgstr "Wanneer het afgeleide document van kracht werd; bepaalt de volgorde in de structuur."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_version_checked
+msgid "When the published version was last read."
+msgstr "Wanneer de gepubliceerde versie voor het laatst is gelezen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_error_report__sent_date
+msgid "When the report was delivered."
+msgstr "Wanneer het rapport is afgeleverd."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_repair_stage_history__change_date
+msgid "When the stage changed."
+msgstr "Wanneer de fase is gewijzigd."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_status_history__change_date
+msgid "When the status changed."
+msgstr "Wanneer de status is gewijzigd."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_booking__intake_time
+msgid "When the vehicle is taken in, if it differs from the appointment."
+msgstr "Wanneer het voertuig wordt ingenomen, als dat afwijkt van de afspraak."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_error_report__frames
@@ -5292,6 +6986,25 @@ msgid ""
 msgstr "Waar rapporten naartoe worden verzonden. Stel uw eigen ontvanger in als uw beleid uitgaande verbindingen met derden verbiedt."
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_repair_order__stage_id
+msgid ""
+"Where the repair order is in the workshop: drag the card on the board to "
+"change it."
+msgstr "Waar de werkorder in de werkplaats staat: sleep de kaart op het bord om dat te wijzigen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__status
+msgid ""
+"Where the vehicle is in its life: ordered, in transit, in stock, reserved, "
+"sold, delivered. The buttons at the top move it along."
+msgstr "Waar het voertuig staat: besteld, onderweg, op voorraad, gereserveerd, verkocht, afgeleverd. De knoppen bovenaan brengen het verder."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__location_note
+msgid "Where the vehicle stands: lot, row, place."
+msgstr "Waar het voertuig staat: terrein, rij, plek."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_error_report__module
 msgid ""
 "Which 3A-dealer module raised it, so the collector tells reports apart."
@@ -5305,11 +7018,98 @@ msgid ""
 msgstr "Welk dashboardtabblad als eerste opent. Een werkplaats wil Service, een showroom wil Showroom — het tabblad lag vroeger vast in de code."
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_doc_basis__target
+msgid ""
+"Which document to create. Only the documents allowed for this basis are "
+"offered."
+msgstr "Welk document te maken. Alleen de documenten die voor deze basis zijn toegestaan, worden aangeboden."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_account_bank_statement_line__organization_id
+#: model:ir.model.fields,help:adealer.field_account_move__organization_id
+#: model:ir.model.fields,help:adealer.field_account_payment__organization_id
+#: model:ir.model.fields,help:adealer.field_dealer_organization_mixin__organization_id
+#: model:ir.model.fields,help:adealer.field_purchase_order__organization_id
+#: model:ir.model.fields,help:adealer.field_repair_order__organization_id
+#: model:ir.model.fields,help:adealer.field_sale_order__organization_id
+#: model:ir.model.fields,help:adealer.field_stock_picking__organization_id
+msgid "Which of your organisations the document belongs to."
+msgstr "Bij welke van uw organisaties het document hoort."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_report_wizard__report_type
+msgid "Which report to build."
+msgstr "Welk rapport op te bouwen."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
 msgid ""
 "Which tab of the Home dashboard opens first: a workshop wants Service, a "
 "showroom wants Showroom."
 msgstr "Welk tabblad van het Start-dashboard als eerste opent: een werkplaats wil Service, een showroom wil Showroom."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_lost_demand__partner_id
+msgid "Who asked, if known."
+msgstr "Wie het vroeg, indien bekend."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__partner_id
+msgid "Who buys the vehicle. Needed before Sell."
+msgstr "Wie het voertuig koopt. Nodig vóór Verkopen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car_status_history__user_id
+msgid "Who changed the status."
+msgstr "Wie de status heeft gewijzigd."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_mechanic_output_report__mechanic_id
+msgid "Who did the work."
+msgstr "Wie het werk heeft gedaan."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_service_request__service_advisor_id
+msgid "Who handles the request."
+msgstr "Wie het verzoek behandelt."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_maintenance_request__master_id
+msgid "Who is in charge of the request."
+msgstr "Wie verantwoordelijk is voor het verzoek."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_repair_stage_history__user_id
+msgid "Who moved the order."
+msgstr "Wie de order heeft verplaatst."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_lost_demand__user_id
+msgid "Who recorded the request."
+msgstr "Wie het verzoek heeft vastgelegd."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__supplier_id
+msgid "Who the vehicle was bought from."
+msgstr "Van wie het voertuig is gekocht."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_partner_address_import_wizard__partner_type
+msgid ""
+"Whose addresses to load: legal entities, individuals or all counterparties."
+msgstr "Wiens adressen te laden: rechtspersonen, particulieren of alle tegenpartijen."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_lost_demand__reason
+msgid ""
+"Why the sale did not happen. Out-of-stock requests show what to keep in "
+"stock."
+msgstr "Waarom de verkoop niet doorging. Vragen naar niet-voorradige artikelen tonen wat u op voorraad moet houden."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_git_reason
+msgid "Why updating from GitHub is not possible here."
+msgstr "Waarom bijwerken vanuit GitHub hier niet mogelijk is."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_report_wizard_line__wizard_id
@@ -5396,9 +7196,23 @@ msgid "Your comment"
 msgstr "Je reactie"
 
 #. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "a contact cannot be created without a name"
+msgstr "een tegenpartij zonder naam kan niet worden aangemaakt"
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_car_handover
 msgid "accepted the vehicle:"
 msgstr "heeft het voertuig ontvangen:"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid ""
+"add at least one detail, otherwise the contact cannot be matched with "
+"anything"
+msgstr "voeg minstens één kenmerk toe — anders kan de tegenpartij met niets worden vergeleken"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_akt_zvirky
@@ -5442,6 +7256,12 @@ msgid "e.g. Trend, Titanium, ST-Line"
 msgstr "bijv. Trend, Titanium, ST-Line"
 
 #. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "fill in the \"Наименование\" column or delete the row"
+msgstr "vul de kolom 'Наименование' in of verwijder de regel"
+
+#. module: adealer
 #: model:ir.model,name:adealer.model_fleet_vehicle_import
 msgid "fleet.vehicle.import"
 msgstr "Voertuigimport"
@@ -5470,20 +7290,20 @@ msgstr "Git"
 #: code:addons/adealer/models/app_update.py:0
 msgid ""
 "git is not available on the server:\n"
-"%s"
-msgstr ""
-"git is niet beschikbaar op de server:\n"
-"%s"
+"%s\n"
+"\n"
+"Open the Odoo App Store and download the new version instead, or install git on the server."
+msgstr "git is niet beschikbaar op de server:\n%s\n\nOpen de Odoo App Store en download daar de nieuwe versie, of installeer git op de server."
 
 #. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/app_update.py:0
 msgid ""
 "git pull failed:\n"
-"%s"
-msgstr ""
-"git pull mislukt:\n"
-"%s"
+"%s\n"
+"\n"
+"Check the message above: local changes on the server or no access to GitHub are the usual causes. Or open the Odoo App Store and download the new version."
+msgstr "git pull is mislukt:\n%s\n\nControleer de melding hierboven: lokale wijzigingen op de server of geen toegang tot GitHub zijn de gebruikelijke oorzaken. Of open de Odoo App Store en download de nieuwe versie."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_car_handover
@@ -5504,6 +7324,12 @@ msgstr "draagt op om van de leverancier te ontvangen"
 #: model_terms:ir.ui.view,arch_db:adealer.report_repair_order
 msgid "km"
 msgstr "km"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "no name"
+msgstr "geen naam"
 
 #. module: adealer
 #. odoo-python
@@ -5563,9 +7389,29 @@ msgid "tel."
 msgstr "Tel."
 
 #. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid ""
+"the contact was created without the code; correct the code in the file and "
+"import again, or enter it on the contact card"
+msgstr "tegenpartij aangemaakt zonder code; corrigeer de code in het bestand en herhaal de import, of vul de code in op de kaart"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "the file has \"%s\": it must be 8 or 10 digits"
+msgstr "in bestand '%s': er moeten 8 of 10 cijfers zijn"
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_dovirenist
 msgid "the following inventory items:"
 msgstr "de volgende goederen:"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/partner_import.py:0
+msgid "there are no details at all: no phone, no e-mail, no code, no address"
+msgstr "geen enkel kenmerk: geen telefoon, e-mail, code of adres"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_report_wizard__date_to
@@ -5584,189 +7430,6 @@ msgstr "Voertuig"
 #: code:addons/adealer/models/report_wizards.py:0
 msgid "vehicles: %d"
 msgstr "voertuigen: %d"
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "«%s» — код ЄДРПОУ не взято"
-msgstr "'%s' — EDRPOU-code niet overgenomen"
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "«%s» — лише назва"
-msgstr "'%s' — alleen naam"
-
-#. module: adealer
-#: model:ir.module.category,description:adealer.module_category_adealer
-msgid "Автосалон, СТО, запчастини"
-msgstr "Autodealer, werkplaats, onderdelen"
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "Додано контрагентів: %s"
-msgstr "Tegenpartijen toegevoegd: %s"
-
-#. module: adealer
-#: model:res.groups,name:adealer.group_adealer_manager
-msgid "Керівник"
-msgstr "Directie"
-
-#. module: adealer
-#: model:res.groups,name:adealer.group_adealer_user
-msgid "Користувач"
-msgstr "Gebruiker"
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import_wizard.py:0
-msgid ""
-"Не вдалося прочитати файл: %s\n"
-"\n"
-"Найчастіші причини: файл пошкоджений, захищений паролем або збережений у старому форматі. Відкрийте його в Excel і збережіть як .xlsx."
-msgstr ""
-"Kon het bestand niet lezen: %s\n"
-"\n"
-"Meest voorkomende oorzaken: het bestand is beschadigd, met een wachtwoord beveiligd of in een oud formaat opgeslagen. Open het in Excel en sla het op als .xlsx."
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import_wizard.py:0
-msgid "Оберіть файл для імпорту."
-msgstr "Selecteer een bestand om te importeren."
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "Оброблено рядків: %s"
-msgstr "Verwerkte regels: %s"
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "Оновлено: %s"
-msgstr "Bijgewerkt: %s"
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "Потребують уваги — %s:"
-msgstr "Vragen aandacht — %s:"
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "Пропущено без даних: %s"
-msgstr "Overgeslagen zonder gegevens: %s"
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "Пропущено як дублікати: %s"
-msgstr "Overgeslagen als dubbelen: %s"
-
-#. module: adealer
-#: model_terms:ir.ui.view,arch_db:adealer.view_partner_import_wizard_form
-msgid "Результат"
-msgstr "Resultaat"
-
-#. module: adealer
-#: model:ir.model.fields,field_description:adealer.field_partner_import_wizard__result_summary
-msgid "Результат імпорту"
-msgstr "Importresultaat"
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "Рядків із проблемами немає."
-msgstr "Geen regels met problemen."
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid ""
-"Рядок %(row)s: %(what)s\n"
-"    Чому: %(why)s\n"
-"    Що зробити: %(howto)s"
-msgstr ""
-"Regel %(row)s: %(what)s\n"
-"    Waarom: %(why)s\n"
-"    Wat te doen: %(howto)s"
-
-#. module: adealer
-#: model:res.groups,comment:adealer.group_adealer_manager
-msgid ""
-"Усе, що вміє користувач, плюс довідники,\n"
-"            налаштування, імпорти й звіти по взаєморозрахунках."
-msgstr ""
-"Alles wat de gebruiker kan, plus stamgegevens,\n"
-"instellingen, imports en rapporten over verrekeningen."
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import_wizard.py:0
-msgid ""
-"Формат файлу не підходить: «%s».\n"
-"\n"
-"Потрібен Excel — .xls або .xlsx. Якщо файл у CSV, збережіть його як книгу Excel."
-msgstr ""
-"Bestandsformaat niet geschikt: '%s'.\n"
-"\n"
-"Excel is vereist — .xls of .xlsx. Als het bestand CSV is, sla het dan op als Excel-werkmap."
-
-#. module: adealer
-#: model:res.groups,comment:adealer.group_adealer_user
-msgid ""
-"Щоденна робота: наряди, записи на сервіс, авто\n"
-"            клієнтів, склад авто, кампанії. Без довідників і налаштувань."
-msgstr ""
-"Dagelijks werk: werkorders, afspraken, voertuigen van\n"
-"klanten, voertuigvoorraad, campagnes. Zonder stamgegevens en instellingen."
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "додайте хоч один реквізит — інакше контрагента не буде з чим зіставити"
-msgstr "voeg minstens één kenmerk toe — anders kan de tegenpartij met niets worden vergeleken"
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "заповніть колонку «Наименование» або приберіть рядок"
-msgstr "vul de kolom 'Наименование' in of verwijder de regel"
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "контрагента без назви створити не можна"
-msgstr "een tegenpartij zonder naam kan niet worden aangemaakt"
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid ""
-"контрагента створено без коду; виправте код у файлі й повторіть імпорт, або "
-"допишіть код у картці"
-msgstr "tegenpartij aangemaakt zonder code; corrigeer de code in het bestand en herhaal de import, of vul de code in op de kaart"
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "немає жодного реквізиту: ні телефону, ні пошти, ні коду, ні адреси"
-msgstr "geen enkel kenmerk: geen telefoon, e-mail, code of adres"
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "немає назви"
-msgstr "geen naam"
-
-#. module: adealer
-#. odoo-python
-#: code:addons/adealer/models/partner_import.py:0
-msgid "у файлі «%s»: має бути 8 або 10 цифр"
-msgstr "in bestand '%s': er moeten 8 of 10 cijfers zijn"
 
 #. module: adealer
 #. odoo-python
