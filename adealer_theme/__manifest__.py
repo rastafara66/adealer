@@ -25,7 +25,7 @@
     'website': "https://aktiv.in.ua/dodatky/",
     'license': "LGPL-3",
     'category': 'Themes/Backend',
-    'version': '19.0.1.2.6',
+    'version': '19.0.1.2.7',
     # 🔴 Перша картинка — це картка в каталозі. Без ключа `images` картка
     # виходить сірим прямокутником поруч із рештою лінійки, а `index.html` уже
     # посилався на banner.png, якого не було, — тобто сторінка опису
