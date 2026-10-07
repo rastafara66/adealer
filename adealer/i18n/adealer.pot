@@ -6,14 +6,30 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0-20260908\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-03 10:53+0000\n"
-"PO-Revision-Date: 2026-10-03 10:53+0000\n"
+"POT-Creation-Date: 2026-10-07 15:56+0000\n"
+"PO-Revision-Date: 2026-10-07 15:56+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/barcode_scan.py:0
+msgid ""
+"\"%(product)s\" is not marked as purchasable. What to do: open the product "
+"and tick \"Purchase\"."
+msgstr ""
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/barcode_scan.py:0
+msgid ""
+"\"%(product)s\" is not marked as sellable. What to do: open the product and "
+"tick \"Sales\"."
+msgstr ""
 
 #. module: adealer
 #. odoo-python
@@ -883,6 +899,25 @@ msgstr ""
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_akt_zvirky
 msgid "Balance"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_adealer_barcode_scan___barcode_scanned
+#: model:ir.model.fields,field_description:adealer.field_purchase_order___barcode_scanned
+#: model:ir.model.fields,field_description:adealer.field_repair_order___barcode_scanned
+#: model:ir.model.fields,field_description:adealer.field_sale_order___barcode_scanned
+msgid "Barcode Scanned"
+msgstr ""
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/barcode_scan.py:0
+msgid "Barcode not found"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model,name:adealer.model_adealer_barcode_scan
+msgid "Barcode scanning into document lines"
 msgstr ""
 
 #. module: adealer
@@ -1976,6 +2011,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:adealer.field_account_payment__display_name
 #: model:ir.model.fields,field_description:adealer.field_adealer_addon_hint_mixin__display_name
 #: model:ir.model.fields,field_description:adealer.field_adealer_app_update__display_name
+#: model:ir.model.fields,field_description:adealer.field_adealer_barcode_scan__display_name
 #: model:ir.model.fields,field_description:adealer.field_adealer_dashboard__display_name
 #: model:ir.model.fields,field_description:adealer.field_adealer_doc_basis__display_name
 #: model:ir.model.fields,field_description:adealer.field_adealer_doc_chain__display_name
@@ -2632,6 +2668,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:adealer.field_account_payment__id
 #: model:ir.model.fields,field_description:adealer.field_adealer_addon_hint_mixin__id
 #: model:ir.model.fields,field_description:adealer.field_adealer_app_update__id
+#: model:ir.model.fields,field_description:adealer.field_adealer_barcode_scan__id
 #: model:ir.model.fields,field_description:adealer.field_adealer_dashboard__id
 #: model:ir.model.fields,field_description:adealer.field_adealer_doc_basis__id
 #: model:ir.model.fields,field_description:adealer.field_adealer_doc_chain__id
@@ -3567,6 +3604,15 @@ msgstr ""
 #. odoo-python
 #: code:addons/adealer/models/partner_import.py:0
 msgid "No problem rows."
+msgstr ""
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/barcode_scan.py:0
+msgid ""
+"No product has the barcode or internal reference \"%(code)s\". Why: the code"
+" is not filled in on any product, or the product is archived. What to do: "
+"open the product, fill in its Barcode field and scan again."
 msgstr ""
 
 #. module: adealer
@@ -5338,6 +5384,12 @@ msgid "Settles this document"
 msgstr ""
 
 #. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/barcode_scan.py:0
+msgid "Several products match"
+msgstr ""
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_customers
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_sales
 msgid "Share"
@@ -5546,6 +5598,14 @@ msgid "Status"
 msgstr ""
 
 #. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/barcode_scan.py:0
+msgid ""
+"Status \"%(state)s\": scanned products are not added. What to do: scan into "
+"a new document, or reset this one to draft first."
+msgstr ""
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_service_request__activity_state
 #: model:ir.model.fields,help:adealer.field_dealer_car__activity_state
 msgid ""
@@ -5745,6 +5805,14 @@ msgid "The campaign this vehicle belongs to."
 msgstr ""
 
 #. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/barcode_scan.py:0
+msgid ""
+"The code \"%(code)s\" belongs to several products: %(names)s. What to do: "
+"give each of them its own barcode and scan the barcode."
+msgstr ""
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_service_campaign__company_id
 msgid "The company running the campaign."
 msgstr ""
@@ -5850,6 +5918,12 @@ msgstr ""
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_car__sale_move_id
 msgid "The delivery note / invoice this vehicle was sold on"
+msgstr ""
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/barcode_scan.py:0
+msgid "The document can no longer be changed"
 msgstr ""
 
 #. module: adealer
@@ -6149,6 +6223,12 @@ msgstr ""
 #: model:ir.model.constraint,message:adealer.constraint_adealer_doc_link_doc_link_unique
 msgid ""
 "This link already exists. Open the existing link instead of adding it again."
+msgstr ""
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/barcode_scan.py:0
+msgid "This product cannot be added here"
 msgstr ""
 
 #. module: adealer
@@ -6528,6 +6608,14 @@ msgstr ""
 #. odoo-python
 #: code:addons/adealer/models/dashboard.py:0
 msgid "Value"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_barcode_scan___barcode_scanned
+#: model:ir.model.fields,help:adealer.field_purchase_order___barcode_scanned
+#: model:ir.model.fields,help:adealer.field_repair_order___barcode_scanned
+#: model:ir.model.fields,help:adealer.field_sale_order___barcode_scanned
+msgid "Value of the last barcode scanned."
 msgstr ""
 
 #. module: adealer

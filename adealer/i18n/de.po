@@ -10,6 +10,22 @@ msgstr ""
 
 #. module: adealer
 #. odoo-python
+#: code:addons/adealer/models/barcode_scan.py:0
+msgid ""
+"\"%(product)s\" is not marked as purchasable. What to do: open the product "
+"and tick \"Purchase\"."
+msgstr "„%(product)s“ ist nicht als einkaufbar markiert. Was tun: Öffnen Sie das Produkt und aktivieren Sie „Einkauf“."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/barcode_scan.py:0
+msgid ""
+"\"%(product)s\" is not marked as sellable. What to do: open the product and "
+"tick \"Sales\"."
+msgstr "„%(product)s“ ist nicht als verkaufbar markiert. Was tun: Öffnen Sie das Produkt und aktivieren Sie „Verkauf“."
+
+#. module: adealer
+#. odoo-python
 #: code:addons/adealer/models/partner_import.py:0
 msgid "\"%s\" — name only"
 msgstr "„%s“ — nur Name"
@@ -889,6 +905,25 @@ msgstr "Zurück auf Neu, um die Anfrage zu ändern und erneut zu bestätigen."
 #: model_terms:ir.ui.view,arch_db:adealer.report_akt_zvirky
 msgid "Balance"
 msgstr "Saldo"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_adealer_barcode_scan___barcode_scanned
+#: model:ir.model.fields,field_description:adealer.field_purchase_order___barcode_scanned
+#: model:ir.model.fields,field_description:adealer.field_repair_order___barcode_scanned
+#: model:ir.model.fields,field_description:adealer.field_sale_order___barcode_scanned
+msgid "Barcode Scanned"
+msgstr "Gescannter Barcode"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/barcode_scan.py:0
+msgid "Barcode not found"
+msgstr "Barcode nicht gefunden"
+
+#. module: adealer
+#: model:ir.model,name:adealer.model_adealer_barcode_scan
+msgid "Barcode scanning into document lines"
+msgstr "Barcode-Scannen in Belegzeilen"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_complectation__base_price
@@ -1985,6 +2020,7 @@ msgstr "Rabatt auf die Zeile, in Prozent."
 #: model:ir.model.fields,field_description:adealer.field_account_payment__display_name
 #: model:ir.model.fields,field_description:adealer.field_adealer_addon_hint_mixin__display_name
 #: model:ir.model.fields,field_description:adealer.field_adealer_app_update__display_name
+#: model:ir.model.fields,field_description:adealer.field_adealer_barcode_scan__display_name
 #: model:ir.model.fields,field_description:adealer.field_adealer_dashboard__display_name
 #: model:ir.model.fields,field_description:adealer.field_adealer_doc_basis__display_name
 #: model:ir.model.fields,field_description:adealer.field_adealer_doc_chain__display_name
@@ -2643,6 +2679,7 @@ msgstr "HTTP-Status"
 #: model:ir.model.fields,field_description:adealer.field_account_payment__id
 #: model:ir.model.fields,field_description:adealer.field_adealer_addon_hint_mixin__id
 #: model:ir.model.fields,field_description:adealer.field_adealer_app_update__id
+#: model:ir.model.fields,field_description:adealer.field_adealer_barcode_scan__id
 #: model:ir.model.fields,field_description:adealer.field_adealer_dashboard__id
 #: model:ir.model.fields,field_description:adealer.field_adealer_doc_basis__id
 #: model:ir.model.fields,field_description:adealer.field_adealer_doc_chain__id
@@ -3579,6 +3616,15 @@ msgstr "Keine gebuchten Forderungen."
 #: code:addons/adealer/models/partner_import.py:0
 msgid "No problem rows."
 msgstr "Keine Zeilen mit Problemen."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/barcode_scan.py:0
+msgid ""
+"No product has the barcode or internal reference \"%(code)s\". Why: the code"
+" is not filled in on any product, or the product is archived. What to do: "
+"open the product, fill in its Barcode field and scan again."
+msgstr "Kein Produkt hat den Barcode oder die interne Referenz „%(code)s“. Warum: Der Code ist bei keinem Produkt eingetragen, oder das Produkt ist archiviert. Was tun: Öffnen Sie das Produkt, tragen Sie den Code im Feld Barcode ein und scannen Sie erneut."
 
 #. module: adealer
 #. odoo-javascript
@@ -5349,6 +5395,12 @@ msgid "Settles this document"
 msgstr "Gleicht diesen Beleg aus"
 
 #. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/barcode_scan.py:0
+msgid "Several products match"
+msgstr "Mehrere Produkte passen"
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_customers
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_sales
 msgid "Share"
@@ -5557,6 +5609,14 @@ msgid "Status"
 msgstr "Status"
 
 #. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/barcode_scan.py:0
+msgid ""
+"Status \"%(state)s\": scanned products are not added. What to do: scan into "
+"a new document, or reset this one to draft first."
+msgstr "Status „%(state)s“: Gescannte Produkte werden nicht hinzugefügt. Was tun: Scannen Sie in einen neuen Beleg oder setzen Sie diesen zuerst auf Entwurf zurück."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_service_request__activity_state
 #: model:ir.model.fields,help:adealer.field_dealer_car__activity_state
 msgid ""
@@ -5760,6 +5820,14 @@ msgid "The campaign this vehicle belongs to."
 msgstr "Die Kampagne, zu der dieses Fahrzeug gehört."
 
 #. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/barcode_scan.py:0
+msgid ""
+"The code \"%(code)s\" belongs to several products: %(names)s. What to do: "
+"give each of them its own barcode and scan the barcode."
+msgstr "Der Code „%(code)s“ gehört zu mehreren Produkten: %(names)s. Was tun: Geben Sie jedem einen eigenen Barcode und scannen Sie den Barcode."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_service_campaign__company_id
 msgid "The company running the campaign."
 msgstr "Das Unternehmen, das die Kampagne durchführt."
@@ -5866,6 +5934,12 @@ msgstr "Der Kunde. Gibt es noch keinen Kontakt, schreiben Sie den Namen stattdes
 #: model:ir.model.fields,help:adealer.field_dealer_car__sale_move_id
 msgid "The delivery note / invoice this vehicle was sold on"
 msgstr "Der Lieferschein / die Rechnung, mit dem dieses Fahrzeug verkauft wurde"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/barcode_scan.py:0
+msgid "The document can no longer be changed"
+msgstr "Der Beleg kann nicht mehr geändert werden"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_doc_link__child_ref
@@ -6165,6 +6239,12 @@ msgstr "Dieser Beleg kann nicht aus jenem erstellt werden. Wählen Sie einen der
 msgid ""
 "This link already exists. Open the existing link instead of adding it again."
 msgstr "Diese Verknüpfung gibt es schon. Öffnen Sie die vorhandene, statt sie erneut hinzuzufügen."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/barcode_scan.py:0
+msgid "This product cannot be added here"
+msgstr "Dieses Produkt kann hier nicht hinzugefügt werden"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_organization__is_vat_payer
@@ -6544,6 +6624,14 @@ msgstr "FIN..."
 #: code:addons/adealer/models/dashboard.py:0
 msgid "Value"
 msgstr "Wert"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_adealer_barcode_scan___barcode_scanned
+#: model:ir.model.fields,help:adealer.field_purchase_order___barcode_scanned
+#: model:ir.model.fields,help:adealer.field_repair_order___barcode_scanned
+#: model:ir.model.fields,help:adealer.field_sale_order___barcode_scanned
+msgid "Value of the last barcode scanned."
+msgstr "Wert des zuletzt gescannten Barcodes."
 
 #. module: adealer
 #. odoo-python

@@ -14,6 +14,8 @@ from . import res_config_settings
 from . import res_users
 from . import sale
 from . import service
+# Сканер штрихкодів: після service — розширює repair.order звідти.
+from . import barcode_scan
 from . import service_request
 from . import document_chain
 from . import stock

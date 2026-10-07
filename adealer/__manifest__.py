@@ -50,7 +50,7 @@ Key features:
     'live_test_url': "https://demo-3adealer.yellow.in.ua",
     'license': "LGPL-3",
     'category': 'Sales',
-    'version': '19.0.1.17.0',
+    'version': '19.0.1.18.0',
     'images': [
         # The first image is the card picture in the App Store listing. A
         # screenshot shrunk to a thumbnail reads as a grey smudge; the banner
@@ -79,7 +79,10 @@ Key features:
                 'maintenance',
                 'repair',
                 'contacts',
-                'crm'
+                'crm',
+                # Сканер штрихкодів (штатний, LGPL): ловить «набір» сканера
+                # і віддає код у документ — models/barcode_scan.py.
+                'barcodes',
                 ],
     # always loaded
     'data': [
@@ -125,6 +128,8 @@ Key features:
         'views/report_partner_balance.xml',
         'views/report_wizards.xml',
         'views/reports.xml',
+        # Сканер штрихкодів у заказ-наряді, продажу й закупівлі.
+        'views/barcode_scan_views.xml',
         'data/cron.xml',
     ],
     # only loaded in demonstration mode
