@@ -78,7 +78,7 @@ class FleetVehicleModelBrand(models.Model):
             path = os.path.join(img_dir, 'brand_%s-image.png' % slug)
             if os.path.exists(path):
                 with open(path, 'rb') as fh:
-                    brand.image_128 = base64.b64encode(fh.read())
+                    brand.image_128 = base64.b64encode(fh.read()).decode()
 
     @api.model
     def action_load_bundled_logos(self):

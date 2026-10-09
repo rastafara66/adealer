@@ -7,7 +7,7 @@
         <record id="demo_partner_avtoprofi" model="res.partner">
             <field name="name">AutoPro Service LLC</field>
             <field name="is_company">True</field>
-            <field name="company_type">company</field>
+            <field name="is_company" eval="True"/>
             <field name="edrpou">35217409</field>
             <field name="street">12 Industrial Ave</field>
             <field name="city">Chicago</field>
@@ -19,7 +19,7 @@
         <record id="demo_partner_logistic" model="res.partner">
             <field name="name">West Logistics LLC</field>
             <field name="is_company">True</field>
-            <field name="company_type">company</field>
+            <field name="is_company" eval="True"/>
             <field name="edrpou">40128736</field>
             <field name="street">205 Market St</field>
             <field name="city">Denver</field>
@@ -30,7 +30,7 @@
 
         <record id="demo_partner_ivanenko" model="res.partner">
             <field name="name">Peter Johnson</field>
-            <field name="company_type">person</field>
+            <field name="is_company" eval="False"/>
             <field name="driver_license">DL1234567</field>
             <field name="street">7 Oak St, apt 42</field>
             <field name="city">Chicago</field>
@@ -41,7 +41,7 @@
 
         <record id="demo_partner_kovalenko" model="res.partner">
             <field name="name">Emily Carter</field>
-            <field name="company_type">person</field>
+            <field name="is_company" eval="False"/>
             <field name="driver_license">DL7654321</field>
             <field name="street">15 Liberty Ave</field>
             <field name="city">Austin</field>
@@ -53,7 +53,7 @@
         <record id="demo_partner_supplier" model="res.partner">
             <field name="name">AutoParts Wholesale LLC</field>
             <field name="is_company">True</field>
-            <field name="company_type">company</field>
+            <field name="is_company" eval="True"/>
             <field name="edrpou">39887201</field>
             <field name="city">Chicago</field>
             <field name="supplier_rank">1</field>
