@@ -3,7 +3,7 @@
 import { Component, onWillStart } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
-import { _t } from "@web/core/l10n/translation";
+import { _t } from "@web/core/l10n/translation";
 import { declareProps, useReactive } from "../owl_compat";
 
 // luxon постачається Odoo як ГЛОБАЛ (web/static/lib/luxon), а не як ES-модуль "luxon".
