@@ -35,8 +35,8 @@
                             <field name="name" string="Document"/>
                             <field name="ref2" string="Customer"/>
                             <field name="ref3" string="Product"/>
-                            <field name="qty" sum="Total"/>
-                            <field name="amount" string="Amount" sum="Total"/>
+                            <field name="qty"/>
+                            <field name="amount" string="Amount"/>
                             <button help="Open the document of this line." name="action_open" type="object" icon="fa-external-link"
                                     title="Open document" invisible="not res_id"/>
                         </list>
@@ -77,10 +77,10 @@
                             <field name="currency_id" column_invisible="1"/>
                             <field name="res_id" column_invisible="1"/>
                             <field name="name" string="Product"/>
-                            <field name="qty" sum="Total"/>
-                            <field name="amount" string="Revenue" sum="Total"/>
-                            <field name="amount2" string="Cost" sum="Total"/>
-                            <field name="amount3" string="Profit" sum="Total"/>
+                            <field name="qty"/>
+                            <field name="amount" string="Revenue"/>
+                            <field name="amount2" string="Cost"/>
+                            <field name="amount3" string="Profit"/>
                             <button help="Open the document of this line." name="action_open" type="object" icon="fa-external-link"
                                     title="Open product" invisible="not res_id"/>
                         </list>
@@ -123,7 +123,7 @@
                             <field name="name" string="Order"/>
                             <field name="ref2" string="Supplier"/>
                             <field name="ref3" string="Ext. ref."/>
-                            <field name="amount" string="Amount" sum="Total"/>
+                            <field name="amount" string="Amount"/>
                             <button help="Open the document of this line." name="action_open" type="object" icon="fa-external-link"
                                     title="Open" invisible="not res_id"/>
                         </list>
@@ -158,8 +158,8 @@
                             <field name="res_id" column_invisible="1"/>
                             <field name="name" string="Product"/>
                             <field name="ref2" string="Code"/>
-                            <field name="qty" string="On hand" sum="Total"/>
-                            <field name="amount" string="Cost" sum="Total"/>
+                            <field name="qty" string="On hand"/>
+                            <field name="amount" string="Cost"/>
                             <button help="Open the document of this line." name="action_open" type="object" icon="fa-external-link"
                                     title="Open product" invisible="not res_id"/>
                         </list>
@@ -203,7 +203,7 @@
                             <field name="name" string="Order"/>
                             <field name="ref2" string="Customer"/>
                             <field name="ref3" string="Vehicle"/>
-                            <field name="amount" string="Amount" sum="Total"/>
+                            <field name="amount" string="Amount"/>
                             <field name="state" string="Status"/>
                             <button help="Open the document of this line." name="action_open" type="object" icon="fa-external-link"
                                     title="Open order" invisible="not res_id"/>
@@ -242,8 +242,8 @@
                             <field name="line_type" column_invisible="1"/>
                             <field name="currency_id" column_invisible="1"/>
                             <field name="name" string="Advisor"/>
-                            <field name="qty" string="Orders count" sum="Total"/>
-                            <field name="amount" string="Amount" sum="Total"/>
+                            <field name="qty" string="Orders count"/>
+                            <field name="amount" string="Amount"/>
                         </list>
                     </field>
                 </sheet>
@@ -285,7 +285,7 @@
                             <field name="name" string="Order"/>
                             <field name="ref2" string="Customer"/>
                             <field name="ref3" string="Vehicle"/>
-                            <field name="amount" string="Amount" sum="Total"/>
+                            <field name="amount" string="Amount"/>
                             <field name="state" string="Status"/>
                             <button help="Open the document of this line." name="action_open" type="object" icon="fa-external-link"
                                     title="Open order" invisible="not res_id"/>
@@ -402,7 +402,7 @@
                             <field name="res_id" column_invisible="1"/>
                             <field name="name" string="Product"/>
                             <field name="qty" string="Qty"/>
-                            <field name="amount" string="Revenue" sum="Total"/>
+                            <field name="amount" string="Revenue"/>
                             <field name="ref3" string="Share"/>
                             <field name="state" string="Class"/>
                             <button help="Open the document of this line." name="action_open" type="object" icon="fa-external-link"
@@ -446,7 +446,7 @@
                             <field name="currency_id" column_invisible="1"/>
                             <field name="res_id" column_invisible="1"/>
                             <field name="name" string="Customer"/>
-                            <field name="amount" string="Revenue" sum="Total"/>
+                            <field name="amount" string="Revenue"/>
                             <field name="ref3" string="Share"/>
                             <field name="state" string="Class"/>
                             <button help="Open the document of this line." name="action_open" type="object" icon="fa-external-link"
@@ -487,7 +487,7 @@
                             <field name="res_id" column_invisible="1"/>
                             <field name="name" string="Product"/>
                             <field name="ref2" string="Code"/>
-                            <field name="qty" string="Sold for the period" sum="Total"/>
+                            <field name="qty" string="Sold for the period"/>
                             <field name="ref3" string="On hand · days of stock"/>
                             <button help="Open the document of this line." name="action_open" type="object" icon="fa-external-link"
                                     title="Open product" invisible="not res_id"/>

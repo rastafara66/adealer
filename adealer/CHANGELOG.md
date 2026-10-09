@@ -3,12 +3,17 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
-## 19.0.1.18.0 – 19.0.1.18.1 — 2026-10-07
+## 19.0.1.18.0 – 19.0.1.18.2 — 2026-10-09
 
 ### Added
 
 - Barcode scanning in repair, sales and purchase orders: a scan adds the product, a repeat scan adds quantity.
 - Сканування штрихкодів у нарядах, продажах і закупівлях: скан додає товар, повторний — кількість.
+
+### Fixed
+
+- Bug fixes.
+- Виправлено помилки.
 
 ## 19.0.1.17.0 — 2026-10-04
 

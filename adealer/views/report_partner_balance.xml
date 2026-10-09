@@ -31,8 +31,8 @@
                             <field name="date" column_invisible="not parent.partner_id"/>
                             <field name="doc_name" string="Document / Counterparty"/>
                             <field name="opening" column_invisible="parent.partner_id"/>
-                            <field name="debit" sum="Total"/>
-                            <field name="credit" sum="Total"/>
+                            <field name="debit"/>
+                            <field name="credit"/>
                             <field name="balance"/>
                             <button help="Open the journal entry of this line." name="action_open_move" type="object" icon="fa-external-link"
                                     title="Open document" column_invisible="not parent.partner_id"/>
