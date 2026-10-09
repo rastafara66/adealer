@@ -47,7 +47,7 @@ Key features:
     # спосіб дати зовнішнє посилання: в описі й маніфесті сторонні лінки
     # заборонені правилами стору, а для цього поля воно й передбачене.
     # Вхід demo/demo, дані вигадані й щоніч перестворюються.
-    'live_test_url': "https://demo-3adealer.yellow.in.ua",
+    'live_test_url': "https://demo20-3adealer.yellow.in.ua",
     'license': "LGPL-3",
     'category': 'Sales',
     'version': '20.0.1.18.5',
