@@ -141,7 +141,7 @@
                                 </thead>
                                 <tbody>
                                     <tr t-foreach="o.service_line_ids" t-as="l">
-                                        <td><span t-esc="l_index + 1"/></td>
+                                        <td><span t-out="l_index + 1"/></td>
                                         <td><span t-field="l.product_id"/></td>
                                         <td class="text-end"><span t-field="l.product_uom_qty"/></td>
                                         <td class="text-end"><span t-field="l.price_unit"/></td>

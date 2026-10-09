@@ -66,7 +66,7 @@
                                 <tbody>
                                     <tr t-foreach="o.order_line" t-as="l">
                                         <t t-if="not l.display_type">
-                                            <td><span t-esc="l_index + 1"/></td>
+                                            <td><span t-out="l_index + 1"/></td>
                                             <td><span t-field="l.product_id"/></td>
                                             <td class="text-end"><span t-field="l.product_uom_qty"/></td>
                                             <td><span t-field="l.product_uom_id.name"/></td>
@@ -153,7 +153,7 @@
                                 <tbody>
                                     <tr t-foreach="o.invoice_line_ids" t-as="l">
                                         <t t-if="l.display_type == 'product'">
-                                            <td><span t-esc="l_index + 1"/></td>
+                                            <td><span t-out="l_index + 1"/></td>
                                             <td><span t-field="l.product_id"/></td>
                                             <td class="text-end"><span t-field="l.quantity"/></td>
                                             <td><span t-field="l.product_uom_id.name"/></td>
@@ -216,7 +216,7 @@
                                 <tbody>
                                     <tr t-foreach="o.invoice_line_ids" t-as="l">
                                         <t t-if="l.display_type == 'product'">
-                                            <td><span t-esc="l_index + 1"/></td>
+                                            <td><span t-out="l_index + 1"/></td>
                                             <td><span t-field="l.product_id"/></td>
                                             <td class="text-end"><span t-field="l.quantity"/></td>
                                             <td><span t-field="l.product_uom_id.name"/></td>
@@ -270,7 +270,7 @@
                                 <tbody>
                                     <tr t-foreach="o.invoice_line_ids" t-as="l">
                                         <t t-if="l.display_type == 'product'">
-                                            <td><span t-esc="l_index + 1"/></td>
+                                            <td><span t-out="l_index + 1"/></td>
                                             <td><span t-field="l.product_id"/></td>
                                             <td class="text-end"><span t-field="l.quantity"/></td>
                                             <td><span t-field="l.product_uom_id.name"/></td>
@@ -321,7 +321,7 @@
                                 <tbody>
                                     <tr t-foreach="o.order_line" t-as="l">
                                         <t t-if="not l.display_type">
-                                            <td><span t-esc="l_index + 1"/></td>
+                                            <td><span t-out="l_index + 1"/></td>
                                             <td><span t-field="l.product_id"/></td>
                                             <td class="text-end"><span t-field="l.product_qty"/></td>
                                             <td><span t-field="l.product_uom_id.name"/></td>
@@ -361,7 +361,7 @@
                             <t t-set="comp" t-value="o.get_report_company()"/>
                             <h3 class="text-center">Reconciliation act</h3>
                             <p class="mt-2">
-                                between <strong><span t-esc="comp.name"/></strong>
+                                between <strong><span t-out="comp.name"/></strong>
                                 and <strong><span t-field="o.name"/></strong>
                                 <t t-if="o.edrpou">(EDRPOU <span t-field="o.edrpou"/>)</t>
                             </p>
@@ -370,22 +370,22 @@
                                 <thead><tr><th>Date</th><th>Document</th><th class="text-end">Debit</th><th class="text-end">Credit</th><th class="text-end">Balance</th></tr></thead>
                                 <tbody>
                                     <tr t-foreach="rows" t-as="r">
-                                        <td><span t-esc="r['date']" t-options='{"widget": "date"}'/></td>
-                                        <td><span t-esc="r['name']"/></td>
-                                        <td class="text-end"><span t-esc="r['debit']" t-options='{"widget":"monetary","display_currency":comp.currency_id}'/></td>
-                                        <td class="text-end"><span t-esc="r['credit']" t-options='{"widget":"monetary","display_currency":comp.currency_id}'/></td>
-                                        <td class="text-end"><span t-esc="r['balance']" t-options='{"widget":"monetary","display_currency":comp.currency_id}'/></td>
+                                        <td><span t-out="r['date']" t-options='{"widget": "date"}'/></td>
+                                        <td><span t-out="r['name']"/></td>
+                                        <td class="text-end"><span t-out="r['debit']" t-options='{"widget":"monetary","display_currency":comp.currency_id}'/></td>
+                                        <td class="text-end"><span t-out="r['credit']" t-options='{"widget":"monetary","display_currency":comp.currency_id}'/></td>
+                                        <td class="text-end"><span t-out="r['balance']" t-options='{"widget":"monetary","display_currency":comp.currency_id}'/></td>
                                     </tr>
                                 </tbody>
                             </table>
                             <p t-if="not rows" class="text-muted">No posted receivables.</p>
                             <p class="mt-2">
                                 Closing balance:
-                                <strong><span t-esc="rows[-1]['balance'] if rows else 0.0" t-options='{"widget":"monetary","display_currency":comp.currency_id}'/></strong>
+                                <strong><span t-out="rows[-1]['balance'] if rows else 0.0" t-options='{"widget":"monetary","display_currency":comp.currency_id}'/></strong>
                                 (positive — the counterparty owes us).
                             </p>
                             <div class="row mt-5">
-                                <div class="col-6">From <span t-esc="comp.name"/>: _______________</div>
+                                <div class="col-6">From <span t-out="comp.name"/>: _______________</div>
                                 <div class="col-6 text-end">From <span t-field="o.name"/>: _______________</div>
                             </div>
                         </div>

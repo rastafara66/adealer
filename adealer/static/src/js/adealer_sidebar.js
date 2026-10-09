@@ -1,19 +1,19 @@
 /** @odoo-module **/
 
-import { Component, useState, onWillStart, onMounted, onWillUnmount } from "@odoo/owl";
+import { Component, onWillStart, onMounted, onWillUnmount } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
-import { session } from "@web/session";
+import { session } from "@web/session";
+import { declareProps, useReactive } from "./owl_compat";
 
 const APP_XMLID = "adealer.menu_root";
 
 export class AdealerSidebar extends Component {
     static template = "adealer.Sidebar";
-    static props = {};
 
     setup() {
         this.menuService = useService("menu");
-        this.state = useState({
+        this.state = useReactive({
             enabled: !!session.adealer_sidebar_enabled,
             collapsed: false,
             inApp: false,
@@ -101,5 +101,7 @@ export class AdealerSidebar extends Component {
         }
     }
 }
+
+declareProps(AdealerSidebar, {});
 
 registry.category("main_components").add("adealer.Sidebar", { Component: AdealerSidebar });

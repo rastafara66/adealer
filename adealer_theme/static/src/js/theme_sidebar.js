@@ -16,21 +16,21 @@
 // Патерн узято з уже відлагодженого `fop_theme` (тема «Актива»): розходитись
 // двом копіям того самого коду сенсу немає.
 
-import { Component, useState, onWillStart, onMounted, onWillUnmount } from "@odoo/owl";
+import { Component, onWillStart, onMounted, onWillUnmount } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 import { session } from "@web/session";
+import { declareProps, useReactive } from "./owl_compat";
 
 // Застосунок, чий власний сайдбар має пріоритет над темовим.
 const OWNER_APP_XMLID = "adealer.menu_root";
 
 export class AdealerThemeSidebar extends Component {
     static template = "adealer_theme.Sidebar";
-    static props = {};
 
     setup() {
         this.menuService = useService("menu");
-        this.state = useState({
+        this.state = useReactive({
             enabled: true,
             collapsed: false,
             visible: false,
@@ -131,6 +131,8 @@ export class AdealerThemeSidebar extends Component {
         }
     }
 }
+
+declareProps(AdealerThemeSidebar, {});
 
 registry.category("main_components")
     .add("adealer_theme.Sidebar", { Component: AdealerThemeSidebar });

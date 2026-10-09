@@ -50,7 +50,7 @@ Key features:
     'live_test_url': "https://demo-3adealer.yellow.in.ua",
     'license': "LGPL-3",
     'category': 'Sales',
-    'version': '20.0.1.18.2',
+    'version': '20.0.1.18.3',
     'images': [
         # The first image is the card picture in the App Store listing. A
         # screenshot shrunk to a thumbnail reads as a grey smudge; the banner
@@ -145,6 +145,10 @@ Key features:
             'adealer/static/src/css/theme.css',  # фірмова тема (navy/gold), гейт body.adealer-theme
             'adealer/static/src/css/dashboard.css',
             'adealer/static/src/js/custom.js',
+            # OWL 2 (Odoo 18/19) і OWL 3 (Odoo 20) — той самий JS; див. сам файл.
+            'adealer/static/src/js/owl_compat.js',
+            # Віджет сканера для Odoo 20 (у 18/19 — штатний з `barcodes`).
+            'adealer/static/src/js/barcode_handler_field.js',
             'adealer/static/src/js/adealer_sidebar.js',
             'adealer/static/src/xml/adealer_sidebar.xml',
             'adealer/static/src/js/dashboard/dashboard.js',
