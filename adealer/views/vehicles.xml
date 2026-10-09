@@ -27,7 +27,9 @@
             <field name="model">fleet.vehicle</field>
             <field name="inherit_id" ref="fleet.fleet_vehicle_view_kanban"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='model_id']" position="after">
+                <!-- Після першого рядка картки (номер і модель у 19, назва в 20): поля
+                     `model_id` у канбані Odoo 20 немає — той самий вигляд у 19/20. -->
+                <xpath expr="//main/div[1]" position="after">
                     <div>
                         <field name="vin_sn"/>
                         <field name="partner_id"/>
