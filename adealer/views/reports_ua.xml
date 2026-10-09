@@ -9,7 +9,6 @@
             <field name="model">sale.order</field>
             <field name="report_type">qweb-html</field>
             <field name="report_name">adealer.report_invoice_pay</field>
-            <field name="report_file">adealer.report_invoice_pay</field>
             <field name="binding_model_id" ref="sale.model_sale_order"/>
             <field name="binding_type">report</field>
         </record>
@@ -104,7 +103,6 @@
             <field name="model">account.move</field>
             <field name="report_type">qweb-html</field>
             <field name="report_name">adealer.report_vydatkova</field>
-            <field name="report_file">adealer.report_vydatkova</field>
             <field name="binding_model_id" ref="account.model_account_move"/>
             <field name="binding_type">report</field>
         </record>
@@ -191,7 +189,6 @@
             <field name="model">account.move</field>
             <field name="report_type">qweb-html</field>
             <field name="report_name">adealer.report_povernennia</field>
-            <field name="report_file">adealer.report_povernennia</field>
             <field name="binding_model_id" ref="account.model_account_move"/>
             <field name="binding_type">report</field>
         </record>
@@ -245,7 +242,6 @@
             <field name="model">account.move</field>
             <field name="report_type">qweb-html</field>
             <field name="report_name">adealer.report_nadhodzhennia</field>
-            <field name="report_file">adealer.report_nadhodzhennia</field>
             <field name="binding_model_id" ref="account.model_account_move"/>
             <field name="binding_type">report</field>
         </record>
@@ -299,7 +295,6 @@
             <field name="model">purchase.order</field>
             <field name="report_type">qweb-html</field>
             <field name="report_name">adealer.report_dovirenist</field>
-            <field name="report_file">adealer.report_dovirenist</field>
             <field name="binding_model_id" ref="purchase.model_purchase_order"/>
             <field name="binding_type">report</field>
         </record>
@@ -349,7 +344,6 @@
             <field name="model">res.partner</field>
             <field name="report_type">qweb-html</field>
             <field name="report_name">adealer.report_akt_zvirky</field>
-            <field name="report_file">adealer.report_akt_zvirky</field>
             <field name="binding_model_id" ref="base.model_res_partner"/>
             <field name="binding_type">report</field>
         </record>

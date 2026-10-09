@@ -100,7 +100,8 @@ class TestPartnerImportReport(TransactionCase):
         book.save(buf)
 
         wizard = self.env["partner.import.wizard"].create({
-            "file": base64.b64encode(buf.getvalue()),
+            # Рядок base64 (`.decode()`): Odoo 20 голих bytes у двійкове поле не приймає.
+            "file": base64.b64encode(buf.getvalue()).decode(),
             "file_name": "partners.xlsx",
         })
         action = wizard.action_import_partners()

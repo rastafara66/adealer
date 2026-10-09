@@ -6,8 +6,25 @@ openpyxl входить у стандартні залежності Odoo, то�
 використовувався pandas лише заради `read_excel`, що вимагало зовнішньої
 залежності й блокувало встановлення в хмарі.
 """
+import base64
 import io
 import openpyxl
+
+
+def binary_content(value):
+    """Сирі байти значення `fields.Binary`; b'' — якщо порожньо.
+
+    Odoo 18/19 віддають base64 (bytes чи str); Odoo 20 — `BinaryValue`, чий `.content` —
+    уже сирі байти: декодувати їх ще раз як base64 означало б тихо отримати сміття.
+    Писати — навпаки: Odoo 20 не приймає голі bytes («use BinaryValue instead of bytes»),
+    тож base64 пишемо РЯДКОМ (`.decode()`), його читає кожна серія. Той самий код у 18/19/20.
+    """
+    if not value:
+        return b""
+    content = getattr(value, "content", None)
+    if content is not None:
+        return content
+    return base64.b64decode(value)
 
 
 def read_xlsx_rows(source):

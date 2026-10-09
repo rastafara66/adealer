@@ -1,7 +1,6 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
-import base64
-from .excel_util import read_xlsx_rows
+from .excel_util import binary_content, read_xlsx_rows
 from .error_report import report_errors
 
 class PartnerImportWizard(models.TransientModel):
@@ -35,7 +34,7 @@ class PartnerImportWizard(models.TransientModel):
                 "open it in Excel and save it as a workbook.", self.file_name))
 
         try:
-            file_content = base64.b64decode(self.file)
+            file_content = binary_content(self.file)
             df = read_xlsx_rows(file_content)
         except Exception as e:
             raise UserError(_(
