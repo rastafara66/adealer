@@ -42,7 +42,7 @@ class AdealerAppUpdate(models.TransientModel):
 
     @api.model
     def _channel_url(self):
-        return self.env['ir.config_parameter'].sudo().get_param(
+        return self.env['ir.config_parameter'].sudo().get_str(
             'adealer.update_channel_url', DEFAULT_CHANNEL_URL)
 
     @api.model
@@ -66,8 +66,8 @@ class AdealerAppUpdate(models.TransientModel):
             raise UserError(_("Could not find a version number at the update URL. Try "
                               "again later; if it repeats, report it to the author."))
         ICP = self.env['ir.config_parameter'].sudo()
-        ICP.set_param('adealer.latest_version', latest)
-        ICP.set_param('adealer.latest_checked', fields.Datetime.to_string(fields.Datetime.now()))
+        ICP.set_str('adealer.latest_version', latest)
+        ICP.set_str('adealer.latest_checked', fields.Datetime.to_string(fields.Datetime.now()))
         available = _version_tuple(latest) > _version_tuple(self.installed_version())
         return latest, available
 
@@ -192,14 +192,14 @@ class ResConfigSettingsUpdate(models.TransientModel):
         ICP = self.env['ir.config_parameter'].sudo()
         upd = self.env['adealer.app.update']
         installed = upd.installed_version()
-        latest = ICP.get_param('adealer.latest_version', '')
+        latest = ICP.get_str('adealer.latest_version', '')
         res['adealer_addons_status'] = self._adealer_addons_status()
         res.update({
             'adealer_version_installed': installed,
             'adealer_version_latest': latest or _('(not checked yet)'),
-            'adealer_version_checked': ICP.get_param('adealer.latest_checked', ''),
+            'adealer_version_checked': ICP.get_str('adealer.latest_checked', ''),
             'adealer_update_available': _version_tuple(latest) > _version_tuple(installed),
-            'adealer_update_channel_url': ICP.get_param(
+            'adealer_update_channel_url': ICP.get_str(
                 'adealer.update_channel_url', DEFAULT_CHANNEL_URL),
         })
         return res
@@ -231,7 +231,7 @@ class ResConfigSettingsUpdate(models.TransientModel):
     def set_values(self):
         super().set_values()
         if self.adealer_update_channel_url:
-            self.env['ir.config_parameter'].sudo().set_param(
+            self.env['ir.config_parameter'].sudo().set_str(
                 'adealer.update_channel_url', self.adealer_update_channel_url)
 
     def action_adealer_check_update(self):

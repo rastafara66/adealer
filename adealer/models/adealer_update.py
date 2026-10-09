@@ -108,7 +108,7 @@ class AdealerUpdate(models.AbstractModel):
     def _enabled(self):
         # Незаданий параметр означає «увімкнено»: запит не несе нічого про
         # користувача, а перевірка, про яку ніхто не знає, ніколи б не вмикалась.
-        return self.env['ir.config_parameter'].sudo().get_param(
+        return self.env['ir.config_parameter'].sudo().get_str(
             PARAM_UPDATE_CHECK, 'on') != 'off'
 
     @api.model
@@ -123,7 +123,7 @@ class AdealerUpdate(models.AbstractModel):
         if not self._enabled():
             return False, _("Version checking is switched off.")
         params = self.env['ir.config_parameter'].sudo()
-        url = params.get_param(PARAM_URL, DEFAULT_URL)
+        url = params.get_str(PARAM_URL, DEFAULT_URL)
         if not url:
             return False, _("No address is configured for the version check.")
 
@@ -150,8 +150,8 @@ class AdealerUpdate(models.AbstractModel):
         if not clean:
             return False, _("%(url)s knows of no %(series)s version of these "
                             "modules.", url=url, series=series or '?')
-        params.set_param(PARAM_LATEST, json.dumps(clean))
-        params.set_param(PARAM_CHECKED,
+        params.set_str(PARAM_LATEST, json.dumps(clean))
+        params.set_str(PARAM_CHECKED,
                          fields.Datetime.to_string(fields.Datetime.now()))
         return True, ''
 
@@ -165,7 +165,7 @@ class AdealerUpdate(models.AbstractModel):
 
     @api.model
     def _published(self):
-        raw = self.env['ir.config_parameter'].sudo().get_param(PARAM_LATEST)
+        raw = self.env['ir.config_parameter'].sudo().get_str(PARAM_LATEST)
         try:
             return json.loads(raw) if raw else {}
         except ValueError:

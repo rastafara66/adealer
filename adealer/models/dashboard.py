@@ -50,7 +50,7 @@ class AdealerDashboard(models.AbstractModel):
         запит лише заради назви.
         """
         if not dash_type:
-            dash_type = self.env['ir.config_parameter'].sudo().get_param(
+            dash_type = self.env['ir.config_parameter'].sudo().get_str(
                 'adealer.dashboard_default_tab', 'showroom')
         if dash_type not in ('showroom', 'service', 'parts'):
             dash_type = 'showroom'

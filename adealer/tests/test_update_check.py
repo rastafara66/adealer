@@ -40,7 +40,7 @@ class TestUpdateCheck(TransactionCase):
         cls.params = cls.env['ir.config_parameter'].sudo()
 
     def _publish(self, versions):
-        self.params.set_param(updating.PARAM_LATEST, json.dumps(versions))
+        self.params.set_str(updating.PARAM_LATEST, json.dumps(versions))
 
     def _installed_version(self):
         module = self.env['ir.module.module'].sudo().search(
@@ -138,31 +138,31 @@ class TestUpdateCheck(TransactionCase):
 
     # -- сама перевірка -----------------------------------------------------
     def test_check_is_skipped_when_switched_off(self):
-        self.params.set_param(updating.PARAM_UPDATE_CHECK, 'off')
+        self.params.set_str(updating.PARAM_UPDATE_CHECK, 'off')
         with patch('requests.get') as get:
             self.assertFalse(self.Update._cron_check())
         get.assert_not_called()
 
     def test_unset_means_on(self):
         """Запит не несе нічого про користувача, тож база без відповіді перевіряє."""
-        self.params.set_param(updating.PARAM_UPDATE_CHECK, False)
+        self.params.set_str(updating.PARAM_UPDATE_CHECK, False)
         self.assertTrue(self.Update._enabled())
 
     def test_an_unreachable_server_is_not_an_incident(self):
-        self.params.set_param(updating.PARAM_UPDATE_CHECK, 'on')
+        self.params.set_str(updating.PARAM_UPDATE_CHECK, 'on')
         with patch('requests.get', side_effect=OSError('no route to host')):
             self.assertFalse(self.Update._cron_check())
 
     def test_a_failed_check_says_why(self):
         """Добова задача мовчить; людина з кнопкою — ні."""
-        self.params.set_param(updating.PARAM_UPDATE_CHECK, 'on')
+        self.params.set_str(updating.PARAM_UPDATE_CHECK, 'on')
         with patch('requests.get', side_effect=OSError('no route to host')):
             ok, reason = self.Update._run_check()
         self.assertFalse(ok)
         self.assertIn('no route to host', reason)
 
     def test_a_good_answer_is_stored(self):
-        self.params.set_param(updating.PARAM_UPDATE_CHECK, 'on')
+        self.params.set_str(updating.PARAM_UPDATE_CHECK, 'on')
         newer = self._newer()
         with patch('requests.get',
                    return_value=_Answer({'adealer': newer, 'evil': {'x': 1}})):
@@ -170,7 +170,7 @@ class TestUpdateCheck(TransactionCase):
         self.assertEqual(self.Update._published(), {'adealer': newer})
 
     def test_the_request_asks_for_our_own_series(self):
-        self.params.set_param(updating.PARAM_UPDATE_CHECK, 'on')
+        self.params.set_str(updating.PARAM_UPDATE_CHECK, 'on')
         with patch('requests.get',
                    return_value=_Answer({'adealer': self._newer()})) as get:
             self.Update._run_check()
@@ -310,7 +310,7 @@ class TestBannerIsVisible(TransactionCase):
         вірить, що в нього найновіше, — рівно те, чого ця перевірка має не
         допустити.
         """
-        self.env['ir.config_parameter'].sudo().set_param(
+        self.env['ir.config_parameter'].sudo().set_str(
             updating.PARAM_LATEST, False)
         status = self.env['res.config.settings']._adealer_addons_status()
         self.assertNotIn('up to date', status)

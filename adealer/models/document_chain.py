@@ -219,7 +219,7 @@ class RepairOrderChain(models.Model):
 
     # ---------- проведення наряду (Відремонтовано → авто віддали клієнту) ----------
     def _autopost_docs_enabled(self):
-        return self.env['ir.config_parameter'].sudo().get_param(
+        return self.env['ir.config_parameter'].sudo().get_str(
             'adealer.autopost_repair_docs', 'False') in ('True', 'true', '1', True)
 
     @report_errors('chain_repair_end_autopost')

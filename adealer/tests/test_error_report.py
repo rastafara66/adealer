@@ -55,7 +55,7 @@ class TestErrorReport(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.Report = cls.env["adealer.error.report"]
-        cls.env["ir.config_parameter"].sudo().set_param(reporting.PARAM_CONSENT, "on")
+        cls.env["ir.config_parameter"].sudo().set_str(reporting.PARAM_CONSENT, "on")
 
     def _vals(self, operation="import_vehicles"):
         """Build report values from a live exception, without touching the DB."""
@@ -165,7 +165,7 @@ class TestErrorReport(TransactionCase):
         the queue filled with the module talking to the user, and the one real
         bug drowned in it.
         """
-        self.env["ir.config_parameter"].sudo().set_param(reporting.PARAM_CONSENT, "on")
+        self.env["ir.config_parameter"].sudo().set_str(reporting.PARAM_CONSENT, "on")
         try:
             raise UserError(POISONED_MESSAGE)
         except UserError:
@@ -224,7 +224,7 @@ class TestErrorReport(TransactionCase):
     # Consent
     # ------------------------------------------------------------------
     def test_nothing_is_queued_without_consent(self):
-        self.env["ir.config_parameter"].sudo().set_param(reporting.PARAM_CONSENT, "off")
+        self.env["ir.config_parameter"].sudo().set_str(reporting.PARAM_CONSENT, "off")
         try:
             raise PoisonedError(POISONED_MESSAGE)
         except PoisonedError:
@@ -232,7 +232,7 @@ class TestErrorReport(TransactionCase):
 
     def test_unset_consent_is_not_consent(self):
         """A database that was never asked must behave as if it said no."""
-        self.env["ir.config_parameter"].sudo().set_param(reporting.PARAM_CONSENT, False)
+        self.env["ir.config_parameter"].sudo().set_str(reporting.PARAM_CONSENT, False)
         try:
             raise PoisonedError(POISONED_MESSAGE)
         except PoisonedError:
@@ -240,7 +240,7 @@ class TestErrorReport(TransactionCase):
 
     def test_cron_sends_nothing_without_consent(self):
         report = self._report()
-        self.env["ir.config_parameter"].sudo().set_param(reporting.PARAM_CONSENT, "off")
+        self.env["ir.config_parameter"].sudo().set_str(reporting.PARAM_CONSENT, "off")
         self.Report._cron_send_reports()
         self.assertEqual(report.state, "pending")
         self.assertEqual(report.attempts, 0)
@@ -275,7 +275,7 @@ class TestErrorReportOutOfBand(TransactionCase):
         # No commit here, and none is needed: consent is read on the caller's
         # cursor before the second one is opened. Odoo forbids committing inside
         # a test anyway, which is a good rule -- it would break the rollback.
-        cls.env["ir.config_parameter"].sudo().set_param(reporting.PARAM_CONSENT, "on")
+        cls.env["ir.config_parameter"].sudo().set_str(reporting.PARAM_CONSENT, "on")
         cls.addClassCleanup(cls._drop_committed_reports)
 
     @classmethod
@@ -324,7 +324,7 @@ class TestErrorReportOutOfBand(TransactionCase):
         self._capture("probe-install-id")
         with self.env.registry.cursor() as cr:
             env = api.Environment(cr, SUPERUSER_ID, {})
-            value = env["ir.config_parameter"].get_param(reporting.PARAM_INSTALL_ID)
+            value = env["ir.config_parameter"].get_str(reporting.PARAM_INSTALL_ID)
         self.assertTrue(value, "install_id should exist as soon as a report is queued")
 
     def test_same_failure_is_counted_not_requeued(self):

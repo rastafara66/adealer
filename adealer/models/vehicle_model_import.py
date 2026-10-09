@@ -33,7 +33,7 @@ class FleetVehicleModelImport(models.TransientModel):
             raise UserError(_('Could not open the file: %s') % e)
 
         # Бренд за замовчуванням (налаштовується параметром adealer.import_default_brand)
-        brand_name = self.env['ir.config_parameter'].sudo().get_param('adealer.import_default_brand', 'Auto')
+        brand_name = self.env['ir.config_parameter'].sudo().get_str('adealer.import_default_brand', 'Auto')
         brand = self.env['fleet.vehicle.model.brand'].search([('name', '=', brand_name)], limit=1)
         if not brand:
             brand = self.env['fleet.vehicle.model.brand'].create({'name': brand_name})

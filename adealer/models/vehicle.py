@@ -40,7 +40,7 @@ class FleetVehicle(models.Model):
 
     @api.depends('photo', 'brand_logo')
     def _compute_display_logo(self):
-        use_brand = self.env['ir.config_parameter'].sudo().get_param(
+        use_brand = self.env['ir.config_parameter'].sudo().get_str(
             'adealer.brand_logo_default', 'True') in ('True', 'true', '1', True)
         for v in self:
             v.display_logo = v.photo or (v.brand_logo if use_brand else False)

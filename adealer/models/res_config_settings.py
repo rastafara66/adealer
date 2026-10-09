@@ -147,18 +147,18 @@ class ResConfigSettings(models.TransientModel):
     def set_values(self):
         super(ResConfigSettings, self).set_values()
         ICP = self.env['ir.config_parameter'].sudo()
-        ICP.set_param('adealer.wh_id_3a', self.wh_id_3a)
-        ICP.set_param('adealer.wh_id_1c', self.wh_id_1c)
-        ICP.set_param('adealer.wh_name_3a', self.wh_name_3a)
-        ICP.set_param('adealer.wh_name_1c', self.wh_name_1c)
-        ICP.set_param('adealer.sidebar_enabled', self.adealer_sidebar_enabled)
-        ICP.set_param('adealer.brand_logo_default', self.adealer_brand_logo_default)
-        ICP.set_param('adealer.autopost_repair_docs', self.adealer_autopost_docs)
-        ICP.set_param('adealer.dashboard_default_tab', self.adealer_dashboard_tab or 'showroom')
+        ICP.set_str('adealer.wh_id_3a', self.wh_id_3a)
+        ICP.set_str('adealer.wh_id_1c', self.wh_id_1c)
+        ICP.set_str('adealer.wh_name_3a', self.wh_name_3a)
+        ICP.set_str('adealer.wh_name_1c', self.wh_name_1c)
+        ICP.set_str('adealer.sidebar_enabled', self.adealer_sidebar_enabled)
+        ICP.set_str('adealer.brand_logo_default', self.adealer_brand_logo_default)
+        ICP.set_str('adealer.autopost_repair_docs', self.adealer_autopost_docs)
+        ICP.set_str('adealer.dashboard_default_tab', self.adealer_dashboard_tab or 'showroom')
         # Зберігаємо ІНВЕРТОВАНО (hide_*): «параметра немає» має означати
         # «підказки показуються». Прямий прапорець показу зробив би кожну базу,
         # оновлену зі старої версії, мовчки німою.
-        ICP.set_param(PARAM_HIDE_HINTS, not self.adealer_addon_hints)
+        ICP.set_str(PARAM_HIDE_HINTS, not self.adealer_addon_hints)
         if self.adealer_lang and self.adealer_lang != self.env.user.lang:
             self.env.user.lang = self.adealer_lang
         if self.adealer_home and self.adealer_home != 'none':
@@ -181,17 +181,17 @@ class ResConfigSettings(models.TransientModel):
         res = super(ResConfigSettings, self).get_values()
         ICP = self.env['ir.config_parameter'].sudo()
         res.update({
-            'wh_id_3a': ICP.get_param('adealer.wh_id_3a'),
-            'wh_id_1c': ICP.get_param('adealer.wh_id_1c'),
-            'wh_name_3a': ICP.get_param('adealer.wh_name_3a'),
-            'wh_name_1c': ICP.get_param('adealer.wh_name_1c'),
-            'adealer_sidebar_enabled': ICP.get_param('adealer.sidebar_enabled', 'True') in ('True', 'true', '1', True),
-            'adealer_brand_logo_default': ICP.get_param('adealer.brand_logo_default', 'True') in ('True', 'true', '1', True),
+            'wh_id_3a': ICP.get_str('adealer.wh_id_3a'),
+            'wh_id_1c': ICP.get_str('adealer.wh_id_1c'),
+            'wh_name_3a': ICP.get_str('adealer.wh_name_3a'),
+            'wh_name_1c': ICP.get_str('adealer.wh_name_1c'),
+            'adealer_sidebar_enabled': ICP.get_str('adealer.sidebar_enabled', 'True') in ('True', 'true', '1', True),
+            'adealer_brand_logo_default': ICP.get_str('adealer.brand_logo_default', 'True') in ('True', 'true', '1', True),
             'adealer_lang': self.env.user.lang,
-            'adealer_autopost_docs': ICP.get_param('adealer.autopost_repair_docs') in ('True', 'true', '1', True),
-            'adealer_dashboard_tab': ICP.get_param('adealer.dashboard_default_tab', 'showroom'),
+            'adealer_autopost_docs': ICP.get_str('adealer.autopost_repair_docs') in ('True', 'true', '1', True),
+            'adealer_dashboard_tab': ICP.get_str('adealer.dashboard_default_tab', 'showroom'),
             'adealer_addon_hints': not (
-                ICP.get_param(PARAM_HIDE_HINTS) in ('True', 'true', '1', True)),
+                ICP.get_str(PARAM_HIDE_HINTS) in ('True', 'true', '1', True)),
         })
         for fname, xmlid in MENU_SECTIONS.items():
             menu = self.env.ref(xmlid, raise_if_not_found=False)

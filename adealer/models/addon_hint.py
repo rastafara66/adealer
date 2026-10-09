@@ -102,7 +102,7 @@ class AdealerAddonHint(models.AbstractModel):
 
     @api.model
     def _addon_hint_render(self, names):
-        if self.env['ir.config_parameter'].sudo().get_param(PARAM_HIDE):
+        if self.env['ir.config_parameter'].sudo().get_str(PARAM_HIDE):
             return False
         # _installed() кешований (ormcache) — це не запит на кожне відкриття форми.
         installed = self.env['ir.module.module']._installed()
