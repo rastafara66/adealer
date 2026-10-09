@@ -25,7 +25,7 @@
     'website': "https://aktiv.in.ua/dodatky/",
     'license': "LGPL-3",
     'category': 'Themes/Backend',
-    'version': '19.0.1.2.8',
+    'version': '19.0.1.2.9',
     # 🔴 Перша картинка — це картка в каталозі. Без ключа `images` картка
     # виходить сірим прямокутником поруч із рештою лінійки, а `index.html` уже
     # посилався на banner.png, якого не було, — тобто сторінка опису
@@ -42,6 +42,8 @@
     'assets': {
         'web.assets_backend': [
             'adealer_theme/static/src/css/theme.css',
+            # OWL 2 (Odoo 18/19) і OWL 3 (Odoo 20) — той самий JS; див. сам файл.
+            'adealer_theme/static/src/js/owl_compat.js',
             'adealer_theme/static/src/js/theme_sidebar.js',
             'adealer_theme/static/src/xml/theme_sidebar.xml',
         ],

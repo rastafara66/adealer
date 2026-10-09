@@ -5,28 +5,28 @@
             <!-- Панель: дата + перемикач Пости/Період -->
             <div class="adealer-board__toolbar">
                 <div class="adealer-board__nav">
-                    <button class="btn btn-secondary" t-on-click="prevDay">‹</button>
-                    <button class="btn btn-secondary" t-on-click="today">Today</button>
-                    <button class="btn btn-secondary" t-on-click="nextDay">›</button>
+                    <button class="btn btn-secondary" t-on-click="(ev) => this.prevDay(ev)">‹</button>
+                    <button class="btn btn-secondary" t-on-click="(ev) => this.today(ev)">Today</button>
+                    <button class="btn btn-secondary" t-on-click="(ev) => this.nextDay(ev)">›</button>
                     <input type="date" class="o_input adealer-board__date"
-                           t-att-value="state.date" t-on-change="onDate"/>
-                    <span class="adealer-board__daylabel" t-esc="dateLabel"/>
+                           t-att-value="this.state.date" t-on-change="(ev) => this.onDate(ev)"/>
+                    <span class="adealer-board__daylabel" t-out="this.dateLabel"/>
                 </div>
                 <div class="adealer-board__views">
                     <button class="btn adealer-board__view adealer-board__view--active">By post</button>
-                    <button class="btn adealer-board__view" t-on-click="toPeriods">By period</button>
+                    <button class="btn adealer-board__view" t-on-click="(ev) => this.toPeriods(ev)">By period</button>
                 </div>
             </div>
             <!-- Швидкий перехід на два тижні вперед — як кнопки дат у розкладі 1С -->
             <div class="adealer-board__days">
-                <button t-foreach="quickDays" t-as="d" t-key="d.iso"
+                <button t-foreach="this.quickDays" t-as="d" t-key="d.iso"
                         class="btn btn-sm adealer-board__day"
-                        t-att-class="{ 'adealer-board__day--active': d.iso === state.date,
+                        t-att-class="{ 'adealer-board__day--active': d.iso === this.state.date,
                                        'adealer-board__day--weekend': d.weekend }"
-                        t-on-click="() => this.goTo(d.iso)" t-esc="d.label"/>
+                        t-on-click="() => this.goTo(d.iso)" t-out="d.label"/>
             </div>
 
-            <t t-if="state.loading">
+            <t t-if="this.state.loading">
                 <div class="adealer-board__loading"><i class="fa fa-spinner fa-spin fa-2x"/></div>
             </t>
             <t t-else="">
@@ -34,41 +34,41 @@
                     <!-- Вісь часу -->
                     <div class="adealer-board__timecol">
                         <div class="adealer-board__poststub"/>
-                        <div class="adealer-board__timeaxis" t-attf-style="height:{{laneHeight}}px">
-                            <div t-foreach="hours" t-as="h" t-key="h" class="adealer-board__hour"
-                                 t-esc="hourLabel(h)"/>
+                        <div class="adealer-board__timeaxis" t-attf-style="height:{{this.laneHeight}}px">
+                            <div t-foreach="this.hours" t-as="h" t-key="h" class="adealer-board__hour"
+                                 t-out="this.hourLabel(h)"/>
                         </div>
                     </div>
                     <!-- Колонки-пости -->
                     <div class="adealer-board__cols">
-                        <div t-foreach="state.posts" t-as="post" t-key="post.id" class="adealer-board__col">
+                        <div t-foreach="this.state.posts" t-as="post" t-key="post.id" class="adealer-board__col">
                             <div class="adealer-board__posthead"
-                                 t-att-style="'border-top-color:' + postColor(post_index)">
-                                <span t-esc="post.name"/>
-                                <span class="adealer-board__count" t-esc="postBookings(post.id).length"/>
+                                 t-att-style="'border-top-color:' + this.postColor(post_index)">
+                                <span t-out="post.name"/>
+                                <span class="adealer-board__count" t-out="this.postBookings(post.id).length"/>
                             </div>
-                            <div class="adealer-board__lane" t-attf-style="height:{{laneHeight}}px"
+                            <div class="adealer-board__lane" t-attf-style="height:{{this.laneHeight}}px"
                                  title="Click a free place to book this bay at this time"
                                  t-on-click="(ev) => this.newBooking(ev, post.id)">
-                                <div t-foreach="hours" t-as="h" t-key="h" class="adealer-board__gridline"/>
-                                <t t-foreach="postBookings(post.id)" t-as="b" t-key="b.id">
+                                <div t-foreach="this.hours" t-as="h" t-key="h" class="adealer-board__gridline"/>
+                                <t t-foreach="this.postBookings(post.id)" t-as="b" t-key="b.id">
                                     <t t-call="adealer.BookingBoard.event">
-                                        <t t-set="style" t-value="eventStyle(b, post_index)"/>
+                                        <t t-set="style" t-value="this.eventStyle(b, post_index)"/>
                                     </t>
                                 </t>
                             </div>
                         </div>
                         <!-- Без поста -->
-                        <div t-if="noPostBookings.length" class="adealer-board__col adealer-board__col--nopost">
+                        <div t-if="this.noPostBookings.length" class="adealer-board__col adealer-board__col--nopost">
                             <div class="adealer-board__posthead adealer-board__posthead--muted">
                                 <span>No bay</span>
-                                <span class="adealer-board__count" t-esc="noPostBookings.length"/>
+                                <span class="adealer-board__count" t-out="this.noPostBookings.length"/>
                             </div>
-                            <div class="adealer-board__lane" t-attf-style="height:{{laneHeight}}px">
-                                <div t-foreach="hours" t-as="h" t-key="h" class="adealer-board__gridline"/>
-                                <t t-foreach="noPostBookings" t-as="b" t-key="b.id">
+                            <div class="adealer-board__lane" t-attf-style="height:{{this.laneHeight}}px">
+                                <div t-foreach="this.hours" t-as="h" t-key="h" class="adealer-board__gridline"/>
+                                <t t-foreach="this.noPostBookings" t-as="b" t-key="b.id">
                                     <t t-call="adealer.BookingBoard.event">
-                                        <t t-set="style" t-value="eventStyle(b, 0)"/>
+                                        <t t-set="style" t-value="this.eventStyle(b, 0)"/>
                                     </t>
                                 </t>
                             </div>
@@ -87,7 +87,7 @@
              t-att-style="style" t-att-title="b.tooltip"
              t-on-click.stop="() => this.openBooking(b.id)">
             <div t-foreach="b.lines" t-as="line" t-key="line_index"
-                 t-attf-class="adealer-board__ev adealer-board__ev--{{line[0]}}" t-esc="line[1]"/>
+                 t-attf-class="adealer-board__ev adealer-board__ev--{{line[0]}}" t-out="line[1]"/>
         </div>
     </t>
 </templates>

@@ -7,6 +7,11 @@
 `on_barcode_scanned`: знайти товар за штрихкодом (немає — за артикулом) і
 додати рядок; якщо цей товар у документі вже є — кількість +1.
 
+Поле й onchange — свої, а не штатного `barcodes.barcode_events_mixin`: в Odoo 20
+міксина й віджета `barcode_handler` уже немає (віджет модуль несе сам,
+`static/src/js/barcode_handler_field.js`). Ім'я поля, підпис і віджет — ті самі,
+що в міксина Odoo 18/19, тож той самий код ставиться в усіх трьох серіях.
+
 🔴 Такий самий міксин є в «Активі» — на ті самі штатні документи. Модулі один
 від одного не залежать, тож у базі, де стоять обидва:
 * `on_barcode_scanned` НЕ кличе super(): спрацьовує рівно одна реалізація (та,
@@ -16,14 +21,25 @@
 * поле-віджет кожен модуль додає у форму сам, і їх може стати два — два
   віджети дали б два onchange на ОДИН скан. `_get_view` лишає перше.
 """
-from odoo import _, api, models
+from odoo import _, api, fields, models
 from odoo.fields import Command
 
 
 class AdealerBarcodeScan(models.AbstractModel):
     _name = 'adealer.barcode.scan'
-    _inherit = ['barcodes.barcode_events_mixin']
     _description = 'Barcode scanning into document lines'
+
+    # Підпис і підказка — дослівно штатного міксина: переклад той самий, і поряд
+    # із «Активом» поле однакове з обох боків.
+    _barcode_scanned = fields.Char(
+        "Barcode Scanned", store=False, help="Value of the last barcode scanned.")
+
+    @api.onchange('_barcode_scanned')
+    def _on_barcode_scanned(self):
+        barcode = self._barcode_scanned
+        if barcode:
+            self._barcode_scanned = ""
+            return self.on_barcode_scanned(barcode)
 
     @api.model
     def _get_view(self, view_id=None, view_type='form', **options):

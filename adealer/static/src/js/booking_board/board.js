@@ -1,9 +1,10 @@
 /** @odoo-module **/
 
-import { Component, useState, onWillStart } from "@odoo/owl";
+import { Component, onWillStart } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
-import { _t } from "@web/core/l10n/translation";
+import { _t } from "@web/core/l10n/translation";
+import { declareProps, useReactive } from "../owl_compat";
 
 // luxon постачається Odoo як ГЛОБАЛ (web/static/lib/luxon), а не як ES-модуль "luxon".
 const { DateTime } = luxon;
@@ -22,12 +23,11 @@ const PALETTE = ["#1a3a6b", "#0e7c5a", "#8a5a00", "#7a1f5a", "#155e75",
 
 export class AdealerBookingBoard extends Component {
     static template = "adealer.BookingBoard";
-    static props = ["*"];
 
     setup() {
         this.orm = useService("orm");
         this.action = useService("action");
-        this.state = useState({
+        this.state = useReactive({
             date: DateTime.local().toISODate(),
             posts: [],
             byPost: {},        // workplace_id -> [booking layout objs]
@@ -245,5 +245,7 @@ export class AdealerBookingBoard extends Component {
         this.action.doAction("adealer.action_service_bookings");
     }
 }
+
+declareProps(AdealerBookingBoard, ["*"]);
 
 registry.category("actions").add("adealer_booking_board", AdealerBookingBoard);

@@ -4,23 +4,23 @@
     <!-- Рядки списку: дерево груп, коли згруповано за групою товару, інакше —
          штатні рядки Odoo (вони ж малюють товари розгорнутої групи). -->
     <t t-name="adealer.CategoryTreeRows">
-        <t t-if="isTreeList(list)">
-            <t t-foreach="treeRows" t-as="row" t-key="row.key">
+        <t t-if="this.isTreeList(list)">
+            <t t-foreach="this.treeRows" t-as="row" t-key="row.key">
                 <tr t-if="row.type === 'node'"
                     t-attf-class="o_group_header o_adealer_tree_node cursor-pointer {{row.node.count ? 'o_group_has_content' : ''}} {{row.open ? 'o_group_open' : ''}}"
                     t-on-click="() => this.onNodeClicked(row.node)">
                     <th t-attf-class="o_group_name fs-6 fw-bold {{row.open ? 'text-black' : 'text-body'}}"
-                        t-att-colspan="nbCols">
+                        t-att-colspan="this.nbCols">
                         <div class="d-flex align-items-center">
                             <span t-attf-class="o_group_caret fa fa-fw {{row.open ? 'fa-caret-down' : 'fa-caret-right'}} me-1"
                                   t-attf-style="--o-list-group-level: {{row.level}}"/>
-                            <i t-attf-class="fa fa-fw {{nodeIcon(row)}} me-2 o_adealer_tree_icon"
+                            <i t-attf-class="fa fa-fw {{this.nodeIcon(row)}} me-2 o_adealer_tree_icon"
                                role="img" aria-hidden="true"/>
-                            <span t-esc="row.node.name"/>
-                            <span class="ms-1 fw-normal text-muted">(<t t-esc="row.node.count"/>)</span>
-                            <div t-if="row.node.group and showGroupPager(row.node.group)"
+                            <span t-out="row.node.name"/>
+                            <span class="ms-1 fw-normal text-muted">(<t t-out="row.node.count"/>)</span>
+                            <div t-if="row.node.group and this.showGroupPager(row.node.group)"
                                  t-on-click.stop="" class="ms-auto">
-                                <Pager t-props="getGroupPagerProps(row.node.group)"/>
+                                <Pager t-props="this.getGroupPagerProps(row.node.group)"/>
                             </div>
                         </div>
                     </th>
@@ -39,7 +39,7 @@
 
     <t t-name="adealer.FaIconField">
         <div class="d-flex align-items-center gap-2 o_adealer_fa_icon_field">
-            <i t-attf-class="fa fa-fw fa-lg {{props.record.data[props.name] or 'fa-folder-o'}} o_adealer_tree_icon"
+            <i t-attf-class="fa fa-fw fa-lg {{this.props.record.data[this.props.name] or 'fa-folder-o'}} o_adealer_tree_icon"
                role="img" aria-hidden="true"/>
             <div class="flex-grow-1">
                 <t t-call="web.CharField"/>

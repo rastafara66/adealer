@@ -1,11 +1,12 @@
 /** @odoo-module **/
 
-import { onWillStart, onWillUpdateProps, useState } from "@odoo/owl";
+import { onWillStart, onWillUpdateProps } from "@odoo/owl";
 import { _t } from "@web/core/l10n/translation";
 import { registry } from "@web/core/registry";
 import { CharField, charField } from "@web/views/fields/char/char_field";
 import { listView } from "@web/views/list/list_view";
 import { ListRenderer } from "@web/views/list/list_renderer";
+import { useReactive } from "../owl_compat";
 
 // Поле, за яким групування показується деревом, і модель груп.
 const TREE_FIELD = "categ_id";
@@ -34,7 +35,7 @@ export class CategoryTreeListRenderer extends ListRenderer {
         super.setup();
         // Розгорнуті вузли БЕЗ власних товарів: {ключ: true|false}. Вузли з
         // власними товарами розгортає сама група моделі (вона ж і пам'ятає).
-        this.treeState = useState({ open: {} });
+        this.treeState = useReactive({ open: {} });
         this.categories = null;
         onWillStart(() => this.loadCategories(this.props));
         onWillUpdateProps((nextProps) => this.loadCategories(nextProps));
