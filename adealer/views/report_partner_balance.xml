@@ -34,9 +34,9 @@
                             <field name="debit"/>
                             <field name="credit"/>
                             <field name="balance"/>
-                            <button help="Open the journal entry of this line." name="action_open_move" type="object" icon="fa-external-link"
+                            <button help="Open the journal entry of this line." name="action_open_move" type="object" icon="open_in_new"
                                     title="Open document" column_invisible="not parent.partner_id"/>
-                            <button help="Open this counterparty's detailed statement for the same period." name="action_open_partner" type="object" icon="fa-search-plus"
+                            <button help="Open this counterparty's detailed statement for the same period." name="action_open_partner" type="object" icon="zoom_in"
                                     title="Details by counterparty" column_invisible="parent.partner_id"/>
                         </list>
                     </field>

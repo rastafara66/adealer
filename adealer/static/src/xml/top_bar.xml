@@ -16,10 +16,10 @@
         <xpath expr="//li[hasclass('dropdown')]" position="replace">
             <li class="dropdown">
                 <a id="openSidebar" style="display: block; cursor: pointer;">
-                    <i class="fa fa-bars fa-lg"/>
+                    <i class="oi oi-lg" data-icon="menu"/>
                 </a>
                 <a id="closeSidebar" style="display: none; cursor: pointer;">
-                    <i class="fa fa-bars fa-lg"/>
+                    <i class="oi oi-lg" data-icon="menu"/>
                 </a>
             </li>
         </xpath>

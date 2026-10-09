@@ -175,7 +175,7 @@
                                         <field name="repair_order_id"/>
                                         <field name="done_date"/>
                                         <button help="Mark the campaign work as done on this vehicle." name="action_mark_done" type="object"
-                                                string="Done" icon="fa-check"
+                                                string="Done" icon="check"
                                                 invisible="state == 'done'"/>
                                     </list>
                                 </field>
@@ -340,12 +340,12 @@
                         </div>
                         <div class="oe_button_box" name="button_box">
                             <button help="Open the sale invoice of this vehicle." name="action_view_sale_move" type="object"
-                                    class="oe_stat_button" icon="fa-file-text-o"
+                                    class="oe_stat_button" icon="description"
                                     invisible="not sale_move_id">
                                 <span>Sale invoice</span>
                             </button>
                             <button help="Open the customer's vehicle registered on delivery." name="action_view_fleet_vehicle" type="object"
-                                    class="oe_stat_button" icon="fa-car"
+                                    class="oe_stat_button" icon="directions_car"
                                     invisible="not fleet_vehicle_id">
                                 <span>Customer vehicle</span>
                             </button>
@@ -509,7 +509,7 @@
                 <!-- зв'язок вгору: джерело-замовлення покупця -->
                 <xpath expr="//div[@name='button_box']" position="inside">
                     <button help="Open the sales order this repair order was created from." name="action_view_source_order" type="object"
-                            class="oe_stat_button" icon="fa-shopping-cart"
+                            class="oe_stat_button" icon="shopping_cart"
                             invisible="not source_sale_order_id">
                         <span>Order</span>
                     </button>

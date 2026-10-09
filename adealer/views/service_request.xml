@@ -44,7 +44,7 @@
                     <sheet>
                         <div class="oe_button_box" name="button_box">
                             <button help="Open the sales order created from this request." name="action_open_sale_order" type="object"
-                                    class="oe_stat_button" icon="fa-shopping-cart"
+                                    class="oe_stat_button" icon="shopping_cart"
                                     invisible="not sale_order_id">
                                 <span class="o_stat_text">Sale Order</span>
                             </button>

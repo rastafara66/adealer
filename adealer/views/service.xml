@@ -86,12 +86,12 @@
                 </xpath>
                 <xpath expr="//div[@name='button_box']" position="inside">
                     <button help="Invoices, delivery notes and acts created from this repair order." name="action_view_invoices" type="object"
-                            class="oe_stat_button" icon="fa-file-text-o"
+                            class="oe_stat_button" icon="description"
                             invisible="invoice_count == 0">
                         <field name="invoice_count" widget="statinfo" string="Invoices/Delivery notes/Acts"/>
                     </button>
                     <button help="Stock transfers made for this repair order." name="action_view_pickings" type="object"
-                            class="oe_stat_button" icon="fa-truck"
+                            class="oe_stat_button" icon="local_shipping"
                             invisible="picking_count == 0">
                         <field name="picking_count" widget="statinfo" string="Shipping"/>
                     </button>

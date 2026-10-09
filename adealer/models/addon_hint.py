@@ -121,7 +121,7 @@ class AdealerAddonHint(models.AbstractModel):
         title = escape(self.env._("Also available for 3A-dealer"))
         return Markup(
             '<div class="alert alert-light border text-muted small mb-0" role="note">'
-            '<i class="fa fa-puzzle-piece me-1"/><b>%s</b>'
+            '<i class="oi me-1" data-icon="extension"/><b>%s</b>'
             '<ul class="mb-0 mt-1 ps-3">%s</ul>'
             '</div>'
         ) % (title, rows)

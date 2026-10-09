@@ -21,14 +21,14 @@
                     <input type="date" class="o_input" t-att-value="this.state.date_to"
                            t-on-change="(ev) => this.onDate('date_to', ev)"/>
                     <button class="btn btn-primary" t-on-click="() => this.load()">
-                        <i class="fa fa-refresh me-1"/> Show
+                        <i class="oi me-1" data-icon="refresh"/> Show
                     </button>
                 </div>
             </div>
 
             <t t-if="this.state.loading">
                 <div class="adealer-dash__loading">
-                    <i class="fa fa-spinner fa-spin fa-2x"/>
+                    <i class="oi oi-spin oi-2x" data-icon="autorenew"/>
                 </div>
             </t>
             <t t-elif="this.state.data">

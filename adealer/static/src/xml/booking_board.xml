@@ -27,7 +27,7 @@
             </div>
 
             <t t-if="this.state.loading">
-                <div class="adealer-board__loading"><i class="fa fa-spinner fa-spin fa-2x"/></div>
+                <div class="adealer-board__loading"><i class="oi oi-spin oi-2x" data-icon="autorenew"/></div>
             </t>
             <t t-else="">
                 <div class="adealer-board__grid">
