@@ -3,7 +3,7 @@
 import { Component, onWillStart, onMounted, onWillUnmount } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
-import { session } from "@web/session";
+import { session } from "@web/session";
 import { declareProps, useReactive } from "./owl_compat";
 
 const APP_XMLID = "adealer.menu_root";
