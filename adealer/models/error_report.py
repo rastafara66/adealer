@@ -204,10 +204,11 @@ class AdealerErrorReport(models.Model):
         help="Exactly what leaves this database. Nothing else is transmitted.",
     )
 
-    _sql_constraints = [
-        ('fingerprint_company_uniq', "UNIQUE(fingerprint, company_id)", "The same failure is only queued once per company. Open the report already "
-        "in the queue instead: its Occurrences count goes up."),
-    ]
+    _fingerprint_company_uniq = models.Constraint(
+        "UNIQUE(fingerprint, company_id)",
+        "The same failure is only queued once per company. Open the report already "
+        "in the queue instead: its Occurrences count goes up.",
+    )
 
     @api.depends("fingerprint", "error_type", "operation", "http_status",
                  "frames", "occurrences", "comment")

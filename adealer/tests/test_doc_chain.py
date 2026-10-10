@@ -260,7 +260,7 @@ class TestInstalledMeansWorking(TransactionCase):
         """Груп мало — перевіряємо саме читання, під НЕ-адміністратором."""
         user = self.env["res.users"].create({
             "name": "Access probe", "login": "adealer_access_probe",
-            "groups_id": [(6, 0, [self.env.ref("base.group_user").id])],
+            "group_ids": [(6, 0, [self.env.ref("base.group_user").id])],
         })
         try:
             self.env["repair.order"].with_user(user).search([], limit=1)
