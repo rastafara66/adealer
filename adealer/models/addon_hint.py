@@ -17,7 +17,7 @@
 """
 from markupsafe import Markup, escape
 
-from odoo import api, fields, models
+from odoo import api, fields, models, release
 from odoo.tools import LazyTranslate
 
 _lt = LazyTranslate(__name__)
@@ -26,8 +26,10 @@ _lt = LazyTranslate(__name__)
 PARAM_HIDE = 'adealer.hide_addon_hints'
 
 # Сторінка додатка в магазині. Формат канонічний для apps.odoo.com; усі
-# сторінки перевірено — віддають 200.
-STORE_URL = 'https://apps.odoo.com/apps/modules/19.0/%s/'
+# сторінки перевірено — віддають 200. Серія — з самого сервера: той самий код
+# стоїть у гілках 18.0 / 19.0 / 20.0, і зашита серія вела б покупця 18 на збірку,
+# якої його Odoo не завантажить (гейт 3A check_series_literals).
+STORE_URL = 'https://apps.odoo.com/apps/modules/%s/%%s/' % release.series
 
 # Технічна назва → як подати надбудову. Ціна тут довідкова: у магазині вона та
 # сама, що в маніфесті надбудови, і змінюється разом із ним.
