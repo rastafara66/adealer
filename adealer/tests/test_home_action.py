@@ -21,7 +21,7 @@ class TestHomeAction(TransactionCase):
     def _user(self, login, groups):
         return self.env['res.users'].create({
             'name': login, 'login': login,
-            'group_ids': [Command.set([self.env.ref(g).id for g in groups])],
+            'groups_id': [Command.set([self.env.ref(g).id for g in groups])],
         })
 
     def test_manager_lands_on_the_dashboard(self):
