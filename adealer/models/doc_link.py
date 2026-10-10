@@ -105,9 +105,9 @@ class DocLink(models.Model):
 
     # Odoo 19: `_sql_constraints` is only warned about and never reaches the
     # database — the link would silently allow duplicates.
-    _sql_constraints = [
-        ('doc_link_unique', "unique(parent_model, parent_res_id, child_model, child_res_id, kind)", "This link already exists. Open the existing link instead of adding it again."),
-    ]
+    _doc_link_unique = models.Constraint(
+        "unique(parent_model, parent_res_id, child_model, child_res_id, kind)",
+        "This link already exists. Open the existing link instead of adding it again.")
 
     @api.depends("parent_model", "parent_res_id", "child_model", "child_res_id")
     def _compute_refs(self):
@@ -188,7 +188,9 @@ class DocLink(models.Model):
             comodel = self.env[model]._fields[field].comodel_name
             if comodel != record._name:
                 continue
-            for parent in self.env[model].search([(field, "in", record.id)]):
+            # Список, а не число: в Odoo 18 поле з власним пошуком (рахунки
+            # замовлення) отримує значення як є й робить з нього list().
+            for parent in self.env[model].search([(field, "in", record.ids)]):
                 out.append((parent, kind, False))
         return out
 
