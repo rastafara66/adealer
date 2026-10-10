@@ -188,9 +188,10 @@ class DealerCar(models.Model):
 
     # Odoo 19: `_sql_constraints` is only warned about and never reaches the
     # database, so the VIN was not unique at all until this was rewritten.
-    _vin_uniq = models.Constraint(
-        'unique(vin)', 'A vehicle with this VIN already exists in stock. Open that '
-        'vehicle instead, or check the VIN for a typo.')
+    _sql_constraints = [
+        ('vin_uniq', 'unique(vin)', 'A vehicle with this VIN already exists in stock. Open that '
+        'vehicle instead, or check the VIN for a typo.'),
+    ]
 
     @api.model
     def _expand_status(self, statuses, domain):
