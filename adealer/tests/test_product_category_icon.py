@@ -97,8 +97,11 @@ class TestProductListByGroup(TransactionCase):
         action = self.env.ref('adealer.action_window_products_by_group')
         self.assertIn("'search_default_group_by_categ_id': 1", action.context)
         search = self.env['product.product'].get_views([(False, 'search')])['views']['search']['arch']
-        self.assertTrue(etree.fromstring(search).xpath("//filter[@name='group_by_categ_id']"),
-                        "the search view must keep the filter the action turns on")
+        # Exactly one in every series: Odoo 19/20 ship it, on Odoo 18 the module adds it.
+        found = etree.fromstring(search).xpath("//filter[@name='group_by_categ_id']")
+        self.assertEqual(len(found), 1, "the search view must keep the filter the action turns on")
+        context = found[0].get('context').replace('"', "'").replace(' ', '')
+        self.assertIn("'group_by':'categ_id'", context)
 
     def test_upgrade_frees_a_slot_taken_by_hand(self):
         # A database where someone had bound the products action to another
