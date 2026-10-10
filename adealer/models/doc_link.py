@@ -188,7 +188,9 @@ class DocLink(models.Model):
             comodel = self.env[model]._fields[field].comodel_name
             if comodel != record._name:
                 continue
-            for parent in self.env[model].search([(field, "in", record.id)]):
+            # Список, а не число: в Odoo 18 поле з власним пошуком (рахунки
+            # замовлення) отримує значення як є й робить з нього list().
+            for parent in self.env[model].search([(field, "in", record.ids)]):
                 out.append((parent, kind, False))
         return out
 

@@ -2,6 +2,8 @@
 
 import re
 
+from lxml import etree
+
 from odoo import api, fields, models
 
 # Іконка групи товарів за її назвою. Групи приходять з довідника номенклатури
@@ -174,3 +176,22 @@ class ProductCategory(models.Model):
     def action_adealer_pick_icons(self):
         """Дія зі списку груп: підібрати іконки заново за поточними назвами."""
         self._adealer_pick_icon()
+
+
+class ProductProduct(models.Model):
+    _inherit = 'product.product'
+
+    @api.model
+    def _get_view(self, view_id=None, view_type='form', **options):
+        """«Товари за групами» вмикає групування фільтром `group_by_categ_id` — так
+        він зветься в Odoo 19/20. В Odoo 18 штатний зветься `categ_id`, як і поле
+        пошуку, тож `search_default_categ_id` ще й відфільтрував би групу з id 1.
+        Де штатного `group_by_categ_id` немає, додаємо такий самий, прихований:
+        у меню «Групувати» штатний не дублюється, а рядок пошуку його показує."""
+        arch, view = super()._get_view(view_id, view_type, **options)
+        if view_type == 'search' and not arch.xpath("//filter[@name='group_by_categ_id']"):
+            arch.append(etree.Element('filter', {
+                'name': 'group_by_categ_id', 'invisible': '1',
+                'string': self._fields['categ_id']._description_string(self.env),
+                'context': "{'group_by': 'categ_id'}"}))
+        return arch, view
