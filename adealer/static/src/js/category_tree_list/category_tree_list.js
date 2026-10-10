@@ -6,6 +6,7 @@ import { registry } from "@web/core/registry";
 import { CharField, charField } from "@web/views/fields/char/char_field";
 import { listView } from "@web/views/list/list_view";
 import { ListRenderer } from "@web/views/list/list_renderer";
+import { useService } from "@web/core/utils/hooks";
 import { useReactive } from "../owl_compat";
 
 // Поле, за яким групування показується деревом, і модель груп.
@@ -33,6 +34,10 @@ export class CategoryTreeListRenderer extends ListRenderer {
 
     setup() {
         super.setup();
+        // Свій сервіс, а не батьків: `this.orm` у штатному ListRenderer є лише з
+        // Odoo 19 — в Odoo 18 дерево падало на `searchRead` of undefined
+        // (гейт 3A tools/series/check_js_services.py).
+        this.orm = useService("orm");
         // Розгорнуті вузли БЕЗ власних товарів: {ключ: true|false}. Вузли з
         // власними товарами розгортає сама група моделі (вона ж і пам'ятає).
         this.treeState = useReactive({ open: {} });
