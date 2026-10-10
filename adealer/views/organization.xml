@@ -55,7 +55,8 @@
 
     <menuitem name="Organizations" id="menu_dealer_organization"
               parent="adealer.configuration"
-              action="action_dealer_organization" sequence="5"/>
+              action="action_dealer_organization" sequence="5"
+              groups="adealer.group_adealer_manager"/>
 
     <!-- organization_id on operational documents -->
     <record id="view_sale_order_form_org" model="ir.ui.view">

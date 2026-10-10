@@ -8,8 +8,10 @@
                 <field name="vat" class="deep-marine"/>
             </xpath>
             <xpath expr="//field[@name='vat']" position="after">
-                <field name="edrpou" class="deep-marine" invisible="company_type != 'company'"/>
-                <field name="driver_license" invisible="company_type == 'company'"/>
+                <!-- `is_company`, а не `company_type`: в Odoo 20 поля company_type немає
+                     (той самий вигляд у 18/19/20). -->
+                <field name="edrpou" class="deep-marine" invisible="not is_company"/>
+                <field name="driver_license" invisible="is_company"/>
             </xpath>
             
             <xpath expr="//notebook" position="inside">

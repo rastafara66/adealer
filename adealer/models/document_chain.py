@@ -24,18 +24,23 @@ class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
     source_repair_order_id = fields.Many2one(
-        'repair.order', string='Source order', copy=False, index=True)
+        'repair.order', string='Source order', copy=False, index=True,
+                                             help='The repair order this transfer was made for.')
 
 
 class RepairOrderChain(models.Model):
     _inherit = 'repair.order'
 
     invoice_ids = fields.One2many(
-        'account.move', 'source_repair_order_id', string='Invoices/Delivery notes/Acts')
-    invoice_count = fields.Integer(compute='_compute_chain_counts')
+        'account.move', 'source_repair_order_id', string='Invoices/Delivery notes/Acts',
+                                  help='Invoices, delivery notes and acts created from this repair order.')
+    invoice_count = fields.Integer(compute='_compute_chain_counts',
+                                   help='How many invoices, delivery notes and acts this repair order has.')
     picking_ids = fields.One2many(
-        'stock.picking', 'source_repair_order_id', string='Shipping')
-    picking_count = fields.Integer(compute='_compute_chain_counts')
+        'stock.picking', 'source_repair_order_id', string='Shipping',
+                                  help='Stock transfers made for this repair order.')
+    picking_count = fields.Integer(compute='_compute_chain_counts',
+                                   help='How many stock transfers this repair order has.')
 
     @api.depends('invoice_ids', 'picking_ids')
     def _compute_chain_counts(self):
@@ -72,13 +77,16 @@ class RepairOrderChain(models.Model):
         if not self.partner_id:
             if silent:
                 return self.env['account.move']
-            raise UserError(_("No customer is specified on order %s.") % self.name)
+            raise UserError(_("No customer is specified on order %s. Fill in the "
+                              "customer first: the document is issued to them.") % self.name)
         lines = self._chain_invoice_lines(mode)
         if not lines:
             if silent:
                 return self.env['account.move']
             raise UserError(
-                _("Order %(name)s has no lines for the '%(label)s' document.") % {
+                _("Order %(name)s has no lines for the '%(label)s' document. Fill in "
+                  "the matching lines (parts for a delivery note, labour for an act) "
+                  "first.") % {
                     'name': self.name, 'label': label})
         move = self.env['account.move'].create({
             'move_type': 'out_invoice',
@@ -88,6 +96,10 @@ class RepairOrderChain(models.Model):
             'source_repair_order_id': self.id,
             'invoice_line_ids': lines,
         })
+        # 🔴 Зв'язок пишемо ТУТ, а не лише типованим полем. Інакше структура
+        # підпорядкованості наповнюється лише імпортом з 1С, а документ,
+        # заведений у нас руками, у неї не потрапляє.
+        self.env['adealer.doc.link'].link(self, move, 'basis')
         if post:
             move.action_post()
         return move
@@ -158,11 +170,13 @@ class RepairOrderChain(models.Model):
         warehouse = self.env['stock.warehouse'].search(
             [('company_id', '=', self.company_id.id)], limit=1)
         if not warehouse:
-            raise UserError(_("No warehouse found for the company."))
+            raise UserError(_("No warehouse found for the company. Create one in "
+                              "Inventory > Configuration > Warehouses first."))
         ptype = warehouse.int_type_id or self.env['stock.picking.type'].search(
             [('code', '=', 'internal'), ('warehouse_id', '=', warehouse.id)], limit=1)
         if not ptype:
-            raise UserError(_("'Internal transfer' type is not configured on the warehouse."))
+            raise UserError(_("'Internal transfer' type is not configured on the warehouse. "
+                              "Open the warehouse and set its internal transfer type."))
         src = warehouse.lot_stock_id
         dest = self._service_location(warehouse)
         moves = []
@@ -184,6 +198,7 @@ class RepairOrderChain(models.Model):
             'move_ids': moves,
         })
         picking.action_confirm()
+        self.env['adealer.doc.link'].link(self, picking, 'basis')
         return picking
 
     @report_errors('chain_issue_parts')
@@ -192,7 +207,8 @@ class RepairOrderChain(models.Model):
         self.ensure_one()
         picking = self._issue_parts_picking()
         if not picking:
-            raise UserError(_("Order %s has no stock parts to issue.") % self.name)
+            raise UserError(_("Order %s has no stock parts to issue. Fill in the parts "
+                              "lines with stocked products first.") % self.name)
         return {
             'type': 'ir.actions.act_window',
             'name': _('Issue parts to the workshop'),

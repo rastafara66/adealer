@@ -1,9 +1,10 @@
 /** @odoo-module **/
 
-import { Component, useState, onWillStart } from "@odoo/owl";
+import { Component, onWillStart } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 import { _t } from "@web/core/l10n/translation";
+import { declareProps, useReactive } from "../owl_compat";
 
 // Типи дашбордів (вкладки перемикача)
 const TYPES = [
@@ -21,12 +22,11 @@ function yearStartISO() {
 
 export class AdealerDashboard extends Component {
     static template = "adealer.Dashboard";
-    static props = ["*"];
 
     setup() {
         this.orm = useService("orm");
         this.types = TYPES;
-        this.state = useState({
+        this.state = useReactive({
             // Порожньо, а не "showroom": першу вкладку називає СЕРВЕР за
             // налаштуванням (Налаштування → 3A-dealer). Інакше СТО щоразу
             // відкривало порожній Автосалон.
@@ -115,5 +115,7 @@ export class AdealerDashboard extends Component {
         }));
     }
 }
+
+declareProps(AdealerDashboard, ["*"]);
 
 registry.category("actions").add("adealer_dashboard", AdealerDashboard);

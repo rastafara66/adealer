@@ -17,15 +17,22 @@ class DealerOrganization(models.Model):
     _description = 'Organization'
     _order = 'is_default desc, name'
 
-    name = fields.Char('Name', required=True)
-    full_name = fields.Char('Full name')
+    name = fields.Char('Name', required=True,
+                       help='Short name of the organisation, as shown in lists.')
+    full_name = fields.Char('Full name',
+                            help='Full legal name, as printed in documents.')
     edrpou = fields.Char('EDRPOU', help='Company state registration code')
     vat_code = fields.Char('Tax ID', help='Individual taxpayer number')
-    is_vat_payer = fields.Boolean('VAT payer')
-    vat_certificate = fields.Char('VAT certificate No.')
-    prefix = fields.Char('Document prefix')
-    is_default = fields.Boolean('Default organization')
-    active = fields.Boolean(default=True)
+    is_vat_payer = fields.Boolean('VAT payer',
+                                  help='Tick if the organisation is registered for VAT.')
+    vat_certificate = fields.Char('VAT certificate No.',
+                                  help='Number of the VAT registration certificate.')
+    prefix = fields.Char('Document prefix',
+                         help='Prefix of document numbers of this organisation.')
+    is_default = fields.Boolean('Default organization',
+                                help='New documents get this organisation. Only one can be the default.')
+    active = fields.Boolean(default=True,
+                            help='Clear to hide the organisation without deleting it.')
 
     @api.model
     def _default_org(self):
@@ -74,7 +81,8 @@ class DealerOrganizationMixin(models.AbstractModel):
 
     organization_id = fields.Many2one(
         'dealer.organization', string='Organization', index=True,
-        default=lambda self: self.env['dealer.organization']._default_org())
+        default=lambda self: self.env['dealer.organization']._default_org(),
+                                      help='Which of your organisations the document belongs to.')
 
 
 class SaleOrderOrg(models.Model):

@@ -36,7 +36,7 @@ def _months(dfrom, dto):
 
 class AdealerDashboard(models.AbstractModel):
     _name = 'adealer.dashboard'
-    _description = 'Dashboard data provider (Головна)'
+    _description = 'Dashboard data provider (Home)'
 
     # ------------------------------------------------------------------ API
     @api.model

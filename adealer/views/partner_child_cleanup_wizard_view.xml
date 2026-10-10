@@ -8,7 +8,7 @@
                     <field name="confirm"/>
                 </group>
                 <footer>
-                    <button string="Delete child contacts" type="object" name="action_cleanup" class="btn-danger"/>
+                    <button help="Delete EVERY child contact in the database: contact persons and addresses under companies. This cannot be undone." string="Delete child contacts" type="object" name="action_cleanup" class="btn-danger"/>
                     <button string="Cancel" class="btn-secondary" special="cancel"/>
                 </footer>
             </form>

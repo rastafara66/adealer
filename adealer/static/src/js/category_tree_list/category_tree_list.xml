@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <!-- Рядки списку: дерево груп, коли згруповано за групою товару, інакше —
+         штатні рядки Odoo (вони ж малюють товари розгорнутої групи). -->
+    <t t-name="adealer.CategoryTreeRows">
+        <t t-if="this.isTreeList(list)">
+            <t t-foreach="this.treeRows" t-as="row" t-key="row.key">
+                <tr t-if="row.type === 'node'"
+                    t-attf-class="o_group_header o_adealer_tree_node cursor-pointer {{row.node.count ? 'o_group_has_content' : ''}} {{row.open ? 'o_group_open' : ''}}"
+                    t-on-click="() => this.onNodeClicked(row.node)">
+                    <th t-attf-class="o_group_name fs-6 fw-bold {{row.open ? 'text-black' : 'text-body'}}"
+                        t-att-colspan="this.nbCols">
+                        <div class="d-flex align-items-center">
+                            <span t-attf-class="o_group_caret fa fa-fw {{row.open ? 'fa-caret-down' : 'fa-caret-right'}} me-1"
+                                  t-attf-style="--o-list-group-level: {{row.level}}"/>
+                            <i t-attf-class="fa fa-fw {{this.nodeIcon(row)}} me-2 o_adealer_tree_icon"
+                               role="img" aria-hidden="true"/>
+                            <span t-out="row.node.name"/>
+                            <span class="ms-1 fw-normal text-muted">(<t t-out="row.node.count"/>)</span>
+                            <div t-if="row.node.group and this.showGroupPager(row.node.group)"
+                                 t-on-click.stop="" class="ms-auto">
+                                <Pager t-props="this.getGroupPagerProps(row.node.group)"/>
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+                <t t-else="">
+                    <t t-set="group" t-value="row.group"/>
+                    <t t-call="web.ListRenderer.Rows">
+                        <t t-set="list" t-value="row.group.list"/>
+                        <t t-set="groupId" t-value="row.group.id"/>
+                    </t>
+                </t>
+            </t>
+        </t>
+        <t t-else="" t-call="web.ListRenderer.Rows"/>
+    </t>
+
+    <t t-name="adealer.FaIconField">
+        <div class="d-flex align-items-center gap-2 o_adealer_fa_icon_field">
+            <i t-attf-class="fa fa-fw fa-lg {{this.props.record.data[this.props.name] or 'fa-folder-o'}} o_adealer_tree_icon"
+               role="img" aria-hidden="true"/>
+            <div class="flex-grow-1">
+                <t t-call="web.CharField"/>
+            </div>
+        </div>
+    </t>
+
+</templates>

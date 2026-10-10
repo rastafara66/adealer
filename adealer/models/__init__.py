@@ -9,10 +9,13 @@ from . import partner_import
 from . import partner
 from . import partner_import_wizard
 from . import product
+from . import product_category
 from . import res_config_settings
 from . import res_users
 from . import sale
 from . import service
+# Сканер штрихкодів: після service — розширює repair.order звідти.
+from . import barcode_scan
 from . import service_request
 from . import document_chain
 from . import stock
@@ -36,6 +39,12 @@ from . import app_update
 from . import organization
 from . import dashboard
 from . import service_booking
+# Документ-підстава і структура підпорядкованості. Після document_chain:
+# читає його типовані поля як друге джерело зв'язків.
+from . import doc_link
+from . import doc_chain
+# «Ввести на підставі»: після doc_link — пише зв'язок при створенні.
+from . import doc_basis
 # Підказки про платні надбудови. Останнім: домішує міксин у моделі вище.
 from . import addon_hint
 # Після addon_hint: бере звідти канонічний перелік надбудов, щоб не заводити

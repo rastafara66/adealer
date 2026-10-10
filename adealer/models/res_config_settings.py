@@ -47,10 +47,14 @@ MENU_SECTIONS = {
 class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
     # WareHouses
-    wh_id_3a = fields.Char("WH ID 3A", default="WareHouse ID 3A")
-    wh_id_1c = fields.Char('WH ID (source)', default="WareHouse ID (source)")    
-    wh_name_3a = fields.Char('WH Name 3A', default="WareHouse Name 3A")
-    wh_name_1c = fields.Char("WH Name (source)", default="WareHouse Name (source)")
+    wh_id_3a = fields.Char("WH ID 3A", default="WareHouse ID 3A",
+                           help='Technical, for data migration: warehouse identifier in this database.')
+    wh_id_1c = fields.Char('WH ID (source)', default="WareHouse ID (source)",
+                           help='Technical, for data migration: warehouse identifier in the source system.')    
+    wh_name_3a = fields.Char('WH Name 3A', default="WareHouse Name 3A",
+                             help='Technical, for data migration: warehouse name in this database.')
+    wh_name_1c = fields.Char("WH Name (source)", default="WareHouse Name (source)",
+                             help='Technical, for data migration: warehouse name in the source system.')
     adealer_sidebar_enabled = fields.Boolean(
         string="Branded theme + side menu (sidebar)",
         help="Enable the 3A-dealer branded theme (navy/gold) and the classic left side "
@@ -75,7 +79,7 @@ class ResConfigSettings(models.TransientModel):
         help="Which dashboard tab opens first. A workshop wants Service, "
              "a showroom wants Showroom — the tab used to be fixed in the code.")
     adealer_home = fields.Selection([
-        ('none', 'Default (last app)'),
+        ('none', 'Automatic by role'),
         ('dashboard', 'Dashboard (Home)'),
         ('calendar', 'Service calendar (workshop)'),
         ('vehicles', 'Vehicles (showroom)'),
@@ -84,7 +88,9 @@ class ResConfigSettings(models.TransientModel):
         ('products', 'Product list'),
         ('reports', 'Reports — Sales (manager)'),
     ], string="Home page", default='none',
-        help="What to open after login for the CURRENT user")
+        help="What to open after login for the CURRENT user. Automatic: a "
+             "manager gets the 3A-dealer Home dashboard, an accountant gets the "
+             "accounting app's home page if one is installed.")
     adealer_autopost_docs = fields.Boolean(
         string="Auto-invoice when the repair order is done",
         help="When a repair order moves to \"Repaired\", automatically create and post "
@@ -117,14 +123,22 @@ class ResConfigSettings(models.TransientModel):
              "that add-on is installed.")
 
     # --- Прапорці показу розділів меню ---
-    show_menu_vehicles = fields.Boolean("Vehicles and models")
-    show_menu_showroom = fields.Boolean("Showroom")
-    show_menu_products = fields.Boolean("Products and services")
-    show_menu_contacts = fields.Boolean("Partners and users")
-    show_menu_maintenance = fields.Boolean("Maintenance and repair")
-    show_menu_sales = fields.Boolean("Sales")
-    show_menu_purchases = fields.Boolean("Purchases")
-    show_menu_reports = fields.Boolean("Reports")
+    show_menu_vehicles = fields.Boolean("Vehicles and models",
+                                        help='Show the Vehicles and models menu.')
+    show_menu_showroom = fields.Boolean("Showroom",
+                                        help='Show the Showroom menu.')
+    show_menu_products = fields.Boolean("Products and services",
+                                        help='Show the Products and services menu.')
+    show_menu_contacts = fields.Boolean("Partners and users",
+                                        help='Show the Partners and users menu.')
+    show_menu_maintenance = fields.Boolean("Maintenance and repair",
+                                           help='Show the Maintenance and repair menu.')
+    show_menu_sales = fields.Boolean("Sales",
+                                     help='Show the Sales menu.')
+    show_menu_purchases = fields.Boolean("Purchases",
+                                         help='Show the Purchases menu.')
+    show_menu_reports = fields.Boolean("Reports",
+                                       help='Show the Reports menu.')
 
     def _adealer_lang_selection(self):
         langs = self.env['res.lang'].search([('active', '=', True)])

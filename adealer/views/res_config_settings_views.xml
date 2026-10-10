@@ -9,10 +9,6 @@
             <field name="arch" type="xml">
                 <xpath expr="//form" position="inside">
                     <app data-string="3A-dealer" string="3A-dealer" name="adealer">
-                        <block title="Odoo 18 edition" name="adealer_series_note">
-                            <setting id="adealer_series_note_setting" string="Not all features of newer versions"
-                                     help="This is the Odoo 18 edition of 3A-dealer and its paid add-ons. Some features of newer versions are not available here; the full feature set is in the version for Odoo 19."/>
-                        </block>
                         <block title="Interface" name="adealer_ui">
                             <setting string="Branded theme + side menu (sidebar)" help="3A-dealer branded theme (navy/gold) and the classic left side menu. On by default.">
                                 <field name="adealer_sidebar_enabled"/>
@@ -79,13 +75,19 @@
                                         <field name="adealer_version_checked" readonly="1"/>
                                     </div>
                                     <div class="mt8">
-                                        <button name="action_adealer_check_update" type="object"
+                                        <button help="Ask now which version is the latest." name="action_adealer_check_update" type="object"
                                                 string="Check now" class="btn-primary"/>
-                                        <button name="action_adealer_update_from_git" type="object"
+                                        <button help="Pull the new code from GitHub and upgrade the module. Only for a server where the module is a git checkout; restart Odoo afterwards." name="action_adealer_update_from_git" type="object"
                                                 string="Update from GitHub" class="btn-secondary ms-2"
-                                                invisible="not adealer_update_available"
+                                                invisible="not adealer_update_available or not adealer_git_ready"
                                                 confirm="Pull the latest code from GitHub and upgrade the module?"/>
                                         <field name="adealer_update_available" invisible="1"/>
+                                        <field name="adealer_git_ready" invisible="1"/>
+                                    </div>
+                                    <!-- Чому кнопки немає — сказано словом, а не мовчанням. -->
+                                    <div class="mt8 text-muted"
+                                         invisible="adealer_git_ready">
+                                        <field name="adealer_git_reason" nolabel="1" readonly="1"/>
                                     </div>
                                 </div>
                             </setting>

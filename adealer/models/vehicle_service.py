@@ -13,19 +13,26 @@ from odoo import models, fields, api, _
 class FleetVehicleServiceHistory(models.Model):
     _inherit = 'fleet.vehicle'
 
-    repair_order_ids = fields.One2many('repair.order', 'vehicle_id', 'Repair orders')
+    repair_order_ids = fields.One2many('repair.order', 'vehicle_id', 'Repair orders',
+                                       help='Every repair order of this vehicle.')
     repair_order_count = fields.Integer('Orders count', compute='_compute_service_history',
-                                        store=True)
+                                        store=True,
+                                        help='How many repair orders this vehicle has.')
     last_service_date = fields.Datetime('Last service',
-                                        compute='_compute_service_history', store=True)
+                                        compute='_compute_service_history', store=True,
+                                        help='Date of the latest repair order of this vehicle.')
     last_service_mileage = fields.Float('Mileage at last service',
-                                        compute='_compute_service_history', store=True)
+                                        compute='_compute_service_history', store=True,
+                                        help='Odometer reading at the latest repair order.')
 
     # Інтервали ТО (за замовчуванням 12 міс)
-    service_interval_months = fields.Integer('Service interval, months', default=12)
-    service_interval_km = fields.Float('Service interval, km')
+    service_interval_months = fields.Integer('Service interval, months', default=12,
+                                             help='How often the vehicle should come for service, in months. Sets the next service date.')
+    service_interval_km = fields.Float('Service interval, km',
+                                       help='How often the vehicle should come for service, in kilometres.')
     next_service_date = fields.Date('Next service (planned)',
-                                    compute='_compute_next_service', store=True)
+                                    compute='_compute_next_service', store=True,
+                                    help='Last service plus the interval in months. Feeds the maintenance reminders.')
     service_due = fields.Boolean('Service due/overdue',
                                  compute='_compute_next_service', store=True,
                                  help='Estimated next service date ≤ today')

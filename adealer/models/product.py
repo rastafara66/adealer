@@ -6,9 +6,11 @@ from odoo import models, fields, api
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
     
-    vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle')
+    vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle',
+                                 help='The vehicle this product stands for; its name is copied to the product.')
     #VHS_id = fields.Many2one('fleet.vehicle', string='VHS')
-    base_service = fields.Boolean(default=False, string='Base service')
+    base_service = fields.Boolean(default=False, string='Base service',
+                                  help='A base service: made a service, neither sold nor bought on its own.')
 
     @api.onchange('vehicle_id')
     def _onchange_vehicle_id(self):

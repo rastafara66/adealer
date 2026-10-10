@@ -1,0 +1,60 @@
+<odoo>
+    <data>
+        <!-- Група товарів: іконка, яку показує список товарів «За групами» -->
+        <record id="view_product_category_form_icon" model="ir.ui.view">
+            <field name="name">product.category.form.icon.adealer</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='parent_id']" position="after">
+                    <field name="adealer_icon" widget="adealer_fa_icon"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_product_category_list_icon" model="ir.ui.view">
+            <field name="name">product.category.list.icon.adealer</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_list_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='display_name']" position="before">
+                    <field name="adealer_icon" widget="adealer_fa_icon" string=" " optional="show"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Підібрати іконки заново — коли групи перейменували -->
+        <record id="action_product_category_pick_icons" model="ir.actions.server">
+            <field name="name">Pick icons by name</field>
+            <field name="model_id" ref="product.model_product_category"/>
+            <field name="binding_model_id" ref="product.model_product_category"/>
+            <field name="binding_view_types">list,form</field>
+            <field name="state">code</field>
+            <field name="code">records.action_adealer_pick_icons()</field>
+        </record>
+
+        <!-- Список товарів: дерево груп, коли згруповано за групою товару -->
+        <record id="view_product_list_groups" model="ir.ui.view">
+            <field name="name">product.product.list.groups.adealer</field>
+            <field name="model">product.product</field>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+                <!-- groups_limit: дереву потрібні ВСІ групи одразу — без
+                     нього Odoo віддає перші 80, і гілки зникали б мовчки. -->
+                <list string="Products" js_class="adealer_category_tree_list"
+                      groups_limit="5000" default_order="name, id">
+                    <field name="default_code" optional="show"/>
+                    <field name="name"/>
+                    <field name="barcode" optional="hide"/>
+                    <field name="categ_id" optional="hide"/>
+                    <field name="type" optional="hide"/>
+                    <field name="uom_id" optional="show" options="{'no_open': True}"/>
+                    <field name="lst_price" string="Sales Price" optional="show"/>
+                    <field name="standard_price" optional="hide"/>
+                    <field name="qty_available" string="On Hand" optional="show"/>
+                    <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                </list>
+            </field>
+        </record>
+    </data>
+</odoo>

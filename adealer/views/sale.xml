@@ -10,14 +10,14 @@
                     <field name="vehicle_id"/>
                 </xpath>
                 <xpath expr="//div[@name='button_box']" position="inside">
-                    <button name="action_view_repair_orders" type="object"
+                    <button help="Repair orders created from this sales order." name="action_view_repair_orders" type="object"
                             class="oe_stat_button" icon="fa-wrench"
                             invisible="own_repair_order_count == 0">
                         <field name="own_repair_order_count" widget="statinfo" string="Repair orders"/>
                     </button>
                 </xpath>
                 <xpath expr="//button[@name='action_confirm']" position="after">
-                    <button name="action_create_repair_order" type="object"
+                    <button help="Create a repair order from this sales order: customer, vehicle and lines are copied." name="action_create_repair_order" type="object"
                             string="Create order" class="btn-secondary"
                             invisible="state not in ('sale', 'done')"/>
                 </xpath>
@@ -26,12 +26,10 @@
                      for service), never an outgoing quotation we email out. The core
                      form is built around the quotation flow, which read as if we were
                      about to send the customer an offer. Strip that flow out. -->
-                <!-- Odoo 18 calls these buttons `send_by_email*`; 19.0 renamed them
-                     to `quotation_send*`. Same buttons, same purpose. -->
-                <xpath expr="//button[@id='send_by_email_primary']" position="attributes">
+                <xpath expr="//button[@id='quotation_send_primary']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
-                <xpath expr="//button[@id='send_by_email']" position="attributes">
+                <xpath expr="//button[@id='quotation_send']" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
                 <xpath expr="//button[@id='send_proforma_primary']" position="attributes">

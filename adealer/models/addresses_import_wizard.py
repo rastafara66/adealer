@@ -8,9 +8,10 @@ class PartnerAddressImportWizard(models.TransientModel):
 
     partner_type = fields.Selection([
         ('company', 'Legal entities'),
-        ('person', 'Companies'),
+        ('person', 'Individuals'),
         ('all', 'All')
-    ], string='Counterparty type', default='all', required=True)
+    ], string='Counterparty type', default='all', required=True,
+                                    help='Whose addresses to load: legal entities, individuals or all counterparties.')
 
     @report_errors('wizard_import_addresses')
     def action_import_addresses(self):

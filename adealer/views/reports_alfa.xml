@@ -9,7 +9,6 @@
             <field name="model">repair.order</field>
             <field name="report_type">qweb-html</field>
             <field name="report_name">adealer.report_repair_order</field>
-            <field name="report_file">adealer.report_repair_order</field>
             <field name="binding_model_id" ref="repair.model_repair_order"/>
             <field name="binding_type">report</field>
         </record>
@@ -110,7 +109,6 @@
             <field name="model">repair.order</field>
             <field name="report_type">qweb-html</field>
             <field name="report_name">adealer.report_repair_act</field>
-            <field name="report_file">adealer.report_repair_act</field>
             <field name="binding_model_id" ref="repair.model_repair_order"/>
             <field name="binding_type">report</field>
         </record>
@@ -141,7 +139,7 @@
                                 </thead>
                                 <tbody>
                                     <tr t-foreach="o.service_line_ids" t-as="l">
-                                        <td><span t-esc="l_index + 1"/></td>
+                                        <td><span t-out="l_index + 1"/></td>
                                         <td><span t-field="l.product_id"/></td>
                                         <td class="text-end"><span t-field="l.product_uom_qty"/></td>
                                         <td class="text-end"><span t-field="l.price_unit"/></td>
@@ -174,7 +172,6 @@
             <field name="model">dealer.car</field>
             <field name="report_type">qweb-html</field>
             <field name="report_name">adealer.report_car_handover</field>
-            <field name="report_file">adealer.report_car_handover</field>
             <field name="binding_model_id" ref="model_dealer_car"/>
             <field name="binding_type">report</field>
         </record>

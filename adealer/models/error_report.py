@@ -165,24 +165,25 @@ class AdealerErrorReport(models.Model):
     _rec_name = "error_type"
 
     company_id = fields.Many2one(
-        "res.company", required=True, default=lambda self: self.env.company
-    )
+        "res.company", required=True, default=lambda self: self.env.company,
+                                 help='The company where the failure happened. Each company keeps its own queue.')
     fingerprint = fields.Char(
         required=True,
         index=True,
         help="Identifies the same bug across occurrences, so it is reported once.",
     )
     error_type = fields.Char(required=True, help="The exception class, never its text.")
-    operation = fields.Char()
+    operation = fields.Char(help='What the module was doing when it failed.')
     module = fields.Char(
         default="adealer",
         required=True,
         index=True,
         help="Which 3A-dealer module raised it, so the collector tells reports apart.",
     )
-    http_status = fields.Integer()
+    http_status = fields.Integer(help='The HTTP status code, if the failure came from a server; 0 otherwise.')
     frames = fields.Text(help="Where in the code it failed. Paths are cut to the module root.")
-    occurrences = fields.Integer(default=1)
+    occurrences = fields.Integer(default=1,
+                                 help='How many times this same failure has happened. The report is sent once.')
     comment = fields.Text(
         string="Your comment",
         help="Optional. Anything typed here is sent as written -- do not paste "
@@ -193,21 +194,21 @@ class AdealerErrorReport(models.Model):
         default="pending",
         required=True,
         index=True,
-    )
-    attempts = fields.Integer(default=0)
-    sent_date = fields.Datetime(readonly=True)
+                             help='To send: queued. Sent: delivered. Could not send: the attempts failed.')
+    attempts = fields.Integer(default=0,
+                              help='How many times sending was tried.')
+    sent_date = fields.Datetime(readonly=True,
+                                help='When the report was delivered.')
     payload = fields.Text(
         compute="_compute_payload",
         help="Exactly what leaves this database. Nothing else is transmitted.",
     )
 
-    # Odoo 18 does not know `models.Constraint` (it arrived in 19.0) - the same
-    # constraint is declared through `_sql_constraints`.
-    _sql_constraints = [
-        ("fingerprint_company_uniq",
-         "UNIQUE(fingerprint, company_id)",
-         "The same failure is only queued once per company."),
-    ]
+    _fingerprint_company_uniq = models.Constraint(
+        "UNIQUE(fingerprint, company_id)",
+        "The same failure is only queued once per company. Open the report already "
+        "in the queue instead: its Occurrences count goes up.",
+    )
 
     @api.depends("fingerprint", "error_type", "operation", "http_status",
                  "frames", "occurrences", "comment")

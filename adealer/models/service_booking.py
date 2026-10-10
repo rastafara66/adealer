@@ -14,10 +14,14 @@ class AdealerWorkplace(models.Model):
     _description = 'Workplace / service post'
     _order = 'sequence, name'
 
-    name = fields.Char('Name', required=True, translate=True)
-    sequence = fields.Integer('Sequence', default=10)
-    active = fields.Boolean(default=True)
-    color = fields.Integer('Color')
+    name = fields.Char('Name', required=True, translate=True,
+                       help='Name of the post or bay, as shown on the board.')
+    sequence = fields.Integer('Sequence', default=10,
+                              help='Order of the post on the board.')
+    active = fields.Boolean(default=True,
+                            help='Clear to hide the post from the board without deleting it.')
+    color = fields.Integer('Color',
+                           help='Colour of the post on the board.')
 
 
 class AdealerRepairType(models.Model):
@@ -25,11 +29,21 @@ class AdealerRepairType(models.Model):
     _description = 'Repair type'
     _order = 'name'
 
-    name = fields.Char('Name', required=True, translate=True)
-    code = fields.Char('Code')
+    name = fields.Char('Name', required=True, translate=True,
+                       help='Name of the repair type, e.g. Maintenance or Warranty.')
+    code = fields.Char('Code',
+                       help='Code of the repair type in the source system.')
     is_warranty = fields.Boolean('Warranty (unpaid)',
                                  help='Guarantee work — not charged to the customer')
-    active = fields.Boolean(default=True)
+    # Колір картки на дошці по постах. У 1С вид ремонту має свій колір, і
+    # клітинка розкладу фарбується ним — майстер розпізнає «гарантію» чи
+    # «ТО» кольором, не читаючи. Рядок #RRGGBB, а не індекс палітри Odoo:
+    # кольори переносяться з 1С як є.
+    html_color = fields.Char('Color',
+                             help='Color of the booking cards of this repair type on the '
+                                  'bay board, as #RRGGBB. Empty: the standard color.')
+    active = fields.Boolean(default=True,
+                            help='Clear to hide the repair type without deleting it.')
 
 
 class AdealerServiceBooking(models.Model):
@@ -38,31 +52,57 @@ class AdealerServiceBooking(models.Model):
     _order = 'appointment_datetime desc, id desc'
     _inherit = ['mail.thread']
 
-    name = fields.Char('Number', copy=False, default='/', index=True)
+    name = fields.Char('Number', copy=False, default='/', index=True,
+                       help='Booking number, given when it is saved.')
     appointment_datetime = fields.Datetime('Appointment date/time', required=True,
-                                           default=fields.Datetime.now, tracking=True)
-    stop_datetime = fields.Datetime('End', compute='_compute_stop', store=True)
-    workplace_id = fields.Many2one('adealer.workplace', 'Workplace / post', index=True, tracking=True)
-    employee_id = fields.Many2one('hr.employee', 'Mechanic', index=True)
+                                           default=fields.Datetime.now, tracking=True,
+                                           help='When the customer is expected.')
+    stop_datetime = fields.Datetime('End', compute='_compute_stop', store=True,
+                                    help='Appointment time plus the work duration.')
+    workplace_id = fields.Many2one('adealer.workplace', 'Workplace / post', index=True, tracking=True,
+                                   help='The post or bay the work is planned on.')
+    employee_id = fields.Many2one('hr.employee', 'Mechanic', index=True,
+                                  help='The mechanic planned for the work.')
     advisor_id = fields.Many2one('hr.employee', 'Service advisor',
                                  help='Service receptionist')
-    work_duration = fields.Float('Work duration, h', default=1.0)
-    intake_time = fields.Char('Vehicle intake time')
+    work_duration = fields.Float('Work duration, h', default=1.0,
+                                 help='How long the work takes, in hours. Sets the end time.')
+    intake_time = fields.Char('Vehicle intake time',
+                              help='When the vehicle is taken in, if it differs from the appointment.')
 
     sale_order_id = fields.Many2one('sale.order', 'Customer order', copy=False, index=True,
                                     help='The customer order linked to this booking')
     repair_order_id = fields.Many2one('repair.order', 'Repair order', copy=False, index=True,
                                       help='The repair order created from this booking (optional)')
 
-    partner_id = fields.Many2one('res.partner', 'Customer', tracking=True)
-    vehicle_id = fields.Many2one('fleet.vehicle', 'Vehicle')
-    model_id = fields.Many2one('fleet.vehicle.model', 'Model')
-    year = fields.Char('Model year')
-    plate = fields.Char('Plate number')
-    phone = fields.Char('Phone')
-    vin = fields.Char('VIN')
-    requested_works = fields.Text('Requested works')
-    repair_type_id = fields.Many2one('adealer.repair.type', 'Repair type')
+    partner_id = fields.Many2one('res.partner', 'Customer', tracking=True,
+                                 help='The customer. If there is no contact yet, write the name in Customer name instead.')
+    # Клієнт «зі слів»: записують по телефону ім'я й номер, картки контакту
+    # ще немає (і часто не буде). В обліковій системі, з якої переходять, це
+    # звичайний рядок у записі — губити його не можна, а заводити контакт на
+    # кожне «Олександр» — засмічувати довідник.
+    customer_name = fields.Char(
+        'Customer name',
+        help='The customer as given (for example, on the phone) when there is no contact '
+             'for them yet. Shown on the board and in the calendar when no customer is '
+             'selected.')
+    vehicle_id = fields.Many2one('fleet.vehicle', 'Vehicle',
+                                 help="The customer's vehicle, if it is already in the database.")
+    model_id = fields.Many2one('fleet.vehicle.model', 'Model',
+                               help='Model of the vehicle, when the vehicle itself is not in the database.')
+    year = fields.Char('Model year',
+                       help='Model year, as the customer gave it.')
+    plate = fields.Char('Plate number',
+                        help='Registration plate.')
+    phone = fields.Char('Phone',
+                        help='Phone to reach the customer.')
+    vin = fields.Char('VIN',
+                      help='VIN of the vehicle, if known.')
+    requested_works = fields.Text('Requested works',
+                                  help='What the customer asks to do, in their words.')
+    repair_type_id = fields.Many2one('adealer.repair.type', 'Repair type',
+                                     help='Kind of repair; its colour marks the card on the board.')
+    repair_type_color = fields.Char(related='repair_type_id.html_color')
     guid_1c = fields.Char('External identifier', copy=False, index=True,
                           help='External identifier for sync idempotency')
 
@@ -72,8 +112,10 @@ class AdealerServiceBooking(models.Model):
         ('arrived', 'Arrived'),
         ('done', 'Order created'),
         ('cancel', 'Cancelled'),
-    ], default='draft', required=True, tracking=True)
-    company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company)
+    ], default='draft', required=True, tracking=True,
+                             help='Planned, Confirmed, Arrived, Order created (a repair order was made from it) or Cancelled.')
+    company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company,
+                                 help='The company the booking belongs to.')
 
     @api.depends('appointment_datetime', 'work_duration')
     def _compute_stop(self):
@@ -104,19 +146,24 @@ class AdealerServiceBooking(models.Model):
                 vals['name'] = self.env['ir.sequence'].next_by_code('adealer.service.booking') or '/'
         return super().create(vals_list)
 
-    @api.depends('name', 'plate', 'vehicle_id', 'requested_works', 'partner_id')
+    @api.depends('name', 'plate', 'model_id', 'vehicle_id', 'requested_works',
+                 'partner_id', 'customer_name')
     def _compute_display_name(self):
+        """«Держномер модель · клієнт · роботи» — те, що майстер шукає очима.
+
+        Так підписана клітинка розкладу в 1С, і саме це видно на події
+        календаря. Службовий номер запису (ПЗ000123) людині нічого не каже —
+        він лише запасний підпис, коли більше нічого немає.
+        """
         for b in self:
-            who = b.plate or (b.vehicle_id.name if b.vehicle_id else '') or (b.partner_id.name if b.partner_id else '')
+            car = ' '.join(x for x in (b.plate, b.model_id.name) if x) \
+                or (b.vehicle_id.name or '')
+            who = b.partner_id.name or b.customer_name or ''
             works = (b.requested_works or '').strip().replace('\n', ' ')
             if len(works) > 30:
                 works = works[:30] + '…'
-            parts = [b.name or '/']
-            if who:
-                parts.append(who)
-            if works:
-                parts.append(works)
-            b.display_name = ' · '.join(parts)
+            parts = [p for p in (car, who, works) if p]
+            b.display_name = ' · '.join(parts) if parts else (b.name or '/')
 
     def action_create_repair_order(self):
         """Створити наряд-замовлення з запису й привʼязати до нього."""

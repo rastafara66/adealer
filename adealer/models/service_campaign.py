@@ -16,29 +16,41 @@ class ServiceCampaign(models.Model):
     _inherit = ['mail.thread']
     _order = 'date_start desc, id desc'
 
-    name = fields.Char('Campaign name', required=True, tracking=True)
-    code = fields.Char('Code/number', copy=False, index=True)
+    name = fields.Char('Campaign name', required=True, tracking=True,
+                       help="Name of the campaign, e.g. the manufacturer's recall title.")
+    code = fields.Char('Code/number', copy=False, index=True,
+                       help='Number of the campaign given by the manufacturer.')
     campaign_type = fields.Selection([
         ('recall', 'Recall'),
         ('warranty', 'Warranty'),
         ('service', 'Service action'),
-    ], 'Type', default='recall', required=True, tracking=True)
-    date_start = fields.Date('Start date', default=fields.Date.context_today)
-    date_end = fields.Date('End date')
+    ], 'Type', default='recall', required=True, tracking=True,
+                                     help='Recall, warranty campaign or service action.')
+    date_start = fields.Date('Start date', default=fields.Date.context_today,
+                             help='When the campaign starts.')
+    date_end = fields.Date('End date',
+                           help='When the campaign ends. Empty: open-ended.')
     state = fields.Selection([
         ('draft', 'Draft'),
         ('active', 'Active'),
         ('closed', 'Closed'),
-    ], 'State', default='draft', required=True, tracking=True)
-    description = fields.Html('Description / instructions')
+    ], 'State', default='draft', required=True, tracking=True,
+                             help='Draft: being prepared. Active: repair orders show it for the vehicles in it. Closed: finished.')
+    description = fields.Html('Description / instructions',
+                              help='What to do and how, for the workshop.')
     service_product_id = fields.Many2one('product.product', 'Campaign work',
                                          domain="[('type', '=', 'service')]",
                                          help='Service performed within the campaign')
-    line_ids = fields.One2many('dealer.service.campaign.line', 'campaign_id', 'Vehicles')
-    vehicle_count = fields.Integer('Total vehicles', compute='_compute_counts', store=True)
-    done_count = fields.Integer('Done', compute='_compute_counts', store=True)
-    progress = fields.Float('Progress, %', compute='_compute_counts', store=True)
-    company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company)
+    line_ids = fields.One2many('dealer.service.campaign.line', 'campaign_id', 'Vehicles',
+                               help='Vehicles covered by the campaign and the state of each.')
+    vehicle_count = fields.Integer('Total vehicles', compute='_compute_counts', store=True,
+                                   help='How many vehicles the campaign covers.')
+    done_count = fields.Integer('Done', compute='_compute_counts', store=True,
+                                help='How many vehicles are done.')
+    progress = fields.Float('Progress, %', compute='_compute_counts', store=True,
+                            help='Done vehicles as a share of all vehicles.')
+    company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company,
+                                 help='The company running the campaign.')
 
     @api.depends('line_ids.state')
     def _compute_counts(self):
@@ -73,19 +85,24 @@ class ServiceCampaignLine(models.Model):
     _order = 'state, id'
 
     campaign_id = fields.Many2one('dealer.service.campaign', 'Campaign', required=True,
-                                  ondelete='cascade', index=True)
-    vehicle_id = fields.Many2one('fleet.vehicle', 'Vehicle', index=True)
+                                  ondelete='cascade', index=True,
+                                  help='The campaign this vehicle belongs to.')
+    vehicle_id = fields.Many2one('fleet.vehicle', 'Vehicle', index=True,
+                                 help='The vehicle, if it is in the database; otherwise fill in the VIN.')
     vin = fields.Char('VIN', help='VIN, if the vehicle is not yet in the database')
-    partner_id = fields.Many2one('res.partner', 'Owner')
+    partner_id = fields.Many2one('res.partner', 'Owner',
+                                 help='Owner of the vehicle, to notify.')
     state = fields.Selection([
         ('pending', 'Pending'),
         ('notified', 'Notified'),
         ('done', 'Done'),
         ('rejected', 'Customer refusal'),
-    ], 'Status', default='pending', required=True, index=True)
+    ], 'Status', default='pending', required=True, index=True,
+                             help='Pending, Notified (the owner was told), Done or Customer refusal.')
     repair_order_id = fields.Many2one('repair.order', 'Order', copy=False,
                                       help='The order that closed the vehicle campaign')
-    done_date = fields.Date('Completion date')
+    done_date = fields.Date('Completion date',
+                            help='When the campaign work was done on this vehicle.')
 
     @api.onchange('vehicle_id')
     def _onchange_vehicle_id(self):
@@ -103,8 +120,10 @@ class RepairOrderCampaign(models.Model):
 
     active_campaign_ids = fields.Many2many('dealer.service.campaign',
                                            compute='_compute_active_campaigns',
-                                           string='Active campaigns for the vehicle')
-    active_campaign_count = fields.Integer(compute='_compute_active_campaigns')
+                                           string='Active campaigns for the vehicle',
+                                           help='Active campaigns that cover this vehicle: do the campaign work while the car is in.')
+    active_campaign_count = fields.Integer(compute='_compute_active_campaigns',
+                                           help='How many active campaigns cover this vehicle.')
 
     @api.depends('vehicle_id')
     def _compute_active_campaigns(self):

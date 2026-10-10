@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import _, models, fields, api
 from odoo.exceptions import ValidationError
 
 class ResPartner(models.Model):
@@ -51,4 +51,7 @@ class ResPartner(models.Model):
     def _check_edrpou_length(self):
         for rec in self:
             if rec.edrpou and len(rec.edrpou) not in (8, 10):
-                raise ValidationError("EDRPOU must contain exactly 8 or 10 characters.")
+                raise ValidationError(_(
+                    'The EDRPOU code "%s" has %s characters, but it must have 8 '
+                    '(a company) or 10 (an individual). Check the code against '
+                    'the registration documents.', rec.edrpou, len(rec.edrpou)))

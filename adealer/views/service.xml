@@ -71,26 +71,26 @@
                     <field name="mechanic_ids" widget="many2many_tags"/>
                 </xpath>
                 <xpath expr="//button[@name='action_repair_cancel_draft']" position="after">
-                    <button name="action_create_rakhunok" type="object"
+                    <button help="Create a draft invoice for all lines of the repair order, parts and labour." name="action_create_rakhunok" type="object"
                             string="Create invoice" class="btn-secondary"
                             invisible="state in ('draft', 'cancel')"/>
-                    <button name="action_create_vydatkova" type="object"
+                    <button help="Create a draft delivery note for the parts lines." name="action_create_vydatkova" type="object"
                             string="Create delivery note" class="btn-primary"
                             invisible="state in ('draft', 'cancel')"/>
-                    <button name="action_create_akt" type="object"
+                    <button help="Create a draft act of completed works for the labour lines." name="action_create_akt" type="object"
                             string="Create act" class="btn-secondary"
                             invisible="state in ('draft', 'cancel')"/>
-                    <button name="action_issue_parts" type="object"
+                    <button help="Move the stocked parts of this order from the warehouse to the workshop." name="action_issue_parts" type="object"
                             string="Issue parts from stock" class="btn-secondary"
                             invisible="state in ('draft', 'cancel')"/>
                 </xpath>
                 <xpath expr="//div[@name='button_box']" position="inside">
-                    <button name="action_view_invoices" type="object"
+                    <button help="Invoices, delivery notes and acts created from this repair order." name="action_view_invoices" type="object"
                             class="oe_stat_button" icon="fa-file-text-o"
                             invisible="invoice_count == 0">
                         <field name="invoice_count" widget="statinfo" string="Invoices/Delivery notes/Acts"/>
                     </button>
-                    <button name="action_view_pickings" type="object"
+                    <button help="Stock transfers made for this repair order." name="action_view_pickings" type="object"
                             class="oe_stat_button" icon="fa-truck"
                             invisible="picking_count == 0">
                         <field name="picking_count" widget="statinfo" string="Shipping"/>

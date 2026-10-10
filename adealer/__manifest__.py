@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    # 🔴 «vehicle dealer» тут не синонім заради краси, а замір. У магазині
+    # «vehicle dealer» тут не синонім заради краси, а замір. У магазині
     # 06.09.2026: за запитом `car dealership` цей модуль знаходиться, а за
     # `vehicle dealer` видача — ТРИ додатки на весь каталог, і нашого серед них
     # немає. Усі троє мають слово `Vehicle` у назві. Ніша порожня, тож питання
@@ -8,6 +8,12 @@
     'name': "3A-dealer — Car Dealership, Vehicle Dealer & Service Workshop",
 
     'summary': "Car showroom · Auto parts · Service workshop — vehicle dealer management with a document-centric workflow for Odoo",
+    # Для НАШОЇ сторінки: у `summary` англійські слова стоять
+    # заради пошуку в магазині, читачеві aktiv.in.ua вони ні до
+    # чого. Odoo невідомі ключі маніфеста ігнорує.
+    'summary_uk': 'Автосалон, запчастини й сервіс: продаж і купівля авто, '
+                  'замовлення-наряди, склад запчастин і друковані форми — робота йде '
+                  'документами, як в 1С.',
 
     'description': """
 3A-dealer — a vertical solution for car dealers and service workshops
@@ -26,12 +32,12 @@ Key features:
 * Reports in two styles: "Ready reports" (parameter header, Generate, statement) and the interactive Odoo pivot.
 * Printable forms (UA): invoice for payment, delivery note, return note, goods-receipt note, power of attorney, reconciliation act.
 * Document journals: Date, Number, Customer, Vehicle, Amount, Status.
-* Interface in English and Ukrainian.
+* Interface in English, Ukrainian, French, German, Spanish, Dutch and Polish.
     """,
 
     'application': True,
     'post_init_hook': 'post_init_hook',
-    'author': "chukhin",
+    'author': "3A Studio",
     # Адреса для звернень покупців (видима лише тим, хто завантажив модуль).
     # Її не було взагалі — тобто людині, у якої модуль не встановився, не було
     # куди написати; 17 завантажень і жодного листа саме тому й дивними не були.
@@ -44,7 +50,7 @@ Key features:
     'live_test_url': "https://demo-3adealer.yellow.in.ua",
     'license': "LGPL-3",
     'category': 'Sales',
-    'version': '18.0.1.11.7',
+    'version': '19.0.1.18.5',
     'images': [
         # The first image is the card picture in the App Store listing. A
         # screenshot shrunk to a thumbnail reads as a grey smudge; the banner
@@ -73,18 +79,30 @@ Key features:
                 'maintenance',
                 'repair',
                 'contacts',
-                'crm'
+                'crm',
+                # Сканер штрихкодів (штатний, LGPL): ловить «набір» сканера
+                # і віддає код у документ — models/barcode_scan.py.
+                'barcodes',
                 ],
     # always loaded
     'data': [
+        'security/adealer_groups.xml',
+        # Одразу після груп і БЕЗ noupdate: під'єднання до штатних
+        # груп мусить переприкладатись при КОЖНОМУ оновленні.
+        'security/adealer_groups_wiring.xml',
         'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
         'views/partner_child_cleanup_wizard_view.xml',  # <-- цей файл має бути раніше за views.xml!
         'views/addresses_import_wizard.xml',  # <-- цей файл має бути раніше за views.xml!
         'views/partner_import_wizard.xml', # <-- цей файл має бути раніше за views.xml!
         'views/journals.xml',  # <-- журнальні list-view; мають бути раніше за views.xml (actions на них посилаються)
+        'views/product_category.xml',  # <-- список товарів із деревом груп; раніше за views.xml (дія товарів на нього посилається)
         'views/views.xml',
-        # 🔴 ОДРАЗУ після views.xml, хоч це й файл налаштувань: тут оголошено меню
+        # Структура підпорядкованості документів. Після views.xml: прив'язки
+        # дій показуються в шестерні «Дії», а не власним меню.
+        'views/doc_chain_views.xml',
+        'views/doc_basis_views.xml',
+        # ОДРАЗУ після views.xml, хоч це й файл налаштувань: тут оголошено меню
         # adealer.configuration, а батьком його називають service_booking.xml,
         # error_report_views.xml і organization.xml нижче. На ЧИСТІЙ базі файли
         # читаються по порядку, тож із попереднім місцем (22-м) встановлення падало
@@ -110,6 +128,8 @@ Key features:
         'views/report_partner_balance.xml',
         'views/report_wizards.xml',
         'views/reports.xml',
+        # Сканер штрихкодів у заказ-наряді, продажу й закупівлі.
+        'views/barcode_scan_views.xml',
         'data/cron.xml',
     ],
     # only loaded in demonstration mode
@@ -125,6 +145,10 @@ Key features:
             'adealer/static/src/css/theme.css',  # фірмова тема (navy/gold), гейт body.adealer-theme
             'adealer/static/src/css/dashboard.css',
             'adealer/static/src/js/custom.js',
+            # OWL 2 (Odoo 18/19) і OWL 3 (Odoo 20) — той самий JS; див. сам файл.
+            'adealer/static/src/js/owl_compat.js',
+            # Віджет сканера для Odoo 20 (у 18/19 — штатний з `barcodes`).
+            'adealer/static/src/js/barcode_handler_field.js',
             'adealer/static/src/js/adealer_sidebar.js',
             'adealer/static/src/xml/adealer_sidebar.xml',
             'adealer/static/src/js/dashboard/dashboard.js',
@@ -132,6 +156,10 @@ Key features:
             'adealer/static/src/css/booking_board.css',
             'adealer/static/src/js/booking_board/board.js',
             'adealer/static/src/xml/booking_board.xml',
+            # Список товарів «За групами»: групи деревом, як теки довідника.
+            'adealer/static/src/css/category_tree_list.css',
+            'adealer/static/src/js/category_tree_list/category_tree_list.js',
+            'adealer/static/src/js/category_tree_list/category_tree_list.xml',
         ],
     },
     # Без зовнішніх Python-залежностей: .xlsx читаємо через openpyxl,

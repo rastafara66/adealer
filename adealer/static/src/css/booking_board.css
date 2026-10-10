@@ -17,12 +17,22 @@
 }
 .adealer-board__nav { display: flex; align-items: center; gap: 6px; }
 .adealer-board__date { max-width: 150px; }
-.adealer-board__daylabel { font-weight: 600; color: #33415c; margin-left: 8px; text-transform: capitalize; }
+/* Велика — лише перша літера (у JS): `capitalize` робив «29 Вересня» */
+.adealer-board__daylabel { font-weight: 600; color: #33415c; margin-left: 8px; }
 .adealer-board__views { display: flex; gap: 4px; }
 .adealer-board__view {
     border: 1px solid #d6dbe3; background: #fff; color: #33415c; font-weight: 500;
 }
 .adealer-board__view--active {
+    background: var(--adealer-accent, #1a3a6b); border-color: var(--adealer-accent, #1a3a6b); color: #fff;
+}
+/* Кнопки днів: сьогодні + два тижні, як у розкладі 1С */
+.adealer-board__days { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; }
+.adealer-board__day {
+    border: 1px solid #d6dbe3; background: #fff; color: #33415c; font-size: 12px; padding: 2px 8px;
+}
+.adealer-board__day--weekend { color: #b42318; }
+.adealer-board__day--active {
     background: var(--adealer-accent, #1a3a6b); border-color: var(--adealer-accent, #1a3a6b); color: #fff;
 }
 
@@ -38,12 +48,10 @@
 /* Вісь часу */
 .adealer-board__timecol { flex: 0 0 56px; position: sticky; left: 0; background: #fff; z-index: 3; }
 .adealer-board__poststub { height: 40px; border-bottom: 1px solid #e6e9ef; }
-.adealer-board__timeaxis, .adealer-board__lane {
-    position: relative;
-    height: calc((21 - 7) * 48px); /* DAY_END-DAY_START */
-}
+/* Висота — з коду (HOUR_PX на годину, вікно дня рахується з записів) */
+.adealer-board__timeaxis, .adealer-board__lane { position: relative; }
 .adealer-board__hour {
-    height: 48px; font-size: 11px; color: #98a2b3; text-align: right;
+    height: 64px; font-size: 11px; color: #98a2b3; text-align: right;
     padding-right: 6px; box-sizing: border-box; border-top: 1px solid #eef1f5;
 }
 
@@ -61,21 +69,29 @@
 .adealer-board__count {
     background: #eef1f5; color: #667085; border-radius: 10px; padding: 0 7px; font-size: 11px;
 }
-.adealer-board__lane { position: relative; }
-.adealer-board__gridline { height: 48px; border-top: 1px solid #f2f4f7; }
+/* Смуги по 15 хвилин (16px із 64px години) — крок шкали 1С */
+.adealer-board__lane {
+    position: relative; cursor: copy;
+    background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 15px,
+                                                #f6f7f9 15px, #f6f7f9 16px);
+}
+.adealer-board__gridline { height: 64px; border-top: 1px solid #e9edf2; }
 
-/* Подія */
+/* Картка запису: рядки як у клітинці розкладу 1С */
 .adealer-board__event {
     position: absolute; left: 3px; right: 3px;
-    background: #eaf0fb; border: 1px solid #d6e0f5; border-left: 3px solid #1a3a6b;
-    border-radius: 5px; padding: 3px 6px; overflow: hidden; cursor: pointer;
+    background: #eaf0fb; color: #1c2536; border: 1px solid rgba(16,24,40,.12);
+    border-left: 4px solid #1a3a6b;
+    border-radius: 5px; padding: 2px 6px; overflow: hidden; cursor: pointer;
     font-size: 11px; line-height: 1.25; box-shadow: 0 1px 2px rgba(16,24,40,.06);
 }
-.adealer-board__event:hover { filter: brightness(0.97); box-shadow: 0 2px 6px rgba(16,24,40,.14); z-index: 5; }
-.adealer-board__event--done { background: #e7f6ee; border-color: #b7e4cd; }
-.adealer-board__ev-time { font-weight: 700; color: #1c2536; }
-.adealer-board__ev-main { font-weight: 600; color: #1c2536; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.adealer-board__ev-works { color: #475467; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.adealer-board__ev-mech { color: #98a2b3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.adealer-board__event:hover { filter: brightness(0.96); box-shadow: 0 2px 6px rgba(16,24,40,.18); z-index: 5; }
+.adealer-board__event--done { background: #e7f6ee; }
+.adealer-board__event--cancel { opacity: .45; text-decoration: line-through; }
+.adealer-board__ev { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.adealer-board__ev--time { font-weight: 700; }
+.adealer-board__ev--type { font-style: italic; }
+.adealer-board__ev--car { font-weight: 600; }
+.adealer-board__ev--mechanic, .adealer-board__ev--advisor, .adealer-board__ev--order { opacity: .75; }
 
 .adealer-board__loading { text-align: center; padding: 60px 0; color: var(--adealer-accent, #1a3a6b); }

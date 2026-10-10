@@ -17,10 +17,14 @@ class PartAnalogGroup(models.Model):
 
     name = fields.Char('Group name', required=True,
                        help='e.g. "Oil filter (engine 1.6)"')
-    note = fields.Text('Description')
-    product_ids = fields.One2many('product.template', 'analog_group_id', 'Analogs')
-    product_count = fields.Integer('Analogs count', compute='_compute_product_count')
-    active = fields.Boolean(default=True)
+    note = fields.Text('Description',
+                       help='What makes these parts interchangeable.')
+    product_ids = fields.One2many('product.template', 'analog_group_id', 'Analogs',
+                                  help='Parts that can replace each other.')
+    product_count = fields.Integer('Analogs count', compute='_compute_product_count',
+                                   help='How many parts are in the group.')
+    active = fields.Boolean(default=True,
+                            help='Clear to hide the group without deleting it.')
 
     @api.depends('product_ids')
     def _compute_product_count(self):
@@ -37,7 +41,8 @@ class ProductTemplateAnalog(models.Model):
     analog_ids = fields.Many2many('product.template', string='Analogs (replacements)',
                                   compute='_compute_analog_ids',
                                   help='Other parts from the same analog group')
-    analog_count = fields.Integer('Analogs', compute='_compute_analog_ids')
+    analog_count = fields.Integer('Analogs', compute='_compute_analog_ids',
+                                  help='How many other parts can replace this one.')
 
     @api.depends('analog_group_id', 'analog_group_id.product_ids')
     def _compute_analog_ids(self):
@@ -64,17 +69,26 @@ class LostDemand(models.Model):
     _order = 'date desc, id desc'
     _rec_name = 'product_id'
 
-    date = fields.Datetime('Date', default=fields.Datetime.now, required=True, index=True)
-    product_id = fields.Many2one('product.template', 'Product', required=True, index=True)
-    product_qty = fields.Float('Quantity', default=1.0)
-    partner_id = fields.Many2one('res.partner', 'Customer')
-    vehicle_id = fields.Many2one('fleet.vehicle', 'Vehicle')
-    user_id = fields.Many2one('res.users', 'Manager', default=lambda self: self.env.user)
+    date = fields.Datetime('Date', default=fields.Datetime.now, required=True, index=True,
+                           help='When the customer asked.')
+    product_id = fields.Many2one('product.template', 'Product', required=True, index=True,
+                                 help='The part the customer asked for.')
+    product_qty = fields.Float('Quantity', default=1.0,
+                               help='How many the customer wanted.')
+    partner_id = fields.Many2one('res.partner', 'Customer',
+                                 help='Who asked, if known.')
+    vehicle_id = fields.Many2one('fleet.vehicle', 'Vehicle',
+                                 help="The customer's vehicle, if known.")
+    user_id = fields.Many2one('res.users', 'Manager', default=lambda self: self.env.user,
+                              help='Who recorded the request.')
     reason = fields.Selection([
         ('out_of_stock', 'Out of stock'),
         ('price', 'Price not acceptable'),
         ('no_analog', 'No analog'),
         ('other', 'Other'),
-    ], 'Reason', default='out_of_stock', required=True)
-    note = fields.Text('Comment')
-    company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company)
+    ], 'Reason', default='out_of_stock', required=True,
+                              help='Why the sale did not happen. Out-of-stock requests show what to keep in stock.')
+    note = fields.Text('Comment',
+                       help='Anything else about the request.')
+    company_id = fields.Many2one('res.company', 'Company', default=lambda self: self.env.company,
+                                 help='The company the request belongs to.')

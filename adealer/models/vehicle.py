@@ -7,9 +7,12 @@ from odoo import models, fields, api
 class FleetVehicle(models.Model):
     _inherit = 'fleet.vehicle'
 
-    name = fields.Char(compute="_compute_vehicle_name", store=True)
-    partner_id = fields.Many2one('res.partner', string='Partner')
-    volume = fields.Integer(string='Volume')
+    name = fields.Char(compute="_compute_vehicle_name", store=True,
+                       help='Made from the brand, the model and the VIN.')
+    partner_id = fields.Many2one('res.partner', string='Partner',
+                                 help='The owner of the vehicle.')
+    volume = fields.Integer(string='Volume',
+                            help='Engine displacement in cubic centimetres.')
     photo = fields.Image(string='Vehicle Photo', max_width=512, max_height=512,
                          help="The vehicle's own photo (optional). If empty, the brand logo is shown.")
     brand_logo = fields.Image(related='model_id.brand_id.image_128', string='Brand Logo', readonly=True)
@@ -25,7 +28,8 @@ class FleetVehicle(models.Model):
             '7AT': 'set null', '8AT': 'set null', '10AT': 'set null',
         },
         help='Transmission Used by the vehicle')
-    body_type = fields.Many2one('vehicle.body', 'Vehicle Body')
+    body_type = fields.Many2one('vehicle.body', 'Vehicle Body',
+                                help='Body type, e.g. sedan or estate.')
 
     @api.depends('model_id.brand_id.name', 'model_id.name', 'vin_sn')
     def _compute_vehicle_name(self):
@@ -74,7 +78,7 @@ class FleetVehicleModelBrand(models.Model):
             path = os.path.join(img_dir, 'brand_%s-image.png' % slug)
             if os.path.exists(path):
                 with open(path, 'rb') as fh:
-                    brand.image_128 = base64.b64encode(fh.read())
+                    brand.image_128 = base64.b64encode(fh.read()).decode()
 
     @api.model
     def action_load_bundled_logos(self):
@@ -87,4 +91,4 @@ class BodyType(models.Model):
     _name = 'vehicle.body'
     _description = 'Vehicle Body Type'
 
-    name = fields.Char()
+    name = fields.Char(help='Name of the body type.')

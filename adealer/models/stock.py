@@ -5,7 +5,8 @@ class StockPicking(models.Model):
     _inherit = 'stock.picking'
 
     parts_arrival_notified = fields.Boolean(
-        string='Parts arrival notified', default=False, copy=False)
+        string='Parts arrival notified', default=False, copy=False,
+                                            help='Set once the salesperson was told that the parts for this delivery arrived.')
 
     def _action_done(self):
         res = super()._action_done()

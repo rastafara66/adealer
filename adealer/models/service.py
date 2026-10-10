@@ -9,26 +9,31 @@ class RepairOrder(models.Model):
 
     operations = fields.One2many(
         'repair.line', 'repair_id', 'Operations',
-        copy=True, readonly=False)
+        copy=True, readonly=False,
+                                 help='All lines of the repair order, labour and parts.')
     # Дві відфільтровані «проекції» тих самих рядків (operations) для вкладок:
     # послуги (type='service') і запчастини (товари, type!='service').
     service_line_ids = fields.One2many(
         'repair.line', 'repair_id', string='Service operations',
-        domain=[('product_type', '=', 'service')], copy=False, readonly=False)
+        domain=[('product_type', '=', 'service')], copy=False, readonly=False,
+                                       help='Labour lines of the repair order.')
     part_line_ids = fields.One2many(
         'repair.line', 'repair_id', string='Service parts',
-        domain=[('product_type', '!=', 'service')], copy=False, readonly=False)
+        domain=[('product_type', '!=', 'service')], copy=False, readonly=False,
+                                    help='Parts lines of the repair order.')
     partner_id = fields.Many2one(
-        'res.partner', 'Customer')
-    vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle', index=True)
+        'res.partner', 'Customer',
+                                 help='The customer the work is done for and invoiced to.')
+    vehicle_id = fields.Many2one('fleet.vehicle', string='Vehicle', index=True,
+                                 help="The customer's vehicle under repair.")
     vehicle_logo = fields.Image(related='vehicle_id.display_logo', string='Vehicle Logo', readonly=True)
     mechanic_ids = fields.Many2many('hr.employee', string='Mechanics',
         help='Work performers on the order (executors)')
     mileage = fields.Float(
-        'Mileage', help='Vehicle mileage at intake (vehicle mileage at intake)')
+        'Mileage', help='Vehicle mileage when the car was received for repair.')
     service_advisor_id = fields.Many2one(
         'res.users', string='Manager',
-        help='Order manager / responsible')
+        help='Manager responsible for the order.')
     source_sale_order_id = fields.Many2one(
         'sale.order', string='Source Sale Order', copy=False, index=True,
         help='The sale order this repair order was created from')
@@ -94,7 +99,8 @@ class RepairOrder(models.Model):
                     })
             if shortages:
                 raise UserError(
-                    _("Not enough parts in warehouse \"%(wh)s\":\n%(list)s") % {
+                    _("Not enough parts in warehouse \"%(wh)s\":\n%(list)s\n\nReceive the "
+                      "missing parts into stock first, or change the quantities.") % {
                         'wh': warehouse.display_name,
                         'list': "\n".join(shortages),
                     })
@@ -107,17 +113,26 @@ class RepairLine(models.Model):
     _name = 'repair.line'
     _description = 'Repair Line'
 
-    repair_id = fields.Many2one('repair.order', string='Repair Order', required=True)
-    product_id = fields.Many2one('product.product', string='Product')
+    repair_id = fields.Many2one('repair.order', string='Repair Order', required=True,
+                                help='The repair order this line belongs to.')
+    product_id = fields.Many2one('product.product', string='Product',
+                                 help='The labour or the part.')
     # тип товару (для розділення на вкладки Parts/Service operations); store -> для domain
     product_type = fields.Selection(related='product_id.type', store=True, string='Type')
-    product_uom_qty = fields.Float(string='Quantity', default=1.0)
-    product_uom = fields.Many2one('uom.uom', string='Unit of Measure')
-    price_unit = fields.Float(string='Unit Price')
-    discount = fields.Float(string='Discount (%)', default=0.0)
-    price_subtotal = fields.Float(string='Subtotal', compute='_compute_subtotal', store=True)
-    tax_id = fields.Many2many('account.tax', string='Taxes')
-    currency_id = fields.Many2one('res.currency', string='Currency')
+    product_uom_qty = fields.Float(string='Quantity', default=1.0,
+                                   help='Quantity: hours of labour or pieces of the part.')
+    product_uom = fields.Many2one('uom.uom', string='Unit of Measure',
+                                  help='Unit of the quantity.')
+    price_unit = fields.Float(string='Unit Price',
+                              help='Price of one unit.')
+    discount = fields.Float(string='Discount (%)', default=0.0,
+                            help='Discount on the line, in percent.')
+    price_subtotal = fields.Float(string='Subtotal', compute='_compute_subtotal', store=True,
+                                  help='Quantity times price, less the discount.')
+    tax_id = fields.Many2many('account.tax', string='Taxes',
+                              help='Taxes applied to the line.')
+    currency_id = fields.Many2one('res.currency', string='Currency',
+                                  help='Currency of the prices.')
 
     @api.depends('product_uom_qty', 'price_unit', 'discount')
     def _compute_subtotal(self):

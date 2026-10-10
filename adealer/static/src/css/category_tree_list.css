@@ -1,0 +1,15 @@
+/* Список товарів «За групами»: іконка групи в кольорі акценту, як у теках 1С. */
+.o_adealer_tree_icon {
+    color: var(--primary, #714b67);
+    opacity: 0.85;
+}
+
+.o_adealer_tree_node.o_group_open .o_adealer_tree_icon {
+    opacity: 1;
+}
+
+/* У списку груп колонка з самою іконкою — вузька. */
+.o_list_renderer td[name="adealer_icon"] {
+    width: 1%;
+    white-space: nowrap;
+}

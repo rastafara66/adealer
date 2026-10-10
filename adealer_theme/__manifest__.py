@@ -6,6 +6,11 @@
     # слів; дізнатися після встановлення — повернення й одна зірка.
     'summary': "Odoo backend theme: navy & gold, with a collapsible menu "
                "sidebar. Тема бекенду Odoo: navy + gold і бічне меню",
+    # Для НАШОЇ сторінки: у `summary` англійські слова стоять
+    # заради пошуку в магазині, читачеві aktiv.in.ua вони ні до
+    # чого. Odoo невідомі ключі маніфеста ігнорує.
+    'summary_uk': 'Тема бекенду Odoo: темно-синій із золотим і бічне меню розділів, що '
+                  'згортається. Чистий CSS — без перекомпіляції SCSS і без JavaScript.',
     'description': """
         Тема бекенду Odoo у стилі додатку 3A-dealer:
         верхня панель, меню, кнопки, списки, вкладки, чекбокси.
@@ -15,12 +20,12 @@
 
         Встановлюється/видаляється окремо від модуля adealer.
     """,
-    'author': "chukhin",
+    'author': "3A Studio",
     "support": "adealer@aktiv.in.ua",
     'website': "https://aktiv.in.ua/dodatky/",
     'license': "LGPL-3",
     'category': 'Themes/Backend',
-    'version': '18.0.1.2.3',
+    'version': '19.0.1.2.9',
     # 🔴 Перша картинка — це картка в каталозі. Без ключа `images` картка
     # виходить сірим прямокутником поруч із рештою лінійки, а `index.html` уже
     # посилався на banner.png, якого не було, — тобто сторінка опису
@@ -37,6 +42,8 @@
     'assets': {
         'web.assets_backend': [
             'adealer_theme/static/src/css/theme.css',
+            # OWL 2 (Odoo 18/19) і OWL 3 (Odoo 20) — той самий JS; див. сам файл.
+            'adealer_theme/static/src/js/owl_compat.js',
             'adealer_theme/static/src/js/theme_sidebar.js',
             'adealer_theme/static/src/xml/theme_sidebar.xml',
         ],
