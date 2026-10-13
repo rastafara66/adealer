@@ -50,7 +50,7 @@ Key features:
     'live_test_url': "https://demo-3adealer.yellow.in.ua",
     'license': "LGPL-3",
     'category': 'Sales',
-    'version': '19.0.1.19.0',
+    'version': '19.0.1.20.0',
     'images': [
         # The first image is the card picture in the App Store listing. A
         # screenshot shrunk to a thumbnail reads as a grey smudge; the banner
@@ -119,6 +119,7 @@ Key features:
         'views/service_booking.xml',  # попередній запис + пости + види ремонту
         'data/repair_stage_data.xml',  # стандартні стадії наряду (перед alfa_features)
         'views/alfa_features.xml',  # розширення: нормо-години, стадії, склад авто, кампанії, аналоги
+        'views/crm_lead_views.xml',  # заявка CRM ↔ авто зі складу (1.20.0)
         'views/vehicle_service.xml',  # історія обслуговування + нагадування про ТО
         'views/reports_alfa.xml',  # друковані форми UA: наряд, акт робіт, акт прийому-передачі авто
         'views/reports_ua.xml',  # друковані форми UA: рахунок, видаткова, повернення, прибуткова, довіреність, акт звірки

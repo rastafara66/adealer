@@ -115,8 +115,8 @@ class TestProductListByGroup(TransactionCase):
             "INSERT INTO ir_act_window_view (act_window_id, view_mode, view_id, sequence) "
             "VALUES (%s, 'list', %s, 0) RETURNING id", (action.id, other.id))
         stray = self.env.cr.fetchone()[0]
-        path = file_path('adealer/migrations/19.0.1.16.0/pre-migrate.py')
-        spec = importlib.util.spec_from_file_location('adealer_pre_migrate_19_0_1_16_0', path)
+        path = file_path('adealer/migrations/1.16.0/pre-migrate.py')
+        spec = importlib.util.spec_from_file_location('adealer_pre_migrate_1_16_0', path)
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
         module.migrate(self.env.cr, '19.0.1.15.5')

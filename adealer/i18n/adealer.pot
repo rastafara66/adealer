@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0-20260908\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-13 11:46+0000\n"
-"PO-Revision-Date: 2026-10-13 11:46+0000\n"
+"POT-Creation-Date: 2026-10-13 17:15+0000\n"
+"PO-Revision-Date: 2026-10-13 17:15+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -1766,6 +1766,20 @@ msgid "Customer & vehicle"
 msgstr ""
 
 #. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid ""
+"Customer leads about this vehicle. A lead created from here is linked to the"
+" vehicle."
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__lead_ids
+msgid ""
+"Customer leads about this vehicle: entered in CRM or received from car "
+"portals."
+msgstr ""
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__customer_name
 msgid "Customer name"
 msgstr ""
@@ -2068,6 +2082,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__display_name
 #: model:ir.model.fields,field_description:adealer.field_adealer_update__display_name
 #: model:ir.model.fields,field_description:adealer.field_adealer_workplace__display_name
+#: model:ir.model.fields,field_description:adealer.field_crm_lead__display_name
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__display_name
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_color__display_name
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_complectation__display_name
@@ -2733,6 +2748,11 @@ msgid "How many labour lines are counted."
 msgstr ""
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__lead_count
+msgid "How many open leads ask about this vehicle."
+msgstr ""
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_product_product__analog_count
 #: model:ir.model.fields,help:adealer.field_product_template__analog_count
 msgid "How many other parts can replace this one."
@@ -2866,6 +2886,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__id
 #: model:ir.model.fields,field_description:adealer.field_adealer_update__id
 #: model:ir.model.fields,field_description:adealer.field_adealer_workplace__id
+#: model:ir.model.fields,field_description:adealer.field_crm_lead__id
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__id
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_color__id
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_complectation__id
@@ -3331,6 +3352,24 @@ msgstr ""
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_res_config_settings__adealer_version_latest
 msgid "Latest published version"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model,name:adealer.model_crm_lead
+msgid "Lead"
+msgstr ""
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dealer_car.py:0
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__lead_ids
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid "Leads"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__lead_count
+msgid "Leads count"
 msgstr ""
 
 #. module: adealer
@@ -6472,6 +6511,14 @@ msgid "The structure this line belongs to."
 msgstr ""
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_crm_lead__dealer_car_id
+msgid ""
+"The vehicle from the showroom stock the customer is asking about. Leads from"
+" car portals are linked to their vehicle automatically; the vehicle card "
+"shows all leads about it."
+msgstr ""
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_car__tail_lift
 msgid "The vehicle has a tail lift (loading platform) at the rear."
 msgstr ""
@@ -6970,6 +7017,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:adealer.field_adealer_report_wizard__vehicle_id
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__vehicle_id
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__vehicle_id
+#: model:ir.model.fields,field_description:adealer.field_crm_lead__dealer_car_id
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_image__car_id
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_status_history__car_id
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign_line__vehicle_id
@@ -6978,6 +7026,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:adealer.field_product_template__vehicle_id
 #: model:ir.model.fields,field_description:adealer.field_repair_order__vehicle_id
 #: model:ir.model.fields,field_description:adealer.field_sale_order__vehicle_id
+#: model_terms:ir.ui.view,arch_db:adealer.crm_lead_view_search_dealer_car
+#: model_terms:ir.ui.view,arch_db:adealer.crm_lead_view_search_leads_dealer_car
 #: model_terms:ir.ui.view,arch_db:adealer.view_account_move_realiz_list
 #: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_journal_list
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_orders
@@ -7723,6 +7773,12 @@ msgstr ""
 #. odoo-python
 #: code:addons/adealer/models/report_wizards.py:0
 msgid "customers: %d"
+msgstr ""
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dealer_car.py:0
+msgid "dealer_car_id"
 msgstr ""
 
 #. module: adealer

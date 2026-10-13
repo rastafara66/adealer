@@ -1775,6 +1775,20 @@ msgid "Customer & vehicle"
 msgstr "Kunde & Fahrzeug"
 
 #. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid ""
+"Customer leads about this vehicle. A lead created from here is linked to the"
+" vehicle."
+msgstr "Kunden-Leads zu diesem Fahrzeug. Ein hier erstellter Lead ist mit dem Fahrzeug verknüpft."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__lead_ids
+msgid ""
+"Customer leads about this vehicle: entered in CRM or received from car "
+"portals."
+msgstr "Kunden-Leads zu diesem Fahrzeug: im CRM erfasst oder von Fahrzeugbörsen empfangen."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__customer_name
 msgid "Customer name"
 msgstr "Kundenname"
@@ -2077,6 +2091,7 @@ msgstr "Rabatt auf die Zeile, in Prozent."
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__display_name
 #: model:ir.model.fields,field_description:adealer.field_adealer_update__display_name
 #: model:ir.model.fields,field_description:adealer.field_adealer_workplace__display_name
+#: model:ir.model.fields,field_description:adealer.field_crm_lead__display_name
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__display_name
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_color__display_name
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_complectation__display_name
@@ -2744,6 +2759,11 @@ msgid "How many labour lines are counted."
 msgstr "Wie viele Arbeitszeilen gezählt werden."
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__lead_count
+msgid "How many open leads ask about this vehicle."
+msgstr "Wie viele offene Leads nach diesem Fahrzeug fragen."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_product_product__analog_count
 #: model:ir.model.fields,help:adealer.field_product_template__analog_count
 msgid "How many other parts can replace this one."
@@ -2877,6 +2897,7 @@ msgstr "Wasserstoff"
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__id
 #: model:ir.model.fields,field_description:adealer.field_adealer_update__id
 #: model:ir.model.fields,field_description:adealer.field_adealer_workplace__id
+#: model:ir.model.fields,field_description:adealer.field_crm_lead__id
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__id
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_color__id
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_complectation__id
@@ -3343,6 +3364,24 @@ msgstr "Neueste"
 #: model:ir.model.fields,field_description:adealer.field_res_config_settings__adealer_version_latest
 msgid "Latest published version"
 msgstr "Neueste veröffentlichte Version"
+
+#. module: adealer
+#: model:ir.model,name:adealer.model_crm_lead
+msgid "Lead"
+msgstr "Lead"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dealer_car.py:0
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__lead_ids
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid "Leads"
+msgstr "Leads"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__lead_count
+msgid "Leads count"
+msgstr "Anzahl Leads"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_car__sliding_door__left
@@ -6487,6 +6526,14 @@ msgid "The structure this line belongs to."
 msgstr "Die Struktur, zu der diese Zeile gehört."
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_crm_lead__dealer_car_id
+msgid ""
+"The vehicle from the showroom stock the customer is asking about. Leads from"
+" car portals are linked to their vehicle automatically; the vehicle card "
+"shows all leads about it."
+msgstr "Das Fahrzeug aus dem Bestand, nach dem der Kunde fragt. Leads von Fahrzeugbörsen werden automatisch mit ihrem Fahrzeug verknüpft; die Fahrzeugkarte zeigt alle Leads dazu."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_car__tail_lift
 msgid "The vehicle has a tail lift (loading platform) at the rear."
 msgstr "Das Fahrzeug hat hinten eine Ladebordwand (Hubladebühne)."
@@ -6985,6 +7032,7 @@ msgstr "Wert des zuletzt gescannten Barcodes."
 #: model:ir.model.fields,field_description:adealer.field_adealer_report_wizard__vehicle_id
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__vehicle_id
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__vehicle_id
+#: model:ir.model.fields,field_description:adealer.field_crm_lead__dealer_car_id
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_image__car_id
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_status_history__car_id
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign_line__vehicle_id
@@ -6993,6 +7041,8 @@ msgstr "Wert des zuletzt gescannten Barcodes."
 #: model:ir.model.fields,field_description:adealer.field_product_template__vehicle_id
 #: model:ir.model.fields,field_description:adealer.field_repair_order__vehicle_id
 #: model:ir.model.fields,field_description:adealer.field_sale_order__vehicle_id
+#: model_terms:ir.ui.view,arch_db:adealer.crm_lead_view_search_dealer_car
+#: model_terms:ir.ui.view,arch_db:adealer.crm_lead_view_search_leads_dealer_car
 #: model_terms:ir.ui.view,arch_db:adealer.view_account_move_realiz_list
 #: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_journal_list
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_orders
@@ -7744,6 +7794,12 @@ msgstr "zwischen"
 #: code:addons/adealer/models/report_wizards.py:0
 msgid "customers: %d"
 msgstr "Kunden: %d"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dealer_car.py:0
+msgid "dealer_car_id"
+msgstr "Fahrzeug"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_part_analog_group__name

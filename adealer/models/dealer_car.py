@@ -259,6 +259,12 @@ class DealerCar(models.Model):
                          help='VIN as imported from the source vehicle catalog (dedup key)')
     fleet_vehicle_id = fields.Many2one('fleet.vehicle', 'Customer vehicle (fleet)', copy=False,
                                        help='Created when the vehicle is delivered to the customer')
+    # Заявки покупців про це авто (з 1.20.0): руками з CRM і з майданчиків.
+    lead_ids = fields.One2many('crm.lead', 'dealer_car_id', 'Leads',
+                               help='Customer leads about this vehicle: entered in CRM or '
+                                    'received from car portals.')
+    lead_count = fields.Integer('Leads count', compute='_compute_lead_count',
+                                help='How many open leads ask about this vehicle.')
 
     location_note = fields.Char('Storage location',
                                 help='Where the vehicle stands: lot, row, place.')
@@ -299,6 +305,11 @@ class DealerCar(models.Model):
     def _compute_image_count(self):
         for car in self:
             car.image_count = (1 if car.image_1920 else 0) + len(car.image_ids)
+
+    @api.depends('lead_ids')
+    def _compute_lead_count(self):
+        for car in self:
+            car.lead_count = len(car.lead_ids)
 
     @api.depends('sale_price', 'options_price')
     def _compute_total_price(self):
@@ -389,6 +400,18 @@ class DealerCar(models.Model):
             'res_model': 'fleet.vehicle',
             'res_id': self.fleet_vehicle_id.id,
             'view_mode': 'form',
+        }
+
+    def action_view_leads(self):
+        """Заявки CRM про це авто; нова заявка звідси одразу прив'язана до нього."""
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Leads'),
+            'res_model': 'crm.lead',
+            'view_mode': 'list,kanban,form',
+            'domain': [('dealer_car_id', '=', self.id)],
+            'context': {'default_dealer_car_id': self.id},
         }
 
     def action_view_sale_move(self):

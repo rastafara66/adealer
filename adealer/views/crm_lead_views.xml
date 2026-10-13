@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Заявка CRM знає авто зі складу (з 1.20.0). Поле — над властивостями
+         заявки: це місце однакове у формі ліда й угоди в Odoo 18, 19 і 20
+         (поле тегів у 18/19 стоїть двічі, у 20 — один раз). -->
+    <record id="crm_lead_view_form_dealer_car" model="ir.ui.view">
+        <field name="name">crm.lead.form.dealer.car</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lead_properties']/.." position="before">
+                <group name="dealer_car">
+                    <group>
+                        <field name="dealer_car_id"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Пошук і групування за авто — і в угодах, і в лідах (два різні
+         вікна пошуку CRM). -->
+    <record id="crm_lead_view_search_dealer_car" model="ir.ui.view">
+        <field name="name">crm.lead.search.dealer.car</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="dealer_car_id"/>
+                <filter name="group_dealer_car" string="Vehicle" context="{'group_by': 'dealer_car_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="crm_lead_view_search_leads_dealer_car" model="ir.ui.view">
+        <field name="name">crm.lead.search.leads.dealer.car</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_leads_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="dealer_car_id"/>
+                <filter name="group_dealer_car" string="Vehicle" context="{'group_by': 'dealer_car_id'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
