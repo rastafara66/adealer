@@ -894,6 +894,11 @@ msgid "Awaiting parts"
 msgstr "Очікування запчастин"
 
 #. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__axles
+msgid "Axles"
+msgstr "Кількість осей"
+
+#. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__fleet_vehicle__drive_type__back
 msgid "Back"
 msgstr "Задній"
@@ -1002,6 +1007,11 @@ msgid "Booking number, given when it is saved."
 msgstr "Номер запису, присвоюється під час збереження."
 
 #. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__sliding_door__both
+msgid "Both sides"
+msgstr "З обох боків"
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__brand_id
 #: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_search
 msgid "Brand"
@@ -1070,6 +1080,11 @@ msgstr "По періодах"
 #: code:addons/adealer/static/src/xml/booking_board.xml:0
 msgid "By post"
 msgstr "По постах"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__fuel_type__cng
+msgid "CNG"
+msgstr "Газ (метан)"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_car__transmission__cvt
@@ -1342,6 +1357,11 @@ msgid "Comment"
 msgstr "Коментар"
 
 #. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid "Commercial vehicle"
+msgstr "Комерційне авто"
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__company_id
 #: model:ir.model.fields,field_description:adealer.field_adealer_lost_demand__company_id
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__company_id
@@ -1367,6 +1387,12 @@ msgstr "Завершено за період"
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign_line__done_date
 msgid "Completion date"
 msgstr "Дата виконання"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__condition
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_search
+msgid "Condition"
+msgstr "Стан"
 
 #. module: adealer
 #: model:ir.model,name:adealer.model_res_config_settings
@@ -1847,6 +1873,13 @@ msgid "Date of the document."
 msgstr "Дата документа."
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__first_registration
+msgid ""
+"Date of the first registration. Leave it empty for a new vehicle that has "
+"never been registered. Portals show the month and the year."
+msgstr "Дата першої реєстрації. Для нового авто, яке ще не реєстрували, залиште порожнім. Майданчики показують місяць і рік."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_fleet_vehicle__last_service_date
 msgid "Date of the latest repair order of this vehicle."
 msgstr "Дата останнього наряду цього автомобіля."
@@ -1994,6 +2027,11 @@ msgid "Diagnostics"
 msgstr "Діагностика"
 
 #. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__fuel_type__diesel
+msgid "Diesel"
+msgstr "Дизель"
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/addon_hint.py:0
 msgid ""
@@ -2063,6 +2101,7 @@ msgstr "Знижка на рядок, у відсотках."
 #: model:ir.model.fields,field_description:adealer.field_partner_child_cleanup_wizard__display_name
 #: model:ir.model.fields,field_description:adealer.field_partner_import_wizard__display_name
 #: model:ir.model.fields,field_description:adealer.field_product_category__display_name
+#: model:ir.model.fields,field_description:adealer.field_product_product__display_name
 #: model:ir.model.fields,field_description:adealer.field_product_template__display_name
 #: model:ir.model.fields,field_description:adealer.field_purchase_order__display_name
 #: model:ir.model.fields,field_description:adealer.field_repair_line__display_name
@@ -2199,6 +2238,16 @@ msgid ""
 msgstr "ЄДРПОУ (Єдиний державний реєстр підприємств та організацій України)"
 
 #. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__fuel_type__electric
+msgid "Electric"
+msgstr "Електро"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__emission_class
+msgid "Emission class"
+msgstr "Екологічний клас"
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_partner_balance_wizard__partner_id
 msgid "Empty — summary across all counterparties"
 msgstr "Порожньо — зведення по всіх контрагентах"
@@ -2233,6 +2282,11 @@ msgid "Engine displacement, cc"
 msgstr "Обʼєм двигуна, см³"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__power_kw
+msgid "Engine power in kilowatts, as in the registration document."
+msgstr "Потужність двигуна в кіловатах, як у реєстраційному документі."
+
+#. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_doc_chain_line__kind__basis
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_doc_link__kind__basis
 msgid "Entered on the basis of"
@@ -2260,6 +2314,71 @@ msgstr "Звіти про помилки"
 #: model:ir.model.fields,help:adealer.field_fleet_vehicle__service_due
 msgid "Estimated next service date ≤ today"
 msgstr "Розрахункова дата наступного ТО ≤ сьогодні"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__emission_class__euro1
+msgid "Euro 1"
+msgstr "Євро 1"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__emission_class__euro2
+msgid "Euro 2"
+msgstr "Євро 2"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__emission_class__euro3
+msgid "Euro 3"
+msgstr "Євро 3"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__emission_class__euro4
+msgid "Euro 4"
+msgstr "Євро 4"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__emission_class__euro5
+msgid "Euro 5"
+msgstr "Євро 5"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__emission_class__euro6
+msgid "Euro 6"
+msgstr "Євро 6"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__emission_class__euro6c
+msgid "Euro 6c"
+msgstr "Євро 6c"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__emission_class__euro6d
+msgid "Euro 6d"
+msgstr "Євро 6d"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__emission_class__euro6d_temp
+msgid "Euro 6d-TEMP"
+msgstr "Євро 6d-TEMP"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__emission_class__euro6e
+msgid "Euro 6e"
+msgstr "Євро 6e"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__emission_class__euro7
+msgid "Euro 7"
+msgstr "Євро 7"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__emission_class
+msgid "Euro emission standard, as in the registration document."
+msgstr "Екологічний стандарт Євро, як у реєстраційному документі."
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__euro_pallets
+msgid "Euro pallets"
+msgstr "Європалети"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_doc_chain__line_ids
@@ -2337,6 +2456,13 @@ msgid ""
 msgstr "Заповніть покупця перед продажем автомобіля: продаж оформлюється на нього."
 
 #. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid ""
+"Fill this in for vans and trucks: buyers of commercial vehicles look at "
+"these figures first, and portals such as mobile.de show them in the advert."
+msgstr "Заповніть для фургонів і вантажівок: покупці комерційних авто дивляться на ці цифри насамперед, а майданчики на кшталт mobile.de показують їх в оголошенні."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_repair_stage__is_closing
 msgid "Final"
 msgstr "Завершальна"
@@ -2360,6 +2486,11 @@ msgstr "Перший день періоду."
 #: model:ir.model.fields,help:adealer.field_partner_balance_wizard__date_from
 msgid "First day of the period. Everything before it is the opening balance."
 msgstr "Перший день періоду. Усе, що раніше, — вхідне сальдо."
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__first_registration
+msgid "First registration"
+msgstr "Перша реєстрація"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.adealer_error_report_view_list
@@ -2412,6 +2543,16 @@ msgstr "Від"
 #: model:ir.model.fields.selection,name:adealer.selection__fleet_vehicle__drive_type__front
 msgid "Front"
 msgstr "Передній"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__fuel_type
+msgid "Fuel"
+msgstr "Паливо"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__fuel_type
+msgid "Fuel or drive type."
+msgstr "Вид палива або тип двигуна."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_organization__full_name
@@ -2473,6 +2614,11 @@ msgstr "Прибуткова накладна №"
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_gross
 msgid "Gross profit"
 msgstr "Валовий прибуток"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__gross_weight_kg
+msgid "Gross vehicle weight, kg"
+msgstr "Повна маса, кг"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_option__category
@@ -2580,6 +2726,11 @@ msgid ""
 msgstr "Скільки контрагентів додано чи оновлено, і кожен рядок, що потребує уваги, з причиною."
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__euro_pallets
+msgid "How many euro pallets (1200 × 800 mm) fit into the load space."
+msgstr "Скільки європалет (1200 × 800 мм) вміщує вантажний відсік."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_car__image_count
 msgid "How many extra photos the vehicle has."
 msgstr "Скільки додаткових фото має автомобіль."
@@ -2653,6 +2804,11 @@ msgid "How many vehicles this document sells."
 msgstr "Скільки автомобілів продає цей документ."
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__payload_kg
+msgid "How much load the vehicle may carry."
+msgstr "Скільки вантажу може везти авто."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_fleet_vehicle__service_interval_km
 msgid "How often the vehicle should come for service, in kilometres."
 msgstr "Як часто автомобіль має приїжджати на сервіс, у кілометрах."
@@ -2665,6 +2821,14 @@ msgid ""
 msgstr "Як часто автомобіль має приїжджати на сервіс, у місяцях. Визначає дату наступного ТО."
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__vat_mode
+msgid ""
+"How the price is shown to buyers: with VAT shown separately, or under the "
+"margin scheme for used vehicles, where VAT is not shown. Portals such as "
+"mobile.de display it next to the price."
+msgstr "Як ціну показують покупцям: з окремо виділеним ПДВ або за маржинальною схемою для вживаних авто, де ПДВ не виділяють. Майданчики на кшталт mobile.de показують це поруч із ціною."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_doc_link__kind
 msgid ""
 "How the two documents are linked: on the basis of, settlement, or the same "
@@ -2675,6 +2839,21 @@ msgstr "Як пов'язані два документи: на підставі,
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__http_status
 msgid "Http Status"
 msgstr "HTTP-статус"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__fuel_type__hybrid_diesel
+msgid "Hybrid (diesel)"
+msgstr "Гібрид (дизель)"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__fuel_type__hybrid
+msgid "Hybrid (petrol)"
+msgstr "Гібрид (бензин)"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__fuel_type__hydrogen
+msgid "Hydrogen"
+msgstr "Водень"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_account_move__id
@@ -2722,6 +2901,7 @@ msgstr "HTTP-статус"
 #: model:ir.model.fields,field_description:adealer.field_partner_child_cleanup_wizard__id
 #: model:ir.model.fields,field_description:adealer.field_partner_import_wizard__id
 #: model:ir.model.fields,field_description:adealer.field_product_category__id
+#: model:ir.model.fields,field_description:adealer.field_product_product__id
 #: model:ir.model.fields,field_description:adealer.field_product_template__id
 #: model:ir.model.fields,field_description:adealer.field_purchase_order__id
 #: model:ir.model.fields,field_description:adealer.field_repair_line__id
@@ -2894,6 +3074,21 @@ msgid "Individuals"
 msgstr "Фізичні особи"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__cargo_height_mm
+msgid "Inside height of the load space."
+msgstr "Внутрішня висота вантажного відсіку."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__cargo_length_mm
+msgid "Inside length of the load space."
+msgstr "Внутрішня довжина вантажного відсіку."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__cargo_width_mm
+msgid "Inside width of the load space."
+msgstr "Внутрішня ширина вантажного відсіку."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
 msgid "Installed"
 msgstr "Встановлено"
@@ -3024,6 +3219,11 @@ msgid "L.S."
 msgstr "М.П."
 
 #. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__fuel_type__gas
+msgid "LPG"
+msgstr "Газ (пропан-бутан)"
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_repair_order__service_line_ids
 msgid "Labour lines of the repair order."
 msgstr "Рядки робіт наряду."
@@ -3147,6 +3347,11 @@ msgid "Latest published version"
 msgstr "Остання опублікована версія"
 
 #. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__sliding_door__left
+msgid "Left"
+msgstr "Ліворуч"
+
+#. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__partner_address_import_wizard__partner_type__company
 msgid "Legal entities"
 msgstr "Юридичні особи"
@@ -3190,6 +3395,31 @@ msgstr "Посилання"
 #: model:ir.model.fields,help:adealer.field_dealer_car_complectation__base_price
 msgid "List price of the trim without extra options."
 msgstr "Прайсова ціна комплектації без додаткових опцій."
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid "Load space"
+msgstr "Вантажний відсік"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__cargo_height_mm
+msgid "Load space height, mm"
+msgstr "Висота вантажного відсіку, мм"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__cargo_length_mm
+msgid "Load space length, mm"
+msgstr "Довжина вантажного відсіку, мм"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__cargo_volume_m3
+msgid "Load space volume, m³"
+msgstr "Об'єм вантажного відсіку, м³"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__cargo_width_mm
+msgid "Load space width, mm"
+msgstr "Ширина вантажного відсіку, мм"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__brand_logo
@@ -3300,6 +3530,11 @@ msgid "Manufacturer color code"
 msgstr "Код кольору виробника"
 
 #. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__vat_mode__margin
+msgid "Margin scheme"
+msgstr "Маржинальна схема"
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_campaign_form
 msgid "Mark the campaign work as done on this vehicle."
 msgstr "Позначити роботи кампанії на цьому авто виконаними."
@@ -3318,6 +3553,11 @@ msgstr "Позначає документ, з якого відкрито стр
 #: model:ir.model.fields,field_description:adealer.field_maintenance_request__master_id
 msgid "Master"
 msgstr "Майстер"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__gross_weight_kg
+msgid "Maximum permissible total weight, as in the registration document."
+msgstr "Дозволена максимальна маса, як у реєстраційному документі."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__employee_id
@@ -3384,6 +3624,11 @@ msgstr "Пробіг"
 #: model:ir.model.fields,field_description:adealer.field_fleet_vehicle__last_service_mileage
 msgid "Mileage at last service"
 msgstr "Пробіг на останньому ТО"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__mileage_km
+msgid "Mileage, km"
+msgstr "Пробіг, км"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__model_id
@@ -3496,6 +3741,8 @@ msgstr "Потребують уваги — %s:"
 #. odoo-python
 #: code:addons/adealer/models/service_request.py:0
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_service_request__state__draft
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__condition__new
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_search
 msgid "New"
 msgstr "Новий"
 
@@ -3503,6 +3750,14 @@ msgstr "Новий"
 #: model:ir.model.fields,help:adealer.field_dealer_organization__is_default
 msgid "New documents get this organisation. Only one can be the default."
 msgstr "Нові документи отримують цю організацію. Типовою може бути лише одна."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__condition
+msgid ""
+"New or used. A trade-in vehicle becomes used by itself; for a used vehicle "
+"bought elsewhere choose \"Used\" by hand. Portals show new and used vehicles"
+" to buyers separately."
+msgstr "Нове чи вживане. Авто трейд-ін стає вживаним саме; для вживаного авто, купленого деінде, оберіть «Вживаний» вручну. Майданчики показують покупцям нові й вживані авто окремо."
 
 #. module: adealer
 #. odoo-python
@@ -3661,6 +3916,11 @@ msgid ""
 msgstr "Для компанії не знайдено складу. Спершу створіть його в меню Склад > Налаштування > Склади."
 
 #. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__sliding_door__none
+msgid "None"
+msgstr "Немає"
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/service.py:0
 msgid ""
@@ -3733,6 +3993,11 @@ msgid "Number of Actions"
 msgstr "Кількість дій"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__axles
+msgid "Number of axles."
+msgstr "Скільки осей має авто."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__message_has_error_counter
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__message_has_error_counter
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__message_has_error_counter
@@ -3755,6 +4020,11 @@ msgstr "Кількість повідомлень, які вимагають д�
 #: model:ir.model.fields,help:adealer.field_dealer_service_campaign__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr "Кількість повідомлень з помилковою дставкою"
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__seats
+msgid "Number of seats, the driver included."
+msgstr "Кількість місць разом із водієм."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_organization__vat_certificate
@@ -3783,6 +4053,11 @@ msgstr "Випадки"
 #: model:ir.model.fields,help:adealer.field_fleet_vehicle__last_service_mileage
 msgid "Odometer reading at the latest repair order."
 msgstr "Показник одометра в останньому наряді."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__mileage_km
+msgid "Odometer reading. 0 for a new vehicle."
+msgstr "Показ одометра. 0 — для нового авто."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
@@ -4173,6 +4448,7 @@ msgstr "Запис-джерело"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_lost_demand__reason__other
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__fuel_type__other
 msgid "Other"
 msgstr "Інше"
 
@@ -4363,6 +4639,11 @@ msgid "Payload"
 msgstr "Корисне навантаження"
 
 #. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__payload_kg
+msgid "Payload, kg"
+msgstr "Вантажопідйомність, кг"
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_account_move_realiz_list
 msgid "Payment"
 msgstr "Оплата"
@@ -4408,6 +4689,11 @@ msgstr "Виконавець: _______________"
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_turnover
 msgid "Period from"
 msgstr "Період з"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__fuel_type__petrol
+msgid "Petrol"
+msgstr "Бензин"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__phone
@@ -4478,6 +4764,16 @@ msgstr "Довіреність"
 #: model_terms:ir.ui.view,arch_db:adealer.report_dovirenist
 msgid "Power of attorney No."
 msgstr "Довіреність №"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__power_hp
+msgid "Power, hp"
+msgstr "Потужність, к.с."
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__power_kw
+msgid "Power, kW"
+msgstr "Потужність, кВт"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_doc_chain_line__prefix
@@ -4567,6 +4863,11 @@ msgstr "Товар / послуга"
 #: model:ir.model,name:adealer.model_product_category
 msgid "Product Category"
 msgstr "Категорія товару"
+
+#. module: adealer
+#: model:ir.model,name:adealer.model_product_product
+msgid "Product Variant"
+msgstr "Варіант товару"
 
 #. module: adealer
 #: model:ir.actions.act_window,name:adealer.action_window_product_category
@@ -5051,6 +5352,11 @@ msgid "Revenue"
 msgstr "Виручка"
 
 #. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__sliding_door__right
+msgid "Right"
+msgstr "Праворуч"
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/partner_import.py:0
 msgid ""
@@ -5155,6 +5461,11 @@ msgstr "Реалізації"
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__scheduled_date
 msgid "Scheduled"
 msgstr "Заплановано"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__seats
+msgid "Seats"
+msgstr "Кількість місць"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__amount2
@@ -5496,6 +5807,11 @@ msgid "Showroom"
 msgstr "Автосалон"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__sliding_door
+msgid "Side sliding door of a van."
+msgstr "Бічні зсувні двері фургона."
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_dovirenist
 msgid "Signature of the authorized person: _______________ we certify."
 msgstr "Підпис довіреної особи: _______________ засвідчуємо."
@@ -5511,6 +5827,11 @@ msgstr "Пропущено як дублікати: %s"
 #: code:addons/adealer/models/partner_import.py:0
 msgid "Skipped for lack of data: %s"
 msgstr "Пропущено без даних: %s"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__sliding_door
+msgid "Sliding door"
+msgstr "Бічні зсувні двері"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_car__status__sold
@@ -5720,6 +6041,11 @@ msgstr "Сума нормо-годин усіх рядків робіт наря
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_purchases
 msgid "Supplier"
 msgstr "Постачальник"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__tail_lift
+msgid "Tail lift"
+msgstr "Гідроборт"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_organization__vat_code
@@ -6128,6 +6454,13 @@ msgid ""
 msgstr "Та сама помилка стає в чергу лише раз на компанію. Відкрийте звіт, що вже є в черзі: у ньому зростає лічильник повторень."
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__power_hp
+msgid ""
+"The same power in horsepower (1 kW = 1.36 hp). Enter either value: the other"
+" one follows."
+msgstr "Та сама потужність у кінських силах (1 кВт = 1,36 к.с.). Введіть будь-яке з двох значень — друге порахується саме."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_repair_stage_history__stage_id
 msgid "The stage the order was moved to."
 msgstr "Стадія, на яку переведено наряд."
@@ -6154,6 +6487,11 @@ msgstr "Сторінка новішої версії в магазині: зав
 #: model:ir.model.fields,help:adealer.field_adealer_doc_chain_line__chain_id
 msgid "The structure this line belongs to."
 msgstr "Структура, до якої належить цей рядок."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__tail_lift
+msgid "The vehicle has a tail lift (loading platform) at the rear."
+msgstr "Авто має гідроборт (вантажну платформу) ззаду."
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
@@ -6312,19 +6650,8 @@ msgstr "Топ складу за кількістю"
 #: code:addons/adealer/models/report_wizards.py:0
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_report_wizard_line__line_type__total
 #: model_terms:ir.ui.view,arch_db:adealer.view_account_move_realiz_list
-#: model_terms:ir.ui.view,arch_db:adealer.view_partner_balance_wizard_form
 #: model_terms:ir.ui.view,arch_db:adealer.view_purchase_order_journal_list
 #: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_journal_list
-#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_customers
-#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_sales
-#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_advisors
-#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_gross
-#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_orders
-#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_purchases
-#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_repairs
-#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_sales
-#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_stock
-#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_turnover
 #: model_terms:ir.ui.view,arch_db:adealer.view_sale_order_journal_list
 msgid "Total"
 msgstr "Разом"
@@ -6565,6 +6892,12 @@ msgid "Updates"
 msgstr "Оновлення"
 
 #. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__condition__used
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_search
+msgid "Used"
+msgstr "Вживаний"
+
+#. module: adealer
 #: model:ir.model,name:adealer.model_res_users
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_status_history__user_id
 #: model:res.groups,name:adealer.group_adealer_user
@@ -6586,6 +6919,16 @@ msgstr "№ свідоцтва ПДВ"
 #: model:ir.model.fields,field_description:adealer.field_dealer_organization__is_vat_payer
 msgid "VAT payer"
 msgstr "Платник ПДВ"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__vat_mode
+msgid "VAT scheme"
+msgstr "Режим ПДВ"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__vat_mode__vat
+msgid "VAT shown"
+msgstr "З виділеним ПДВ"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_invoice_pay
@@ -6881,6 +7224,11 @@ msgid "Volume"
 msgstr "Об'єм"
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__cargo_volume_m3
+msgid "Volume of the load space in cubic metres."
+msgstr "Об'єм вантажного відсіку в кубічних метрах."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_res_config_settings__wh_id_1c
 msgid "WH ID (source)"
 msgstr "Склад ID (джерело)"
@@ -6925,6 +7273,11 @@ msgstr "Повідомлення з веб-сайту"
 #: model:ir.model.fields,help:adealer.field_dealer_service_campaign__website_message_ids
 msgid "Website communication history"
 msgstr "Історія бесіди на сайті"
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid "Weights"
+msgstr "Маси"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.adealer_error_report_view_form

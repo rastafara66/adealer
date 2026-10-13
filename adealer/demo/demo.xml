@@ -101,6 +101,10 @@
             <field name="name">Tiguan</field>
             <field name="brand_id" ref="demo_brand_vw"/>
         </record>
+        <record id="demo_model_transporter" model="fleet.vehicle.model">
+            <field name="name">Transporter</field>
+            <field name="brand_id" ref="demo_brand_vw"/>
+        </record>
 
         <!-- ============================================================ -->
         <!--  CUSTOMER VEHICLES (fleet.vehicle)                           -->
@@ -244,6 +248,10 @@
             <field name="vin">JTMWFREV10D555111</field>
             <field name="model_year">2024</field>
             <field name="engine_volume">2000</field>
+            <field name="power_kw">127</field>
+            <field name="fuel_type">petrol</field>
+            <field name="emission_class">euro6d</field>
+            <field name="seats">5</field>
             <field name="transmission">auto</field>
             <field name="status">in_stock</field>
             <field name="purchase_price">1120000.0</field>
@@ -258,6 +266,10 @@
             <field name="vin">JTDBR32E900777222</field>
             <field name="model_year">2024</field>
             <field name="engine_volume">1600</field>
+            <field name="power_kw">97</field>
+            <field name="fuel_type">petrol</field>
+            <field name="emission_class">euro6d</field>
+            <field name="seats">5</field>
             <field name="transmission">cvt</field>
             <field name="status">reserved</field>
             <field name="purchase_price">870000.0</field>
@@ -271,11 +283,47 @@
             <field name="vin">WVGZZZ5NZPW889900</field>
             <field name="model_year">2025</field>
             <field name="engine_volume">1400</field>
+            <field name="power_kw">110</field>
+            <field name="fuel_type">petrol</field>
+            <field name="emission_class">euro6e</field>
+            <field name="seats">5</field>
             <field name="transmission">robot</field>
             <field name="status">ordered</field>
             <field name="purchase_price">1180000.0</field>
             <field name="sale_price">1320000.0</field>
             <field name="supplier_id" ref="demo_partner_supplier"/>
+        </record>
+        <!-- Вживаний фургон: заповнена вкладка «Комерційне авто» -->
+        <record id="demo_car_transporter_used" model="dealer.car">
+            <field name="model_id" ref="demo_model_transporter"/>
+            <field name="color_id" ref="demo_color_white"/>
+            <field name="vin">WV1ZZZ7HZMH334455</field>
+            <field name="model_year" eval="(DateTime.today() - relativedelta(years=3)).year"/>
+            <field name="condition">used</field>
+            <field name="first_registration" eval="(DateTime.today() - relativedelta(years=3, months=2)).strftime('%Y-%m-01')"/>
+            <field name="mileage_km">86400</field>
+            <field name="engine_volume">1968</field>
+            <field name="power_kw">110</field>
+            <field name="fuel_type">diesel</field>
+            <field name="emission_class">euro6d</field>
+            <field name="seats">3</field>
+            <field name="transmission">manual</field>
+            <field name="vat_mode">vat</field>
+            <field name="gross_weight_kg">3000</field>
+            <field name="payload_kg">1050</field>
+            <field name="axles">2</field>
+            <field name="cargo_length_mm">2570</field>
+            <field name="cargo_width_mm">1700</field>
+            <field name="cargo_height_mm">1410</field>
+            <field name="cargo_volume_m3">5.8</field>
+            <field name="euro_pallets">2</field>
+            <field name="sliding_door">right</field>
+            <field name="tail_lift" eval="False"/>
+            <field name="status">in_stock</field>
+            <field name="purchase_price">820000.0</field>
+            <field name="sale_price">915000.0</field>
+            <field name="supplier_id" ref="demo_partner_supplier"/>
+            <field name="location_note">Yard, row 4</field>
         </record>
 
         <!-- ============================================================ -->
