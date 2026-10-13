@@ -3,6 +3,18 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## 20.0.1.20.0 — 2026-10-13
+
+### Added
+
+- Leads linked to vehicles: a Leads button on the vehicle card and the vehicle on the lead.
+- Заявки прив'язані до авто: кнопка «Заявки» на картці авто й авто в заявці.
+
+### Fixed
+
+- Bug fixes.
+- Виправлено помилки.
+
 ## 20.0.1.19.0 — 2026-10-13
 
 ### Added

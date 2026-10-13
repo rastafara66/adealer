@@ -273,7 +273,9 @@
                     <field name="model_id"/>
                     <field name="complectation_id" optional="show"/>
                     <field name="color_id" optional="show"/>
-                    <field name="model_year" optional="hide"/>
+                    <!-- widget обов'язковий: без нього список форматує сам і
+                         опцію ігнорує (list_renderer.canUseFormatter) -->
+                    <field name="model_year" widget="integer" options="{'enable_formatting': false}" optional="hide"/>
                     <field name="condition" optional="show"/>
                     <field name="mileage_km" optional="hide"/>
                     <field name="sale_price"/>
@@ -341,6 +343,10 @@
                                    nolabel="1" invisible="not update_url"/>
                         </div>
                         <div class="oe_button_box" name="button_box">
+                            <button help="Customer leads about this vehicle. A lead created from here is linked to the vehicle." name="action_view_leads" type="object"
+                                    class="oe_stat_button" icon="fa-handshake-o">
+                                <field name="lead_count" widget="statinfo" string="Leads"/>
+                            </button>
                             <button help="Open the sale invoice of this vehicle." name="action_view_sale_move" type="object"
                                     class="oe_stat_button" icon="description"
                                     invisible="not sale_move_id">
@@ -364,11 +370,15 @@
                                 <field name="model_id"/>
                                 <field name="complectation_id"/>
                                 <field name="color_id"/>
-                                <field name="model_year"/>
                                 <field name="condition"/>
                                 <field name="first_registration"/>
                                 <field name="mileage_km"/>
                                 <field name="is_trade_in"/>
+                                <!-- Рік — останнім: після нього надбудова VIN-декодера
+                                     ставить свої поля (WMI, регіон, контрольна цифра).
+                                     Без роздільника тисяч, інакше «2,023»: опція Odoo
+                                     18–20 — enable_formatting (не format). -->
+                                <field name="model_year" options="{'enable_formatting': false}"/>
                             </group>
                             <group>
                                 <field name="engine_volume"/>

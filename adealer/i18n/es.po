@@ -1775,6 +1775,20 @@ msgid "Customer & vehicle"
 msgstr "Cliente y vehículo"
 
 #. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid ""
+"Customer leads about this vehicle. A lead created from here is linked to the"
+" vehicle."
+msgstr "Leads de clientes sobre este vehículo. Un lead creado desde aquí queda vinculado al vehículo."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__lead_ids
+msgid ""
+"Customer leads about this vehicle: entered in CRM or received from car "
+"portals."
+msgstr "Leads de clientes sobre este vehículo: introducidos en el CRM o recibidos de portales de vehículos."
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__customer_name
 msgid "Customer name"
 msgstr "Nombre del cliente"
@@ -2077,6 +2091,7 @@ msgstr "Descuento de la línea, en porcentaje."
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__display_name
 #: model:ir.model.fields,field_description:adealer.field_adealer_update__display_name
 #: model:ir.model.fields,field_description:adealer.field_adealer_workplace__display_name
+#: model:ir.model.fields,field_description:adealer.field_crm_lead__display_name
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__display_name
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_color__display_name
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_complectation__display_name
@@ -2744,6 +2759,11 @@ msgid "How many labour lines are counted."
 msgstr "Cuántas líneas de mano de obra se cuentan."
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__lead_count
+msgid "How many open leads ask about this vehicle."
+msgstr "Cuántos leads abiertos preguntan por este vehículo."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_product_product__analog_count
 #: model:ir.model.fields,help:adealer.field_product_template__analog_count
 msgid "How many other parts can replace this one."
@@ -2877,6 +2897,7 @@ msgstr "Hidrógeno"
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__id
 #: model:ir.model.fields,field_description:adealer.field_adealer_update__id
 #: model:ir.model.fields,field_description:adealer.field_adealer_workplace__id
+#: model:ir.model.fields,field_description:adealer.field_crm_lead__id
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__id
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_color__id
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_complectation__id
@@ -3343,6 +3364,24 @@ msgstr "Última"
 #: model:ir.model.fields,field_description:adealer.field_res_config_settings__adealer_version_latest
 msgid "Latest published version"
 msgstr "Última versión publicada"
+
+#. module: adealer
+#: model:ir.model,name:adealer.model_crm_lead
+msgid "Lead"
+msgstr "Lead"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dealer_car.py:0
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__lead_ids
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid "Leads"
+msgstr "Leads"
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__lead_count
+msgid "Leads count"
+msgstr "Número de leads"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_car__sliding_door__left
@@ -6487,6 +6526,14 @@ msgid "The structure this line belongs to."
 msgstr "La estructura a la que pertenece esta fila."
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_crm_lead__dealer_car_id
+msgid ""
+"The vehicle from the showroom stock the customer is asking about. Leads from"
+" car portals are linked to their vehicle automatically; the vehicle card "
+"shows all leads about it."
+msgstr "El vehículo del stock del concesionario por el que pregunta el cliente. Los leads de los portales de vehículos se vinculan automáticamente a su vehículo; la ficha del vehículo muestra todos sus leads."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_car__tail_lift
 msgid "The vehicle has a tail lift (loading platform) at the rear."
 msgstr "El vehículo tiene una plataforma elevadora (plataforma de carga) en la parte trasera."
@@ -6985,6 +7032,7 @@ msgstr "Valor del último código de barras escaneado."
 #: model:ir.model.fields,field_description:adealer.field_adealer_report_wizard__vehicle_id
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__vehicle_id
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__vehicle_id
+#: model:ir.model.fields,field_description:adealer.field_crm_lead__dealer_car_id
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_image__car_id
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_status_history__car_id
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign_line__vehicle_id
@@ -6993,6 +7041,8 @@ msgstr "Valor del último código de barras escaneado."
 #: model:ir.model.fields,field_description:adealer.field_product_template__vehicle_id
 #: model:ir.model.fields,field_description:adealer.field_repair_order__vehicle_id
 #: model:ir.model.fields,field_description:adealer.field_sale_order__vehicle_id
+#: model_terms:ir.ui.view,arch_db:adealer.crm_lead_view_search_dealer_car
+#: model_terms:ir.ui.view,arch_db:adealer.crm_lead_view_search_leads_dealer_car
 #: model_terms:ir.ui.view,arch_db:adealer.view_account_move_realiz_list
 #: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_journal_list
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_orders
@@ -7744,6 +7794,12 @@ msgstr "entre"
 #: code:addons/adealer/models/report_wizards.py:0
 msgid "customers: %d"
 msgstr "clientes: %d"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/dealer_car.py:0
+msgid "dealer_car_id"
+msgstr "Vehículo"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_part_analog_group__name

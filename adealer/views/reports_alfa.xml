@@ -192,7 +192,8 @@
                                 <tr><td>VIN</td><td><span t-field="o.vin"/></td></tr>
                                 <tr><td>Trim / configuration</td><td><span t-field="o.complectation_id"/></td></tr>
                                 <tr><td>Color</td><td><span t-field="o.color_id"/></td></tr>
-                                <tr><td>Model year</td><td><span t-field="o.model_year"/></td></tr>
+                                <!-- t-out, не t-field: t-field друкує ціле з роздільником тисяч («2 023») -->
+                                <tr><td>Model year</td><td><span t-out="o.model_year or ''"/></td></tr>
                                 <tr><td>Engine displacement, cc</td><td><span t-field="o.engine_volume"/></td></tr>
                                 <tr>
                                     <td>Total due</td>
