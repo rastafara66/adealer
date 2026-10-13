@@ -11,6 +11,9 @@ fleet.vehicle клієнта (fleet_vehicle_id).
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 
+# Метрична кінська сила: 1 кВт = 1,35962 к.с. (в оголошеннях Європи — кВт і к.с. поруч)
+KW_TO_HP = 1.35962
+
 
 class CarColor(models.Model):
     _name = 'dealer.car.color'
@@ -129,6 +132,86 @@ class DealerCar(models.Model):
     ], 'Transmission',
                                     help='Gearbox type.')
 
+    # Що потрібно оголошенню на майданчику (AUTO.RIA, mobile.de та інші).
+    # Поля в ядрі, щоб кожна надбудова вивантаження читала ті самі дані
+    # і жодна не залежала від іншої.
+    condition = fields.Selection([
+        ('new', 'New'),
+        ('used', 'Used'),
+    ], 'Condition', compute='_compute_condition', store=True, readonly=False,
+        tracking=True,
+        help='New or used. A trade-in vehicle becomes used by itself; for a used vehicle '
+             'bought elsewhere choose "Used" by hand. Portals show new and used vehicles '
+             'to buyers separately.')
+    first_registration = fields.Date(
+        'First registration',
+        help='Date of the first registration. Leave it empty for a new vehicle that has '
+             'never been registered. Portals show the month and the year.')
+    mileage_km = fields.Integer('Mileage, km', help='Odometer reading. 0 for a new vehicle.')
+    power_kw = fields.Integer('Power, kW',
+                              help='Engine power in kilowatts, as in the registration document.')
+    power_hp = fields.Integer('Power, hp', compute='_compute_power_hp',
+                              inverse='_inverse_power_hp',
+                              help='The same power in horsepower (1 kW = 1.36 hp). Enter '
+                                   'either value: the other one follows.')
+    fuel_type = fields.Selection([
+        ('petrol', 'Petrol'),
+        ('diesel', 'Diesel'),
+        ('gas', 'LPG'),
+        ('cng', 'CNG'),
+        ('hybrid', 'Hybrid (petrol)'),
+        ('hybrid_diesel', 'Hybrid (diesel)'),
+        ('electric', 'Electric'),
+        ('hydrogen', 'Hydrogen'),
+        ('other', 'Other'),
+    ], 'Fuel', help='Fuel or drive type.')
+    emission_class = fields.Selection([
+        ('euro1', 'Euro 1'),
+        ('euro2', 'Euro 2'),
+        ('euro3', 'Euro 3'),
+        ('euro4', 'Euro 4'),
+        ('euro5', 'Euro 5'),
+        ('euro6', 'Euro 6'),
+        ('euro6c', 'Euro 6c'),
+        ('euro6d_temp', 'Euro 6d-TEMP'),
+        ('euro6d', 'Euro 6d'),
+        ('euro6e', 'Euro 6e'),
+        ('euro7', 'Euro 7'),
+    ], 'Emission class', help='Euro emission standard, as in the registration document.')
+    vat_mode = fields.Selection([
+        ('vat', 'VAT shown'),
+        ('margin', 'Margin scheme'),
+    ], 'VAT scheme', default='vat',
+        help='How the price is shown to buyers: with VAT shown separately, or under the '
+             'margin scheme for used vehicles, where VAT is not shown. Portals such as '
+             'mobile.de display it next to the price.')
+    seats = fields.Integer('Seats', help='Number of seats, the driver included.')
+
+    # Фургони й вантажівки: те, що покупець фургона дивиться першим
+    gross_weight_kg = fields.Integer(
+        'Gross vehicle weight, kg',
+        help='Maximum permissible total weight, as in the registration document.')
+    payload_kg = fields.Integer('Payload, kg', help='How much load the vehicle may carry.')
+    axles = fields.Integer('Axles', help='Number of axles.')
+    cargo_length_mm = fields.Integer('Load space length, mm',
+                                     help='Inside length of the load space.')
+    cargo_width_mm = fields.Integer('Load space width, mm',
+                                    help='Inside width of the load space.')
+    cargo_height_mm = fields.Integer('Load space height, mm',
+                                     help='Inside height of the load space.')
+    cargo_volume_m3 = fields.Float('Load space volume, m³', digits=(6, 2),
+                                   help='Volume of the load space in cubic metres.')
+    euro_pallets = fields.Integer(
+        'Euro pallets', help='How many euro pallets (1200 × 800 mm) fit into the load space.')
+    sliding_door = fields.Selection([
+        ('none', 'None'),
+        ('right', 'Right'),
+        ('left', 'Left'),
+        ('both', 'Both sides'),
+    ], 'Sliding door', help='Side sliding door of a van.')
+    tail_lift = fields.Boolean('Tail lift',
+                               help='The vehicle has a tail lift (loading platform) at the rear.')
+
     status = fields.Selection([
         ('ordered', 'Ordered'),
         ('in_transit', 'In transit'),
@@ -222,6 +305,26 @@ class DealerCar(models.Model):
     def _compute_total_price(self):
         for car in self:
             car.total_price = (car.sale_price or 0.0) + (car.options_price or 0.0)
+
+    @api.depends('is_trade_in')
+    def _compute_condition(self):
+        # Trade-in — завжди вживане. Решту людина обирає сама, тож уже
+        # обраний стан не чіпаємо; нове авто без стану — «нове». Так само
+        # при оновленні модуля заповнюються наявні авто.
+        for car in self:
+            if car.is_trade_in:
+                car.condition = 'used'
+            elif not car.condition:
+                car.condition = 'new'
+
+    @api.depends('power_kw')
+    def _compute_power_hp(self):
+        for car in self:
+            car.power_hp = round(car.power_kw * KW_TO_HP) if car.power_kw else 0
+
+    def _inverse_power_hp(self):
+        for car in self:
+            car.power_kw = round(car.power_hp / KW_TO_HP) if car.power_hp else 0
 
     @api.onchange('complectation_id')
     def _onchange_complectation_id(self):

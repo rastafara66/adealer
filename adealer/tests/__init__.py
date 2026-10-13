@@ -7,3 +7,4 @@ from . import test_home_action
 from . import test_service_booking
 from . import test_product_category_icon
 from . import test_barcode_scan
+from . import test_vehicle_data

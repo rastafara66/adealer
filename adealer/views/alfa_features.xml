@@ -274,6 +274,8 @@
                     <field name="complectation_id" optional="show"/>
                     <field name="color_id" optional="show"/>
                     <field name="model_year" optional="hide"/>
+                    <field name="condition" optional="show"/>
+                    <field name="mileage_km" optional="hide"/>
                     <field name="sale_price"/>
                     <field name="total_price"/>
                     <field name="partner_id" optional="show"/>
@@ -363,11 +365,19 @@
                                 <field name="complectation_id"/>
                                 <field name="color_id"/>
                                 <field name="model_year"/>
+                                <field name="condition"/>
+                                <field name="first_registration"/>
+                                <field name="mileage_km"/>
                                 <field name="is_trade_in"/>
                             </group>
                             <group>
                                 <field name="engine_volume"/>
+                                <field name="power_kw"/>
+                                <field name="power_hp"/>
+                                <field name="fuel_type"/>
+                                <field name="emission_class"/>
                                 <field name="transmission"/>
+                                <field name="seats"/>
                                 <field name="location_note"/>
                                 <field name="supplier_id"/>
                             </group>
@@ -376,6 +386,7 @@
                             <group>
                                 <field name="purchase_price"/>
                                 <field name="sale_price"/>
+                                <field name="vat_mode"/>
                             </group>
                             <group>
                                 <field name="options_price"/>
@@ -396,6 +407,26 @@
                                         <field name="name" placeholder="Title (optional)"/>
                                     </list>
                                 </field>
+                            </page>
+                            <page string="Commercial vehicle" name="commercial">
+                                <!-- одним рядком: інакше переноси й відступи потрапляють у msgid перекладу -->
+                                <div class="text-muted mb-2">Fill this in for vans and trucks: buyers of commercial vehicles look at these figures first, and portals such as mobile.de show them in the advert.</div>
+                                <group>
+                                    <group string="Weights">
+                                        <field name="gross_weight_kg"/>
+                                        <field name="payload_kg"/>
+                                        <field name="axles"/>
+                                    </group>
+                                    <group string="Load space">
+                                        <field name="cargo_length_mm"/>
+                                        <field name="cargo_width_mm"/>
+                                        <field name="cargo_height_mm"/>
+                                        <field name="cargo_volume_m3"/>
+                                        <field name="euro_pallets"/>
+                                        <field name="sliding_door"/>
+                                        <field name="tail_lift"/>
+                                    </group>
+                                </group>
                             </page>
                             <page string="Sale">
                                 <group>
@@ -450,7 +481,11 @@
                     <separator/>
                     <filter name="trade_in" string="Trade-in" domain="[('is_trade_in','=',True)]"/>
                     <separator/>
+                    <filter name="condition_new" string="New" domain="[('condition','=','new')]"/>
+                    <filter name="condition_used" string="Used" domain="[('condition','=','used')]"/>
+                    <separator/>
                     <filter name="g_status" string="Status" context="{'group_by':'status'}"/>
+                    <filter name="g_condition" string="Condition" context="{'group_by':'condition'}"/>
                     <filter name="g_brand" string="Brand" context="{'group_by':'brand_id'}"/>
                     <filter name="g_model" string="Model" context="{'group_by':'model_id'}"/>
                 </search>

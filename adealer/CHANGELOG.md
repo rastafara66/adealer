@@ -3,6 +3,13 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## 18.0.1.19.0 — 2026-10-13
+
+### Added
+
+- Vehicle card: condition, first registration, mileage, power, fuel, emission class, VAT scheme, van load data.
+- Картка авто: стан, перша реєстрація, пробіг, потужність, паливо, екологічний клас, режим ПДВ, дані фургона.
+
 ## 18.0.1.18.0 – 18.0.1.18.8 — 2026-10-10
 
 ### Added

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0-20260908\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-07 15:56+0000\n"
-"PO-Revision-Date: 2026-10-07 15:56+0000\n"
+"POT-Creation-Date: 2026-10-13 11:46+0000\n"
+"PO-Revision-Date: 2026-10-13 11:46+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -887,6 +887,11 @@ msgid "Awaiting parts"
 msgstr ""
 
 #. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__axles
+msgid "Axles"
+msgstr ""
+
+#. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__fleet_vehicle__drive_type__back
 msgid "Back"
 msgstr ""
@@ -991,6 +996,11 @@ msgid "Booking number, given when it is saved."
 msgstr ""
 
 #. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__sliding_door__both
+msgid "Both sides"
+msgstr ""
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__brand_id
 #: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_search
 msgid "Brand"
@@ -1058,6 +1068,11 @@ msgstr ""
 #. odoo-javascript
 #: code:addons/adealer/static/src/xml/booking_board.xml:0
 msgid "By post"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__fuel_type__cng
+msgid "CNG"
 msgstr ""
 
 #. module: adealer
@@ -1331,6 +1346,11 @@ msgid "Comment"
 msgstr ""
 
 #. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid "Commercial vehicle"
+msgstr ""
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__company_id
 #: model:ir.model.fields,field_description:adealer.field_adealer_lost_demand__company_id
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__company_id
@@ -1355,6 +1375,12 @@ msgstr ""
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign_line__done_date
 msgid "Completion date"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__condition
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_search
+msgid "Condition"
 msgstr ""
 
 #. module: adealer
@@ -1836,6 +1862,13 @@ msgid "Date of the document."
 msgstr ""
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__first_registration
+msgid ""
+"Date of the first registration. Leave it empty for a new vehicle that has "
+"never been registered. Portals show the month and the year."
+msgstr ""
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_fleet_vehicle__last_service_date
 msgid "Date of the latest repair order of this vehicle."
 msgstr ""
@@ -1983,6 +2016,11 @@ msgid "Diagnostics"
 msgstr ""
 
 #. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__fuel_type__diesel
+msgid "Diesel"
+msgstr ""
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/addon_hint.py:0
 msgid ""
@@ -2052,6 +2090,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:adealer.field_partner_child_cleanup_wizard__display_name
 #: model:ir.model.fields,field_description:adealer.field_partner_import_wizard__display_name
 #: model:ir.model.fields,field_description:adealer.field_product_category__display_name
+#: model:ir.model.fields,field_description:adealer.field_product_product__display_name
 #: model:ir.model.fields,field_description:adealer.field_product_template__display_name
 #: model:ir.model.fields,field_description:adealer.field_purchase_order__display_name
 #: model:ir.model.fields,field_description:adealer.field_repair_line__display_name
@@ -2188,6 +2227,16 @@ msgid ""
 msgstr ""
 
 #. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__fuel_type__electric
+msgid "Electric"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__emission_class
+msgid "Emission class"
+msgstr ""
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_partner_balance_wizard__partner_id
 msgid "Empty — summary across all counterparties"
 msgstr ""
@@ -2222,6 +2271,11 @@ msgid "Engine displacement, cc"
 msgstr ""
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__power_kw
+msgid "Engine power in kilowatts, as in the registration document."
+msgstr ""
+
+#. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_doc_chain_line__kind__basis
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_doc_link__kind__basis
 msgid "Entered on the basis of"
@@ -2248,6 +2302,71 @@ msgstr ""
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_fleet_vehicle__service_due
 msgid "Estimated next service date ≤ today"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__emission_class__euro1
+msgid "Euro 1"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__emission_class__euro2
+msgid "Euro 2"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__emission_class__euro3
+msgid "Euro 3"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__emission_class__euro4
+msgid "Euro 4"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__emission_class__euro5
+msgid "Euro 5"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__emission_class__euro6
+msgid "Euro 6"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__emission_class__euro6c
+msgid "Euro 6c"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__emission_class__euro6d
+msgid "Euro 6d"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__emission_class__euro6d_temp
+msgid "Euro 6d-TEMP"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__emission_class__euro6e
+msgid "Euro 6e"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__emission_class__euro7
+msgid "Euro 7"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__emission_class
+msgid "Euro emission standard, as in the registration document."
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__euro_pallets
+msgid "Euro pallets"
 msgstr ""
 
 #. module: adealer
@@ -2326,6 +2445,13 @@ msgid ""
 msgstr ""
 
 #. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid ""
+"Fill this in for vans and trucks: buyers of commercial vehicles look at "
+"these figures first, and portals such as mobile.de show them in the advert."
+msgstr ""
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_repair_stage__is_closing
 msgid "Final"
 msgstr ""
@@ -2348,6 +2474,11 @@ msgstr ""
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_partner_balance_wizard__date_from
 msgid "First day of the period. Everything before it is the opening balance."
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__first_registration
+msgid "First registration"
 msgstr ""
 
 #. module: adealer
@@ -2400,6 +2531,16 @@ msgstr ""
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__fleet_vehicle__drive_type__front
 msgid "Front"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__fuel_type
+msgid "Fuel"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__fuel_type
+msgid "Fuel or drive type."
 msgstr ""
 
 #. module: adealer
@@ -2459,6 +2600,11 @@ msgstr ""
 #: model:ir.ui.menu,name:adealer.menu_report_gross_profit
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_gross
 msgid "Gross profit"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__gross_weight_kg
+msgid "Gross vehicle weight, kg"
 msgstr ""
 
 #. module: adealer
@@ -2567,6 +2713,11 @@ msgid ""
 msgstr ""
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__euro_pallets
+msgid "How many euro pallets (1200 × 800 mm) fit into the load space."
+msgstr ""
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_car__image_count
 msgid "How many extra photos the vehicle has."
 msgstr ""
@@ -2640,6 +2791,11 @@ msgid "How many vehicles this document sells."
 msgstr ""
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__payload_kg
+msgid "How much load the vehicle may carry."
+msgstr ""
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_fleet_vehicle__service_interval_km
 msgid "How often the vehicle should come for service, in kilometres."
 msgstr ""
@@ -2652,6 +2808,14 @@ msgid ""
 msgstr ""
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__vat_mode
+msgid ""
+"How the price is shown to buyers: with VAT shown separately, or under the "
+"margin scheme for used vehicles, where VAT is not shown. Portals such as "
+"mobile.de display it next to the price."
+msgstr ""
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_doc_link__kind
 msgid ""
 "How the two documents are linked: on the basis of, settlement, or the same "
@@ -2661,6 +2825,21 @@ msgstr ""
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_error_report__http_status
 msgid "Http Status"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__fuel_type__hybrid_diesel
+msgid "Hybrid (diesel)"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__fuel_type__hybrid
+msgid "Hybrid (petrol)"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__fuel_type__hydrogen
+msgid "Hydrogen"
 msgstr ""
 
 #. module: adealer
@@ -2709,6 +2888,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:adealer.field_partner_child_cleanup_wizard__id
 #: model:ir.model.fields,field_description:adealer.field_partner_import_wizard__id
 #: model:ir.model.fields,field_description:adealer.field_product_category__id
+#: model:ir.model.fields,field_description:adealer.field_product_product__id
 #: model:ir.model.fields,field_description:adealer.field_product_template__id
 #: model:ir.model.fields,field_description:adealer.field_purchase_order__id
 #: model:ir.model.fields,field_description:adealer.field_repair_line__id
@@ -2881,6 +3061,21 @@ msgid "Individuals"
 msgstr ""
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__cargo_height_mm
+msgid "Inside height of the load space."
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__cargo_length_mm
+msgid "Inside length of the load space."
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__cargo_width_mm
+msgid "Inside width of the load space."
+msgstr ""
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
 msgid "Installed"
 msgstr ""
@@ -3011,6 +3206,11 @@ msgid "L.S."
 msgstr ""
 
 #. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__fuel_type__gas
+msgid "LPG"
+msgstr ""
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_repair_order__service_line_ids
 msgid "Labour lines of the repair order."
 msgstr ""
@@ -3134,6 +3334,11 @@ msgid "Latest published version"
 msgstr ""
 
 #. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__sliding_door__left
+msgid "Left"
+msgstr ""
+
+#. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__partner_address_import_wizard__partner_type__company
 msgid "Legal entities"
 msgstr ""
@@ -3176,6 +3381,31 @@ msgstr ""
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_car_complectation__base_price
 msgid "List price of the trim without extra options."
+msgstr ""
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid "Load space"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__cargo_height_mm
+msgid "Load space height, mm"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__cargo_length_mm
+msgid "Load space length, mm"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__cargo_volume_m3
+msgid "Load space volume, m³"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__cargo_width_mm
+msgid "Load space width, mm"
 msgstr ""
 
 #. module: adealer
@@ -3287,6 +3517,11 @@ msgid "Manufacturer color code"
 msgstr ""
 
 #. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__vat_mode__margin
+msgid "Margin scheme"
+msgstr ""
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_service_campaign_form
 msgid "Mark the campaign work as done on this vehicle."
 msgstr ""
@@ -3304,6 +3539,11 @@ msgstr ""
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_maintenance_request__master_id
 msgid "Master"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__gross_weight_kg
+msgid "Maximum permissible total weight, as in the registration document."
 msgstr ""
 
 #. module: adealer
@@ -3370,6 +3610,11 @@ msgstr ""
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_fleet_vehicle__last_service_mileage
 msgid "Mileage at last service"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__mileage_km
+msgid "Mileage, km"
 msgstr ""
 
 #. module: adealer
@@ -3483,12 +3728,22 @@ msgstr ""
 #. odoo-python
 #: code:addons/adealer/models/service_request.py:0
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_service_request__state__draft
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__condition__new
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_search
 msgid "New"
 msgstr ""
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_organization__is_default
 msgid "New documents get this organisation. Only one can be the default."
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__condition
+msgid ""
+"New or used. A trade-in vehicle becomes used by itself; for a used vehicle "
+"bought elsewhere choose \"Used\" by hand. Portals show new and used vehicles"
+" to buyers separately."
 msgstr ""
 
 #. module: adealer
@@ -3648,6 +3903,11 @@ msgid ""
 msgstr ""
 
 #. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__sliding_door__none
+msgid "None"
+msgstr ""
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/service.py:0
 msgid ""
@@ -3720,6 +3980,11 @@ msgid "Number of Actions"
 msgstr ""
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__axles
+msgid "Number of axles."
+msgstr ""
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__message_has_error_counter
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__message_has_error_counter
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__message_has_error_counter
@@ -3741,6 +4006,11 @@ msgstr ""
 #: model:ir.model.fields,help:adealer.field_dealer_car__message_has_error_counter
 #: model:ir.model.fields,help:adealer.field_dealer_service_campaign__message_has_error_counter
 msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__seats
+msgid "Number of seats, the driver included."
 msgstr ""
 
 #. module: adealer
@@ -3769,6 +4039,11 @@ msgstr ""
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_fleet_vehicle__last_service_mileage
 msgid "Odometer reading at the latest repair order."
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__mileage_km
+msgid "Odometer reading. 0 for a new vehicle."
 msgstr ""
 
 #. module: adealer
@@ -4160,6 +4435,7 @@ msgstr ""
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_lost_demand__reason__other
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__fuel_type__other
 msgid "Other"
 msgstr ""
 
@@ -4350,6 +4626,11 @@ msgid "Payload"
 msgstr ""
 
 #. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__payload_kg
+msgid "Payload, kg"
+msgstr ""
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_account_move_realiz_list
 msgid "Payment"
 msgstr ""
@@ -4394,6 +4675,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_sales
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_turnover
 msgid "Period from"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__fuel_type__petrol
+msgid "Petrol"
 msgstr ""
 
 #. module: adealer
@@ -4464,6 +4750,16 @@ msgstr ""
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_dovirenist
 msgid "Power of attorney No."
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__power_hp
+msgid "Power, hp"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__power_kw
+msgid "Power, kW"
 msgstr ""
 
 #. module: adealer
@@ -4553,6 +4849,11 @@ msgstr ""
 #. module: adealer
 #: model:ir.model,name:adealer.model_product_category
 msgid "Product Category"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model,name:adealer.model_product_product
+msgid "Product Variant"
 msgstr ""
 
 #. module: adealer
@@ -5038,6 +5339,11 @@ msgid "Revenue"
 msgstr ""
 
 #. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__sliding_door__right
+msgid "Right"
+msgstr ""
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/partner_import.py:0
 msgid ""
@@ -5141,6 +5447,11 @@ msgstr ""
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_request__scheduled_date
 msgid "Scheduled"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__seats
+msgid "Seats"
 msgstr ""
 
 #. module: adealer
@@ -5483,6 +5794,11 @@ msgid "Showroom"
 msgstr ""
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__sliding_door
+msgid "Side sliding door of a van."
+msgstr ""
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.report_dovirenist
 msgid "Signature of the authorized person: _______________ we certify."
 msgstr ""
@@ -5497,6 +5813,11 @@ msgstr ""
 #. odoo-python
 #: code:addons/adealer/models/partner_import.py:0
 msgid "Skipped for lack of data: %s"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__sliding_door
+msgid "Sliding door"
 msgstr ""
 
 #. module: adealer
@@ -5702,6 +6023,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:adealer.view_purchase_order_journal_list
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_purchases
 msgid "Supplier"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__tail_lift
+msgid "Tail lift"
 msgstr ""
 
 #. module: adealer
@@ -6111,6 +6437,13 @@ msgid ""
 msgstr ""
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__power_hp
+msgid ""
+"The same power in horsepower (1 kW = 1.36 hp). Enter either value: the other"
+" one follows."
+msgstr ""
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_repair_stage_history__stage_id
 msgid "The stage the order was moved to."
 msgstr ""
@@ -6136,6 +6469,11 @@ msgstr ""
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_doc_chain_line__chain_id
 msgid "The structure this line belongs to."
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__tail_lift
+msgid "The vehicle has a tail lift (loading platform) at the rear."
 msgstr ""
 
 #. module: adealer
@@ -6295,19 +6633,8 @@ msgstr ""
 #: code:addons/adealer/models/report_wizards.py:0
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_report_wizard_line__line_type__total
 #: model_terms:ir.ui.view,arch_db:adealer.view_account_move_realiz_list
-#: model_terms:ir.ui.view,arch_db:adealer.view_partner_balance_wizard_form
 #: model_terms:ir.ui.view,arch_db:adealer.view_purchase_order_journal_list
 #: model_terms:ir.ui.view,arch_db:adealer.view_repair_order_journal_list
-#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_customers
-#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_abc_sales
-#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_advisors
-#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_gross
-#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_orders
-#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_purchases
-#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_repairs
-#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_sales
-#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_stock
-#: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_turnover
 #: model_terms:ir.ui.view,arch_db:adealer.view_sale_order_journal_list
 msgid "Total"
 msgstr ""
@@ -6548,6 +6875,12 @@ msgid "Updates"
 msgstr ""
 
 #. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__condition__used
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_search
+msgid "Used"
+msgstr ""
+
+#. module: adealer
 #: model:ir.model,name:adealer.model_res_users
 #: model:ir.model.fields,field_description:adealer.field_dealer_car_status_history__user_id
 #: model:res.groups,name:adealer.group_adealer_user
@@ -6568,6 +6901,16 @@ msgstr ""
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_organization__is_vat_payer
 msgid "VAT payer"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__vat_mode
+msgid "VAT scheme"
+msgstr ""
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__vat_mode__vat
+msgid "VAT shown"
 msgstr ""
 
 #. module: adealer
@@ -6862,6 +7205,11 @@ msgid "Volume"
 msgstr ""
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__cargo_volume_m3
+msgid "Volume of the load space in cubic metres."
+msgstr ""
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_res_config_settings__wh_id_1c
 msgid "WH ID (source)"
 msgstr ""
@@ -6905,6 +7253,11 @@ msgstr ""
 #: model:ir.model.fields,help:adealer.field_dealer_car__website_message_ids
 #: model:ir.model.fields,help:adealer.field_dealer_service_campaign__website_message_ids
 msgid "Website communication history"
+msgstr ""
+
+#. module: adealer
+#: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
+msgid "Weights"
 msgstr ""
 
 #. module: adealer
