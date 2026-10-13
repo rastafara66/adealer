@@ -344,7 +344,7 @@
                         </div>
                         <div class="oe_button_box" name="button_box">
                             <button help="Customer leads about this vehicle. A lead created from here is linked to the vehicle." name="action_view_leads" type="object"
-                                    class="oe_stat_button" icon="fa-handshake-o">
+                                    class="oe_stat_button" icon="handshake">
                                 <field name="lead_count" widget="statinfo" string="Leads"/>
                             </button>
                             <button help="Open the sale invoice of this vehicle." name="action_view_sale_move" type="object"
