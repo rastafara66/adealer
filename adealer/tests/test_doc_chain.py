@@ -200,7 +200,7 @@ class TestWhatCanBeCreatedFromWhat(TransactionCase):
 class TestGitPanelTellsTheTruthUpfront(TransactionCase):
     """Кнопка «Update from GitHub» не має існувати там, де git немає.
 
-    10.09.2026 на ford.aktiv.in.ua натискання давало «git недоступний на
+    10.09.2026 на сервері замовника натискання давало «git недоступний на
     сервері: No such file or directory». Це не поломка модуля — офіційний
     образ Odoo просто не містить git. Але для користувача воно виглядає
     поломкою, бо кнопка стоїть і обіцяє дію.
