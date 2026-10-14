@@ -246,6 +246,9 @@
             <field name="complectation_id" ref="demo_compl_rav4"/>
             <field name="color_id" ref="demo_color_white"/>
             <field name="vin">JTMWFREV10D555111</field>
+            <field name="body_type">suv</field>
+            <field name="drive_type">fwd</field>
+            <field name="doors">5</field>
             <field name="model_year">2024</field>
             <field name="engine_volume">2000</field>
             <field name="power_kw">127</field>
@@ -264,6 +267,9 @@
             <field name="model_id" ref="demo_model_corolla"/>
             <field name="color_id" ref="demo_color_gray"/>
             <field name="vin">JTDBR32E900777222</field>
+            <field name="body_type">sedan</field>
+            <field name="drive_type">fwd</field>
+            <field name="doors">4</field>
             <field name="model_year">2024</field>
             <field name="engine_volume">1600</field>
             <field name="power_kw">97</field>
@@ -281,6 +287,9 @@
             <field name="model_id" ref="demo_model_tiguan"/>
             <field name="color_id" ref="demo_color_white"/>
             <field name="vin">WVGZZZ5NZPW889900</field>
+            <field name="body_type">suv</field>
+            <field name="drive_type">awd</field>
+            <field name="doors">5</field>
             <field name="model_year">2025</field>
             <field name="engine_volume">1400</field>
             <field name="power_kw">110</field>
@@ -298,6 +307,9 @@
             <field name="model_id" ref="demo_model_transporter"/>
             <field name="color_id" ref="demo_color_white"/>
             <field name="vin">WV1ZZZ7HZMH334455</field>
+            <field name="body_type">van</field>
+            <field name="drive_type">fwd</field>
+            <field name="doors">4</field>
             <field name="model_year" eval="(DateTime.today() - relativedelta(years=3)).year"/>
             <field name="condition">used</field>
             <field name="first_registration" eval="(DateTime.today() - relativedelta(years=3, months=2)).strftime('%Y-%m-01')"/>

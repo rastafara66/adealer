@@ -3,6 +3,13 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## 20.0.1.21.0 — 2026-10-14
+
+### Added
+
+- Body type, drive and number of doors on the vehicle card.
+- Тип кузова, привід і кількість дверей на картці авто.
+
 ## 20.0.1.20.0 – 20.0.1.20.1 — 2026-10-13
 
 ### Added

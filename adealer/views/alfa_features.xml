@@ -387,6 +387,9 @@
                                 <field name="fuel_type"/>
                                 <field name="emission_class"/>
                                 <field name="transmission"/>
+                                <field name="drive_type"/>
+                                <field name="body_type"/>
+                                <field name="doors"/>
                                 <field name="seats"/>
                                 <field name="location_note"/>
                                 <field name="supplier_id"/>

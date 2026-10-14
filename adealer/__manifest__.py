@@ -50,7 +50,7 @@ Key features:
     'live_test_url': "https://demo20-3adealer.yellow.in.ua",
     'license': "LGPL-3",
     'category': 'Sales',
-    'version': '20.0.1.20.1',
+    'version': '20.0.1.21.0',
     'images': [
         # The first image is the card picture in the App Store listing. A
         # screenshot shrunk to a thumbnail reads as a grey smudge; the banner

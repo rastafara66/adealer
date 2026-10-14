@@ -186,6 +186,32 @@ class DealerCar(models.Model):
              'margin scheme for used vehicles, where VAT is not shown. Portals such as '
              'mobile.de display it next to the price.')
     seats = fields.Integer('Seats', help='Number of seats, the driver included.')
+    # Кузов, привід і двері питає кожен майданчик (AUTO.RIA без кузова оголошення не
+    # приймає). Перелік загальний, кожна надбудова переводить його у свій довідник.
+    body_type = fields.Selection([
+        ('sedan', 'Sedan'),
+        ('hatchback', 'Hatchback'),
+        ('liftback', 'Liftback'),
+        ('wagon', 'Estate / wagon'),
+        ('coupe', 'Coupe'),
+        ('convertible', 'Convertible'),
+        ('suv', 'SUV / crossover'),
+        ('pickup', 'Pickup'),
+        ('minivan', 'Minivan (MPV)'),
+        ('minibus', 'Minibus / passenger van'),
+        ('van', 'Panel van'),
+        ('chassis_cab', 'Chassis cab / platform'),
+        ('other', 'Other'),
+    ], 'Body type',
+        help='Body style. Portals ask for it on every advert and use it as a search filter; '
+             'each portal connector translates it into the portal\'s own list.')
+    drive_type = fields.Selection([
+        ('fwd', 'Front-wheel drive'),
+        ('rwd', 'Rear-wheel drive'),
+        ('awd', 'All-wheel drive'),
+    ], 'Drive', help='Which wheels are driven.')
+    doors = fields.Integer(
+        'Doors', help='Number of doors, the tailgate included: a five-door hatchback has 5.')
 
     # Фургони й вантажівки: те, що покупець фургона дивиться першим
     gross_weight_kg = fields.Integer(
