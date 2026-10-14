@@ -681,6 +681,11 @@ msgid "All-time amount"
 msgstr "Importe acumulado total"
 
 #. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__drive_type__awd
+msgid "All-wheel drive"
+msgstr "Tracción total"
+
+#. module: adealer
 #. odoo-python
 #: code:addons/adealer/models/addon_hint.py:0
 msgid "Also available for 3A-dealer"
@@ -995,6 +1000,18 @@ msgid "Body colour."
 msgstr "Color de la carrocería."
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__body_type
+msgid ""
+"Body style. Portals ask for it on every advert and use it as a search "
+"filter; each portal connector translates it into the portal's own list."
+msgstr "Estilo de carrocería. Los portales de anuncios lo piden en cada anuncio y lo usan como filtro de búsqueda; cada conector lo traduce a la lista propia del portal."
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__body_type
+msgid "Body type"
+msgstr "Tipo de carrocería"
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_fleet_vehicle__body_type
 msgid "Body type, e.g. sedan or estate."
 msgstr "Tipo de carrocería, p. ej. sedán o familiar."
@@ -1161,6 +1178,11 @@ msgstr "Fecha de modificación"
 #: model:ir.model.fields,field_description:adealer.field_adealer_repair_stage_history__user_id
 msgid "Changed by"
 msgstr "Modificado por"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__body_type__chassis_cab
+msgid "Chassis cab / platform"
+msgstr "Chasis cabina / plataforma"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
@@ -1437,6 +1459,11 @@ msgid "Contacts linked to this partner (type contact)"
 msgstr "Contactos vinculados a este socio (tipo contacto)"
 
 #. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__body_type__convertible
+msgid "Convertible"
+msgstr "Descapotable"
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_gross
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_stock
 msgid "Cost"
@@ -1506,6 +1533,11 @@ msgstr "Contraparte"
 #: model:ir.model.fields,field_description:adealer.field_partner_address_import_wizard__partner_type
 msgid "Counterparty type"
 msgstr "Tipo de contraparte"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__body_type__coupe
+msgid "Coupe"
+msgstr "Cupé"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_doc_basis__target
@@ -2203,6 +2235,11 @@ msgid "Done vehicles as a share of all vehicles."
 msgstr "Proporción de vehículos hechos sobre el total."
 
 #. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__doors
+msgid "Doors"
+msgstr "Número de puertas"
+
+#. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_service_campaign__state__draft
 msgid "Draft"
 msgstr "Borrador"
@@ -2213,6 +2250,11 @@ msgid ""
 "Draft: being prepared. Active: repair orders show it for the vehicles in it."
 " Closed: finished."
 msgstr "Borrador: en preparación. Activa: las órdenes de reparación la muestran para sus vehículos. Cerrada: terminada."
+
+#. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_dealer_car__drive_type
+msgid "Drive"
+msgstr "Tracción"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_fleet_vehicle__drive_type
@@ -2322,6 +2364,11 @@ msgstr "Informe de errores"
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
 msgid "Error reports"
 msgstr "Informes de errores"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__body_type__wagon
+msgid "Estate / wagon"
+msgstr "Familiar"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_fleet_vehicle__service_due
@@ -2558,6 +2605,11 @@ msgid "Front"
 msgstr "Delantero"
 
 #. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__drive_type__fwd
+msgid "Front-wheel drive"
+msgstr "Tracción delantera"
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__fuel_type
 msgid "Fuel"
 msgstr "Combustible"
@@ -2701,6 +2753,11 @@ msgstr "Entregado por: _______________"
 #: model:ir.model.fields,field_description:adealer.field_dealer_service_campaign__has_message
 msgid "Has Message"
 msgstr "Tiene un mensaje"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__body_type__hatchback
+msgid "Hatchback"
+msgstr "Compacto (hatchback)"
 
 #. module: adealer
 #: model:ir.actions.client,name:adealer.action_dashboard
@@ -3405,6 +3462,11 @@ msgid "Level"
 msgstr "Nivel"
 
 #. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__body_type__liftback
+msgid "Liftback"
+msgstr "Berlina con portón (liftback)"
+
+#. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_doc_chain__line_ids
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_report_wizard_line__line_type__row
 msgid "Line"
@@ -3666,6 +3728,16 @@ msgstr "Kilometraje en el último servicio"
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__mileage_km
 msgid "Mileage, km"
 msgstr "Kilometraje, km"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__body_type__minibus
+msgid "Minibus / passenger van"
+msgstr "Minibús / furgoneta de pasajeros"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__body_type__minivan
+msgid "Minivan (MPV)"
+msgstr "Monovolumen"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__model_id
@@ -4033,6 +4105,11 @@ msgstr "Número de acciones"
 #: model:ir.model.fields,help:adealer.field_dealer_car__axles
 msgid "Number of axles."
 msgstr "Número de ejes."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__doors
+msgid "Number of doors, the tailgate included: a five-door hatchback has 5."
+msgstr "Número de puertas, incluido el portón trasero: un compacto de cinco puertas tiene 5."
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__message_has_error_counter
@@ -4485,6 +4562,7 @@ msgstr "Registro de origen"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_lost_demand__reason__other
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__body_type__other
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_car__fuel_type__other
 msgid "Other"
 msgstr "Otro"
@@ -4536,6 +4614,11 @@ msgstr "Indicación de complemento de pago"
 #: model_terms:ir.ui.view,arch_db:adealer.res_config_settings_view_form
 msgid "Paid add-ons"
 msgstr "Complementos de pago"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__body_type__van
+msgid "Panel van"
+msgstr "Furgón"
 
 #. module: adealer
 #: model:ir.ui.menu,name:adealer.settings
@@ -4757,6 +4840,11 @@ msgstr "Elegir iconos según el nombre"
 #: model:ir.model.fields,field_description:adealer.field_repair_order__picking_count
 msgid "Picking Count"
 msgstr "Número de recogidas"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__body_type__pickup
+msgid "Pickup"
+msgstr "Pick-up"
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__adealer_service_booking__state__draft
@@ -5077,6 +5165,11 @@ msgstr "Línea de informe preparado"
 #: model:ir.ui.menu,name:adealer.menu_reports_ready
 msgid "Ready reports"
 msgstr "Informes preparados"
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__drive_type__rwd
+msgid "Rear-wheel drive"
+msgstr "Tracción trasera"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_adealer_lost_demand__reason
@@ -5417,6 +5510,11 @@ msgid "SMS Delivery error"
 msgstr "Error de envío del SMS"
 
 #. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__body_type__suv
+msgid "SUV / crossover"
+msgstr "SUV / todocamino"
+
+#. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_dealer_car_form
 msgid "Sale"
 msgstr "Venta"
@@ -5514,6 +5612,11 @@ msgstr "Segundo importe; su significado depende del informe (coste, margen, cuot
 #: model:ir.model.fields,help:adealer.field_adealer_report_wizard_line__ref2
 msgid "Second column of the report; its meaning depends on the report."
 msgstr "Segunda columna del informe; su significado depende del informe."
+
+#. module: adealer
+#: model:ir.model.fields.selection,name:adealer.selection__dealer_car__body_type__sedan
+msgid "Sedan"
+msgstr "Sedán"
 
 #. module: adealer
 #: model_terms:ir.ui.view,arch_db:adealer.view_partner_import_wizard_form
@@ -7602,6 +7705,11 @@ msgid ""
 "Which tab of the Home dashboard opens first: a workshop wants Service, a "
 "showroom wants Showroom."
 msgstr "Qué pestaña del panel Inicio se abre primero: un taller quiere Servicio, una exposición quiere Exposición."
+
+#. module: adealer
+#: model:ir.model.fields,help:adealer.field_dealer_car__drive_type
+msgid "Which wheels are driven."
+msgstr "Qué ruedas son motrices."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_lost_demand__partner_id
