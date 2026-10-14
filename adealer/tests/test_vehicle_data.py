@@ -58,3 +58,9 @@ class TestVehicleData(TransactionCase):
         self.assertEqual((car.payload_kg, car.euro_pallets, car.sliding_door),
                          (1200, 4, 'both'))
         self.assertAlmostEqual(car.cargo_volume_m3, 11.5)
+
+    def test_body_drive_doors_are_kept(self):
+        # Кузов, привід і двері — для оголошень на майданчиках (AUTO.RIA без кузова не приймає).
+        car = self.Car.create({'vin': 'TSTVD000000000008', 'body_type': 'van',
+                               'drive_type': 'fwd', 'doors': 4})
+        self.assertEqual((car.body_type, car.drive_type, car.doors), ('van', 'fwd', 4))
