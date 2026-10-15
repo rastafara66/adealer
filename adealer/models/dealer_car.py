@@ -100,6 +100,13 @@ class DealerCar(models.Model):
                        help='Made from the brand, the model, the colour and the VIN.')
     vin = fields.Char('VIN', copy=False, index=True, tracking=True,
                       help='Vehicle identification number (unique)')
+    # Номерний знак питають майданчики (Auto Trader у Великій Британії знаходить за ним
+    # авто й історію, AutoScout24 показує покупцям) — тому в ядрі, а не в надбудові.
+    registration_plate = fields.Char(
+        'Registration number', copy=False, index=True, tracking=True,
+        help='The number plate of a registered vehicle, as in the registration document (for '
+             'example AB12 CDE). Leave it empty for a vehicle that has never been registered. '
+             'Portals use it to look the vehicle up and to show it to buyers.')
     model_id = fields.Many2one('fleet.vehicle.model', 'Model',
                                tracking=True, index=True,
                                help='Optional: matched fleet model. Imported cars may carry '

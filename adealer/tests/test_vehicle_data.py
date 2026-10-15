@@ -37,6 +37,12 @@ class TestVehicleData(TransactionCase):
         car.write({'is_trade_in': False})
         self.assertEqual(car.condition, 'used')
 
+    def test_registration_number_is_searchable_and_not_copied(self):
+        # Номер — однієї машини: копія картки (інше авто тієї ж моделі) його не бере.
+        car = self.Car.create({'vin': 'TSTVD000000000009', 'registration_plate': 'AB12 CDE'})
+        self.assertEqual(self.Car.search([('registration_plate', 'ilike', 'ab12')]), car)
+        self.assertFalse(car.copy({'vin': 'TSTVD000000000010'}).registration_plate)
+
     def test_power_hp_follows_kw(self):
         car = self.Car.create({'vin': 'TSTVD000000000005', 'power_kw': 110})
         self.assertEqual(car.power_hp, 150)

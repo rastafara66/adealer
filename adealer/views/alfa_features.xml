@@ -277,6 +277,7 @@
                          опцію ігнорує (list_renderer.canUseFormatter) -->
                     <field name="model_year" widget="integer" options="{'enable_formatting': false}" optional="hide"/>
                     <field name="condition" optional="show"/>
+                    <field name="registration_plate" optional="hide"/>
                     <field name="mileage_km" optional="hide"/>
                     <field name="sale_price"/>
                     <field name="total_price"/>
@@ -372,6 +373,7 @@
                                 <field name="color_id"/>
                                 <field name="condition"/>
                                 <field name="first_registration"/>
+                                <field name="registration_plate"/>
                                 <field name="mileage_km"/>
                                 <field name="is_trade_in"/>
                                 <!-- Рік — останнім: після нього надбудова VIN-декодера
@@ -486,6 +488,7 @@
             <field name="arch" type="xml">
                 <search string="Find vehicle">
                     <field name="vin"/>
+                    <field name="registration_plate"/>
                     <field name="model_id"/>
                     <field name="partner_id"/>
                     <filter name="in_stock" string="In stock" domain="[('status','=','in_stock')]"/>

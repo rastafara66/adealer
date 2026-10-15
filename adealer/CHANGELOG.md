@@ -3,6 +3,13 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
+## 19.0.1.22.0 — 2026-10-15
+
+### Added
+
+- Registration number (number plate) on the vehicle card, in the list and in search.
+- Номерний знак на картці авто, у списку й у пошуку.
+
 ## 19.0.1.21.0 — 2026-10-14
 
 ### Added
