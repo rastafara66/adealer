@@ -1,6 +1,13 @@
 <odoo>
     <data>
 
+        <!-- Ціни демо — у євро, правдоподібного масштабу (англомовний демо-стенд — у євро).
+             Авто, комплектація й опції несуть валюту явно: у компанії з іншою валютою без
+             цього ціна в гривневому масштабі вийшла б «Tiguan за 1 320 000 €». -->
+        <record id="base.EUR" model="res.currency">
+            <field name="active" eval="True"/>
+        </record>
+
         <!-- ============================================================ -->
         <!--  CUSTOMERS / PARTNERS                                         -->
         <!-- ============================================================ -->
@@ -156,38 +163,38 @@
             <field name="name">Oil filter OEM-90915</field>
             <field name="type">consu</field>
             <field name="default_code">OF-90915</field>
-            <field name="list_price">320.0</field>
-            <field name="standard_price">210.0</field>
+            <field name="list_price">14.9</field>
+            <field name="standard_price">9.4</field>
             <field name="analog_group_id" ref="demo_analog_oilfilter"/>
         </record>
         <record id="demo_prod_oilfilter_b" model="product.product">
             <field name="name">Oil filter MANN W71121</field>
             <field name="type">consu</field>
             <field name="default_code">OF-W71121</field>
-            <field name="list_price">295.0</field>
-            <field name="standard_price">190.0</field>
+            <field name="list_price">12.9</field>
+            <field name="standard_price">8.2</field>
             <field name="analog_group_id" ref="demo_analog_oilfilter"/>
         </record>
         <record id="demo_prod_oil" model="product.product">
             <field name="name">Engine oil 5W-30 (1 L)</field>
             <field name="type">consu</field>
             <field name="default_code">OIL-5W30</field>
-            <field name="list_price">410.0</field>
-            <field name="standard_price">280.0</field>
+            <field name="list_price">11.9</field>
+            <field name="standard_price">7.8</field>
         </record>
         <record id="demo_prod_brakepads" model="product.product">
             <field name="name">Front brake pads, set</field>
             <field name="type">consu</field>
             <field name="default_code">BRK-FRT</field>
-            <field name="list_price">1650.0</field>
-            <field name="standard_price">1050.0</field>
+            <field name="list_price">89.0</field>
+            <field name="standard_price">56.0</field>
         </record>
         <record id="demo_prod_wiper" model="product.product">
             <field name="name">Wiper blade 600 mm</field>
             <field name="type">consu</field>
             <field name="default_code">WP-600</field>
-            <field name="list_price">380.0</field>
-            <field name="standard_price">240.0</field>
+            <field name="list_price">18.9</field>
+            <field name="standard_price">11.5</field>
         </record>
 
         <!-- Services / labour (type=service) -->
@@ -195,19 +202,19 @@
             <field name="name">Service B: oil &amp; filter change</field>
             <field name="type">service</field>
             <field name="default_code">WRK-TO2</field>
-            <field name="list_price">900.0</field>
+            <field name="list_price">79.0</field>
         </record>
         <record id="demo_srv_diag" model="product.product">
             <field name="name">Computer diagnostics</field>
             <field name="type">service</field>
             <field name="default_code">WRK-DIAG</field>
-            <field name="list_price">600.0</field>
+            <field name="list_price">59.0</field>
         </record>
         <record id="demo_srv_brakes" model="product.product">
             <field name="name">Brake pads replacement</field>
             <field name="type">service</field>
             <field name="default_code">WRK-BRK</field>
-            <field name="list_price">750.0</field>
+            <field name="list_price">69.0</field>
         </record>
 
         <!-- ============================================================ -->
@@ -227,18 +234,21 @@
         <record id="demo_compl_rav4" model="dealer.car.complectation">
             <field name="name">Style</field>
             <field name="model_id" ref="demo_model_rav4"/>
-            <field name="base_price">1250000.0</field>
+            <field name="base_price">38900.0</field>
+            <field name="currency_id" ref="base.EUR"/>
         </record>
 
         <record id="demo_opt_tow" model="dealer.car.option">
             <field name="name">Detachable tow bar</field>
             <field name="category">Comfort</field>
-            <field name="price">28000.0</field>
+            <field name="price">790.0</field>
+            <field name="currency_id" ref="base.EUR"/>
         </record>
         <record id="demo_opt_mats" model="dealer.car.option">
             <field name="name">All-season floor mats</field>
             <field name="category">Comfort</field>
-            <field name="price">4500.0</field>
+            <field name="price">129.0</field>
+            <field name="currency_id" ref="base.EUR"/>
         </record>
 
         <record id="demo_car_rav4_stock" model="dealer.car">
@@ -257,8 +267,9 @@
             <field name="seats">5</field>
             <field name="transmission">auto</field>
             <field name="status">in_stock</field>
-            <field name="purchase_price">1120000.0</field>
-            <field name="sale_price">1250000.0</field>
+            <field name="purchase_price">34500.0</field>
+            <field name="sale_price">38900.0</field>
+            <field name="currency_id" ref="base.EUR"/>
             <field name="option_ids" eval="[(6,0,[ref('demo_opt_mats')])]"/>
             <field name="supplier_id" ref="demo_partner_supplier"/>
             <field name="location_note">Showroom, spot A-3</field>
@@ -278,8 +289,9 @@
             <field name="seats">5</field>
             <field name="transmission">cvt</field>
             <field name="status">reserved</field>
-            <field name="purchase_price">870000.0</field>
-            <field name="sale_price">960000.0</field>
+            <field name="purchase_price">26800.0</field>
+            <field name="sale_price">29500.0</field>
+            <field name="currency_id" ref="base.EUR"/>
             <field name="partner_id" ref="demo_partner_kovalenko"/>
             <field name="location_note">Warehouse, row 2</field>
         </record>
@@ -298,14 +310,15 @@
             <field name="seats">5</field>
             <field name="transmission">robot</field>
             <field name="status">ordered</field>
-            <field name="purchase_price">1180000.0</field>
-            <field name="sale_price">1320000.0</field>
+            <field name="purchase_price">36900.0</field>
+            <field name="sale_price">41500.0</field>
+            <field name="currency_id" ref="base.EUR"/>
             <field name="supplier_id" ref="demo_partner_supplier"/>
         </record>
         <!-- Вживаний фургон: заповнена вкладка «Комерційне авто» -->
         <record id="demo_car_transporter_used" model="dealer.car">
             <field name="model_id" ref="demo_model_transporter"/>
-            <field name="color_id" ref="demo_color_white"/>
+            <field name="color_id" ref="demo_color_gray"/>
             <field name="vin">WV1ZZZ7HZMH334455</field>
             <field name="body_type">van</field>
             <field name="drive_type">fwd</field>
@@ -332,8 +345,9 @@
             <field name="sliding_door">right</field>
             <field name="tail_lift" eval="False"/>
             <field name="status">in_stock</field>
-            <field name="purchase_price">820000.0</field>
-            <field name="sale_price">915000.0</field>
+            <field name="purchase_price">19400.0</field>
+            <field name="sale_price">21900.0</field>
+            <field name="currency_id" ref="base.EUR"/>
             <field name="supplier_id" ref="demo_partner_supplier"/>
             <field name="location_note">Yard, row 4</field>
         </record>
@@ -349,9 +363,9 @@
             <field name="service_advisor_id" ref="base.user_admin"/>
             <field name="mechanic_ids" eval="[(6,0,[ref('demo_emp_shevchuk'), ref('demo_emp_bondar')])]"/>
             <field name="operations" eval="[
-                (0,0,{'product_id': ref('demo_srv_to'), 'product_uom_qty': 1.0, 'price_unit': 900.0}),
-                (0,0,{'product_id': ref('demo_prod_oil'), 'product_uom_qty': 4.0, 'price_unit': 410.0}),
-                (0,0,{'product_id': ref('demo_prod_oilfilter_a'), 'product_uom_qty': 1.0, 'price_unit': 320.0}),
+                (0,0,{'product_id': ref('demo_srv_to'), 'product_uom_qty': 1.0, 'price_unit': 79.0}),
+                (0,0,{'product_id': ref('demo_prod_oil'), 'product_uom_qty': 4.0, 'price_unit': 11.9}),
+                (0,0,{'product_id': ref('demo_prod_oilfilter_a'), 'product_uom_qty': 1.0, 'price_unit': 14.9}),
             ]"/>
         </record>
 
@@ -363,8 +377,8 @@
             <field name="service_advisor_id" ref="base.user_admin"/>
             <field name="mechanic_ids" eval="[(6,0,[ref('demo_emp_bondar')])]"/>
             <field name="operations" eval="[
-                (0,0,{'product_id': ref('demo_srv_brakes'), 'product_uom_qty': 1.0, 'price_unit': 750.0}),
-                (0,0,{'product_id': ref('demo_prod_brakepads'), 'product_uom_qty': 1.0, 'price_unit': 1650.0}),
+                (0,0,{'product_id': ref('demo_srv_brakes'), 'product_uom_qty': 1.0, 'price_unit': 69.0}),
+                (0,0,{'product_id': ref('demo_prod_brakepads'), 'product_uom_qty': 1.0, 'price_unit': 89.0}),
             ]"/>
         </record>
 
@@ -376,7 +390,7 @@
             <field name="service_advisor_id" ref="base.user_admin"/>
             <field name="mechanic_ids" eval="[(6,0,[ref('demo_emp_tkachenko')])]"/>
             <field name="operations" eval="[
-                (0,0,{'product_id': ref('demo_srv_diag'), 'product_uom_qty': 1.0, 'price_unit': 600.0}),
+                (0,0,{'product_id': ref('demo_srv_diag'), 'product_uom_qty': 1.0, 'price_unit': 59.0}),
             ]"/>
         </record>
 
@@ -387,9 +401,9 @@
             <field name="partner_id" ref="demo_partner_ivanenko"/>
             <field name="vehicle_id" ref="demo_veh_corolla"/>
             <field name="order_line" eval="[
-                (0,0,{'product_id': ref('demo_prod_oil'), 'product_uom_qty': 4.0, 'price_unit': 410.0}),
-                (0,0,{'product_id': ref('demo_prod_oilfilter_a'), 'product_uom_qty': 1.0, 'price_unit': 320.0}),
-                (0,0,{'product_id': ref('demo_srv_to'), 'product_uom_qty': 1.0, 'price_unit': 900.0}),
+                (0,0,{'product_id': ref('demo_prod_oil'), 'product_uom_qty': 4.0, 'price_unit': 11.9}),
+                (0,0,{'product_id': ref('demo_prod_oilfilter_a'), 'product_uom_qty': 1.0, 'price_unit': 14.9}),
+                (0,0,{'product_id': ref('demo_srv_to'), 'product_uom_qty': 1.0, 'price_unit': 79.0}),
             ]"/>
         </record>
 
@@ -397,8 +411,8 @@
             <field name="partner_id" ref="demo_partner_avtoprofi"/>
             <field name="vehicle_id" ref="demo_veh_passat"/>
             <field name="order_line" eval="[
-                (0,0,{'product_id': ref('demo_prod_brakepads'), 'product_uom_qty': 2.0, 'price_unit': 1650.0}),
-                (0,0,{'product_id': ref('demo_prod_wiper'), 'product_uom_qty': 2.0, 'price_unit': 380.0}),
+                (0,0,{'product_id': ref('demo_prod_brakepads'), 'product_uom_qty': 2.0, 'price_unit': 89.0}),
+                (0,0,{'product_id': ref('demo_prod_wiper'), 'product_uom_qty': 2.0, 'price_unit': 18.9}),
             ]"/>
         </record>
 

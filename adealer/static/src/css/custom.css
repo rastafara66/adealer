@@ -10,11 +10,6 @@
     background-color: #274472 !important;
     color: #fff !important;
 }
-a.fw-bold.text-truncate[data-tooltip] {
-    font-size: 1.2em !important;
-    white-space: pre-line !important;
-    word-break: break-all;
-}
 .o-autocomplete--input.o_input {
     font-size: 1em !important;
 }
