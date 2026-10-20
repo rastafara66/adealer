@@ -295,6 +295,9 @@
             <field name="arch" type="xml">
                 <kanban default_group_by="status" class="o_kanban_small_column">
                     <field name="status"/>
+                    <!-- валюта картки: без неї ціна йде голим числом, і авто в гривнях,
+                         доларах і євро на складі не розрізнити -->
+                    <field name="currency_id"/>
                     <templates>
                         <t t-name="card">
                             <div class="oe_kanban_global_click">
@@ -302,7 +305,7 @@
                                 <strong><field name="model_id"/></strong>
                                 <div><field name="complectation_id"/> <field name="color_id"/></div>
                                 <div class="text-muted"><field name="vin"/></div>
-                                <div><field name="total_price"/></div>
+                                <div><field name="total_price" widget="monetary"/></div>
                             </div>
                         </t>
                     </templates>
