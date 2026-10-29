@@ -6,7 +6,8 @@
 але наряд ще не створено / не приїхав). Календар СТО будується саме на цих
 записах — по постах і часу, з тривалістю робіт.
 """
-from odoo import api, fields, models, _
+from odoo import Command, api, fields, models, _
+from odoo.tools import plaintext2html
 
 
 class AdealerWorkplace(models.Model):
@@ -152,7 +153,7 @@ class AdealerServiceBooking(models.Model):
         """«Держномер модель · клієнт · роботи» — те, що майстер шукає очима.
 
         Так підписана клітинка розкладу в 1С, і саме це видно на події
-        календаря. Службовий номер запису (ПЗ000123) людині нічого не каже —
+        календаря. Службовий номер запису (SB000123) людині нічого не каже —
         він лише запасний підпис, коли більше нічого немає.
         """
         for b in self:
@@ -166,16 +167,27 @@ class AdealerServiceBooking(models.Model):
             b.display_name = ' · '.join(parts) if parts else (b.name or '/')
 
     def action_create_repair_order(self):
-        """Створити наряд-замовлення з запису й привʼязати до нього."""
+        """Створити наряд-замовлення з запису й привʼязати до нього.
+
+        Наряд бере з запису все, що вже відомо: клієнта, авто, час, механіка,
+        приймальника (якщо він користувач) і перелік робіт — у «Repair Notes»,
+        щоб записане по телефону не набирати вдруге."""
         self.ensure_one()
         if self.repair_order_id:
             ro = self.repair_order_id
         else:
-            ro = self.env['repair.order'].create({
+            vals = {
                 'partner_id': self.partner_id.id,
                 'vehicle_id': self.vehicle_id.id,
                 'schedule_date': self.appointment_datetime,
-            })
+            }
+            if self.employee_id:
+                vals['mechanic_ids'] = [Command.set(self.employee_id.ids)]
+            if self.advisor_id.user_id:
+                vals['service_advisor_id'] = self.advisor_id.user_id.id
+            if (self.requested_works or '').strip():
+                vals['internal_notes'] = plaintext2html(self.requested_works.strip())
+            ro = self.env['repair.order'].create(vals)
             self.repair_order_id = ro.id
             self.state = 'done'
         return {
