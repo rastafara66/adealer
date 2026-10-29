@@ -108,20 +108,11 @@
             </field>
         </record>
 
-        <record id="adealer.fleet_vehicle_view_form_inherit_vin_sn" model="ir.ui.view">
-            <field name="name">adealer.fleet.vehicle.view.form.inherit.vin.sn</field>
-            <field name="model">fleet.vehicle</field>
-            <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='model_id']" position="after">
-                    <div class="oe_title">
-                        <field name="vin_sn" readonly="1"/>
-                        <field name="license_plate" readonly="1"/>
-                        <field name="partner_id" readonly="1"/>
-                    </div>
-                </xpath>
-            </field>
-        </record>
+        <!-- Вигляд adealer.fleet_vehicle_view_form_inherit_vin_sn (VIN, номер і клієнт ще раз
+             після model_id) прибрано 29.10.2026: model_id стоїть у заголовку <h1>, тож ці поля
+             виходили там удруге великим шрифтом без підписів. Номер є під заголовком, VIN — у
+             групі «Vehicle», клієнт — у групі «Driver» (вигляд вище). Odoo видаляє запис
+             вигляду сам під час -u, коли його xmlid зникає з даних модуля. -->
 
         <!-- <record id="adealer.fleet_vehicle_form_inherit_model_id" model="ir.ui.view"> -->
             <!-- <field name="name">adealer.fleet.vehicle.form.model_id.color</field> -->

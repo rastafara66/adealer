@@ -255,7 +255,7 @@
             <field name="model_id" ref="demo_model_rav4"/>
             <field name="complectation_id" ref="demo_compl_rav4"/>
             <field name="color_id" ref="demo_color_white"/>
-            <field name="vin">JTMWFREV10D555111</field>
+            <field name="vin">JTMWFREV1RD555111</field>
             <field name="body_type">suv</field>
             <field name="drive_type">fwd</field>
             <field name="doors">5</field>
@@ -277,7 +277,7 @@
         <record id="demo_car_corolla_reserved" model="dealer.car">
             <field name="model_id" ref="demo_model_corolla"/>
             <field name="color_id" ref="demo_color_gray"/>
-            <field name="vin">JTDBR32E900777222</field>
+            <field name="vin">JTDBR32E9R0777222</field>
             <field name="body_type">sedan</field>
             <field name="drive_type">fwd</field>
             <field name="doors">4</field>
@@ -298,7 +298,7 @@
         <record id="demo_car_tiguan_ordered" model="dealer.car">
             <field name="model_id" ref="demo_model_tiguan"/>
             <field name="color_id" ref="demo_color_white"/>
-            <field name="vin">WVGZZZ5NZPW889900</field>
+            <field name="vin">WVGZZZ5NZSW889900</field>
             <field name="body_type">suv</field>
             <field name="drive_type">awd</field>
             <field name="doors">5</field>
@@ -319,7 +319,9 @@
         <record id="demo_car_transporter_used" model="dealer.car">
             <field name="model_id" ref="demo_model_transporter"/>
             <field name="color_id" ref="demo_color_gray"/>
-            <field name="vin">WV1ZZZ7HZMH334455</field>
+            <!-- 10-й символ VIN — код року моделі; рік відносний (§6), тож і VIN рахується
+                 тим самим виразом (гейт 3A tools/store/check_demo_vin_year.py). -->
+            <field name="vin" eval="'WV1ZZZ7HZ' + 'ABCDEFGHJKLMNPRSTVWXY123456789'[((DateTime.today() - relativedelta(years=3)).year - 1980) % 30] + 'H334455'"/>
             <field name="body_type">van</field>
             <field name="drive_type">fwd</field>
             <field name="doors">4</field>
