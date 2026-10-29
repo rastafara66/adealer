@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Без noupdate: виконується при встановленні й при КОЖНОМУ оновленні
+         модуля, тож навчальні тури вимикаються й у наявних базах. -->
+    <function model="res.users" name="_adealer_tours_off"/>
+</odoo>

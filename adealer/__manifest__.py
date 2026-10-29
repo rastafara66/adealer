@@ -50,7 +50,7 @@ Key features:
     'live_test_url': "https://demo20-3adealer.aktiv.in.ua",
     'license': "LGPL-3",
     'category': 'Sales',
-    'version': '20.0.1.21.3',
+    'version': '20.0.1.21.4',
     'images': [
         # The first image is the card picture in the App Store listing. A
         # screenshot shrunk to a thumbnail reads as a grey smudge; the banner
@@ -83,6 +83,9 @@ Key features:
                 # Сканер штрихкодів (штатний, LGPL): ловить «набір» сканера
                 # і віддає код у документ — models/barcode_scan.py.
                 'barcodes',
+                # Навчальні тури вимкнено (models/res_users.py) — перекриваємо
+                # web_tour, тож він мусить завантажитись раніше за нас.
+                'web_tour',
                 ],
     # always loaded
     'data': [
@@ -132,6 +135,8 @@ Key features:
         # Сканер штрихкодів у заказ-наряді, продажу й закупівлі.
         'views/barcode_scan_views.xml',
         'data/cron.xml',
+        # Навчальні тури вимкнено всім, хто вже є в базі (при кожному оновленні).
+        'data/tours_off.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
