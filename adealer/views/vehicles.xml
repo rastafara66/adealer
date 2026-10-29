@@ -14,10 +14,13 @@
                     <field name="drive_type"/>
                     <field name="body_type"/>
                 </xpath>
-                <xpath expr="//field[@name='model_id']" position="before">
+                <!-- Фото авто — поруч зі штатним аватаром (логотип марки, image_128), а не
+                     відносно model_id: у 19 model_id стоїть у <h1>, у 20 — рядком групи, і фото
+                     з другим логотипом опинялись у заголовку чи окремими полями з підписами.
+                     Свій brand_logo тут не потрібен — image_128 і є логотип марки. -->
+                <xpath expr="//field[@name='image_128']" position="before">
                     <field name="photo" widget="image" class="oe_avatar"
                            options="{'preview_image': 'photo'}"/>
-                    <field name="brand_logo" widget="image" class="oe_avatar" readonly="1"/>
                 </xpath>
             </field>
         </record>
