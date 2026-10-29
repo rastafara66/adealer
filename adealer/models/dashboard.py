@@ -223,7 +223,7 @@ class AdealerDashboard(models.AbstractModel):
             'currency': self._currency(),
             'kpis': [
                 {'label': _('Stock positions'), 'value': positions, 'kind': 'int', 'icon': 'fa-cubes'},
-                {'label': _('Parts issued in period'), 'value': qty_issued, 'kind': 'float', 'icon': 'fa-dolly'},
+                {'label': _('Parts issued in period'), 'value': qty_issued, 'kind': 'float', 'icon': 'fa-sign-out'},
                 {'label': _('Parts sales in period'), 'value': parts_amount, 'kind': 'money', 'icon': 'fa-money'},
                 {'label': _('Stock value'), 'value': stock_value, 'kind': 'money', 'icon': 'fa-balance-scale'},
             ],
