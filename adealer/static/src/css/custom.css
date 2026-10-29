@@ -1,14 +1,7 @@
-.deep-marine input {
-    background-color: #274472 !important; 
-    color: #fff !important;
-}
+/* 29.10.2026, власник: «світлі поля, як у звичайному Odoo» — темно-сині поля (.deep-marine:
+   модель, номер, VIN, клієнт, ІПН, ЄДРПОУ) прибрано разом із класами у виглядах. */
 .highlight-green input {
     background-color: #d4f8d4 !important;
-}
-.o_form_field[name="model_id"] .o_input,
-.o_field_widget[name="model_id"] .o_input {
-    background-color: #274472 !important;
-    color: #fff !important;
 }
 .o-autocomplete--input.o_input {
     font-size: 1em !important;
