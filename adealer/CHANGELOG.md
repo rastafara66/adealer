@@ -3,12 +3,17 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
-## 19.0.1.21.0 – 19.0.1.21.3 — 2026-10-29
+## 19.0.1.21.0 – 19.0.1.21.4 — 2026-10-29
 
 ### Added
 
 - Body type, drive and number of doors on the vehicle card.
 - Тип кузова, привід і кількість дверей на картці авто.
+
+### Changed
+
+- Odoo onboarding tours are switched off for all users.
+- Навчальні тури Odoo вимкнено для всіх користувачів.
 
 ### Fixed
 
