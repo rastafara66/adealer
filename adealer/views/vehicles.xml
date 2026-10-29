@@ -75,54 +75,13 @@
         <menuitem name="Vehicle models" id="adealer.menu_list_vehicles_models" parent="adealer.menu_vehicles"
                 action="adealer.action_window_vehicles_models" sequence="12"/>                      
 
-        <record id="adealer.fleet_vehicle_form_inherit_license_plate" model="ir.ui.view">
-            <field name="name">adealer.fleet.vehicle.form.license.plate.color</field>
-            <field name="model">fleet.vehicle</field>
-            <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='license_plate']" position="attributes">
-                    <attribute name="class">deep-marine</attribute>
-                </xpath>
-            </field>
-        </record>
-
-        <record id="adealer.fleet_vehicle_form_inherit_partner" model="ir.ui.view">
-            <field name="name">adealer.fleet.vehicle.form.partner.color</field>
-            <field name="model">fleet.vehicle</field>
-            <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='partner_id']" position="attributes">
-                    <attribute name="class">deep-marine</attribute>
-                </xpath>
-            </field>
-        </record>
-
-        <record id="adealer.fleet_vehicle_form_inherit_vin" model="ir.ui.view">
-            <field name="name">adealer.fleet.vehicle.form.vin.color</field>
-            <field name="model">fleet.vehicle</field>
-            <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='vin_sn']" position="attributes">
-                    <attribute name="class">deep-marine</attribute>
-                </xpath>
-            </field>
-        </record>
-
+        <!-- Вигляди adealer.fleet_vehicle_form_inherit_license_plate / _partner / _vin (клас
+             deep-marine — темно-сині поля) прибрано 29.10.2026: власник — «світлі поля, як у
+             звичайному Odoo». -->
         <!-- Вигляд adealer.fleet_vehicle_view_form_inherit_vin_sn (VIN, номер і клієнт ще раз
              після model_id) прибрано 29.10.2026: model_id стоїть у заголовку <h1>, тож ці поля
              виходили там удруге великим шрифтом без підписів. Номер є під заголовком, VIN — у
              групі «Vehicle», клієнт — у групі «Driver» (вигляд вище). Odoo видаляє запис
              вигляду сам під час -u, коли його xmlid зникає з даних модуля. -->
-
-        <!-- <record id="adealer.fleet_vehicle_form_inherit_model_id" model="ir.ui.view"> -->
-            <!-- <field name="name">adealer.fleet.vehicle.form.model_id.color</field> -->
-            <!-- <field name="model">fleet.vehicle</field> -->
-            <!-- <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/> -->
-            <!-- <field name="arch" type="xml"> -->
-                <!-- <xpath expr="//field[@name='model_id']" position="attributes"> -->
-                    <!-- <attribute name="class">deep-marine</attribute> -->
-                <!-- </xpath> -->
-            <!-- </field> -->
-        <!-- </record> -->
     </data>
 </odoo>
