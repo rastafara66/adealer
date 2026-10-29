@@ -3,7 +3,7 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
-## 20.0.1.21.0 – 20.0.1.21.4 — 2026-10-29
+## 20.0.1.21.0 – 20.0.1.21.5 — 2026-10-29
 
 ### Added
 
@@ -14,6 +14,8 @@ All notable changes. Newest on top.
 
 - Odoo onboarding tours are switched off for all users.
 - Навчальні тури Odoo вимкнено для всіх користувачів.
+- A repair order created from a service booking takes over the requested works and the mechanic.
+- Наряд-замовлення, створений із запису на сервіс, бере перелік робіт і механіка.
 
 ### Fixed
 
