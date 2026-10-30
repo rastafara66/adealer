@@ -426,7 +426,7 @@
                             </page>
                             <page string="Commercial vehicle" name="commercial">
                                 <!-- одним рядком: інакше переноси й відступи потрапляють у msgid перекладу -->
-                                <div class="text-muted mb-2">Fill this in for vans and trucks: buyers of commercial vehicles look at these figures first, and portals such as mobile.de show them in the advert.</div>
+                                <div class="text-muted mb-2 text-wrap">Fill this in for vans and trucks: buyers of commercial vehicles look at these figures first, and portals such as mobile.de show them in the advert.</div>
                                 <group>
                                     <group string="Weights">
                                         <field name="gross_weight_kg"/>

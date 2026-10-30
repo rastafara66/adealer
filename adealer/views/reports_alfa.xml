@@ -5,7 +5,9 @@
         <!--  НАРЯД-ЗАМОВЛЕННЯ (repair.order)                             -->
         <!-- ============================================================ -->
         <record id="action_report_repair_order" model="ir.actions.report">
-            <field name="name">Repair order</field>
+            <!-- «Work order», а не «Repair order»: штатний звіт repair зветься «Repair Order», і в
+                 меню друку наряду стояли два однакові пункти. -->
+            <field name="name">Work order</field>
             <field name="model">repair.order</field>
             <field name="report_type">qweb-html</field>
             <field name="report_name">adealer.report_repair_order</field>
