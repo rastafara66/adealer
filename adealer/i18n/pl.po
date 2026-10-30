@@ -5271,7 +5271,6 @@ msgstr "Historia napraw"
 
 #. module: adealer
 #: model:ir.actions.act_window,name:adealer.action_window_repair_orders
-#: model:ir.actions.report,name:adealer.action_report_repair_order
 #: model:ir.model.fields,field_description:adealer.field_adealer_service_booking__repair_order_id
 #: model:ir.model.fields.selection,name:adealer.selection__res_config_settings__adealer_home__repairs
 #: model:ir.ui.menu,name:adealer.menu_sales_repair_orders
@@ -7768,6 +7767,11 @@ msgstr "Czas trwania prac, godz."
 #: model_terms:ir.ui.view,arch_db:adealer.report_repair_act
 msgid "Work name"
 msgstr "Nazwa pracy"
+
+#. module: adealer
+#: model:ir.actions.report,name:adealer.action_report_repair_order
+msgid "Work order"
+msgstr "Zlecenie warsztatowe"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_repair_order__mechanic_ids
