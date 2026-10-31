@@ -29,6 +29,8 @@ _lt = LazyTranslate(__name__)
 
 #: Ключ ІПН серед додаткових ідентифікаторів Odoo 20 (назва — за звичаєм Odoo: країна_категорія).
 UA_VAT = "UA_VAT"
+#: Параметр системи: дані, записані за старим правилом («`vat` — ІПН»), уже розкладено (див. перенос нижче).
+LEGACY_DONE = "l10n_ua.tax_ids_legacy_done"
 
 
 def ua_digits(value):
@@ -208,7 +210,15 @@ class ResPartner(models.Model):
 
         Звіт: {"code": заповнено кодів, "ipn": заповнено ІПН, "no_code": [ІПН є, коду немає],
         "conflict": [у двох полях різні коди — лишено як є]}.
+
+        🔴 Старе правило діє ОДИН раз на базу, хоч скільки модулів його викличуть: після першого переносу
+        позначка `LEGACY_DONE` у параметрах системи вимикає його. Без неї друга міграція (ядро «Актива» і
+        3A-dealer оновлюються разом) брала вже розкладені 10-значні коди за старі ІПН — на копії бази 31.10.2026
+        так 3 995 фізособ отримали «ІПН платника ПДВ».
         """
+        params = self.env["ir.config_parameter"].sudo()
+        if legacy_vat_is_ipn and params.get_param(LEGACY_DONE):
+            legacy_vat_is_ipn = False
         cr = self.env.cr
         legacy = {}
         cr.execute("SELECT 1 FROM information_schema.columns WHERE table_name = 'res_partner' "
@@ -266,4 +276,6 @@ class ResPartner(models.Model):
             # юрособи без змін у `vat` перераховуємо явно — за новим правилом.
             self.env.add_to_compute(self._fields["is_company"], partners)
             partners.flush_recordset(["is_company"])
+        if legacy_vat_is_ipn:
+            params.set_param(LEGACY_DONE, "1")
         return report

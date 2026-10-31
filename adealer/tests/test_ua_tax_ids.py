@@ -72,6 +72,11 @@ class TestUaTaxIds(TransactionCase):
             self.assertEqual((fop.vat, fop.additional_identifiers.get(UA_VAT)), (RNOKPP, RNOKPP),
                              "ФОП-платник: РНОКПП лишається кодом і стає ІПН")
             self.assertFalse(fop.is_company)
+            # Друга міграція (ядра «Актива» й 3A-dealer оновлюються разом) — уже за новим правилом: РНОКПП
+            # фізособи в полі коду — не ІПН (31.10.2026 копія бази отримала так 3 995 хибних ІПН).
+            person = self.partner("Іван Новий", code="2222222222")
+            self.Partner._l10n_ua_normalize_tax_ids(legacy_vat_is_ipn=True)
+            self.assertFalse((person.additional_identifiers or {}).get(UA_VAT), "РНОКПП не став ІПН")
         else:
             misplaced = self.Partner.create({"name": "ТОВ «Не туди»", "country_id": self.ua.id, "vat": CODE})
             fop = self.Partner.create({"name": "ФОП Старий", "country_id": self.ua.id, "vat": RNOKPP})
