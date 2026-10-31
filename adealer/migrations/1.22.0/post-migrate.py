@@ -10,7 +10,8 @@ import logging
 
 from odoo.api import SUPERUSER_ID, Environment
 
-_logger = logging.getLogger(__name__)
+# Ім'я — у гілці `odoo`: логер з `__name__` файла міграції лежить поза нею, і рядок звіту губився.
+_logger = logging.getLogger("odoo.addons.adealer.migrations")
 
 
 def migrate(cr, version):

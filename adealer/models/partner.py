@@ -24,7 +24,7 @@ class ResPartner(models.Model):
              'standard field of this Odoo version (Company ID up to Odoo 19, Tax ID in Odoo 20).',
     )
     ua_code_in_vat = fields.Boolean(
-        compute='_compute_ua_code_in_vat',
+        string='Code in Tax ID', compute='_compute_ua_code_in_vat',
         help='Technical: the EDRPOU / RNOKPP code is the Tax ID itself (Odoo 20), so the form does not '
              'show it twice.',
     )
