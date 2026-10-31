@@ -6,6 +6,7 @@ from . import addresses_import_wizard
 from . import maintenance
 from . import partner_child_cleanup_wizard
 from . import partner_import
+from . import ua_tax_ids  # перед partner: псевдонім `edrpou` читає правило звідти
 from . import partner
 from . import partner_import_wizard
 from . import product

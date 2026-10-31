@@ -50,6 +50,24 @@ msgstr "%(count)s instalados. Aún sin comprobar."
 
 #. module: adealer
 #. odoo-python
+#: code:addons/adealer/models/ua_tax_ids.py:0
+msgid ""
+"%(number)s has 12 digits, so it is a VAT payer IPN, not an EDRPOU / RNOKPP "
+"code. Put the IPN into “VAT payer IPN” (button next to this field) and the "
+"EDRPOU code (8 digits) or the RNOKPP (10 digits) here."
+msgstr "%(number)s tiene 12 dígitos, así que es un IPN del contribuyente del IVA, no un código EDRPOU / RNOKPP. Escriba el IPN en «IPN del contribuyente del IVA» (botón junto a este campo) y aquí el código EDRPOU (8 dígitos) o el RNOKPP (10 dígitos)."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/ua_tax_ids.py:0
+msgid ""
+"%(number)s has 8 digits, so it is an EDRPOU code, not a VAT payer IPN. Put "
+"the code into “EDRPOU / RNOKPP” and the IPN (12 digits for a company, 10 for"
+" an individual entrepreneur) here."
+msgstr "%(number)s tiene 8 dígitos, así que es un código EDRPOU, no un IPN del contribuyente del IVA. Escriba el código en «EDRPOU / RNOKPP» y aquí el IPN (12 dígitos para una empresa, 10 para un empresario individual)."
+
+#. module: adealer
+#. odoo-python
 #: code:addons/adealer/models/adealer_update.py:0
 msgid "%(url)s knows of no %(series)s version of these modules."
 msgstr "%(url)s no conoce ninguna versión %(series)s de estos módulos."
@@ -1305,6 +1323,12 @@ msgid "Code"
 msgstr "Código"
 
 #. module: adealer
+#: model:ir.model.fields,field_description:adealer.field_res_partner__ua_code_in_vat
+#: model:ir.model.fields,field_description:adealer.field_res_users__ua_code_in_vat
+msgid "Code in Tax ID"
+msgstr "Código en el número fiscal"
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_repair_type__code
 msgid "Code of the repair type in the source system."
 msgstr "Código del tipo de reparación en el sistema de origen."
@@ -2280,17 +2304,25 @@ msgstr "Número de permiso de conducir (para particulares)"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_organization__edrpou
-#: model:ir.model.fields,field_description:adealer.field_res_partner__edrpou
-#: model:ir.model.fields,field_description:adealer.field_res_users__edrpou
 msgid "EDRPOU"
 msgstr "EDRPOU"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/ua_tax_ids.py:0
+#: model:ir.model.fields,field_description:adealer.field_res_partner__edrpou
+#: model:ir.model.fields,field_description:adealer.field_res_users__edrpou
+msgid "EDRPOU / RNOKPP"
+msgstr "EDRPOU / RNOKPP"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_res_partner__edrpou
 #: model:ir.model.fields,help:adealer.field_res_users__edrpou
 msgid ""
-"EDRPOU (Unified State Register of Enterprises and Organizations of Ukraine)"
-msgstr "EDRPOU (Registro Estatal Unificado de Empresas y Organizaciones de Ucrania)"
+"EDRPOU code (8 digits) of a company or RNOKPP (10 digits) of an individual. "
+"Stored in the standard field of this Odoo version (Company ID up to Odoo 19,"
+" Tax ID in Odoo 20)."
+msgstr "Código EDRPOU (8 dígitos) de una empresa o RNOKPP (10 dígitos) de una persona física. Se guarda en el campo estándar de esta versión de Odoo (ID de la empresa hasta Odoo 19, número fiscal en Odoo 20)."
 
 #. module: adealer
 #: model:ir.model.fields.selection,name:adealer.selection__dealer_car__fuel_type__electric
@@ -3138,6 +3170,15 @@ msgstr "En tránsito"
 #: model_terms:ir.ui.view,arch_db:adealer.view_report_ready_inactive
 msgid "Inactive customers"
 msgstr "Clientes inactivos"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/ua_tax_ids.py:0
+msgid ""
+"Individual tax number of a VAT payer: 12 digits for a company, 10 for an "
+"individual entrepreneur (the same as the RNOKPP). Leave it empty if the "
+"partner does not pay VAT."
+msgstr "Número fiscal individual de un contribuyente del IVA: 12 dígitos para una empresa, 10 para un empresario individual (igual al RNOKPP). Déjelo vacío si el contacto no paga IVA."
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_dealer_organization__vat_code
@@ -6260,6 +6301,14 @@ msgid "Technical: model of the document the structure is built for."
 msgstr "Técnico: modelo del documento para el que se construye la estructura."
 
 #. module: adealer
+#: model:ir.model.fields,help:adealer.field_res_partner__ua_code_in_vat
+#: model:ir.model.fields,help:adealer.field_res_users__ua_code_in_vat
+msgid ""
+"Technical: the EDRPOU / RNOKPP code is the Tax ID itself (Odoo 20), so the "
+"form does not show it twice."
+msgstr "Técnico: el código EDRPOU / RNOKPP es el propio número fiscal (Odoo 20), por eso el formulario no lo muestra dos veces."
+
+#. module: adealer
 #: model:ir.model.fields,help:adealer.field_partner_import_wizard__file_name
 msgid "Tells .xls and .xlsx apart."
 msgstr "Distingue .xls de .xlsx."
@@ -6487,6 +6536,12 @@ msgstr "La carpeta del módulo no es una copia git (%s).\nAbra la Odoo App Store
 #: model:ir.model.fields,help:adealer.field_res_config_settings__adealer_version_latest
 msgid "The newest published version, as of the last check."
 msgstr "La versión publicada más reciente, según la última comprobación."
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/ua_tax_ids.py:0
+msgid "The number is in the wrong field"
+msgstr "El número está en el campo equivocado"
 
 #. module: adealer
 #: model:ir.model.fields,help:adealer.field_adealer_service_request__sale_order_id
@@ -7067,6 +7122,12 @@ msgstr "Certificado de IVA n.º"
 #: model:ir.model.fields,field_description:adealer.field_dealer_organization__is_vat_payer
 msgid "VAT payer"
 msgstr "Sujeto a IVA"
+
+#. module: adealer
+#. odoo-python
+#: code:addons/adealer/models/ua_tax_ids.py:0
+msgid "VAT payer IPN"
+msgstr "IPN del contribuyente del IVA"
 
 #. module: adealer
 #: model:ir.model.fields,field_description:adealer.field_dealer_car__vat_mode

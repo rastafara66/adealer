@@ -50,7 +50,7 @@ Key features:
     'live_test_url': "https://demo-3adealer.aktiv.in.ua",
     'license': "LGPL-3",
     'category': 'Sales',
-    'version': '18.0.1.21.6',
+    'version': '18.0.1.22.0',
     'images': [
         # The first image is the card picture in the App Store listing. A
         # screenshot shrunk to a thumbnail reads as a grey smudge; the banner
@@ -95,6 +95,8 @@ Key features:
         'security/adealer_groups_wiring.xml',
         'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
+        # Підпис податкового номера в організаціях України — за серією Odoo (models/ua_tax_ids.py).
+        'data/ua_tax_ids.xml',
         'views/partner_child_cleanup_wizard_view.xml',  # <-- цей файл має бути раніше за views.xml!
         'views/addresses_import_wizard.xml',  # <-- цей файл має бути раніше за views.xml!
         'views/partner_import_wizard.xml', # <-- цей файл має бути раніше за views.xml!
