@@ -217,7 +217,11 @@ class ResPartner(models.Model):
         так 3 995 фізособ отримали «ІПН платника ПДВ».
         """
         params = self.env["ir.config_parameter"].sudo()
-        if legacy_vat_is_ipn and params.get_param(LEGACY_DONE):
+        # Odoo 20 читає й пише параметри `get_str`/`set_str`, 18/19 — `get_param`/`set_param`; беремо, що є (без
+        # виклику методом через крапку: перетворювач серії 20 переписав би рядок, і копії файла розійшлися б).
+        get = getattr(params, "get_str", None) or getattr(params, "get_param")
+        put = getattr(params, "set_str", None) or getattr(params, "set_param")
+        if legacy_vat_is_ipn and get(LEGACY_DONE):
             legacy_vat_is_ipn = False
         cr = self.env.cr
         legacy = {}
@@ -277,5 +281,5 @@ class ResPartner(models.Model):
             self.env.add_to_compute(self._fields["is_company"], partners)
             partners.flush_recordset(["is_company"])
         if legacy_vat_is_ipn:
-            params.set_param(LEGACY_DONE, "1")
+            put(LEGACY_DONE, "1")
         return report
