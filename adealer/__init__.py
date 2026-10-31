@@ -9,6 +9,8 @@ def post_init_hook(env):
     та зробити дашборд «Головна» стартовою сторінкою за замовчуванням."""
     env['fleet.vehicle.model.brand'].search([])._apply_bundled_logo()
     _set_default_home(env)
+    # Номери контрагентів, що вже є в базі, — за правилом «код ЄДРПОУ/РНОКПП і ІПН» (models/ua_tax_ids.py).
+    env['res.partner']._l10n_ua_normalize_tax_ids()
     # Групи товарів, що були в базі до встановлення, — іконки за назвою.
     env['product.category'].search([('adealer_icon', '=', False)])._adealer_pick_icon()
 
