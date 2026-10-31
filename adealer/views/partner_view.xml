@@ -6,8 +6,11 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='vat']" position="after">
                 <!-- `is_company`, а не `company_type`: в Odoo 20 поля company_type немає
-                     (той самий вигляд у 18/19/20). -->
-                <field name="edrpou" invisible="not is_company"/>
+                     (той самий вигляд у 18/19/20). Код ЄДРПОУ / РНОКПП — для кожної картки контрагента, і
+                     юрособи, і фізособи; в Odoo 20 код — це сам податковий номер (`vat`), тож другий раз його
+                     не показуємо (models/ua_tax_ids.py). -->
+                <field name="ua_code_in_vat" invisible="1"/>
+                <field name="edrpou" invisible="ua_code_in_vat or parent_id"/>
                 <field name="driver_license" invisible="is_company"/>
             </xpath>
             

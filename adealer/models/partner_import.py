@@ -81,6 +81,8 @@ class PartnerImport(models.TransientModel):
                 "row": idx + 2, "what": what, "why": why, "howto": howto,
             })
 
+        # В Odoo 20 «компанія» обчислюється з коду (models/ua_tax_ids.py) — писати її не можна.
+        manual_company = not self.env['res.partner']._fields['is_company'].compute
         for idx, row in enumerate(df):
             name = safe_val(row.get('Наименование'))
             phone = safe_val(row.get('Телефон'))
@@ -132,11 +134,12 @@ class PartnerImport(models.TransientModel):
                      _("the contact was created without the code; correct the code "
                        "in the file and import again, or enter it on the contact card"))
 
-            # Динамічний пошук по edrpou, vat, name
+            # Динамічний пошук по коду, ІПН, назві. ІПН шукаємо лише там, де він у `vat` (Odoo 18/19): в Odoo 20
+            # `vat` — це код, а ІПН — додатковий ідентифікатор (models/ua_tax_ids.py).
             search_domain = []
             if edrpou:
                 search_domain.append(('edrpou', '=', edrpou))
-            if inn:
+            if inn and 'company_registry' in self.env['res.partner']._fields:
                 search_domain.append(('vat', '=', inn))
             if name:
                 search_domain.append(('name', '=', name))
@@ -153,9 +156,9 @@ class PartnerImport(models.TransientModel):
                 if edrpou and not partner.edrpou:
                     partner.edrpou = edrpou
                     updated = True
-                # Якщо тип не співпадає — виправити
+                # Якщо тип не співпадає — виправити (в Odoo 20 «компанію» рахує сама Odoo з коду)
                 is_company_should = True if edrpou else False
-                if partner.is_company != is_company_should:
+                if manual_company and partner.is_company != is_company_should:
                     partner.is_company = is_company_should
                     updated = True
                 if updated:
@@ -170,12 +173,13 @@ class PartnerImport(models.TransientModel):
                 'name': name,
                 'phone': phone,
                 'email': email,
-                'vat': inn,
                 'street': address,
-                'edrpou': edrpou,
-                'is_company': True if edrpou else False,
                 'parent_id': False,  # Створюємо тільки основні контакти
+                # Код і ІПН — у поля цієї серії Odoo (models/ua_tax_ids.py).
+                **self.env['res.partner']._l10n_ua_tax_vals(code=edrpou or None, ipn=inn or None),
             }
+            if manual_company:
+                vals['is_company'] = True if edrpou else False
             if edrpou_note:
                 vals['comment'] = edrpou_note
 

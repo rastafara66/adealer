@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Підпис поля `vat` в організаціях України — за серією Odoo (models/ua_tax_ids.py): у 18/19 там ІПН
+         платника ПДВ, в Odoo 20 — код ЄДРПОУ / РНОКПП. При встановленні й кожному оновленні модуля. -->
+    <function model="res.partner" name="_l10n_ua_tax_labels"/>
+</odoo>
