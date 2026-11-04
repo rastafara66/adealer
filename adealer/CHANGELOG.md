@@ -3,19 +3,38 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
-## 19.0.1.22.0 — 2026-10-15
+## 19.0.1.23.0 — 2026-11-04
 
 ### Added
 
 - Registration number (number plate) on the vehicle card, in the list and in search.
 - Номерний знак на картці авто, у списку й у пошуку.
 
-## 19.0.1.21.0 — 2026-10-14
+## 19.0.1.22.0 — 2026-10-31
+
+### Changed
+
+- EDRPOU / RNOKPP code stored in the standard Odoo field, seen by other apps; VAT payer IPN kept separately.
+- Код ЄДРПОУ / РНОКПП — у стандартному полі Odoo, його бачать інші додатки; ІПН платника ПДВ — окремо.
+
+## 19.0.1.21.0 – 19.0.1.21.6 — 2026-10-30
 
 ### Added
 
 - Body type, drive and number of doors on the vehicle card.
 - Тип кузова, привід і кількість дверей на картці авто.
+
+### Changed
+
+- Odoo onboarding tours are switched off for all users.
+- Навчальні тури Odoo вимкнено для всіх користувачів.
+- A repair order created from a service booking takes over the requested works and the mechanic.
+- Наряд-замовлення, створений із запису на сервіс, бере перелік робіт і механіка.
+
+### Fixed
+
+- Bug fixes.
+- Виправлено помилки.
 
 ## 19.0.1.20.0 — 2026-10-13
 

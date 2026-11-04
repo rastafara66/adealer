@@ -56,3 +56,19 @@ class TestServiceBooking(TransactionCase):
         self.assertEqual(booking.repair_type_color, '#fce4b8')
         self.kind.html_color = False
         self.assertFalse(booking.repair_type_color)
+
+    def test_repair_order_takes_over_the_booking(self):
+        """Наряд із запису: клієнт, авто, механік і перелік робіт — без повторного набору."""
+        vehicle = self.env['fleet.vehicle'].create({'model_id': self.model.id})
+        mechanic = self.env['hr.employee'].create({'name': 'Mechanic T'})
+        booking = self._book(partner_id=self.partner.id, vehicle_id=vehicle.id,
+                             employee_id=mechanic.id, requested_works='Oil change\nFront pads')
+        ro = self.env['repair.order'].browse(booking.action_create_repair_order()['res_id'])
+        self.assertEqual(booking.repair_order_id, ro)
+        self.assertEqual(booking.state, 'done')
+        self.assertEqual((ro.partner_id, ro.vehicle_id), (self.partner, vehicle))
+        self.assertEqual(ro.mechanic_ids, mechanic)
+        self.assertIn('Oil change', ro.internal_notes)
+        self.assertIn('Front pads', ro.internal_notes)
+        # Повторне натискання відкриває той самий наряд, а не створює другий.
+        self.assertEqual(booking.action_create_repair_order()['res_id'], ro.id)
