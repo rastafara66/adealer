@@ -3,12 +3,17 @@
 Усі помітні зміни модуля. Версії у форматі `19.0.<x.y.z>`.
 All notable changes. Newest on top.
 
-## 19.0.1.22.0 — 2026-10-31
+## 19.0.1.22.0 – 19.0.1.22.1 — 2026-11-05
 
 ### Changed
 
 - EDRPOU / RNOKPP code stored in the standard Odoo field, seen by other apps; VAT payer IPN kept separately.
 - Код ЄДРПОУ / РНОКПП — у стандартному полі Odoo, його бачать інші додатки; ІПН платника ПДВ — окремо.
+
+### Fixed
+
+- Bug fixes.
+- Виправлено помилки.
 
 ## 19.0.1.21.0 – 19.0.1.21.6 — 2026-10-30
 
