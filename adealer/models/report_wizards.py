@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """Reports у класичному стилі: шапка параметрів (період, відбори) + кнопка «Generate»
 + таблична частина (відомість). Перший звіт — Receivables with counterparties."""
+from datetime import datetime, time, timedelta
+
 from odoo import models, fields, api, _
 
 
@@ -295,9 +297,24 @@ class AdealerReportWizard(models.TransientModel):
                      'amount': trev, 'amount2': tcost, 'amount3': trev - tcost})
         return rows
 
+    def _day_start_utc(self, day):
+        """Початок дня `day` за часом користувача — у UTC, як Odoo зберігає поля «дата й час»."""
+        naive = datetime.combine(day, time.min)
+        offset = fields.Datetime.context_timestamp(self, naive).utcoffset() or timedelta(0)
+        return naive - offset
+
+    def _period_domain(self, field_name):
+        """Період для поля «дата й час»: від початку першого дня до початку дня ПІСЛЯ останнього, за часом користувача.
+
+        Odoo 19 і 20 так тлумачать дату в умові на поле «дата й час» самі, а Odoo 18 бере межі дня в UTC:
+        документ о 00:30 за Києвом першого дня потрапляв у попередній період, а о 00:30 після останнього — у цей.
+        Явні межі дають той самий період у всіх серіях.
+        """
+        return [(field_name, '>=', self._day_start_utc(self.date_from)),
+                (field_name, '<', self._day_start_utc(self.date_to + timedelta(days=1)))]
+
     def _gen_purchases(self):
-        dom = [('state', '!=', 'cancel'),
-               ('date_order', '>=', self.date_from), ('date_order', '<=', self.date_to)]
+        dom = [('state', '!=', 'cancel')] + self._period_domain('date_order')
         if self.partner_id:
             dom.append(('partner_id', '=', self.partner_id.id))
         rows, tsum = [], 0.0
@@ -336,8 +353,7 @@ class AdealerReportWizard(models.TransientModel):
         return rows
 
     def _repair_domain(self):
-        dom = [('schedule_date', '>=', self.date_from),
-               ('schedule_date', '<=', self.date_to)]
+        dom = self._period_domain('schedule_date')
         if self.partner_id:
             dom.append(('partner_id', '=', self.partner_id.id))
         if self.vehicle_id:
@@ -378,7 +394,7 @@ class AdealerReportWizard(models.TransientModel):
         return rows
 
     def _gen_orders(self):
-        dom = [('date_order', '>=', self.date_from), ('date_order', '<=', self.date_to)]
+        dom = self._period_domain('date_order')
         if self.partner_id:
             dom.append(('partner_id', '=', self.partner_id.id))
         if self.vehicle_id:

@@ -51,3 +51,45 @@ class TestReportStateLabels(TransactionCase):
         self._translate_state('sale.order', 'draft', 'Пропозиція')
         self.env['sale.order'].create({'partner_id': self.partner.id})
         self.assertEqual(self._rows('orders').mapped('state'), ['Пропозиція'])
+
+
+@tagged('post_install', '-at_install')
+class TestReportPeriodWholeDays(TransactionCase):
+    """Період звіту — цілі дні за часом користувача, і останній день теж, однаково в усіх серіях.
+
+    Дата й час документа лежать у базі в UTC. Odoo 19 і 20 переводять дату в умові на пояс користувача
+    самі, Odoo 18 — ні: там документ о 00:30 за Києвом потрапляв у сусідній день.
+    """
+
+    TZ = 'Europe/Kyiv'          # 31.10.2026 — UTC+2 (літній час скінчився 25.10)
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env.user.tz = cls.TZ
+        cls.partner = cls.env['res.partner'].create({'name': 'Customer P'})
+
+    def _report(self, report_type):
+        day = fields.Date.to_date('2026-10-31')
+        wizard = self.env['adealer.report.wizard'].with_context(tz=self.TZ).create({
+            'report_type': report_type, 'partner_id': self.partner.id, 'date_from': day, 'date_to': day})
+        wizard.action_generate()
+        return wizard.line_ids.filtered(lambda line: line.line_type == 'row').mapped('name')
+
+    def test_repair_history_takes_the_whole_last_day(self):
+        RO = self.env['repair.order']
+        names = {}
+        for label, utc in (('00:30 31.10', '2026-10-30 22:30:00'), ('12:00 31.10', '2026-10-31 10:00:00'),
+                           ('23:30 31.10', '2026-10-31 21:30:00'), ('00:30 01.11', '2026-10-31 22:30:00')):
+            names[label] = RO.create({'partner_id': self.partner.id,
+                                      'schedule_date': fields.Datetime.to_datetime(utc)}).name
+        self.assertEqual(sorted(self._report('repairs')),
+                         sorted(names[k] for k in ('00:30 31.10', '12:00 31.10', '23:30 31.10')))
+
+    def test_customer_orders_take_the_whole_last_day(self):
+        SO = self.env['sale.order']
+        inside = SO.create({'partner_id': self.partner.id,
+                            'date_order': fields.Datetime.to_datetime('2026-10-31 15:00:00')})
+        SO.create({'partner_id': self.partner.id,
+                   'date_order': fields.Datetime.to_datetime('2026-10-31 22:30:00')})     # 01.11 за Києвом
+        self.assertEqual(self._report('orders'), [inside.name])
