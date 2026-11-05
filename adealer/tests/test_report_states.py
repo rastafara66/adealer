@@ -26,12 +26,8 @@ class TestReportStateLabels(TransactionCase):
         sel = self.env['ir.model.fields.selection'].search([
             ('field_id.model', '=', model), ('field_id.name', '=', 'state'), ('value', '=', value)])
         self.assertTrue(sel, 'стан %s «%s» є у виборі цієї серії Odoo' % (model, value))
+        # Запис назви сам перебудовує моделі й скидає кеш перекладів (18, 19 і 20).
         sel.with_context(lang=LANG).name = text
-        # Переклади назв станів Odoo тримає в кеші; у 17–19 і в 20 він скидається по-різному.
-        if hasattr(self.env.registry, 'clear_all_caches'):
-            self.env.registry.clear_all_caches()
-        else:
-            self.env.transaction.invalidate_ormcache('stable')
 
     def _rows(self, report_type):
         today = fields.Date.today()
