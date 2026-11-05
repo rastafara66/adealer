@@ -19,7 +19,7 @@
                 <xpath expr="//button[@name='action_confirm']" position="after">
                     <button help="Create a repair order from this sales order: customer, vehicle and lines are copied." name="action_create_repair_order" type="object"
                             string="Create order" class="btn-secondary"
-                            invisible="state not in ('sale', 'done')"/>
+                            invisible="state != 'sale'"/>
                 </xpath>
 
                 <!-- A sale.order here is the customer's order TO US (car brought in
