@@ -175,11 +175,14 @@ class PartnerBalanceWizardLine(models.TransientModel):
         }
 
 
-REPAIR_STATES = {'draft': 'New', 'confirmed': 'Confirmed',
-                 'under_repair': 'Under repair', 'done': 'Repaired',
-                 'cancel': 'Cancelled'}
-SALE_STATES = {'draft': 'Draft', 'sent': 'Sent', 'sale': 'Confirmed',
-               'done': 'Done', 'cancel': 'Cancelled'}
+def state_labels(env, model):
+    """{стан: назва} документа мовою користувача — з поля самої моделі.
+
+    Назви станів не тримаємо власним словником: англійський рядок у текстовій колонці звіту Odoo не
+    перекладає, і український користувач бачив «Confirmed», «Repaired»; до того ж набір станів у
+    серіях різний (в Odoo 20 у наряду немає «Under Repair», у замовлення з 17 — «Done»).
+    """
+    return dict(env[model]._fields['state']._description_selection(env))
 
 
 class AdealerReportWizard(models.TransientModel):
@@ -343,6 +346,7 @@ class AdealerReportWizard(models.TransientModel):
 
     def _gen_repairs(self):
         rows, tsum = [], 0.0
+        labels = state_labels(self.env, 'repair.order')
         for ro in self.env['repair.order'].search(self._repair_domain(),
                                                   order='schedule_date, id'):
             tsum += ro.amount_total
@@ -350,7 +354,7 @@ class AdealerReportWizard(models.TransientModel):
                          'name': ro.name, 'ref2': ro.partner_id.display_name or '',
                          'ref3': ro.vehicle_id.display_name or '',
                          'amount': ro.amount_total,
-                         'state': REPAIR_STATES.get(ro.state, ro.state),
+                         'state': labels.get(ro.state, ro.state),
                          'res_model': 'repair.order', 'res_id': ro.id})
         rows.append({'line_type': 'total', 'name': _('Total'), 'amount': tsum})
         return rows
@@ -380,13 +384,14 @@ class AdealerReportWizard(models.TransientModel):
         if self.vehicle_id:
             dom.append(('vehicle_id', '=', self.vehicle_id.id))
         rows, tsum = [], 0.0
+        labels = state_labels(self.env, 'sale.order')
         for so in self.env['sale.order'].search(dom, order='date_order, id'):
             tsum += so.amount_total
             rows.append({'line_type': 'row', 'date': so.date_order,
                          'name': so.name, 'ref2': so.partner_id.display_name or '',
                          'ref3': so.vehicle_id.display_name or '',
                          'amount': so.amount_total,
-                         'state': SALE_STATES.get(so.state, so.state),
+                         'state': labels.get(so.state, so.state),
                          'res_model': 'sale.order', 'res_id': so.id})
         rows.append({'line_type': 'total', 'name': _('Total'), 'amount': tsum})
         return rows

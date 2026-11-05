@@ -11,3 +11,5 @@ from . import test_vehicle_data
 from . import test_car_leads
 from . import test_tours_off
 from . import test_ua_tax_ids
+from . import test_report_states
+from . import test_view_states
