@@ -16,11 +16,10 @@ from odoo.tests import TransactionCase, tagged
 class TestToursOff(TransactionCase):
 
     def _admin(self, login):
-        Users = self.env['res.users']
-        groups = 'groups_id' if 'groups_id' in Users._fields else 'groups_id'
-        return Users.create({
+        # Поле груп — назвою своєї серії (у 18.0 її ставить to_odoo18.py).
+        return self.env['res.users'].create({
             'name': login, 'login': login,
-            groups: [Command.set([self.env.ref('base.group_system').id])],
+            'groups_id': [Command.set([self.env.ref('base.group_system').id])],
         })
 
     def test_new_admin_has_no_tours(self):
